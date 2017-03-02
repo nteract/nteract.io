@@ -4,7 +4,10 @@
   "description": "The server for nteract.io",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "dev": "node index.js",
+    "build": "next build",
+    "prestart": "npm run build",
+    "start": "NODE_ENV=production node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +20,10 @@
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "dependencies": {
-    "http-proxy": "^1.15.1"
+    "express": "^4.15.0",
+    "http-proxy": "^1.15.1",
+    "next": "^2.0.0-beta",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
   }
 }
