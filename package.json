@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "node index.js",
     "build": "next build",
-    "prestart": "npm run build",
     "start": "NODE_ENV=production node index.js"
   },
   "repository": {
