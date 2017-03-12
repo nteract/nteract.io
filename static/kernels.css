@@ -1,0 +1,63 @@
+
+body {
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  background-color: #EDF1F7;
+}
+
+.kernel {
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+section.language-toggle {
+  height: 41px;
+  background: #334866;
+  color: #EDF1F7;
+}
+
+.language-toggle ul {
+  list-style: none;
+  margin-top: 0px;
+}
+
+.language-toggle li {
+  display: inline-block;
+  float: none;
+  margin: 0;
+  position: relative;
+  height: 41px;
+  line-height: 41px;
+  text-align: center;
+}
+
+.language-toggle li a {
+  text-decoration: none;
+  padding: 0 7px;
+  margin: 0 3px;
+  color: #d0d4d7;
+  position: relative;
+}
+
+.kernel-selected {
+  background: linear-gradient(180deg,#8518f2,#8518f2);
+  color: #EDF1F7;
+  text-shadow: 0 0 0 hsla(0,0%,100%,.5), 0 1px 1px #EDF1F7;
+}
+
+.kernel-selected a:visited, .kernel-selected a {
+  color: white;
+}
+
+.kernel {
+  margin: 0 20px;
+}
+
+.kernel code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  background-color: white;
+  padding: 10px 15px;
+  margin: 10px 0px;
+  white-space: pre-wrap;
+  display: inline-block;
+}

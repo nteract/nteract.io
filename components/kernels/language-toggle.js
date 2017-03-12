@@ -12,7 +12,7 @@ type LanguageToggleProps = {
 };
 
 const LanguageToggle = (props: LanguageToggleProps) => (
-  <nav>
+  <section className="language-toggle">
     <ul>
       {props.kernels.map((kernel: KernelSelect) => (
         <li
@@ -25,7 +25,7 @@ const LanguageToggle = (props: LanguageToggleProps) => (
         </li>
       ))}
     </ul>
-  </nav>
+  </section>
 );
 
 export default LanguageToggle;

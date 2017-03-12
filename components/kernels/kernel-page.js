@@ -16,20 +16,14 @@ export const kernels = [
 export default (props: KernelPageProps) => (
   <div>
     <Head>
-      <style>
-        {
-          `
-          code {
-            font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
-          }
-          p, h1, h2, h3 {
-            font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-          }
-          `
-        }
-      </style>
+      <title>{`kernels - ${props.language}`}</title>
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <link rel="stylesheet" href="/static/kernels.css" />
     </Head>
-    <LanguageToggle current={props.language} kernels={kernels} />
+    <header>
+      <LanguageToggle current={props.language} kernels={kernels} />
+    </header>
     <props.Kernel />
   </div>
 );
