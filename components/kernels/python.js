@@ -9,7 +9,7 @@ export default () => (
     installURL="http://ipython.readthedocs.io/en/stable/install/kernel_install.html"
   >
     <div>
-      <h2>Installation</h2>
+      <h3>Installation</h3>
       <p>pip based:</p>
       <code>
         python -m pip install ipykernel

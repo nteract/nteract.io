@@ -9,7 +9,7 @@ export default () => (
     installURL="http://n-riesco.github.io/ijavascript/doc/install.md.html"
   >
     <div>
-      <h1>Installation</h1>
+      <h3>Installation</h3>
       <p>
         Note: nteract 0.1.0 includes a bundled node.js kernel. You likely already have it!
       </p>
