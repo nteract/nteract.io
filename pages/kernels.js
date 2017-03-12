@@ -1,18 +1,20 @@
 // @flow
 
+import Head from "next/head";
+
 type KernelProps = {
   name: string,
   installURL: string,
   repository: string,
-  installComponent: () => React$Element<*>,
-}
+  installComponent: () => React$Element<*>
+};
 
 const Kernel = (props: KernelProps) => (
   <section key={props.name}>
     <h2>{props.name}</h2>
     <p><a href={props.repository}>GitHub repository</a></p>
     <p><a href={props.installURL}>Install</a></p>
-    { props.installComponent ? <props.installComponent /> : null }
+    {props.installComponent ? <props.installComponent /> : null}
   </section>
 );
 
@@ -57,7 +59,9 @@ const kernels = [
     repository: "https://github.com/n-riesco/ijavascript",
     installComponent: () => (
       <div>
-        <p>Note: nteract 0.1.0 includes a bundled node.js kernel. You likely already have it!</p>
+        <p>
+          Note: nteract 0.1.0 includes a bundled node.js kernel. You likely already have it!
+        </p>
         <p>From the terminal:</p>
         <code>
           npm install -g ijavascript
@@ -68,9 +72,22 @@ const kernels = [
 ];
 
 export default () => (
-  <div>
-    {
-      kernels.map(Kernel)
-    }
+  <div
+    style={{
+      fontFamily: '-apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol'
+    }}
+  >
+    {kernels.map(Kernel)}
+    <Head>
+      <style>
+        {
+          `
+        code {
+          font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+        }
+      `
+        }
+      </style>
+    </Head>
   </div>
 );
