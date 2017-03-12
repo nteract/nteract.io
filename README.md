@@ -1,6 +1,8 @@
 # nteract.io
 
-Welcome!
+Welcome! This is the main site for nteract!
+
+We serve an express app that does [server rendered react using next](https://zeit.co/blog/next) and proxy `https://nteract.github.io` for all other routes. 😁
 
 ## Development
 
