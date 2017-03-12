@@ -2,6 +2,10 @@
 
 import Kernel from "./kernel";
 
+const installationLines = `install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
+devtools::install_github('IRkernel/IRkernel')
+IRkernel::installspec()`;
+
 export default () => (
   <Kernel
     displayName="R"
@@ -13,9 +17,7 @@ export default () => (
       <div>
         <p>Within R:</p>
         <code>
-          install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
-          devtools::install_github('IRkernel/IRkernel')
-          IRkernel::installspec()
+          {installationLines}
         </code>
       </div>
     </div>
