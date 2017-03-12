@@ -8,9 +8,18 @@ export type KernelProps = {
 };
 
 export default (props: KernelProps) => (
-  <div>
+  <div className="kernel">
     <section>
       <h2>{props.displayName}</h2>
+      <style jsx>
+        {
+          `
+        p {
+          margin-left: 10px;
+        }
+      `
+        }
+      </style>
       <p><a href={props.repository}>GitHub repository</a></p>
       <p><a href={props.installURL}>Install</a></p>
     </section>

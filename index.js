@@ -16,6 +16,7 @@ app.prepare().then(() => {
   // Next in development mode
   server.get("__webpack_hmr*", passthrough);
   server.get("/_next*", passthrough);
+  server.get("/static*", passthrough);
 
   // Let next handle /kernels, /kernels/python, etc.
   server.get("/kernels*", passthrough);
