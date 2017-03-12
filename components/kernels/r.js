@@ -9,7 +9,7 @@ export default () => (
     installURL="https://irkernel.github.io/installation/"
   >
     <div>
-      <h2>Installation</h2>
+      <h3>Installation</h3>
       <div>
         <p>Within R:</p>
         <code>
