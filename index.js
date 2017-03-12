@@ -1,6 +1,8 @@
 const httpProxy = require("http-proxy");
 const express = require("express");
 const next = require("next");
+const favicon = require("serve-favicon");
+const path = require("path");
 
 const proxy = httpProxy.createProxyServer({ changeOrigin: true });
 
@@ -12,6 +14,8 @@ const passthrough = (req, res) => handle(req, res);
 
 app.prepare().then(() => {
   const server = express();
+
+  server.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 
   // Next in development mode
   server.get("__webpack_hmr*", passthrough);
