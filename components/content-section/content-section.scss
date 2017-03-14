@@ -1,0 +1,27 @@
+@import "partials/abstract/abstract";
+
+.section {
+  &-wrapper {
+    @include global-wrapper;
+    opacity: 0;
+    transition: $transition;
+    transition-duration: $timing-animation;
+    transition-delay: $timing-animation/2;
+    transform: translateY(80px);
+    &.showing {
+      transform: none;
+      opacity: 1;
+    }
+  }
+
+  &:nth-of-type(even) {
+    background: rgba($main-color, 0.06);
+  }
+
+  &-graphic {
+    padding: $gutter;
+    @include tablet {
+      padding: 0;
+    }
+  }
+}

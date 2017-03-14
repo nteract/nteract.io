@@ -1,0 +1,15 @@
+@import "partials/abstract/abstract";
+@import "common";
+
+body {
+  @include animationFadein-sm();
+  background: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}

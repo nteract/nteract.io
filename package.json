@@ -20,11 +20,23 @@
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "dependencies": {
+    "autoprefixer": "6.7.6",
+    "babel-plugin-module-resolver": "2.5.0",
+    "babel-plugin-wrap-in-js": "^1.1.0",
     "express": "^4.15.0",
     "http-proxy": "^1.15.1",
+    "in-view": "^0.6.1",
+    "glob": "7.1.1",
     "next": "^2.0.0-beta",
+    "node-sass": "^4.4.0",
+    "normalize-scss": "^6.0.0",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
+    "postcss-easy-import": "2.0.0",
+    "postcss-loader": "1.3.3",
+    "raw-loader": "^0.5.1",
+    "react-headroom": "^2.1.3",
+    "sass-loader": "^4.1.1",
     "serve-favicon": "^2.4.1"
   },
   "devDependencies": {
@@ -32,3 +44,5 @@
     "flow-bin": "^0.41.0"
   }
 }
+
+

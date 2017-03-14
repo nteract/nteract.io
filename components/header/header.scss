@@ -1,0 +1,86 @@
+@import "partials/abstract/abstract";
+
+.header-main {
+  width: 100%;
+  left: 0;
+  top: 0;
+  height: $header-height;
+  display: flex;
+  z-index: 900;
+  color: #c8d4e5;
+
+  &-wrapper { // .header-main-wrapper
+    @include global-wrapper;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &-section { // .header-main-section
+    flex: 1;
+    display: flex;
+    &:last-of-type {
+      justify-content: flex-end;
+    }
+  }
+  // --
+  // Logo styles
+  // --
+  .logo {
+    img {
+      max-width: 100%;
+    }
+    max-width: 140px;
+    min-width: 140px;
+    margin-right: $unit;
+  }
+
+  // --
+  // Fix for chrome header jump bug
+  // --
+  * {
+    -webkit-backface-visibility: hidden;
+  }
+  -webkit-backface-visibility: hidden;
+
+  .nav{
+    @include handheld{
+      display: none;
+    }
+  }
+}
+
+// --
+// Headroom Styles
+// -- 
+.headroom {
+  background: transparent;
+  &-wrapper {
+    position: absolute;
+    width: 100%;
+  }
+  &--pinned {
+    background-color: rgba($main-color, 0.95);
+  }
+  position: absolute;
+}
+
+.nav {
+  color: #c8d4e5;
+
+  .button-icon-only, .nav-item {
+    opacity: 0.75;
+    transform: translateY(5px);
+    &:hover {
+      opacity: 1;
+      color: white;
+    }
+  }
+}
+
+.nav-item {
+  color: currentColor;
+  padding: $unit;
+  text-decoration: none;
+}

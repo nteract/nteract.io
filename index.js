@@ -25,7 +25,9 @@ app.prepare().then(() => {
   // Let next handle /kernels, /kernels/python, etc.
   server.get("/kernels*", passthrough);
 
-  server.get("*", (req, res) => {
+    server.get("/*", passthrough);
+
+    server.get("*", (req, res) => {
     return proxy.web(req, res, { target: "https://nteract.github.io" });
   });
 
