@@ -26,14 +26,14 @@ class Footer extends React.Component {
                                         alt=""/>
                                     </div>
                                     <div className="logo"><img
-                                        src="https://nteract.io/assets/images/sponsor-domino@3x.png"
+                                        src="https://nteract.github.io/assets/images/sponsor-domino@3x.png"
                                         alt=""/>
                                     </div>
-                                    <div className="logo"><img src="https://nteract.io/assets/images/sponsor-carina.svg"
+                                    <div className="logo"><img src="https://nteract.github.io/assets/images/sponsor-carina.svg"
                                                                alt=""/>
                                     </div>
                                     <div className="logo"><img
-                                        src="https://nteract.io/assets/images/sponsor-numfocus.png"
+                                        src="https://nteract.github.io/assets/images/sponsor-numfocus.png"
                                         alt=""/>
                                     </div>
                                 </div>

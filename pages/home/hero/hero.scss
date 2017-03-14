@@ -4,7 +4,7 @@ $timing-animation-delay: $timing-animation/2;
 
 .hero {
   background-color: $main-color;
-  background-image: url(https://nteract.io/assets/images/hero_header_bg@2x.png);
+  background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
   background-position: top center;
   background-attachment: fixed;
   background-size: calc(#{$global-width} + 200px;);

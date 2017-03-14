@@ -1,29 +1,15 @@
-import React from 'react'
+import React from "react";
 import Link from "next/link";
-import styles from './navigation.scss'
+import styles from "./navigation.scss";
 
-
-class NavigationLeft extends React.Component {
-
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-        <div className="nav buttons" role="navigation">
-            <style dangerouslySetInnerHTML={{__html: styles}}/>
-            <a href="https://medium.com/nteract" target="_blank" className="nav-item">
-                Blog
-            </a>
-            <a href="https://medium.com/nteract" target="_blank" className="nav-item">
-                About
-            </a>
-        </div>
-        )
-    }
-}
-
-
-export default NavigationLeft
+export default () => (
+  <div className="nav buttons" role="navigation">
+    <style dangerouslySetInnerHTML={{ __html: styles }} />
+    <a href="https://medium.com/nteract" target="_blank" className="nav-item">
+      Blog
+    </a>
+    <a href="https://medium.com/nteract" target="_blank" className="nav-item">
+      About
+    </a>
+  </div>
+);

@@ -4,10 +4,10 @@
   "description": "The server for nteract.io",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "next",
     "build": "next build",
     "flow": "flow",
-    "start": "NODE_ENV=production node index.js"
+    "start": "next start"
   },
   "repository": {
     "type": "git",
