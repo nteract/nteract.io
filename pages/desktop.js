@@ -81,7 +81,7 @@ export default () => (
         textAlign: "center",
         paddingBottom: "50px"
       }}
-    >nteract Desktop</h1>
+    >nteract desktop</h1>
     <OpenNotebooksFeature />
   </div>
 );
