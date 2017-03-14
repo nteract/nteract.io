@@ -18,12 +18,14 @@ app.prepare().then(() => {
   server.use(favicon(path.join(__dirname, "static", "favicon.ico")));
 
   // Next in development mode
-  server.get("__webpack_hmr*", passthrough);
+  server.get("/_webpack*", passthrough);
+  server.get("/__webpack_hmr*", passthrough);
   server.get("/_next*", passthrough);
   server.get("/static*", passthrough);
 
   // Let next handle /kernels, /kernels/python, etc.
   server.get("/kernels*", passthrough);
+  server.get("/desktop*", passthrough);
 
   server.get("*", (req, res) => {
     return proxy.web(req, res, { target: "https://nteract.github.io" });
