@@ -16,6 +16,9 @@ export default (
     <link rel="canonical" href="https://nteract.io/" />
     <link rel="author" href="humans.txt" />
 
+    <link rel="dns-prefetch" href="//nteract.io/" />
+    <link rel="dns-prefetch" href="//nteract.github.io/" />
+
     <link
       rel="apple-touch-icon"
       sizes="57x57"
@@ -100,7 +103,6 @@ export default (
       href="https://nteract.github.io/assets/images/icons/favicon.ico"
     />
 
-    <link rel="dns-prefetch" href="//nteract.io/" />
     <link rel="preconnect" href="https://nteract.io/" />
     <link rel="prefetch" href="https://nteract.io/" />
     <link rel="prerender" href="https://nteract.io/" />
@@ -112,7 +114,6 @@ export default (
     />
     <meta name="robots" content="index,follow,noodp" />
     <meta name="googlebot" content="index,follow" />
-    <meta name="generator" content="jekyll" />
     <meta name="url" content="https://nteract.io/" />
     <meta name="coverage" content="Worldwide" />
     <meta name="rating" content="General" />
