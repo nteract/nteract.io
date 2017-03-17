@@ -4,7 +4,7 @@ import {
   PageHeaderTitle,
   PageHeaderLeft,
   PageHeaderRight
-} from "../../components/page-header/page-header";
+} from "../page-header/page-header";
 
 export default () => (
   <PageHeader color="#353a79">
@@ -15,7 +15,6 @@ export default () => (
         Aperiam dolore, exercitationem in laudantium maiores perferendis, qui, quo sit tempore voluptatem voluptatum.
       </p>
     </PageHeaderLeft>
-    <PageHeaderRight>
-    </PageHeaderRight>
+    <PageHeaderRight />
   </PageHeader>
 );

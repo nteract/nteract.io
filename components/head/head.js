@@ -3,11 +3,15 @@ import React from "react";
 import Head from "next/head";
 
 type HeadProps = {
-  pageTitle: string
+  pageTitle: string,
+  themeColor: string
 };
 
 export default (
-  { pageTitle = ":  write your next code-driven story." }: HeadProps
+  {
+    pageTitle = ":  write your next code-driven story.",
+    themeColor = "#334865"
+  }: HeadProps
 ) => (
   <Head>
     <title>nteract{pageTitle}</title>
@@ -152,6 +156,6 @@ export default (
       content="https://nteract.io/static/images/opengraph.png"
     />
 
-    <meta name="theme-color" content="#334865" />
+    <meta name="theme-color" content={themeColor} />
   </Head>
 );

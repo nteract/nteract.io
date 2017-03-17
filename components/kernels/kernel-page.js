@@ -1,6 +1,10 @@
 // @flow
 import Head from "next/head";
-import LanguageToggle from "../../components/kernels/language-toggle";
+import LanguageToggle from "../kernels/language-toggle";
+
+import Layout from "../layout/layout";
+import ContentSection from "../content-section/content-section";
+import PageHeader from "./page-header";
 
 export type KernelPageProps = {
   language: string,
@@ -14,16 +18,17 @@ export const kernels = [
 ];
 
 export default (props: KernelPageProps) => (
-  <div>
+  <Layout pageTitle=": The nteract Desktop App is cool">
     <Head>
       <title>{`kernels - ${props.language}`}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <link rel="stylesheet" href="/static/kernels.css" />
     </Head>
-    <header>
-      <LanguageToggle current={props.language} kernels={kernels} />
-    </header>
-    <props.Kernel />
-  </div>
+    <PageHeader />
+    <ContentSection>
+      <header>
+        <LanguageToggle current={props.language} kernels={kernels} />
+      </header>
+      <props.Kernel />
+    </ContentSection>
+  </Layout>
 );
