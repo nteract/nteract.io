@@ -18,9 +18,8 @@ export const kernels = [
 ];
 
 export default (props: KernelPageProps) => (
-  <Layout pageTitle=": The nteract Desktop App is cool">
+  <Layout pageTitle={`: kernels - ${props.language}`}>
     <Head>
-      <title>{`kernels - ${props.language}`}</title>
       <link rel="stylesheet" href="/static/kernels.css" />
     </Head>
     <PageHeader />
