@@ -78,8 +78,11 @@ $timing-animation-delay: $timing-animation/2;
       transition: $transition;
       //width: 100%;
       left:0;
-      width: 120%;
-      max-width:200%;
+      width: 100%;
+     @include tablet{
+       width: 120%;
+       max-width:200%;
+     }
       @include tablet{
         top: 80px;
       }

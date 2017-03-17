@@ -20,7 +20,7 @@
   &-section { // .header-main-section
     flex: 1;
     display: flex;
-    &:last-of-type {
+    &.right {
       justify-content: flex-end;
     }
   }
@@ -44,8 +44,8 @@
   }
   -webkit-backface-visibility: hidden;
 
-  .nav{
-    @include handheld{
+  .nav {
+    @include handheld {
       display: none;
     }
   }
@@ -83,4 +83,59 @@
   color: currentColor;
   padding: $unit;
   text-decoration: none;
+}
+.mobilemenubutton{
+  padding-top:$unit;
+}
+.mobilemenubutton, .close-button {
+  display: none;
+  transform: translateX(8px);
+  @include handheld {
+    display: block;
+  }
+  svg {
+    width: 48px;
+    height: 48px;
+    * {
+      fill: white;
+    }
+  }
+}
+
+.mobile-menu {
+  display: none;
+  //display: flex;
+
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background: $main-color;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  padding: $gutter $gutter*2;
+  @include animationFadein;
+  animation-duration: 0.2s;
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    a {
+      padding: $unit 0;
+      margin: 0;
+      font-size: 2rem;
+    }
+
+  }
+  .icon-buttons {
+    margin-top: $gutter*2;
+  }
+  &.is-active {
+    display: flex;
+    @include tablet-up{
+      display: none !important;
+    }
+
+  }
 }
