@@ -21,17 +21,17 @@ class Footer extends React.Component {
                         <div className="footer-main-section">
                             <div className="logos">
                                 <div className="logos-wrapper">
-                                    <div className="logo"><img
-                                        src="https://s3-us-west-1.amazonaws.com/plotly-tutorials/plotly-marketing-pages/images/new-branding/logo/images/plotly-logo-01-stripe%402x.png"
-                                        alt=""/>
-                                    </div>
-                                    <div className="logo"><img
-                                        src="https://nteract.github.io/assets/images/sponsor-domino@3x.png"
-                                        alt=""/>
-                                    </div>
-                                    <div className="logo"><img src="https://nteract.github.io/assets/images/sponsor-carina.svg"
-                                                               alt=""/>
-                                    </div>
+                                    {/*<div className="logo"><img*/}
+                                        {/*src="https://s3-us-west-1.amazonaws.com/plotly-tutorials/plotly-marketing-pages/images/new-branding/logo/images/plotly-logo-01-stripe%402x.png"*/}
+                                        {/*alt=""/>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="logo"><img*/}
+                                        {/*src="https://nteract.github.io/assets/images/sponsor-domino@3x.png"*/}
+                                        {/*alt=""/>*/}
+                                    {/*</div>*/}
+                                    {/*<div className="logo"><img src="https://nteract.github.io/assets/images/sponsor-carina.svg"*/}
+                                                               {/*alt=""/>*/}
+                                    {/*</div>*/}
                                     <div className="logo"><img
                                         src="https://nteract.github.io/assets/images/sponsor-numfocus.png"
                                         alt=""/>

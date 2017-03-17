@@ -5,7 +5,7 @@ import styles from './layout.scss'
 
 
 export default ({children, pageTitle}) => (
-    <div>
+    <div className="layout">
         <style dangerouslySetInnerHTML={{__html: styles}}/>
 
         <Head pageTitle={pageTitle}/>

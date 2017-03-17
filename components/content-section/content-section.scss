@@ -1,13 +1,17 @@
 @import "partials/abstract/abstract";
 
-.section {
+section{
+  overflow: hidden;
+}
+.content-section {
+  flex: 1;
   &-wrapper {
     @include global-wrapper;
     opacity: 0;
     transition: $transition;
     transition-duration: $timing-animation;
-    transition-delay: $timing-animation/2;
-    transform: translateY(80px);
+    transition-delay: $timing-animation/3;
+    transform: translateY(10px);
     &.showing {
       transform: none;
       opacity: 1;
@@ -24,4 +28,63 @@
       padding: 0;
     }
   }
+}
+
+.panes {
+  display: flex;
+  padding: $gutter*2 0;
+
+  @include handheld {
+    display: block;
+  }
+
+  &.center-vertically {
+    .pane {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 100% !important;
+      flex: 1 1 100% !important;
+    }
+  }
+
+  .pane {
+
+    &:not(:first-of-type) {
+      padding-left: $gutter*2;
+
+      @include handheld {
+        padding-top: $gutter;
+        padding-left: 0;
+      }
+    }
+    @include tablet-up {
+      &-30 {
+        //flex: 1 1 50%;
+        width: 30%;
+        min-width: 30%;
+      }
+      &-50 {
+        //flex: 1 1 50%;
+        width: 50%;
+        min-width: 50%;
+      }
+      &-70 {
+        //flex: 1 1 50%;
+        width: 70%;
+        min-width: 70%;
+      }
+    }
+  }
+
+  @include handheld {
+    flex-direction: column;
+
+    .pane {
+    }
+  }
+}
+
+video{
+  max-width:100%;
 }

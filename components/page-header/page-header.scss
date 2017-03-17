@@ -2,8 +2,8 @@
 
 $timing-animation-delay: $timing-animation/2;
 
-.hero {
-  background-color: $main-color;
+.page-header {
+  background-color: transparent;
   background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
   background-position: top center;
   background-attachment: fixed;
@@ -16,8 +16,10 @@ $timing-animation-delay: $timing-animation/2;
     color: lighten($main-color, 45%);
     display: flex;
     justify-content: space-between;
+    padding-top:$gutter*2;
+    overflow: hidden;
     h1 {
-      animation-delay: $timing-animation-delay;
+      animation-delay: $timing-animation-delay/3;
       @include animationFadeAndSlideInFromTop-sm;
       color: white;
     }
@@ -35,7 +37,7 @@ $timing-animation-delay: $timing-animation/2;
     padding-bottom: $gutter*2;
 
     p, .buttons, .footnote {
-      animation-delay: $timing-animation-delay;
+      animation-delay: $timing-animation-delay/3;
       @include animationFadeAndSlideInFromBottom-sm;
     }
 
@@ -67,21 +69,42 @@ $timing-animation-delay: $timing-animation/2;
 
     display: flex;
     align-items: flex-end;
+    position: relative;
+    flex: 1;
+    .cutoff-image{
+      position: absolute;
+      top:0;
+      z-index:4;
+      transition: $transition;
+      //width: 100%;
+      left:0;
+      width: 120%;
+      max-width:200%;
+      @include tablet{
+        top: 80px;
+      }
+      &:hover{
+        top: -40px;
+        @include tablet{
+          top: 50px;
+        }
+      }
+    }
     @include tablet {
-      img {
+      .video-placeholder {
         display: none !important;
       }
     }
     @include handheld {
-      img {
+      .video-placeholder {
         display: block !important;
       }
     }
-    video, img {
+    video, .video-placeholder {
       margin-top: $gutter*2;
       display: block;
       max-width: 100%;
-      animation-delay: $timing-animation-delay;
+      animation-delay: $timing-animation-delay/3;
       @include animationFadeAndSlideInFromBottom-sm;
     }
 
@@ -98,16 +121,16 @@ $timing-animation-delay: $timing-animation/2;
     }
   }
 
-  &-mobile-message{
+  &-mobile-message {
     display: none;
     @include handheld {
       display: flex;
     }
     flex-direction: column;
-    animation-delay: $timing-animation-delay;
+    animation-delay: $timing-animation-delay/3;
     @include animationFadeAndSlideInFromBottom-sm;
     @include animationFadeAndSlideInFromBottom-sm;
-    h4{
+    h4 {
       color: white;
     }
   }

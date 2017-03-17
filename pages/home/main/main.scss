@@ -1,49 +1,5 @@
 @import "partials/abstract/abstract";
 
 
-.panes {
-  display: flex;
-  padding: $gutter*2 0;
 
-  @include handheld {
-    display: block;
-  }
-
-  &.center-vertically {
-    .pane {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 100% !important;
-      flex: 1 1 100% !important;
-    }
-  }
-
-  .pane {
-
-    &:not(:first-of-type) {
-      padding-left: $gutter*2;
-
-      @include handheld {
-        padding-top: $gutter;
-        padding-left: 0;
-      }
-    }
-    @include tablet-up {
-
-      &-50 {
-        //flex: 1 1 50%;
-        width: 50%;
-        min-width: 50%;
-      }
-    }
-  }
-
-  @include handheld {
-    flex-direction: column;
-
-    .pane {
-    }
-  }
-}
 

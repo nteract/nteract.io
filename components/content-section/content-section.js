@@ -11,7 +11,7 @@ export default class ContentSection extends React.Component {
 
     componentDidMount() {
         inView.offset(50);
-        inView('.section-wrapper').on('enter', el => {
+        inView('.inview').on('enter', el => {
             if (!el.classList.contains("showing")) {
                 el.classList.add("showing");
             }
@@ -20,9 +20,9 @@ export default class ContentSection extends React.Component {
 
     render() {
         return (
-            <section className="section">
+            <section className="content-section">
                 <style dangerouslySetInnerHTML={{__html: styles}}/>
-                <div className="section-wrapper">
+                <div className="content-section-wrapper inview">
                     {this.props.children}
                 </div>
             </section>
