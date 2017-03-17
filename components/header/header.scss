@@ -128,7 +128,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    @media screen and ( max-height: 400px ){
+    @media screen and ( max-height: 470px ){
       flex-direction: row;
       a{
         margin-left:$unit !important;
@@ -146,9 +146,8 @@
     margin-top: $gutter*2;
   }
   &.is-active {
-    display: flex;
-    @include tablet-up{
-      display: none !important;
+    @include handheld{
+      display: flex;
     }
 
   }
