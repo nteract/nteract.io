@@ -8,11 +8,13 @@ export default () => (
   <PageHeader color="#244d64">
     <PageHeaderLeft>
       <h1>
-        A great title about the desktop application with more details
+        Notebooks on your desktop
       </h1>
 
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dicta, eius excepturi nam natus nihil ratione repellat voluptates. Accusamus ad adipisci aliquam architecto commodi facilis ipsum laboriosam magnam saepe? Dicta.
+        Write code, prose, and embed interactive plots to tell powerful narratives.
+        Explore computing creatively. All the power of Jupyter notebooks,
+        wrapped in native desktop goodness.
       </p>
 
       <div className="mobile-only hero-mobile-message">
@@ -58,8 +60,10 @@ export default () => (
       </div>
     </PageHeaderLeft>
     <PageHeaderRight>
-      <img src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png" alt=""
-      className="cutoff-image"
+      <img
+        src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
+        alt=""
+        className="cutoff-image"
       />
     </PageHeaderRight>
   </PageHeader>
