@@ -60,7 +60,7 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
         </div>
 
         {platform !== "Windows" ? <WindowsIcon /> : null}
-        {platform !== "MacOS" ? <MacIcon /> : null}
+        {platform !== "macOS" ? <MacIcon /> : null}
         {platform !== "Linux" ? <LinuxIcon /> : null}
 
       </div>
