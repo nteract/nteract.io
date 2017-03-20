@@ -16,7 +16,7 @@ import SocialButtons from "../components/navigation/social-buttons";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 
-const HomeHeader = () => (
+const HomeHeader = (props: OSProps) => (
   <PageHeader color="#334865">
     <PageHeaderLeft>
       <h1>Take your computing experience to the next level.</h1>
@@ -32,7 +32,7 @@ const HomeHeader = () => (
         <SocialButtons />
       </div>
 
-      <DownloadFeaturette platform="macOS" />
+      <DownloadFeaturette platform={props.platform} />
 
     </PageHeaderLeft>
     <PageHeaderRight>
@@ -146,7 +146,7 @@ class Home extends React.Component<void, OSProps, void> {
   render() {
     return (
       <Layout>
-        <HomeHeader style="" />
+        <HomeHeader platform={this.props.platform} />
         <Main />
       </Layout>
     );
