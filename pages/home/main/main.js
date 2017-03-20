@@ -1,11 +1,9 @@
 import React from "react";
-import styles from "./main.scss";
 import ContentSection
   from "../../../components/content-section/content-section";
 
 const Main = () => (
   <div>
-    <style dangerouslySetInnerHTML={{ __html: styles }} />
     <ContentSection>
       <div className="panes center-vertically">
         <div className="pane-50 pane">
