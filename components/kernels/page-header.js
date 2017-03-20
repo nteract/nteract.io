@@ -11,8 +11,8 @@ export default () => (
     <PageHeaderLeft>
       <PageHeaderTitle>Kernels</PageHeaderTitle>
       <p>
-        Kernels power your favorite languages within nteract projects and across
-        the Jupyter ecosystem.
+        Kernels connect your favorite languages to nteract projects for an improved
+        REPL experience.
       </p>
     </PageHeaderLeft>
     <PageHeaderRight />
