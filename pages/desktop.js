@@ -1,7 +1,14 @@
 // @flow
-//Sections
 import Layout from "../components/layout/layout";
 import ContentSection from "../components/content-section/content-section";
+
+import {
+  PageHeader,
+  PageHeaderLeft,
+  PageHeaderRight
+} from "../components/page-header/page-header";
+
+import { DownloadFeaturette } from "../components/download-buttons";
 
 const OpenNotebooksFeature = () => (
   <ContentSection>
@@ -26,14 +33,6 @@ const OpenNotebooksFeature = () => (
     </div>
   </ContentSection>
 );
-
-import {
-  PageHeader,
-  PageHeaderLeft,
-  PageHeaderRight
-} from "../components/page-header/page-header";
-
-import { DownloadFeaturette } from "../components/download-buttons";
 
 const DesktopHeader = () => (
   <PageHeader color="#244d64">
