@@ -39,29 +39,69 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
   return (
     <div>
       <div className="buttons buttons-hero not-mobile">
-        <div className="button button-primary">
-          <div className="button-wrapper">
-            <div className="button-icon">
-              <img
-                src="https://nteract.github.io/assets/images/icon-nteract-download.svg"
-                alt="Download nteract"
-              />
-            </div>
-            <div className="button-label">
-              Download Alpha for {platform}
+        <style jsx>
+          {
+            `
+            a {
+              text-decoration: none;
+            }
+          `
+          }
+        </style>
+        <a href="https://github.com/nteract/nteract/releases/latest">
+          <div className="button button-primary">
+            <div className="button-wrapper">
+              <div className="button-icon">
+                <img
+                  src="https://nteract.github.io/assets/images/icon-nteract-download.svg"
+                  alt="Download nteract"
+                />
+              </div>
+              <div className="button-label">
+                Download Alpha for {platform}
+              </div>
             </div>
           </div>
-        </div>
+        </a>
       </div>
 
       <div className="footnote not-mobile">
-        <div className="footnote-message">
-          Also available for other platforms
-        </div>
+        <style jsx>
+          {
+            `
+        a {
+          color: currentColor;
+          text-decoration: none;
+        }
+        a:hover {
+          color: white;
+        }
+      `
+          }
 
-        {platform !== "Windows" ? <WindowsIcon /> : null}
-        {platform !== "macOS" ? <MacIcon /> : null}
-        {platform !== "Linux" ? <LinuxIcon /> : null}
+        </style>
+        <a href="https://github.com/nteract/nteract/releases/latest">
+          <div className="footnote-message">
+            Also available for other platforms
+
+          </div>
+        </a>
+
+        {platform !== "Windows"
+          ? <a href="https://github.com/nteract/nteract/releases/latest">
+              <WindowsIcon />
+            </a>
+          : null}
+        {platform !== "macOS"
+          ? <a href="https://github.com/nteract/nteract/releases/latest">
+              {" "}<MacIcon />
+            </a>
+          : null}
+        {platform !== "Linux"
+          ? <a href="https://github.com/nteract/nteract/releases/latest">
+              {" "}<LinuxIcon />
+            </a>
+          : null}
 
       </div>
     </div>
