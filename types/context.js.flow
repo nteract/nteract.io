@@ -1,8 +1,17 @@
-declare type Context<Query> = {
-  req?: { params: Array<string> }, // server only
-  res?: {}, // server only
+export type ServerContext<Query> = {
+  req: { params: Array<string>, headers: Headers },
+  res: {},
   pathname: string,
   query: Query,
-  jsonPageRes?: Response, // client only
   err: Error
 };
+
+export type ClientContext<Query> = {
+  req?: { headers: Headers },
+  pathname: string,
+  query: Query,
+  jsonPageRes?: Response,
+  err: Error
+};
+
+export type Context<Query> = ClientContext<Query> | ServerContext<Query>;

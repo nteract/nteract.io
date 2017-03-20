@@ -9,6 +9,8 @@ import {
   PageHeaderRight
 } from "../components/page-header/page-header";
 
+import { detectPlatform } from "../lib/os-detect";
+
 import { DownloadFeaturette } from "../components/download-buttons";
 
 const OpenNotebooksFeature = () => (
@@ -35,45 +37,52 @@ const OpenNotebooksFeature = () => (
   </ContentSection>
 );
 
-const DesktopHeader = () => (
-  <PageHeader color="#244d64">
-    <PageHeaderLeft>
-      <h1>
-        Notebooks on your desktop
-      </h1>
+type DesktopPageProps = {
+  platform: "macOS" | "Linux" | "Windows"
+};
 
-      <p>
-        Write code, prose, and embed interactive plots to tell powerful narratives.
-        Explore computing creatively. All the power of Jupyter notebooks,
-        wrapped in native desktop goodness.
-      </p>
+type EmptyQuery = {};
 
-      <div className="mobile-only hero-mobile-message">
-        <h4>Connect with us</h4>
-      </div>
-
-      <DownloadFeaturette platform="macOS" />
-
-    </PageHeaderLeft>
-    <PageHeaderRight>
-      <img
-        src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
-        alt=""
-        className="cutoff-image"
-      />
-    </PageHeaderRight>
-  </PageHeader>
-);
-
-export default class DesktopPage extends React.Component {
-  static async getInitialProps(ctx: Context<*>) {
-    console.log(ctx);
+export default class DesktopPage
+  extends React.Component<void, DesktopPageProps, void> {
+  static async getInitialProps(
+    ctx: ServerContext<EmptyQuery> | ClientContext<EmptyQuery>
+  ): Promise<DesktopPageProps> {
+    return {
+      platform: detectPlatform(ctx)
+    };
   }
 
   render() {
     return (
       <Layout pageTitle=": The nteract Desktop App">
-        <DesktopHeader />
+        <PageHeader color="#244d64">
+          <PageHeaderLeft>
+            <h1>
+              Notebooks on your desktop
+            </h1>
+
+            <p>
+              Write code, prose, and embed interactive plots to tell powerful narratives.
+              Explore computing creatively. All the power of Jupyter notebooks,
+              wrapped in native desktop goodness.
+            </p>
+
+            <div className="mobile-only hero-mobile-message">
+              <h4>Connect with us</h4>
+            </div>
+
+            <DownloadFeaturette platform={this.props.platform} />
+
+          </PageHeaderLeft>
+          <PageHeaderRight>
+            <img
+              src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
+              alt=""
+              className="cutoff-image"
+            />
+          </PageHeaderRight>
+        </PageHeader>
         <OpenNotebooksFeature />
       </Layout>
     );
