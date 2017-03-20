@@ -38,7 +38,7 @@ export default class AboutPage extends React.Component<void, OSProps, void> {
   render() {
     return (
       <Layout pageTitle=": The nteract Desktop App">
-        <PageHeader color="#244d64">
+        <PageHeader color="#1e0029">
           <PageHeaderLeft>
             <h1>
               About
