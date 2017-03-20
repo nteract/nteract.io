@@ -8,8 +8,10 @@ export default () => (
     <a href="https://medium.com/nteract" target="_blank" className="nav-item">
       Blog
     </a>
-    <a href="https://medium.com/nteract" target="_blank" className="nav-item">
-      About
-    </a>
+    <Link href="/about" as="/about">
+      <a className="nav-item">
+        About
+      </a>
+    </Link>
   </div>
 );

@@ -4,13 +4,11 @@ import Link from "next/link";
 
 export default () => (
   <div className="nav buttons">
-    <a
-      href="https://atom.io/packages/hydrogen"
-      target="_blank"
-      className="nav-item"
-    >
-      Atom
-    </a>
+    <Link as="/atom" href="/atom" prefetch>
+      <a className="nav-item">
+        Atom
+      </a>
+    </Link>
     <Link as="/kernels" href="/kernels" prefetch>
       <a className="nav-item">Kernels</a>
     </Link>
