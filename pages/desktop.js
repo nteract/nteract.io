@@ -37,17 +37,8 @@ const OpenNotebooksFeature = () => (
   </ContentSection>
 );
 
-type DesktopPageProps = {
-  platform: "macOS" | "Linux" | "Windows"
-};
-
-type EmptyQuery = {};
-
-export default class DesktopPage
-  extends React.Component<void, DesktopPageProps, void> {
-  static async getInitialProps(
-    ctx: ServerContext<EmptyQuery> | ClientContext<EmptyQuery>
-  ): Promise<DesktopPageProps> {
+export default class DesktopPage extends React.Component<void, OSProps, void> {
+  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     return {
       platform: detectPlatform(ctx)
     };

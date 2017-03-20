@@ -4,6 +4,8 @@ import Layout from "../components/layout/layout";
 
 import ContentSection from "../components/content-section/content-section";
 
+import { detectPlatform } from "../lib/os-detect";
+
 import {
   PageHeader,
   PageHeaderLeft,
@@ -134,11 +136,21 @@ const Main = () => (
   </div>
 );
 
-const Home = () => (
-  <Layout>
-    <HomeHeader style="" />
-    <Main />
-  </Layout>
-);
+class Home extends React.Component<void, OSProps, void> {
+  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
+    return {
+      platform: detectPlatform(ctx)
+    };
+  }
+
+  render() {
+    return (
+      <Layout>
+        <HomeHeader style="" />
+        <Main />
+      </Layout>
+    );
+  }
+}
 
 export default Home;
