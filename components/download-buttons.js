@@ -1,3 +1,4 @@
+// @flow
 const WindowsIcon = () => (
   <div className="footnote-icon">
     <svg viewBox="0 0 24 24">
