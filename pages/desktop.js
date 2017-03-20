@@ -1,6 +1,7 @@
 // @flow
 import Layout from "../components/layout/layout";
 import ContentSection from "../components/content-section/content-section";
+import React from "react";
 
 import {
   PageHeader,
@@ -64,9 +65,17 @@ const DesktopHeader = () => (
   </PageHeader>
 );
 
-export default () => (
-  <Layout pageTitle=": The nteract Desktop App">
-    <DesktopHeader />
-    <OpenNotebooksFeature />
-  </Layout>
-);
+export default class DesktopPage extends React.Component {
+  static async getInitialProps(ctx: Context<*>) {
+    console.log(ctx);
+  }
+
+  render() {
+    return (
+      <Layout pageTitle=": The nteract Desktop App">
+        <DesktopHeader />
+        <OpenNotebooksFeature />
+      </Layout>
+    );
+  }
+}

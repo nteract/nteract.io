@@ -1,0 +1,8 @@
+declare type Context<Query> = {
+  req?: { params: Array<string> }, // server only
+  res?: {}, // server only
+  pathname: string,
+  query: Query,
+  jsonPageRes?: Response, // client only
+  err: Error
+};
