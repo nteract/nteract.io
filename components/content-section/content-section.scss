@@ -49,9 +49,16 @@ section{
   }
 
   .pane {
+    &:first-child {
+      padding-right: $gutter;
 
-    &:not(:first-of-type) {
-      padding-left: $gutter*2;
+      @include handheld {
+        padding-right: 0;
+      }
+    }
+
+    &:not(:first-child) {
+      padding-left: $gutter;
 
       @include handheld {
         padding-top: $gutter;
