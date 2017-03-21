@@ -67,7 +67,7 @@ const WatchExpressions = () => (
 export default class AtomPage extends React.Component {
   render() {
     return (
-      <Layout pageTitle=": The nteract Desktop App">
+      <Layout pageTitle=": Hydrogen for Atom">
         <PageHeader color="#333">
           <PageHeaderLeft>
             <h1>
