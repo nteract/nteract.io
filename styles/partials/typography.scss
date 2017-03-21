@@ -58,6 +58,11 @@ u {
   text-decoration-skip: ink edges;
 }
 
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+
 blockquote {
   border-left: .2rem solid $border-color;
   margin-left: 0;
