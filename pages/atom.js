@@ -69,7 +69,7 @@ const InspectCode = () => (
     <div className="panes center-vertically">
       <div className="pane-70 pane">
         <div className="section-graphic">
-          <image src="static/atom/inspect.png" alt="Code Completion" />
+          <img src="static/atom/inspect.png" alt="Code Completion" />
         </div>
       </div>
       <div className="pane-30 pane">
