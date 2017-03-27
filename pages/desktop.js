@@ -40,7 +40,7 @@ const OpenNotebooksFeature = () => (
 export default class DesktopPage extends React.Component<void, OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     return {
-      platform: detectPlatform(ctx)
+      platform: detectPforlatform(ctx)
     };
   }
 
