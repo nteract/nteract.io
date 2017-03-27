@@ -65,6 +65,27 @@ const WatchExpressions = () => (
     </ContentSection>
 );
 
+const InspectCode = () => (
+    <ContentSection>
+        <div className="panes center-vertically">
+            <div className="pane-70 pane">
+                <div className="section-graphic">
+                    <img src="static/atom/inspect.png" alt="Code Completion"/>
+                </div>
+            </div>
+            <div className="pane-30 pane">
+                <h3>Code Completion and Documentation</h3>
+                <p>Code completion and a inspector for displaying metadata, like documentation, are there to make your
+                    coding experience seamless.</p>
+                <p>
+                    There’s no need to leave your favorite text editor to get the information you need to fuel your
+                    development process.
+                </p>
+            </div>
+        </div>
+    </ContentSection>
+);
+
 export default class AtomPage extends React.Component {
     render() {
         return (
@@ -104,6 +125,7 @@ export default class AtomPage extends React.Component {
                 </PageHeader>
                 <InteractiveCoding />
                 <WatchExpressions />
+                <InspectCode />
             </Layout>
         );
     }
