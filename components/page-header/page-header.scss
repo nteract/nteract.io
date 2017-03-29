@@ -13,7 +13,8 @@ $timing-animation-delay: $timing-animation/2;
   overflow: hidden;
   &-wrapper {
     @include global-wrapper;
-    color: lighten($main-color, 45%);
+    color: rgba(white, 0.5);
+    font-weight:300;
     display: flex;
     justify-content: space-between;
     padding-top:$gutter*2;

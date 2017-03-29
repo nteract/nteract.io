@@ -6,8 +6,8 @@ import {
   PageHeaderRight
 } from "../page-header/page-header";
 
-export default () => (
-  <PageHeader color="#353a79">
+export default (themeColor) => (
+  <PageHeader themeColor={themeColor}>
     <PageHeaderLeft>
       <PageHeaderTitle>Kernels</PageHeaderTitle>
       <p>

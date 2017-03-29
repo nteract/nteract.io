@@ -1,18 +1,24 @@
+import React from 'react'
 import Head from '../head/head'
 import Header from '../header/header'
 import Footer from '../footer/footer'
 import styles from './layout.scss'
 
 
-export default ({children, pageTitle}) => (
-    <div className="layout">
-        <style dangerouslySetInnerHTML={{__html: styles}}/>
+export default class Layout extends React.Component {
 
-        <Head pageTitle={pageTitle}/>
-        <Header />
-        <div className="page">
-            { children }
-        </div>
-        <Footer />
-    </div>
-)
+    render() {
+        return (
+            <div className="layout">
+                <style dangerouslySetInnerHTML={{__html: styles}}/>
+
+                <Head pageTitle={this.props.pageTitle}/>
+                <Header themeColor={this.props.themeColor}/>
+                <div className="page">
+                    { this.props.children }
+                </div>
+                <Footer />
+            </div>
+        );
+    }
+}

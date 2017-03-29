@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Head from "next/head";
-
+import mdi from '../../static/mdi/css/materialdesignicons.css';
 type HeadProps = {
   pageTitle: string,
   themeColor: string
@@ -23,7 +23,11 @@ export default (
     <link rel="dns-prefetch" href="//nteract.io/" />
     <link rel="dns-prefetch" href="//nteract.github.io/" />
 
-    <link
+
+
+
+
+      <link
       rel="apple-touch-icon"
       sizes="57x57"
       href="https://nteract.github.io/assets/images/icons/apple-icon-57x57.png"
@@ -157,5 +161,6 @@ export default (
     />
 
     <meta name="theme-color" content={themeColor} />
+      <style dangerouslySetInnerHTML={{__html: mdi}}/>
   </Head>
 );

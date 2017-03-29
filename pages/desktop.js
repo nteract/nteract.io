@@ -1,6 +1,6 @@
 // @flow
 import Layout from "../components/layout/layout";
-import ContentSection from "../components/content-section/content-section";
+import { ContentSection } from "../components/content-section/content-section";
 import React from "react";
 
 import {
@@ -40,14 +40,17 @@ const OpenNotebooksFeature = () => (
 export default class DesktopPage extends React.Component<void, OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     return {
-      platform: detectPforlatform(ctx)
+      platform: detectPlatform(ctx)
     };
   }
 
   render() {
+
+    let themeColor = "#244d64";
+
     return (
-      <Layout pageTitle=": The nteract Desktop App">
-        <PageHeader color="#244d64">
+      <Layout pageTitle=": The nteract Desktop App" themeColor={themeColor}>
+        <PageHeader themeColor={themeColor}>
           <PageHeaderLeft>
             <h1>
               Notebooks on your desktop

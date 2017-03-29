@@ -30,6 +30,9 @@ class Header extends React.Component {
     }
 
     render() {
+        const headerStyleHack = {
+            color: this.props.themeColor
+        };
         const MobileMenu = () => (
             <div className={`mobile-menu ${this.state.mobileMenuOpen? 'is-active' : ''}`}>
                 <div className="close-button" onClick={this.handleClick.bind(this)}>
@@ -46,7 +49,7 @@ class Header extends React.Component {
         return (
             <div>
                 <style dangerouslySetInnerHTML={{ __html: styles }}/>
-                <Headroom>
+                <Headroom style={headerStyleHack}>
                     <header className="header-main">
                         <div className="header-main-wrapper">
                             <div className="header-main-section">

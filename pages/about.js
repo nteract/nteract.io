@@ -1,73 +1,300 @@
 // @flow
 import Layout from "../components/layout/layout";
-import ContentSection from "../components/content-section/content-section";
+import {ContentSection, ContentSectionPane} from "../components/content-section/content-section";
 import React from "react";
 
 import {
-  PageHeader,
-  PageHeaderLeft,
-  PageHeaderRight
+    PageHeader,
+    PageHeaderLeft,
+    PageHeaderRight
 } from "../components/page-header/page-header";
 
+const contributorsData = [
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    },
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    },
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    },
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    },
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    },
+    {
+        first_name: 'Kyle',
+        last_name: 'Kelley',
+        title: 'Netflix',
+        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
+        biography: 'Kyle is cool.',
+        social: [
+            {
+                type: 'twitter',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'github',
+                username: 'rgbkrk'
+            },
+            {
+                type: 'website',
+                url: 'https://lambdaops.com/'
+            }
+        ]
+
+    }
+];
+
+
 const Mission = () => (
-  <ContentSection>
-    <div className="panes center-vertically">
-      <div className="pane-30 pane">
-        <h3>Mission</h3>
-        <p>Be awesome</p>
-      </div>
-      <div className="pane-70 pane">
-        <div className="section-graphic">
-          <img
-            style={{
-              boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)",
-              transform: "translateX(50px)"
-            }}
-            src="https://media.githubusercontent.com/media/nteract/logos/master/nteract_logo_cube_book/exports/animations/nteract_logo_wide_idle_animation.gif"
-          />
+    <ContentSection>
+        <ContentSectionPane>
+            <h3>Mission</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet blanditiis dicta dolorum
+                modi pariatur perferendis quos. Consequuntur excepturi fuga illum maxime nemo neque non, officiis
+                possimus provident quae, ullam!</p>
+            <img
+                src="https://media.githubusercontent.com/media/nteract/logos/master/nteract_logo_cube_book/exports/animations/nteract_logo_wide_idle_animation.gif"
+                alt=""/>
+        </ContentSectionPane>
+    </ContentSection>
+);
+
+const twitter = (data => {
+    let twitterLink = "http://twitter.com/" + data.username;
+    return (<a href={twitterLink} target="_blank"><i className="mdi mdi-twitter"/></a>);
+});
+
+const github = (data => {
+    let githubLink = "http://github.com/" + data.username;
+    return (<a href={githubLink} target="_blank"><i className="mdi mdi-github-circle"/></a>);
+});
+const website = (data => {
+    return (<a href={data.url} target="_blank"><i className="mdi mdi-web"/></a>);
+});
+
+const ContributorsSocial = (items) => {
+
+    return items.map((social, index) => {
+        return (
+            <div key={index} className="social-item">
+                {social.type === 'twitter' ? twitter(social) : '' }
+                {social.type === 'github' ? github(social) : '' }
+                {social.type === 'website' ? website(social) : '' }
+                <style jsx>{`
+                    .social-item{
+                    font-size: 1.5rem;
+                    padding:5px;
+                    display: block;
+                    }
+                `}</style>
+            </div>
+        );
+    });
+};
+
+const ContributorsList = contributorsData.map((person, index) => {
+    return (
+        <div key={index} className="person">
+            <div className="person-avatar">
+                <img src={person.avatar}/>
+            </div>
+            <div className="person-details">
+                <div className="person-name">
+                    {person.first_name + ' ' + person.last_name}
+                </div>
+                <div className="person-title">
+                    {person.title}
+                </div>
+            </div>
+            <div className="person-social">
+                {ContributorsSocial(person.social)}
+            </div>
+            <style jsx>{`
+                  .person {
+                    max-width: calc(25% - 60px);
+                    width: calc(25% - 60px);
+                    min-width: 180px;
+                    margin:30px;
+                    padding:10px;
+                  }
+                  .person-avatar{
+                    overflow: hidden;
+                    border-radius: 50%;
+                    border: 1px solid rgba(0,0,0,0.12);
+                     box-shadow: 0px 3px 18px rgba(42,42,42, 0.09)
+                  }
+                  .person-details{
+                    text-align: center;
+                    padding-top: 20px;
+                  }
+                  .person-name{
+                    font-size: 1.45rem;
+                  }
+                  .person-title{
+                    padding-top: 8px;
+                    font-style:italic;
+                  }
+                  .person-social{
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  padding-top: 10px;
+                  }
+    `}</style>
         </div>
-      </div>
-    </div>
-  </ContentSection>
+    );
+});
+
+
+const Contributors = () => (
+    <ContentSection>
+        <ContentSectionPane layout="center">
+            <h3>Contributors</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet blanditiis dicta dolorum
+                modi pariatur perferendis quos. Consequuntur excepturi fuga illum maxime nemo neque non, officiis
+                possimus provident quae, ullam!</p>
+            <div className="grid">
+                <div className="grid-wrapper">
+                    {ContributorsList}
+                </div>
+            </div>
+        </ContentSectionPane>
+        <style jsx>{`
+                  .grid-wrapper {
+                    display: flex;
+                    flex-wrap:wrap;
+                    justify-content: center;
+                    align-items: flex-start;
+                  }
+    `}</style>
+    </ContentSection>
 );
 
 const Community = Mission;
 const Sponsorship = Mission;
 
 export default class AboutPage extends React.Component<void, OSProps, void> {
-  render() {
-    return (
-      <Layout pageTitle=": The nteract Desktop App">
-        <PageHeader color="#1e0029">
-          <PageHeaderLeft>
-            <h1>
-              About
-            </h1>
+    render() {
 
-            <p>
-              Encourage collaboration with others.
-            </p>
+        let themeColor = '#334865';
 
-            <div className="mobile-only hero-mobile-message">
-              <h4>Connect with us</h4>
-            </div>
-
-          </PageHeaderLeft>
-          <PageHeaderRight>
-            <style jsx>
-              {
-                `h1 {
-              font-size: 7em;
-            }`
-              }
-            </style>
-            <h1>😎</h1>
-          </PageHeaderRight>
-        </PageHeader>
-        <Mission />
-        <Community />
-        <Sponsorship />
-      </Layout>
-    );
-  }
+        return (
+            <Layout pageTitle=": Encourage collaboration with others." themeColor={themeColor}>
+                <PageHeader themeColor={themeColor}>
+                    <PageHeaderLeft>
+                        <h1>
+                            About nteract
+                        </h1>
+                        <p>
+                            Encourage collaboration with others.
+                        </p>
+                    </PageHeaderLeft>
+                </PageHeader>
+                <Mission />
+                <Contributors />
+                <Community />
+                <Sponsorship />
+            </Layout>
+        );
+    }
 }

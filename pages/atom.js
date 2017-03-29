@@ -1,6 +1,6 @@
 // @flow
 import Layout from "../components/layout/layout";
-import ContentSection from "../components/content-section/content-section";
+import { ContentSection } from "../components/content-section/content-section";
 import React from "react";
 
 import {
@@ -8,6 +8,8 @@ import {
     PageHeaderLeft,
     PageHeaderRight
 } from "../components/page-header/page-header";
+
+
 
 const InteractiveCoding = () => (
     <ContentSection>
@@ -88,9 +90,12 @@ const InspectCode = () => (
 
 export default class AtomPage extends React.Component {
     render() {
+
+        let themeColor = '#232323';
+
         return (
-            <Layout pageTitle=": Hydrogen for Atom">
-                <PageHeader color="#333">
+            <Layout pageTitle=": Hydrogen for Atom" themeColor={themeColor}>
+                <PageHeader themeColor={themeColor}>
                     <PageHeaderLeft>
                         <h1>
                             Hydrogen
@@ -109,10 +114,6 @@ export default class AtomPage extends React.Component {
                         <p>Install Hydrogen now with:<br />
                             <code>apm install hydrogen</code>
                         </p>
-
-                        <div className="mobile-only hero-mobile-message">
-                            <h4>Connect with us</h4>
-                        </div>
 
                     </PageHeaderLeft>
                     <PageHeaderRight>

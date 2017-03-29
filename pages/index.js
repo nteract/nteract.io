@@ -2,7 +2,7 @@
 import React from "react";
 import Layout from "../components/layout/layout";
 
-import ContentSection from "../components/content-section/content-section";
+import { ContentSection } from "../components/content-section/content-section";
 
 import { detectPlatform } from "../lib/os-detect";
 
@@ -16,8 +16,11 @@ import SocialButtons from "../components/navigation/social-buttons";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 
+const themeColor = '#334865';
+
+
 const HomeHeader = (props: OSProps) => (
-  <PageHeader color="#334865">
+  <PageHeader themeColor={themeColor}>
     <PageHeaderLeft>
       <h1>Take your computing experience to the next level.</h1>
       <p>
@@ -145,7 +148,7 @@ class Home extends React.Component<void, OSProps, void> {
 
   render() {
     return (
-      <Layout>
+      <Layout themeColor={themeColor}>
         <HomeHeader platform={this.props.platform} />
         <Main />
       </Layout>

@@ -23,7 +23,7 @@ export class PageHeader extends React.Component {
     render() {
         return (
             <section className="page-header" style={{
-              backgroundColor: this.props.color
+              backgroundColor: this.props.themeColor
             }}>
                 <style dangerouslySetInnerHTML={{ __html: styles }} />
                 <div className="page-header-wrapper">
