@@ -29,6 +29,7 @@
     "next": "^2.0.0",
     "node-sass": "^4.4.0",
     "normalize-scss": "^6.0.0",
+    "nteract-members": "^1.0.1",
     "postcss-easy-import": "2.0.0",
     "postcss-loader": "1.3.3",
     "raw-loader": "^0.5.1",
