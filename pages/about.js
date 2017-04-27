@@ -18,14 +18,8 @@ const Mission = () => (
     <ContentSectionPane>
       <h3>Mission</h3>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium amet blanditiis dicta dolorum
-        modi pariatur perferendis quos. Consequuntur excepturi fuga illum maxime nemo neque non, officiis
-        possimus provident quae, ullam!
+        Create fantastic interactive computing experiences that allow people to collaborate with each other with ease.
       </p>
-      <img
-        src="https://media.githubusercontent.com/media/nteract/logos/master/nteract_logo_cube_book/exports/animations/nteract_logo_wide_idle_animation.gif"
-        alt=""
-      />
     </ContentSectionPane>
   </ContentSection>
 );
@@ -78,17 +72,14 @@ export default class AboutPage extends React.Component<void, OSProps, void> {
     let themeColor = "#334865";
 
     return (
-      <Layout
-        pageTitle=": Encourage collaboration with others."
-        themeColor={themeColor}
-      >
+      <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
           <PageHeaderLeft>
             <h1>
               About nteract
             </h1>
             <p>
-              Encourage collaboration with others.
+              {`We're people, not software!`}
             </p>
           </PageHeaderLeft>
         </PageHeader>
