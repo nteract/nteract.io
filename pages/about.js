@@ -64,9 +64,6 @@ const Contributors = () => (
   <ContentSection>
     <ContentSectionPane layout="center">
       <h3>Contributors</h3>
-      <p>
-        Many wonderful contributors!
-      </p>
       <div className="grid">
         <div className="grid-wrapper">
           {ContributorsList}
