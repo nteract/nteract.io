@@ -29,17 +29,17 @@ export default class Kernels extends React.Component {
                         </p>
                         <div className="buttons">
                             <Link href="/kernels/python">
-                                <a className="button button-primary active">
+                                <a className="button button-secondary active">
                                     Python
                                 </a>
                             </Link>
                             <Link href="/kernels/node">
-                                <a className="button button-primary">
+                                <a className="button button-secondary">
                                     Node.js
                                 </a>
                             </Link>
                             <Link href="/kernels/r">
-                                <a className="button button-primary">
+                                <a className="button button-secondary">
                                     R
                                 </a>
                             </Link>

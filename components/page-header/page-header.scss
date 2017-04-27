@@ -34,7 +34,7 @@ $timing-animation-delay: $timing-animation/2;
     .buttons{
       margin-bottom:$gutter*2;
       .button{
-        &-primary{
+        &-secondary{
           background: rgba($main-color, 0.5);
 
           &.active{
