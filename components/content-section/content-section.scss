@@ -8,14 +8,15 @@ section{
   width: 100%;
   &-wrapper {
     @include global-wrapper;
-    opacity: 0;
+    //opacity: 0;
     transition: $transition;
-    transition-duration: $timing-animation;
+    //transition-duration: $timing-animation;
     transition-delay: $timing-animation/3;
-    transform: translateY(10px);
+    //transform: translateY(10px);
+    @include animationFadeAndSlideInFromBottom-sm;
     &.showing {
-      transform: none;
-      opacity: 1;
+      //transform: none;
+      //opacity: 1;
     }
   }
 

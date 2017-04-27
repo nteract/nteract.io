@@ -21,7 +21,7 @@ $timing-animation-delay: $timing-animation/2;
     overflow: hidden;
     h1 {
       animation-delay: $timing-animation-delay/3;
-      @include animationFadeAndSlideInFromTop-sm;
+      //@include animationFadeAndSlideInFromTop-sm;
       color: white;
     }
 
@@ -39,7 +39,7 @@ $timing-animation-delay: $timing-animation/2;
 
     p, .buttons, .footnote {
       animation-delay: $timing-animation-delay/3;
-      @include animationFadeAndSlideInFromBottom-sm;
+      //@include animationFadeAndSlideInFromBottom-sm;
     }
 
     @include tablet-up {

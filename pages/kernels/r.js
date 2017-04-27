@@ -3,7 +3,7 @@ import Layout from "../../components/layout/layout";
 import Link from 'next/link';
 import {ContentSection, ContentSectionPane} from "../../components/content-section/content-section";
 import React from "react";
-import Python from '../../components/kernels/python';
+import R from '../../components/kernels/r';
 import {
     PageHeader,
     PageHeaderLeft,
@@ -11,7 +11,7 @@ import {
 } from "../../components/page-header/page-header";
 
 
-export default class Kernels extends React.Component {
+export default class RPage extends React.Component {
     render() {
 
         let themeColor = '#2C1F39';
@@ -43,6 +43,7 @@ export default class Kernels extends React.Component {
                                     R
                                 </a>
                             </Link>
+
                         </div>
 
                     </PageHeaderLeft>
@@ -54,7 +55,7 @@ export default class Kernels extends React.Component {
                         />
                     </PageHeaderRight>
                 </PageHeader>
-                <Python />
+                <R />
             </Layout>
         );
     }

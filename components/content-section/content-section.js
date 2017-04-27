@@ -32,6 +32,8 @@ export class ContentSection extends React.Component {
                 el.classList.add("showing");
             }
         });
+
+        inView('.inview').check();
     }
 
     render() {
