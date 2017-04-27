@@ -18,7 +18,9 @@
 import Layout from "../../components/layout/layout";
 import {ContentSection, ContentSectionPane} from "../../components/content-section/content-section";
 import React from "react";
-
+import Node from '../../components/kernels/node';
+import Python from '../../components/kernels/python';
+import R from '../../components/kernels/r';
 import {
     PageHeader,
     PageHeaderLeft,
@@ -50,12 +52,20 @@ export default class Kernels extends React.Component {
                     </PageHeaderLeft>
                     <PageHeaderRight>
                         <img
-                            src="static/atom/featured.png"
+                            src="static/kernels-terminal.png"
                             alt="Hydrogen"
                             className="cutoff-image"
                         />
                     </PageHeaderRight>
                 </PageHeader>
+
+
+
+
+
+                <Python />
+                <Node />
+                <R />
 
             </Layout>
         );

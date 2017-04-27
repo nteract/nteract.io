@@ -2,6 +2,8 @@
 import Layout from "../components/layout/layout";
 import {ContentSection, ContentSectionPane} from "../components/content-section/content-section";
 import React from "react";
+import "isomorphic-fetch";
+import fetchUsers from 'fetch-github-organization';
 
 import {
     PageHeader,
@@ -274,6 +276,9 @@ const Community = Mission;
 const Sponsorship = Mission;
 
 export default class AboutPage extends React.Component<void, OSProps, void> {
+
+
+
     render() {
 
         let themeColor = '#334865';

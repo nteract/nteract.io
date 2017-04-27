@@ -5,6 +5,7 @@ section{
 }
 .content-section {
   flex: 1;
+  width: 100%;
   &-wrapper {
     @include global-wrapper;
     opacity: 0;
@@ -18,7 +19,7 @@ section{
     }
   }
 
-  &:nth-of-type(even) {
+  &:nth-of-type(odd) {
     background: rgba($main-color, 0.06);
   }
 
@@ -26,6 +27,15 @@ section{
     padding: $gutter;
     @include tablet {
       padding: 0;
+    }
+  }
+
+  &-pane{
+
+    &-full{
+      width: 100% !important;
+      max-width:100%;
+
     }
   }
 }
@@ -105,4 +115,24 @@ section{
 
 video{
   max-width:100%;
+}
+.columns{
+  display: flex;
+  max-width:100%;
+  flex-wrap:wrap;
+  @include handheld{
+    flex-direction: column;
+  }
+  .column{
+    flex: 1;
+    max-width:100%;
+    @include tablet{
+      width: 100%;
+    }
+    &:not(:last-of-type){
+     @include desktop{
+       padding-right:$unit*2;
+     }
+    }
+  }
 }

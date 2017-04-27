@@ -1,14 +1,16 @@
 // @flow
 import Layout from "../components/layout/layout";
-import { ContentSection } from "../components/content-section/content-section";
+import {ContentSection} from "../components/content-section/content-section";
 import React from "react";
-
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import {darcula} from 'react-syntax-highlighter/dist/styles';
 import {
     PageHeader,
     PageHeaderLeft,
     PageHeaderRight
 } from "../components/page-header/page-header";
 
+const installCode = `apm install hydrogen`;
 
 
 const InteractiveCoding = () => (
@@ -93,6 +95,11 @@ export default class AtomPage extends React.Component {
 
         let themeColor = '#232323';
 
+        const h4Styles = {
+            color: 'rgba(255,255,255,0.8)',
+            marginBottom: '0'
+        };
+
         return (
             <Layout pageTitle=": Hydrogen for Atom" themeColor={themeColor}>
                 <PageHeader themeColor={themeColor}>
@@ -111,9 +118,9 @@ export default class AtomPage extends React.Component {
                         <p>
                             All the power of Jupyter kernels, inside your favorite text editor.
                         </p>
-                        <p>Install Hydrogen now with:<br />
-                            <code>apm install hydrogen</code>
-                        </p>
+                        <h4 style={h4Styles}>Install Hydrogen now with</h4>
+                        <SyntaxHighlighter language='zsh' style={darcula}>{installCode}</SyntaxHighlighter>
+
 
                     </PageHeaderLeft>
                     <PageHeaderRight>

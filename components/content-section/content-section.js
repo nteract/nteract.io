@@ -7,7 +7,14 @@ export class ContentSectionPane extends React.Component {
 
     render() {
 
-        return (<div className={`pane-50 pane ${this.props.layout ? this.props.layout : ""}`}>
+        let classes = '';
+        if('full' in this.props){
+            classes += ' content-section-pane-full';
+        }
+        if(this.props.className){
+            classes += ' ' + this.props.className;
+        }
+        return (<div className={`pane-50 pane ${this.props.layout ? this.props.layout : ""} ${classes}`}>
             {this.props.children}
         </div>);
     }
@@ -28,8 +35,17 @@ export class ContentSection extends React.Component {
     }
 
     render() {
+
+        let classes = '';
+
+        if('full' in this.props){
+            classes += ' content-section-full';
+        }
+        if(this.props.className){
+            classes += ' ' + this.props.className;
+        }
         return (
-            <section className="content-section">
+            <section className={"content-section " + classes}>
                 <style dangerouslySetInnerHTML={{__html: styles}}/>
                 <div className="content-section-wrapper inview">
                     <div className="panes center-vertically">
