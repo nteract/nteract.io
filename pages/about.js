@@ -35,7 +35,7 @@ const ContributorsList = contributorsData.map((person, index) => {
       </div>
       <div className="person-details">
         <div className="person-name">
-          {person.name}
+          {person.name || "@" + person.login}
         </div>
       </div>
       <div className="person-social">
