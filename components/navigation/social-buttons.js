@@ -62,7 +62,10 @@ export const TwitterButton = () => (
 );
 
 export default () => (
-  <div className="icon-buttons buttons">
+  <div
+    className="icon-buttons buttons"
+    style={{ transform: "translateY(6px)" }}
+  >
     <SlackButton />
     <GitHubButton />
     <TwitterButton />
