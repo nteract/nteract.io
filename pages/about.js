@@ -2,9 +2,6 @@
 import Layout from "../components/layout/layout";
 import {ContentSection, ContentSectionPane} from "../components/content-section/content-section";
 import React from "react";
-import "isomorphic-fetch";
-import fetchUsers from 'fetch-github-organization';
-
 import {
     PageHeader,
     PageHeaderLeft,
@@ -12,116 +9,6 @@ import {
 } from "../components/page-header/page-header";
 
 const contributorsData = [
-    {
-        first_name: 'Kyle',
-        last_name: 'Kelley',
-        title: 'Netflix',
-        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
-        biography: 'Kyle is cool.',
-        social: [
-            {
-                type: 'twitter',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'github',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'website',
-                url: 'https://lambdaops.com/'
-            }
-        ]
-
-    },
-    {
-        first_name: 'Kyle',
-        last_name: 'Kelley',
-        title: 'Netflix',
-        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
-        biography: 'Kyle is cool.',
-        social: [
-            {
-                type: 'twitter',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'github',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'website',
-                url: 'https://lambdaops.com/'
-            }
-        ]
-
-    },
-    {
-        first_name: 'Kyle',
-        last_name: 'Kelley',
-        title: 'Netflix',
-        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
-        biography: 'Kyle is cool.',
-        social: [
-            {
-                type: 'twitter',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'github',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'website',
-                url: 'https://lambdaops.com/'
-            }
-        ]
-
-    },
-    {
-        first_name: 'Kyle',
-        last_name: 'Kelley',
-        title: 'Netflix',
-        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
-        biography: 'Kyle is cool.',
-        social: [
-            {
-                type: 'twitter',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'github',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'website',
-                url: 'https://lambdaops.com/'
-            }
-        ]
-
-    },
-    {
-        first_name: 'Kyle',
-        last_name: 'Kelley',
-        title: 'Netflix',
-        avatar: 'https://avatars1.githubusercontent.com/u/836375?v=3&s=400',
-        biography: 'Kyle is cool.',
-        social: [
-            {
-                type: 'twitter',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'github',
-                username: 'rgbkrk'
-            },
-            {
-                type: 'website',
-                url: 'https://lambdaops.com/'
-            }
-        ]
-
-    },
     {
         first_name: 'Kyle',
         last_name: 'Kelley',
@@ -182,13 +69,6 @@ const ContributorsSocial = (items) => {
                 {social.type === 'twitter' ? twitter(social) : '' }
                 {social.type === 'github' ? github(social) : '' }
                 {social.type === 'website' ? website(social) : '' }
-                <style jsx>{`
-                    .social-item{
-                    font-size: 1.5rem;
-                    padding:5px;
-                    display: block;
-                    }
-                `}</style>
             </div>
         );
     });
@@ -211,38 +91,6 @@ const ContributorsList = contributorsData.map((person, index) => {
             <div className="person-social">
                 {ContributorsSocial(person.social)}
             </div>
-            <style jsx>{`
-                  .person {
-                    max-width: calc(25% - 60px);
-                    width: calc(25% - 60px);
-                    min-width: 180px;
-                    margin:30px;
-                    padding:10px;
-                  }
-                  .person-avatar{
-                    overflow: hidden;
-                    border-radius: 50%;
-                    border: 1px solid rgba(0,0,0,0.12);
-                     box-shadow: 0px 3px 18px rgba(42,42,42, 0.09)
-                  }
-                  .person-details{
-                    text-align: center;
-                    padding-top: 20px;
-                  }
-                  .person-name{
-                    font-size: 1.45rem;
-                  }
-                  .person-title{
-                    padding-top: 8px;
-                    font-style:italic;
-                  }
-                  .person-social{
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  padding-top: 10px;
-                  }
-    `}</style>
         </div>
     );
 });
@@ -261,23 +109,11 @@ const Contributors = () => (
                 </div>
             </div>
         </ContentSectionPane>
-        <style jsx>{`
-                  .grid-wrapper {
-                    display: flex;
-                    flex-wrap:wrap;
-                    justify-content: center;
-                    align-items: flex-start;
-                  }
-    `}</style>
     </ContentSection>
 );
 
-const Community = Mission;
-const Sponsorship = Mission;
 
 export default class AboutPage extends React.Component<void, OSProps, void> {
-
-
 
     render() {
 
@@ -297,8 +133,6 @@ export default class AboutPage extends React.Component<void, OSProps, void> {
                 </PageHeader>
                 <Mission />
                 <Contributors />
-                <Community />
-                <Sponsorship />
             </Layout>
         );
     }

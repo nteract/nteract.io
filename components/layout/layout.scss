@@ -86,3 +86,44 @@ pre{
     }
   }
 }
+.grid-wrapper {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.person {
+  max-width: calc(25% - 60px);
+  width: calc(25% - 60px);
+  min-width: 180px;
+  margin:30px;
+  padding:10px;
+}
+.person-avatar{
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.12);
+  box-shadow: 0px 3px 18px rgba(42,42,42, 0.09)
+}
+.person-details{
+  text-align: center;
+  padding-top: 20px;
+}
+.person-name{
+  font-size: 1.45rem;
+}
+.person-title{
+  padding-top: 8px;
+  font-style:italic;
+}
+.person-social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+.social-item{
+  font-size: 1.5rem;
+  padding:5px;
+  display: block;
+}
