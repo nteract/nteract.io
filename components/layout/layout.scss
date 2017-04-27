@@ -103,7 +103,10 @@ pre{
   overflow: hidden;
   border-radius: 50%;
   border: 1px solid rgba(0,0,0,0.12);
-  box-shadow: 0px 3px 18px rgba(42,42,42, 0.09)
+  box-shadow: 0px 3px 18px rgba(42,42,42, 0.09);
+  img{
+    display: block;
+  }
 }
 .person-details{
   text-align: center;

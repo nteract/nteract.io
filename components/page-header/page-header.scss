@@ -1,7 +1,9 @@
 @import "partials/abstract/abstract";
 
 $timing-animation-delay: $timing-animation/2;
-
+*{
+  outline: 0;
+}
 .page-header {
   background-color: transparent;
   background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
@@ -27,6 +29,19 @@ $timing-animation-delay: $timing-animation/2;
 
     @include handheld {
       flex-direction: column;
+    }
+
+    .buttons{
+      margin-bottom:$gutter*2;
+      .button{
+        &-primary{
+          background: rgba($main-color, 0.5);
+
+          &.active{
+            background: $main-color;
+          }
+        }
+      }
     }
   }
 
