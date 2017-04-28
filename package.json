@@ -2,12 +2,11 @@
   "name": "nteract.io",
   "version": "1.0.0",
   "description": "The server for nteract.io",
-  "main": "index.js",
   "scripts": {
-    "dev": "node index.js",
+    "dev": "next",
     "build": "next build",
     "flow": "flow",
-    "start": "NODE_ENV=production node index.js"
+    "start": "next start"
   },
   "repository": {
     "type": "git",
@@ -20,12 +19,25 @@
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "dependencies": {
-    "express": "^4.15.0",
-    "http-proxy": "^1.15.1",
-    "next": "^2.0.0-beta",
+    "autoprefixer": "6.7.6",
+    "babel-plugin-module-resolver": "2.5.0",
+    "babel-plugin-wrap-in-js": "^1.1.0",
+    "fetch-github-organization": "^1.0.2",
+    "glob": "7.1.1",
+    "in-view": "^0.6.1",
+    "mdi": "^1.8.36",
+    "next": "^2.0.0",
+    "node-sass": "^4.4.0",
+    "normalize-scss": "^6.0.0",
+    "nteract-members": "^1.0.5",
+    "postcss-easy-import": "2.0.0",
+    "postcss-loader": "1.3.3",
+    "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
-    "serve-favicon": "^2.4.1"
+    "react-headroom": "^2.1.3",
+    "react-syntax-highlighter": "^5.5.0",
+    "sass-loader": "^4.1.1"
   },
   "devDependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.22.0",

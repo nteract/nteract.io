@@ -1,6 +1,7 @@
 [ignore]
 
 [include]
+types/context.js.flow
 
 [libs]
 types/

@@ -1,6 +1,62 @@
 // @flow
+import Layout from "../../components/layout/layout";
+import Link from 'next/link';
+import {ContentSection, ContentSectionPane} from "../../components/content-section/content-section";
+import React from "react";
+import R from '../../components/kernels/r';
+import {
+    PageHeader,
+    PageHeaderLeft,
+    PageHeaderRight
+} from "../../components/page-header/page-header";
 
-import R from "../../components/kernels/r";
-import KernelPage from "../../components/kernels/kernel-page";
 
-export default () => <KernelPage language="r" Kernel={R} />;
+export default class RPage extends React.Component {
+    render() {
+
+        let themeColor = '#2C1F39';
+
+        return (
+            <Layout pageTitle=": connect with nteract" themeColor={themeColor}>
+                <PageHeader themeColor={themeColor}>
+                    <PageHeaderLeft>
+                        <h1>
+                            Kernels
+                        </h1>
+                        <p>
+                            Kernels connect your favorite languages to nteract projects for an improved
+                            REPL experience.
+                        </p>
+                        <div className="buttons">
+                            <Link href="/kernels/python">
+                                <a className="button button-secondary">
+                                    Python
+                                </a>
+                            </Link>
+                            <Link href="/kernels/node">
+                                <a className="button button-secondary">
+                                    Node.js
+                                </a>
+                            </Link>
+                            <Link href="/kernels/r">
+                                <a className="button button-secondary active">
+                                    R
+                                </a>
+                            </Link>
+
+                        </div>
+
+                    </PageHeaderLeft>
+                    <PageHeaderRight>
+                        <img
+                            src="/static/kernels-terminal.png"
+                            alt="Hydrogen"
+                            className="cutoff-image"
+                        />
+                    </PageHeaderRight>
+                </PageHeader>
+                <R />
+            </Layout>
+        );
+    }
+}
