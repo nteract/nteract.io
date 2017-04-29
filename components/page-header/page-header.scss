@@ -31,8 +31,11 @@ $timing-animation-delay: $timing-animation/2;
       flex-direction: column;
     }
 
-    .buttons{
+    .download-featurette {
       margin-bottom:$gutter*2;
+    }
+
+    .buttons{
       .button{
         &-secondary{
           background: rgba($main-color, 0.5);

@@ -38,7 +38,7 @@ type DownloadFeaturetteProps = {
 
 export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
   return (
-    <div>
+    <div className="download-featurette">
       <div className="buttons buttons-hero not-mobile">
         <style jsx>
           {
