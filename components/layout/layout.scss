@@ -95,6 +95,9 @@ pre{
 .person {
   max-width: calc(25% - 60px);
   width: calc(25% - 60px);
+  @media screen and ( max-width: 575px ) {
+      width: 100%;
+  }
   min-width: 180px;
   margin:30px;
   padding:10px;
