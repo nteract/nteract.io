@@ -4,7 +4,6 @@ section{
   overflow: hidden;
 }
 .content-section {
-  flex: 1;
   width: 100%;
   &-wrapper {
     @include global-wrapper;
