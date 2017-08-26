@@ -9,7 +9,7 @@ We serve an express app that does [server rendered react using next](https://zei
 ```
 git clone https://github.com/nteract/nteract.io
 cd nteract.io
-npm i
+npm install
 npm run dev
 ```
 
