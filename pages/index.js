@@ -24,7 +24,7 @@ const HomeHeader = (props: OSProps) => (
     <PageHeaderLeft>
       <h1>nteract and create with <br/>data, words, and visuals.</h1>
       <p>
-        Fire up this desktop application and start developing engaging documents with prose,
+        Fire up this desktop application and develop engaging documents with prose,
         executable
         code in a favorite language, pictures, and more.
       </p>
