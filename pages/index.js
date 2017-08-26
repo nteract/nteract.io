@@ -22,13 +22,16 @@ const themeColor = '#334865';
 const HomeHeader = (props: OSProps) => (
   <PageHeader themeColor={themeColor}>
     <PageHeaderLeft>
-      <h1>Take your computing experience to the next level.</h1>
+      <h1>nteract and create with <br/>data, words, and visuals.</h1>
       <p>
-        nteract is a desktop application that allows you to develop rich documents that contain prose,
+        Fire up this desktop application and start developing engaging documents with prose,
         executable
-        code (in almost any language!), and images. Whether you're a developer, data scientist,
-        researcher, or journalist, nteract helps you
-        write your next code-driven story.
+        code in a favorite language, pictures, and more.
+      </p>
+      <p>
+        If you are a data scientist,
+        researcher, journalist, educator, student, or developer, use nteract to
+        write code-driven, interactive stories.
       </p>
       <div className="mobile-only hero-mobile-message">
         <h4>Connect with us</h4>

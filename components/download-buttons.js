@@ -59,7 +59,7 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
                 />
               </div>
               <div className="button-label">
-                Download Alpha for {platform}
+                Download for {platform} (alpha)
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
         </style>
         <a href="https://github.com/nteract/nteract/releases/latest">
           <div className="footnote-message">
-            Also available for other platforms
+            Download for other platforms
 
           </div>
         </a>
