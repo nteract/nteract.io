@@ -29,7 +29,7 @@
     "next": "^4.0.0",
     "node-sass": "^4.4.0",
     "normalize-scss": "^7.0.0",
-    "nteract-members": "^1.0.7",
+    "nteract-members": "^1.0.8",
     "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^2.0.6",
     "raw-loader": "^0.5.1",
