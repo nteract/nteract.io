@@ -6,8 +6,8 @@
   padding-bottom: $gutter*2;
   .nav {
     color: $main-color;
-    .nav-item{
-      &:hover{
+    .nav-item {
+      &:hover {
         color: $main-color;
       }
     }
@@ -22,22 +22,22 @@
       flex-direction: column;
     }
   }
-  &-section{
-    &:nth-of-type(1){
+  &-section {
+    &:nth-of-type(1) {
       display: flex;
       align-items: center;
     }
     //flex:1;
     //display: flex;
     //align-items: center;
-    &.links{
+    &.links {
       display: flex;
-      @include handheld{
+      @include handheld {
         flex-direction: column;
       }
     }
   }
-  .buttons{
+  .buttons {
     display: flex;
     //flex-direction: column;
     //justify-content: flex-end;

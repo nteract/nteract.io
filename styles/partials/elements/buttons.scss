@@ -15,7 +15,6 @@
 
         &:hover {
           color: rgba($main-color, 1);
-
         }
       }
     }
@@ -26,9 +25,9 @@
   display: flex;
   align-items: center;
 
-  // -- 
+  // --
   // When there are multiple buttons in a row
-  // -- 
+  // --
   .button + .button {
     margin-left: $unit;
   }
@@ -39,7 +38,8 @@
   border-radius: 4px;
   transition: $transition;
   user-select: none;
-  box-shadow: 0 4px 8px 0 rgba(50, 72, 101, 0.1), 0 2px 2px 0 rgba(50, 72, 101, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(50, 72, 101, 0.1),
+    0 2px 2px 0 rgba(50, 72, 101, 0.1);
   text-decoration: none;
   @include handheld {
     //margin-left: 0 !important;
@@ -60,8 +60,8 @@
     width: $size;
     height: $size;
     margin-right: $unit/2;
-    @include handheld{
-      margin-right:0;
+    @include handheld {
+      margin-right: 0;
     }
     svg {
       * {
@@ -71,7 +71,7 @@
   }
   // --
   // Primary Button Styles
-  // -- 
+  // --
   &-primary {
     //background: $color-button-default;
     box-shadow: $drop-shadow;
@@ -88,7 +88,6 @@
   }
 
   &-simple {
-
   }
 
   // --
@@ -112,7 +111,6 @@
       background: darken(rgba(163, 183, 213, 0.25), 10%);
       box-shadow: $drop-shadow-pressed;
     }
-
   }
 
   &-icon-only {
@@ -130,9 +128,9 @@
     }
   }
 
-  // -- 
+  // --
   // Default hover + active states
-  // -- 
+  // --
   &:hover {
     cursor: pointer;
   }
@@ -146,7 +144,7 @@
 //----------------------------------------------------------------------------------------------------------------------
 .buttons-hero {
   .button {
-    @include tablet-up{
+    @include tablet-up {
       padding: 0 $gutter;
     }
     color: white;
@@ -158,8 +156,8 @@
       width: $size;
       height: $size;
       margin-right: $unit/2;
-      @include handheld{
-        margin-right:0;
+      @include handheld {
+        margin-right: 0;
       }
       svg {
         * {
@@ -172,7 +170,12 @@
     // --
     &-primary {
       background-color: #f02563;
-      background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)), linear-gradient(#f02563, #f02563);
+      background-image: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0.1),
+          rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(#f02563, #f02563);
 
       &:hover {
         //background: lighten($color-emerald, 5%);
@@ -189,18 +192,15 @@
       color: white;
       box-shadow: $drop-shadow;
       text-shadow: $text-shadow-default;
-      margin-right:0;
+      margin-right: 0;
 
-      &.button-icon-only{
-        opacity:0.75;
+      &.button-icon-only {
+        opacity: 0.75;
       }
-
     }
-
   }
 }
 
 .icon-buttons {
   padding-left: $unit;
-
 }

@@ -1,14 +1,14 @@
 @import "partials/typography";
 @import "partials/elements/buttons";
 
-.not-mobile{
-  @include handheld{
+.not-mobile {
+  @include handheld {
     display: none !important;
   }
 }
-.mobile-only{
+.mobile-only {
   display: none;
-  @include handheld{
+  @include handheld {
     display: inherit;
   }
 }

@@ -6,13 +6,13 @@ import {
   PageHeaderRight
 } from "../page-header/page-header";
 
-export default (themeColor) => (
+export default themeColor => (
   <PageHeader themeColor={themeColor}>
     <PageHeaderLeft>
       <PageHeaderTitle>Kernels</PageHeaderTitle>
       <p>
-        Kernels connect your favorite languages to nteract projects for an improved
-        REPL experience.
+        Kernels connect your favorite languages to nteract projects for an
+        improved REPL experience.
       </p>
     </PageHeaderLeft>
     <PageHeaderRight />

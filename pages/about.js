@@ -18,7 +18,8 @@ const Mission = () => (
     <ContentSectionPane>
       <h3>Mission</h3>
       <p>
-        Create fantastic interactive computing experiences that allow people to collaborate with each other with ease.
+        Create fantastic interactive computing experiences that allow people to
+        collaborate with each other with ease.
       </p>
     </ContentSectionPane>
   </ContentSection>
@@ -34,20 +35,18 @@ const ContributorsList = contributorsData.map((person, index) => {
         <img src={person.avatar_url} />
       </div>
       <div className="person-details">
-        <div className="person-name">
-          {person.name || "@" + person.login}
-        </div>
+        <div className="person-name">{person.name || "@" + person.login}</div>
       </div>
       <div className="person-social">
         <div key={index} className="social-item">
           <a href={person.html_url} target="_blank">
             <i className="mdi mdi-github-circle" />
           </a>
-          {person.blog
-            ? <a href={person.blog} target="_blank">
-                <i className="mdi mdi-web" />
-              </a>
-            : null}
+          {person.blog ? (
+            <a href={person.blog} target="_blank">
+              <i className="mdi mdi-web" />
+            </a>
+          ) : null}
         </div>
       </div>
     </div>
@@ -59,9 +58,7 @@ const Contributors = () => (
     <ContentSectionPane layout="center">
       <h3>Contributors</h3>
       <div className="grid">
-        <div className="grid-wrapper">
-          {ContributorsList}
-        </div>
+        <div className="grid-wrapper">{ContributorsList}</div>
       </div>
     </ContentSectionPane>
   </ContentSection>
@@ -75,12 +72,8 @@ export default class AboutPage extends React.Component<void, OSProps, void> {
       <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
           <PageHeaderLeft>
-            <h1>
-              About nteract
-            </h1>
-            <p>
-              {`We're people, not software!`}
-            </p>
+            <h1>About nteract</h1>
+            <p>{`We're people, not software!`}</p>
           </PageHeaderLeft>
         </PageHeader>
         <Mission />

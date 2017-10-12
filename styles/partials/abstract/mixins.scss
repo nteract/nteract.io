@@ -10,8 +10,25 @@
 //----------------------------------------------------------------------------------------------------------------------
 
 @function is-direction($value) {
-  $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
-  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+  $is-keyword: index(
+    (
+      to top,
+      to top right,
+      to right top,
+      to right,
+      to bottom right,
+      to right bottom,
+      to bottom,
+      to bottom left,
+      to left bottom,
+      to left,
+      to left top,
+      to top left
+    ),
+    $value
+  );
+  $is-angle: type-of($value) == "number" and
+    index("deg" "grad" "turn" "rad", unit($value));
   @return $is-keyword or $is-angle;
 }
 
@@ -20,18 +37,18 @@
     @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
   }
   $conversion-map: (
-          to top : bottom,
-          to top right : bottom left,
-          to right top : left bottom,
-          to right : left,
-          to bottom right : top left,
-          to right bottom : left top,
-          to bottom : top,
-          to bottom left : top right,
-          to left bottom : right top,
-          to left : right,
-          to left top : right bottom,
-          to top left : bottom right
+    to top : bottom,
+    to top right : bottom left,
+    to right top : left bottom,
+    to right : left,
+    to bottom right : top left,
+    to right bottom : left top,
+    to bottom : top,
+    to bottom left : top right,
+    to left bottom : right top,
+    to left : right,
+    to left top : right bottom,
+    to top left : bottom right
   );
   @if map-has-key($conversion-map, $value) {
     @return map-get($conversion-map, $value);
@@ -46,7 +63,10 @@
     $direction: 180deg;
   }
   background: nth(nth($color-stops, 1), 1);
-  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: -webkit-linear-gradient(
+    legacy-direction($direction),
+    $color-stops
+  );
   background: linear-gradient($direction, $color-stops);
 }
 
@@ -58,7 +78,7 @@
   position: relative;
   &::before {
     @include linear-gradient(135deg, #1d8ee8 0%, #1e427d 100%);
-    content: '';
+    content: "";
     height: 100%;
     top: 0;
     left: 0;
@@ -67,21 +87,22 @@
     position: absolute;
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     height: 100%;
     width: 100%;
     z-index: -1;
     top: 0;
     left: 0;
-    background: url(https://images-hoshi.nationalmachine.co/ineffable/uploads/8e24bc29d4dcbda1aa6f2a1dcdd4c0e6/background-dots.png) repeat center center;
+    background: url(https://images-hoshi.nationalmachine.co/ineffable/uploads/8e24bc29d4dcbda1aa6f2a1dcdd4c0e6/background-dots.png)
+      repeat center center;
     background-size: 14.5px;
   }
 }
 
 @mixin colorBar($height, $color, $distance) {
   &::before {
-    content: '';
+    content: "";
     height: $height;
     transform: translateY(-$distance);
     background: $color;
@@ -160,8 +181,8 @@ $mid-sized: 1200px;
 
 @mixin global-wrapper {
   @include center-content;
-  padding-left:$gutter*2;
-  padding-right:$gutter*2;
+  padding-left: $gutter*2;
+  padding-right: $gutter*2;
   max-width: $global-width;
 
   //@include tablet{
@@ -170,22 +191,22 @@ $mid-sized: 1200px;
   //}
 }
 
-@mixin bar-highlight{
+@mixin bar-highlight {
   position: relative;
-  &:hover{
+  &:hover {
     cursor: pointer;
-    &::after{
+    &::after {
       transform: none;
     }
   }
 
-  &.active{
-    &::after{
+  &.active {
+    &::after {
       transform: none;
     }
   }
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     height: 3px;
@@ -198,10 +219,9 @@ $mid-sized: 1200px;
   }
 }
 
-@mixin active-state-transform{
+@mixin active-state-transform {
   transform: translateY(2px);
 }
-
 
 @keyframes fadein {
   from {
@@ -282,23 +302,28 @@ $timing-animation: $timing*2.5;
   }
   &-fade-and-slide-in-from-bottom {
     opacity: 0;
-    animation: fade-and-slide-in-from-bottom $timing-animation forwards $global-easing;
+    animation: fade-and-slide-in-from-bottom $timing-animation forwards
+      $global-easing;
   }
   &-fade-and-slide-in-from-bottom-sm {
     opacity: 0;
-    animation: fade-and-slide-in-from-bottom-sm $timing-animation forwards $global-easing;
+    animation: fade-and-slide-in-from-bottom-sm $timing-animation forwards
+      $global-easing;
   }
   &-fade-and-slide-in-from-bottom-sm-fast {
     opacity: 0;
-    animation: fade-and-slide-in-from-bottom-sm $timing-animation/2 forwards $global-easing;
+    animation: fade-and-slide-in-from-bottom-sm $timing-animation/2 forwards
+      $global-easing;
   }
   &-fade-and-slide-in-from-top {
     opacity: 0;
-    animation: fade-and-slide-in-from-top $timing-animation forwards $global-easing;
+    animation: fade-and-slide-in-from-top $timing-animation forwards
+      $global-easing;
   }
   &-fade-and-slide-in-from-top-sm {
     opacity: 0;
-    animation: fade-and-slide-in-from-top-sm $timing-animation forwards $global-easing;
+    animation: fade-and-slide-in-from-top-sm $timing-animation forwards
+      $global-easing;
   }
   &-delay {
     &-xl {
@@ -367,7 +392,6 @@ $timing-animation: $timing*2.5;
   @extend .animation-fade-and-slide-in-from-top-sm;
 }
 
-
 @mixin fullSizePosAbsolute {
   position: absolute;
   top: 0;
@@ -407,7 +431,7 @@ $timing-animation: $timing*2.5;
 }
 
 @mixin fullPseudoElement {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -421,7 +445,7 @@ $timing-animation: $timing*2.5;
 // The main reason we do this is because the app is animated in, and sometimes the whole app will be at ~0.97%
 // opacity, and you could see the background behind the app.
 // ----
-@mixin addPseudoToHTML{
+@mixin addPseudoToHTML {
   position: relative;
   &::before {
     @include fullPseudoElement;

@@ -6,7 +6,11 @@
     "dev": "next",
     "build": "next build",
     "flow": "flow",
-    "start": "next start"
+    "start": "next start",
+    "prettier": "prettier --write './**/*.{js,scss}'"
+  },
+  "lint-staged": {
+    "{lib,spec}/**/*.{js,scss}": ["prettier --write", "git add"]
   },
   "repository": {
     "type": "git",
@@ -41,6 +45,8 @@
   },
   "devDependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "flow-bin": "^0.41.0"
+    "flow-bin": "^0.41.0",
+    "lint-staged": "^4.2.3",
+    "prettier": "^1.7.4"
   }
 }

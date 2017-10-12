@@ -1,7 +1,7 @@
 @import "partials/abstract/abstract";
 
 $timing-animation-delay: $timing-animation/2;
-*{
+* {
   outline: 0;
 }
 .page-header {
@@ -16,10 +16,10 @@ $timing-animation-delay: $timing-animation/2;
   &-wrapper {
     @include global-wrapper;
     color: rgba(white, 0.5);
-    font-weight:300;
+    font-weight: 300;
     display: flex;
     justify-content: space-between;
-    padding-top:$gutter*2;
+    padding-top: $gutter*2;
     overflow: hidden;
     h1 {
       animation-delay: $timing-animation-delay/3;
@@ -32,15 +32,15 @@ $timing-animation-delay: $timing-animation/2;
     }
 
     .download-featurette {
-      margin-bottom:$gutter*2;
+      margin-bottom: $gutter*2;
     }
 
-    .buttons{
-      .button{
-        &-secondary{
+    .buttons {
+      .button {
+        &-secondary {
           background: rgba($main-color, 0.5);
 
-          &.active{
+          &.active {
             background: $main-color;
           }
         }
@@ -55,13 +55,14 @@ $timing-animation-delay: $timing-animation/2;
     padding-right: $gutter*2;
     padding-bottom: $gutter*2;
 
-    p, .buttons, .footnote {
+    p,
+    .buttons,
+    .footnote {
       animation-delay: $timing-animation-delay/3;
       //@include animationFadeAndSlideInFromBottom-sm;
     }
 
     @include tablet-up {
-
       max-width: 550px;
     }
     @include tablet {
@@ -73,7 +74,9 @@ $timing-animation-delay: $timing-animation/2;
       padding-top: $gutter;
       align-items: flex-start;
       max-width: 100%;
-      h1, p, .buttons {
+      h1,
+      p,
+      .buttons {
         max-width: 480px;
       }
 
@@ -85,29 +88,28 @@ $timing-animation-delay: $timing-animation/2;
   }
 
   &-right {
-
     display: flex;
     align-items: flex-end;
     position: relative;
     flex: 1;
-    .cutoff-image{
+    .cutoff-image {
       position: absolute;
-      top:0;
-      z-index:4;
+      top: 0;
+      z-index: 4;
       transition: $transition;
       //width: 100%;
-      left:0;
+      left: 0;
       width: 100%;
-     @include tablet{
-       width: 120%;
-       max-width:200%;
-     }
-      @include tablet{
+      @include tablet {
+        width: 120%;
+        max-width: 200%;
+      }
+      @include tablet {
         top: 80px;
       }
-      &:hover{
+      &:hover {
         top: -40px;
-        @include tablet{
+        @include tablet {
           top: 50px;
         }
       }
@@ -122,7 +124,8 @@ $timing-animation-delay: $timing-animation/2;
         display: block !important;
       }
     }
-    video, .video-placeholder {
+    video,
+    .video-placeholder {
       margin-top: $gutter*2;
       display: block;
       max-width: 100%;

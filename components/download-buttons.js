@@ -41,13 +41,11 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
     <div className="download-featurette">
       <div className="buttons buttons-hero not-mobile">
         <style jsx>
-          {
-            `
+          {`
             a {
               text-decoration: none;
             }
-          `
-          }
+          `}
         </style>
         <a href="https://github.com/nteract/nteract/releases/latest">
           <div className="button button-primary">
@@ -68,42 +66,37 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
 
       <div className="footnote not-mobile">
         <style jsx>
-          {
-            `
-        a {
-          color: currentColor;
-          text-decoration: none;
-        }
-        a:hover {
-          color: white;
-        }
-      `
-          }
-
+          {`
+            a {
+              color: currentColor;
+              text-decoration: none;
+            }
+            a:hover {
+              color: white;
+            }
+          `}
         </style>
         <a href="https://github.com/nteract/nteract/releases/latest">
-          <div className="footnote-message">
-            Download for other platforms
-
-          </div>
+          <div className="footnote-message">Download for other platforms</div>
         </a>
 
-        {platform !== "Windows"
-          ? <a href="https://github.com/nteract/nteract/releases/latest">
-              <WindowsIcon />
-            </a>
-          : null}
-        {platform !== "macOS"
-          ? <a href="https://github.com/nteract/nteract/releases/latest">
-              {" "}<MacIcon />
-            </a>
-          : null}
-        {platform !== "Linux"
-          ? <a href="https://github.com/nteract/nteract/releases/latest">
-              {" "}<LinuxIcon />
-            </a>
-          : null}
-
+        {platform !== "Windows" ? (
+          <a href="https://github.com/nteract/nteract/releases/latest">
+            <WindowsIcon />
+          </a>
+        ) : null}
+        {platform !== "macOS" ? (
+          <a href="https://github.com/nteract/nteract/releases/latest">
+            {" "}
+            <MacIcon />
+          </a>
+        ) : null}
+        {platform !== "Linux" ? (
+          <a href="https://github.com/nteract/nteract/releases/latest">
+            {" "}
+            <LinuxIcon />
+          </a>
+        ) : null}
       </div>
     </div>
   );

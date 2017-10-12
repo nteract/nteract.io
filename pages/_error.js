@@ -23,9 +23,8 @@ export default class Error extends React.Component {
     if (this.props.statusCode === 404) {
       return (
         <p>
-          {
-            `${this.props.pathname} not on nteract.io, redirecting to nteract.github.io`
-          }
+          {`${this.props
+            .pathname} not on nteract.io, redirecting to nteract.github.io`}
         </p>
       );
     } else if (this.props.statusCode) {
