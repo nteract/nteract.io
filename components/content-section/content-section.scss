@@ -1,6 +1,6 @@
 @import "partials/abstract/abstract";
 
-section{
+section {
   overflow: hidden;
 }
 .content-section {
@@ -30,12 +30,10 @@ section{
     }
   }
 
-  &-pane{
-
-    &-full{
+  &-pane {
+    &-full {
       width: 100% !important;
-      max-width:100%;
-
+      max-width: 100%;
     }
   }
 }
@@ -59,15 +57,14 @@ section{
   }
 
   .pane {
-
-    &.center{
+    &.center {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      p{
-        max-width:580px;
+      p {
+        max-width: 580px;
       }
     }
     &:first-child {
@@ -113,26 +110,26 @@ section{
   }
 }
 
-video{
-  max-width:100%;
+video {
+  max-width: 100%;
 }
-.columns{
+.columns {
   display: flex;
-  max-width:100%;
-  flex-wrap:wrap;
-  @include handheld{
+  max-width: 100%;
+  flex-wrap: wrap;
+  @include handheld {
     flex-direction: column;
   }
-  .column{
+  .column {
     flex: 1;
-    max-width:100%;
-    @include tablet{
+    max-width: 100%;
+    @include tablet {
       width: 100%;
     }
-    &:not(:last-of-type){
-     @include desktop{
-       padding-right:$unit*2;
-     }
+    &:not(:last-of-type) {
+      @include desktop {
+        padding-right: $unit*2;
+      }
     }
   }
 }

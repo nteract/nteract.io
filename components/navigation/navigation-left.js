@@ -9,9 +9,7 @@ export default () => (
       Blog
     </a>
     <Link href="/about" as="/about">
-      <a className="nav-item">
-        About
-      </a>
+      <a className="nav-item">About</a>
     </Link>
   </div>
 );

@@ -9,8 +9,8 @@
   z-index: 2000;
   color: #c8d4e5;
 
-
-  &-wrapper { // .header-main-wrapper
+  &-wrapper {
+    // .header-main-wrapper
     @include global-wrapper;
     flex: 1;
     display: flex;
@@ -18,7 +18,8 @@
     justify-content: space-between;
   }
 
-  &-section { // .header-main-section
+  &-section {
+    // .header-main-section
     flex: 1;
     display: flex;
     &.right {
@@ -30,7 +31,7 @@
   // --
   .logo {
     position: relative;
-    z-index:9999;
+    z-index: 9999;
     img {
       max-width: 100%;
     }
@@ -56,28 +57,26 @@
 
 // --
 // Headroom Styles
-// -- 
+// --
 .headroom {
   background: transparent;
   &-wrapper {
     position: absolute;
     width: 100%;
-    z-index:999;
+    z-index: 999;
   }
   &--pinned {
-
-    &:before{
+    &:before {
       position: absolute;
-      top:0;
-      left:0;
+      top: 0;
+      left: 0;
       width: 100%;
-      height:100%;
-      z-index:-1;
-      content: '';
+      height: 100%;
+      z-index: -1;
+      content: "";
       background: currentColor;
-      opacity:0.85;
+      opacity: 0.85;
     }
-
   }
   position: absolute;
 }
@@ -85,7 +84,8 @@
 .nav {
   color: #c8d4e5;
 
-  .button-icon-only, .nav-item {
+  .button-icon-only,
+  .nav-item {
     opacity: 0.75;
     transform: translateY(5px);
     &:hover {
@@ -100,10 +100,11 @@
   padding: $unit;
   text-decoration: none;
 }
-.mobilemenubutton{
-  padding-top:$unit;
+.mobilemenubutton {
+  padding-top: $unit;
 }
-.mobilemenubutton, .close-button {
+.mobilemenubutton,
+.close-button {
   display: none;
   transform: translateX(8px);
   @include handheld {
@@ -130,7 +131,7 @@
   background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
   background-position: top center;
   background-attachment: fixed;
-  background-repeat:no-repeat;
+  background-repeat: no-repeat;
   background-size: calc(#{$global-width} + 200px);
   flex-direction: column;
   align-items: flex-end;
@@ -142,10 +143,10 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    @media screen and ( max-height: 470px ){
+    @media screen and (max-height: 470px) {
       flex-direction: row;
-      a{
-        margin-left:$unit !important;
+      a {
+        margin-left: $unit !important;
       }
     }
     a {
@@ -154,15 +155,13 @@
       display: block;
       font-size: 2rem;
     }
-
   }
   .icon-buttons {
     margin-top: $gutter*2;
   }
   &.is-active {
-    @include handheld{
+    @include handheld {
       display: flex;
     }
-
   }
 }

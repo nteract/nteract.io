@@ -45,21 +45,18 @@ export default class DesktopPage extends React.Component<void, OSProps, void> {
   }
 
   render() {
-
     let themeColor = "#244d64";
 
     return (
       <Layout pageTitle=": The nteract Desktop App" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
           <PageHeaderLeft>
-            <h1>
-              Notebooks on your desktop
-            </h1>
+            <h1>Notebooks on your desktop</h1>
 
             <p>
-              Write code, prose, and embed interactive plots to tell powerful narratives.
-              Explore computing creatively. All the power of Jupyter notebooks,
-              wrapped in native desktop goodness.
+              Write code, prose, and embed interactive plots to tell powerful
+              narratives. Explore computing creatively. All the power of Jupyter
+              notebooks, wrapped in native desktop goodness.
             </p>
 
             <div className="mobile-only hero-mobile-message">
@@ -67,7 +64,6 @@ export default class DesktopPage extends React.Component<void, OSProps, void> {
             </div>
 
             <DownloadFeaturette platform={this.props.platform} />
-
           </PageHeaderLeft>
           <PageHeaderRight>
             <img

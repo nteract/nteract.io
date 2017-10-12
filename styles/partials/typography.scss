@@ -64,7 +64,7 @@ a {
 }
 
 blockquote {
-  border-left: .2rem solid $border-color;
+  border-left: 0.2rem solid $border-color;
   margin-left: 0;
   padding: 1rem 2rem;
 
@@ -113,7 +113,7 @@ dl {
     font-weight: bold;
   }
   dd {
-    margin: .5rem 0 1.5rem 0;
+    margin: 0.5rem 0 1.5rem 0;
   }
 }
 
@@ -127,7 +127,7 @@ kbd {
 }
 
 abbr[title] {
-  border-bottom: .1rem dotted;
+  border-bottom: 0.1rem dotted;
   cursor: help;
   text-decoration: none;
 }

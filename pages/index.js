@@ -16,22 +16,21 @@ import SocialButtons from "../components/navigation/social-buttons";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 
-const themeColor = '#334865';
-
+const themeColor = "#334865";
 
 const HomeHeader = (props: OSProps) => (
   <PageHeader themeColor={themeColor}>
     <PageHeaderLeft>
-      <h1>nteract and create with <br/>data, words, and visuals.</h1>
+      <h1>
+        nteract and create with <br />data, words, and visuals.
+      </h1>
       <p>
-        Fire up this desktop application and develop engaging documents with prose,
-        executable
-        code in a favorite language, pictures, and more.
+        Fire up this desktop application and develop engaging documents with
+        prose, executable code in a favorite language, pictures, and more.
       </p>
       <p>
-        If you are a data scientist,
-        researcher, journalist, educator, student, or developer, use nteract to
-        write code-driven, interactive stories.
+        If you are a data scientist, researcher, journalist, educator, student,
+        or developer, use nteract to write code-driven, interactive stories.
       </p>
       <div className="mobile-only hero-mobile-message">
         <h4>Connect with us</h4>
@@ -39,7 +38,6 @@ const HomeHeader = (props: OSProps) => (
       </div>
 
       <DownloadFeaturette platform={props.platform} />
-
     </PageHeaderLeft>
     <PageHeaderRight>
       <img
@@ -75,11 +73,10 @@ const Main = () => (
         <div className="pane-50 pane">
           <h3>Interactivity Where You Need It Most</h3>
           <p>
-            nteract is a desktop-based computing environment, which means that the application
-            can take
-            advantage of all the goodies that your operating system provides, like file search
-            and click
-            to open. nteract and the desktop belong together.
+            nteract is a desktop-based computing environment, which means that
+            the application can take advantage of all the goodies that your
+            operating system provides, like file search and click to open.
+            nteract and the desktop belong together.
           </p>
         </div>
         <div className="pane-50 pane">
@@ -106,15 +103,13 @@ const Main = () => (
         <div className="pane-50 pane">
           <h3>Composability for All</h3>
           <p>
-            nteract is built on top of a rich ecosystem of packages that allow developers to
-            write
-            software built on top of the notebook document format and the code execution
-            protocol. You
-            can visit our GitHub organization to find out which packages you can start to
-            develop with.
+            nteract is built on top of a rich ecosystem of packages that allow
+            developers to write software built on top of the notebook document
+            format and the code execution protocol. You can visit our GitHub
+            organization to find out which packages you can start to develop
+            with.
           </p>
         </div>
-
       </div>
     </ContentSection>
     <ContentSection>
@@ -122,11 +117,10 @@ const Main = () => (
         <div className="pane-50 pane">
           <h3>Open to All</h3>
           <p>
-            nteract is completely open-source and licensed under the BSD 3-Clause License. We
-            love
-            getting pull requests and issues from our users, if you're interested in opening one
-            check
-            out our contributor documentation.
+            nteract is completely open-source and licensed under the BSD
+            3-Clause License. We love getting pull requests and issues from our
+            users, if you're interested in opening one check out our contributor
+            documentation.
           </p>
         </div>
         <div className="pane-50 pane">
