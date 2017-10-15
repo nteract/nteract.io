@@ -4,7 +4,7 @@ import Layout from "../components/layout/layout";
 
 import { ContentSection } from "../components/content-section/content-section";
 
-import { detectPlatform } from "../lib/os-detect";
+import { detectPlatform, getDownloadUrl } from "../lib/os-detect";
 
 import {
   PageHeader,
@@ -37,7 +37,7 @@ const HomeHeader = (props: OSProps) => (
         <SocialButtons />
       </div>
 
-      <DownloadFeaturette platform={props.platform} />
+      <DownloadFeaturette platform={props.platform} assetUrl={props.assetUrl} />
     </PageHeaderLeft>
     <PageHeaderRight>
       <img
@@ -138,15 +138,18 @@ const Main = () => (
 
 class Home extends React.Component<void, OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
-    return {
-      platform: detectPlatform(ctx)
-    };
+    const platform = detectPlatform(ctx);
+    const assetUrl = await getDownloadUrl(platform);
+    return { platform, assetUrl };
   }
 
   render() {
     return (
       <Layout themeColor={themeColor}>
-        <HomeHeader platform={this.props.platform} />
+        <HomeHeader
+          platform={this.props.platform}
+          assetUrl={this.props.assetUrl}
+        />
         <Main />
       </Layout>
     );

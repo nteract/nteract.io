@@ -9,7 +9,7 @@ import {
   PageHeaderRight
 } from "../components/page-header/page-header";
 
-import { detectPlatform } from "../lib/os-detect";
+import { detectPlatform, getDownloadUrl } from "../lib/os-detect";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 
@@ -39,9 +39,9 @@ const OpenNotebooksFeature = () => (
 
 export default class DesktopPage extends React.Component<void, OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
-    return {
-      platform: detectPlatform(ctx)
-    };
+    const platform = detectPlatform(ctx);
+    const assetUrl = await getDownloadUrl(platform);
+    return { platform, assetUrl };
   }
 
   render() {
@@ -63,7 +63,10 @@ export default class DesktopPage extends React.Component<void, OSProps, void> {
               <h4>Connect with us</h4>
             </div>
 
-            <DownloadFeaturette platform={this.props.platform} />
+            <DownloadFeaturette
+              platform={this.props.platform}
+              assetUrl={this.props.assetUrl}
+            />
           </PageHeaderLeft>
           <PageHeaderRight>
             <img

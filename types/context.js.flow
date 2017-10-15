@@ -19,5 +19,6 @@ export type Context<Query> = ClientContext<Query> | ServerContext<Query>;
 export type EmptyQuery = {};
 
 export type OSProps = {
-  platform: "macOS" | "Linux" | "Windows"
+  platform: "macOS" | "Linux" | "Windows",
+  assetUrl: string
 };

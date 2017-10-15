@@ -1,4 +1,6 @@
 // @flow
+import React from "react";
+
 const WindowsIcon = () => (
   <div className="footnote-icon">
     <svg viewBox="0 0 24 24">
@@ -32,11 +34,7 @@ const MacIcon = () => (
   </div>
 );
 
-type DownloadFeaturetteProps = {
-  platform: "macOS" | "Linux" | "Windows"
-};
-
-export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
+export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
   return (
     <div className="download-featurette">
       <div className="buttons buttons-hero not-mobile">
@@ -47,7 +45,7 @@ export const DownloadFeaturette = ({ platform }: DownloadFeaturetteProps) => {
             }
           `}
         </style>
-        <a href="https://github.com/nteract/nteract/releases/latest">
+        <a href={assetUrl}>
           <div className="button button-primary">
             <div className="button-wrapper">
               <div className="button-icon">
