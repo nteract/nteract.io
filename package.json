@@ -29,6 +29,7 @@
     "fetch-github-organization": "^1.0.3",
     "glob": "^7.1.2",
     "in-view": "^0.6.1",
+    "isomorphic-fetch": "^2.2.1",
     "mdi": "^2.0.46",
     "next": "^4.0.0",
     "node-sass": "^4.4.0",
