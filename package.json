@@ -10,7 +10,10 @@
     "prettier": "prettier --write './**/*.{js,scss}'"
   },
   "lint-staged": {
-    "{lib,spec}/**/*.{js,scss}": ["prettier --write", "git add"]
+    "{lib,spec}/**/*.{js,scss}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,7 @@
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "dependencies": {
-    "autoprefixer": "^7.1.5",
+    "autoprefixer": "^7.1.6",
     "babel-plugin-module-resolver": "^2.7.1",
     "babel-plugin-wrap-in-js": "^1.1.0",
     "fetch-github-organization": "^1.0.3",
@@ -31,23 +34,23 @@
     "in-view": "^0.6.1",
     "isomorphic-fetch": "^2.2.1",
     "mdi": "^2.0.46",
-    "next": "^4.0.0",
+    "next": "^4.1.4",
     "node-sass": "^4.4.0",
     "normalize-scss": "^7.0.0",
     "nteract-members": "^1.0.8",
     "postcss-easy-import": "^3.0.0",
-    "postcss-loader": "^2.0.6",
+    "postcss-loader": "^2.0.8",
     "raw-loader": "^0.5.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
-    "react-headroom": "^2.1.3",
-    "react-syntax-highlighter": "^5.7.0",
+    "react-headroom": "^2.2.2",
+    "react-syntax-highlighter": "^5.8.0",
     "sass-loader": "^6.0.6"
   },
   "devDependencies": {
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "flow-bin": "^0.41.0",
-    "lint-staged": "^4.2.3",
+    "flow-bin": "^0.57.3",
+    "lint-staged": "^4.3.0",
     "prettier": "^1.7.4"
   }
 }
