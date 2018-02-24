@@ -1,10 +1,11 @@
 // @flow
+import * as React from "react";
+
 import Layout from "../components/layout/layout";
 import {
   ContentSection,
   ContentSectionPane
 } from "../components/content-section/content-section";
-import React from "react";
 import {
   PageHeader,
   PageHeaderLeft,
@@ -64,7 +65,7 @@ const Contributors = () => (
   </ContentSection>
 );
 
-export default class AboutPage extends React.Component<void, OSProps, void> {
+export default class AboutPage extends React.Component<OSProps, void> {
   render() {
     let themeColor = "#334865";
 

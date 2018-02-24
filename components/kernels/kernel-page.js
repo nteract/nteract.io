@@ -1,4 +1,5 @@
 // @flow
+import * as React from "react";
 import Head from "next/head";
 import LanguageToggle from "../kernels/language-toggle";
 

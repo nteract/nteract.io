@@ -37,7 +37,7 @@ const OpenNotebooksFeature = () => (
   </ContentSection>
 );
 
-export default class DesktopPage extends React.Component<void, OSProps, void> {
+export default class DesktopPage extends React.Component<OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);
