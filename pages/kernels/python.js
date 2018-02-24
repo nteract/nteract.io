@@ -13,7 +13,7 @@ import {
   PageHeaderRight
 } from "../../components/page-header/page-header";
 
-export default class PythonPage extends React.Component {
+export default class PythonPage extends React.Component<*, *> {
   render() {
     let themeColor = "#2C1F39";
 

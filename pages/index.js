@@ -136,7 +136,7 @@ const Main = () => (
   </div>
 );
 
-class Home extends React.Component<void, OSProps, void> {
+class Home extends React.Component<OSProps, void> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);

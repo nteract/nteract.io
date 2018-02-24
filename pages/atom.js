@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 import { ContentSection } from "../components/content-section/content-section";
 import React from "react";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/dist/styles";
+import { darcula } from "react-syntax-highlighter/styles/hljs";
 import {
   PageHeader,
   PageHeaderLeft,
@@ -97,7 +97,7 @@ const InspectCode = () => (
   </ContentSection>
 );
 
-export default class AtomPage extends React.Component {
+export default class AtomPage extends React.Component<*, *> {
   render() {
     let themeColor = "#232323";
 

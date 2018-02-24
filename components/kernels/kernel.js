@@ -1,11 +1,12 @@
 // @flow
+import * as React from "react";
 
 export type KernelProps = {
   displayName: string,
   installURL: string,
   repository: string,
   logo: string,
-  children?: any // It's React$Element<*>, running into https://github.com/facebook/flow/issues/1964 though
+  children: React.Node
 };
 
 export default (props: KernelProps) => (
