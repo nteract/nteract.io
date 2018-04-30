@@ -1,23 +1,23 @@
 {
-    "plugins": [
-        [
-            "transform-flow-strip-types",
-            "module-resolver", {
-            "root": ["."],
-            "alias": {
-                "styles": "./styles"
-            },
-            "cwd": "babelrc"
-        }],
-        [
-            "wrap-in-js",
-            {
-                "extensions": ["css$", "scss$"]
-            }
-        ]
+  "plugins": [
+    "transform-flow-strip-types",
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "styles": "./styles"
+        },
+        "cwd": "babelrc"
+      }
     ],
-    "presets": [
-        "next/babel"
-    ],
-    "ignore": []
+    [
+      "wrap-in-js",
+      {
+        "extensions": ["css$", "scss$"]
+      }
+    ]
+  ],
+  "presets": ["next/babel"],
+  "ignore": []
 }
