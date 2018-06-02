@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./footer.scss";
-import NavigationLeft from "../navigation/navigation-left";
-import NavigationRight from "../navigation/navigation-right";
-import SocialButtons from "../navigation/social-buttons";
+import React from 'react';
+import styles from './footer.scss';
+import NavigationLeft from '../navigation/navigation-left';
+import NavigationRight from '../navigation/navigation-right';
+import SocialButtons from '../navigation/social-buttons';
 
 class Footer extends React.Component {
   constructor(props) {

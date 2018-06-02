@@ -13,7 +13,8 @@ module.exports = {
     alias: {
       '@pages': path.resolve(__dirname, 'pages'),
       '@components': path.resolve(__dirname, 'components'),
-      '@lib': path.resolve(__dirname, 'lib'),
+      '@lib': path.resolve(__dirname, 'common/lib'),
+      '@common': path.resolve(__dirname, 'common'),
       '@static': path.resolve(__dirname, 'static')
     }
   }
