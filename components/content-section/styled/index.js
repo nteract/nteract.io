@@ -68,13 +68,10 @@ const Wrapper = styled.div`
 `;
 
 const StyledContentSection = styled.section`
-  padding: 80px 60px;
-  @media (max-width: 800px) {
-    padding: 60px 25px;
-  }
   &:nth-of-type(even) {
     background: rgba(51, 72, 101, 0.06);
   }
+  padding: 80px 0;
 `;
 
 StyledContentSection.Wrapper = Wrapper;
