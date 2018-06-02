@@ -24,8 +24,10 @@ const wrapperStyles = css`
   margin-right: auto;
   margin-left: auto;
   max-width: ${spacing.globalWidth}px;
-  padding-left: ${spacing.gutter}px;
-  padding-right: ${spacing.gutter}px;
+  padding: 0 60px;
+  @media (max-width: 800px) {
+    padding: 0 25px;
+  }
   width: 100%;
   flex-grow: 1;
   position: relative;
