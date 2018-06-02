@@ -1,5 +1,8 @@
 import App, { Container } from 'next/app';
 import React from 'react';
+import { App as AppWrapper } from '@components/app';
+import { Header } from '@components/header';
+import { Footer } from '@components/footer';
 import { WindowSize } from 'react-fns';
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -11,19 +14,30 @@ class MyApp extends App {
     return { pageProps };
   }
 
+  componentDidMount() {
+    require('@common/css-paint-polyfill');
+    require('@common/rip');
+  }
+
   render() {
     const { Component, pageProps } = this.props;
     return (
-      <Container>
-        <WindowSize>
-          {(size) => (
-            <Component
-              {...pageProps}
-              size={size.width > 0 ? { ...size } : null}
-            />
-          )}
-        </WindowSize>
-      </Container>
+      <AppWrapper>
+        <Container>
+          <WindowSize>
+            {(size) => (
+              <>
+                <Header size={size.width > 0 ? { ...size } : null} />
+                <Component
+                  {...pageProps}
+                  size={size.width > 0 ? { ...size } : null}
+                />
+                <Footer />
+              </>
+            )}
+          </WindowSize>
+        </Container>
+      </AppWrapper>
     );
   }
 }

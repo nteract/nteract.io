@@ -31,7 +31,8 @@
     "react-spring": "^5.1.7",
     "react-syntax-highlighter": "^7.0.2",
     "sass-loader": "^7.0.1",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.2.6",
+    "styled-system": "^2.2.5"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.5.1",
@@ -54,7 +55,7 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next",
+    "dev": "next -p 2020",
     "flow": "flow",
     "prettier": "prettier --write './**/*.{js,scss}'",
     "start": "next start"
