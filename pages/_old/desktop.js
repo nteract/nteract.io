@@ -9,7 +9,7 @@ import {
   PageHeaderRight
 } from "../components/page-header/page-header";
 
-import { detectPlatform, getDownloadUrl } from "../lib/os-detect";
+import { detectPlatform, getDownloadUrl } from "../common/lib/os-detect";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 

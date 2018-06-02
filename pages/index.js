@@ -1,157 +1,190 @@
 // @flow
-import React from "react";
-import Layout from "../components/layout/layout";
+import React from 'react';
+import { Hero } from '@components/hero';
+import { Type } from '@components/typography';
+import { ContentSections, ContentSection } from '@components/content-section';
 
-import { ContentSection } from "../components/content-section/content-section";
+const videoProps = {
+  poster: 'https://nteract.github.io/assets/images/nteract_app_demo@2x.png',
+  preload: 'auto',
+  autoPlay: true,
+  muted: true,
+  loop: 'loop',
+  sources: [
+    {
+      src:
+        'https://nteract.github.io/assets/images/video/nteract_app_demo@2x.mp4',
+      type: 'video/mp4',
+    },
+    {
+      src:
+        'https://nteract.github.io/assets/images/video/nteract_app_demo@2x.webm',
+      type: 'video/webm',
+    },
+  ],
+};
 
-import { detectPlatform, getDownloadUrl } from "../lib/os-detect";
-
-import {
-  PageHeader,
-  PageHeaderLeft,
-  PageHeaderRight
-} from "../components/page-header/page-header";
-
-import SocialButtons from "../components/navigation/social-buttons";
-
-import { DownloadFeaturette } from "../components/download-buttons";
-
-const themeColor = "#334865";
-
-const HomeHeader = (props: OSProps) => (
-  <PageHeader themeColor={themeColor}>
-    <PageHeaderLeft>
-      <h1>
-        nteract and create with <br />data, words, and visuals.
-      </h1>
-      <p>
-        Fire up this desktop application and develop engaging documents with
-        prose, executable code in a favorite language, pictures, and more.
-      </p>
-      <p>
-        If you are a data scientist, researcher, journalist, educator, student,
-        or developer, use nteract to write code-driven, interactive stories.
-      </p>
-      <div className="mobile-only hero-mobile-message">
-        <h4>Connect with us</h4>
-        <SocialButtons />
-      </div>
-
-      <DownloadFeaturette platform={props.platform} assetUrl={props.assetUrl} />
-    </PageHeaderLeft>
-    <PageHeaderRight>
-      <img
-        src="https://nteract.github.io/assets/images/nteract_app_demo@2x.png"
-        alt="nteract demo"
-        className="mobile-only video-placeholder"
-      />
-      <video
-        className="not-mobile"
-        poster="https://nteract.github.io/assets/images/nteract_app_demo@2x.png"
-        preload="auto"
-        loop="loop"
-        autoPlay="true"
-        muted="true"
-      >
-        <source
-          src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.mp4"
-          type="video/mp4"
-        />
-        <source
-          src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.webm"
-          type="video/webm"
-        />
-      </video>
-    </PageHeaderRight>
-  </PageHeader>
+const Video = ({ sources, ...rest }) => (
+  <video {...rest}>
+    {sources.map((source, i) => <source {...source} key={i} />)}
+  </video>
 );
 
-const Main = () => (
-  <div>
-    <ContentSection>
-      <div className="panes center-vertically">
-        <div className="pane-50 pane">
-          <h3>Interactivity Where You Need It Most</h3>
-          <p>
-            nteract is a desktop-based computing environment, which means that
-            the application can take advantage of all the goodies that your
-            operating system provides, like file search and click to open.
-            nteract and the desktop belong together.
-          </p>
-        </div>
-        <div className="pane-50 pane">
-          <div className="section-graphic">
+/**
+ * These props make up our hero
+ */
+const heroProps = {
+  content: {
+    panes: [
+      {
+        title: {
+          children: <>nteract and create with data, words, and visuals.</>,
+        },
+        padding: '0 20px 0 0',
+        children: (
+          <>
+            <Type.p>
+              Fire up this desktop application and develop engaging documents
+              with prose, executable code in a favorite language, pictures, and
+              more.
+            </Type.p>
+            <Type.p>
+              If you are a data scientist, researcher, journalist, educator,
+              student, or developer, use nteract to write code-driven,
+              interactive stories.
+            </Type.p>
+          </>
+        ),
+        actions: {
+          padding: '20px 0 0 0',
+          items: [
+            {
+              primary: true,
+              label: 'Download for macOS (alpha)',
+              icon:
+                'https://nteract.github.io/assets/images/icon-nteract-download.svg',
+            },
+          ],
+          message: (
+            <Type.p small padding="10px 0 0 0">
+              Download for other platforms
+            </Type.p>
+          ),
+        },
+      },
+      {
+        padding: '40px 0 0 0',
+        visual: true,
+        children: <Video {...videoProps} />,
+      },
+    ],
+  },
+};
+
+/**
+ * These are our content sections
+ */
+const contentSections = [
+  {
+    panes: [
+      {
+        children: (
+          <>
+            <ContentSection.Title>
+              Interactivity Where You Need It Most
+            </ContentSection.Title>
+            <Type.p>
+              nteract is a desktop-based computing environment, which means that
+              the application can take advantage of all the goodies that your
+              operating system provides, like file search and click to open.
+              nteract and the desktop belong together.
+            </Type.p>
+          </>
+        ),
+      },
+      {
+        visual: true,
+        children: (
+          <>
             <img
               src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
-              alt=""
+              alt="interactivity"
             />
-          </div>
-        </div>
-      </div>
-    </ContentSection>
-
-    <ContentSection>
-      <div className="panes center-vertically">
-        <div className="pane-50 pane">
-          <div className="section-graphic">
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    panes: [
+      {
+        children: (
+          <>
+            <ContentSection.Title>Composability for All</ContentSection.Title>
+            <Type.p>
+              nteract is built on top of a rich ecosystem of packages that allow
+              developers to write software built on top of the notebook document
+              format and the code execution protocol. You can visit our GitHub
+              organization to find out which packages you can start to develop
+              with.
+            </Type.p>
+          </>
+        ),
+      },
+      {
+        visual: true,
+        children: (
+          <>
             <img
               src="https://nteract.github.io/assets/images/feature_nteract_composable@2x.png"
-              alt=""
+              alt="Composability"
             />
-          </div>
-        </div>
-        <div className="pane-50 pane">
-          <h3>Composability for All</h3>
-          <p>
-            nteract is built on top of a rich ecosystem of packages that allow
-            developers to write software built on top of the notebook document
-            format and the code execution protocol. You can visit our GitHub
-            organization to find out which packages you can start to develop
-            with.
-          </p>
-        </div>
-      </div>
-    </ContentSection>
-    <ContentSection>
-      <div className="panes center-vertically">
-        <div className="pane-50 pane">
-          <h3>Open to All</h3>
-          <p>
-            nteract is completely open-source and licensed under the BSD
-            3-Clause License. We love getting pull requests and issues from our
-            users; if you're interested in opening one, check out our contributor
-            documentation.
-          </p>
-        </div>
-        <div className="pane-50 pane">
-          <div className="section-graphic">
+          </>
+        ),
+      },
+    ],
+  },
+  {
+    panes: [
+      {
+        children: (
+          <>
+            <ContentSection.Title>Open to All</ContentSection.Title>
+            <Type.p>
+              nteract is completely open-source and licensed under the BSD
+              3-Clause License. We love getting pull requests and issues from
+              our users, if you're interested in opening one check out our
+              contributor documentation.
+            </Type.p>
+          </>
+        ),
+      },
+      {
+        visual: true,
+        children: (
+          <>
             <img
               src="https://nteract.github.io/assets/images/feature_nteract_open_to_all@2x.png"
-              alt=""
+              alt="Composability"
             />
-          </div>
-        </div>
-      </div>
-    </ContentSection>
-  </div>
-);
+          </>
+        ),
+      },
+    ],
+  },
+];
 
-class Home extends React.Component<OSProps, void> {
-  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
-    const platform = detectPlatform(ctx);
-    const assetUrl = await getDownloadUrl(platform);
-    return { platform, assetUrl };
+class Home extends React.Component {
+  static async getInitialProps(ctx) {
+    return {};
   }
 
   render() {
     return (
-      <Layout themeColor={themeColor}>
-        <HomeHeader
-          platform={this.props.platform}
-          assetUrl={this.props.assetUrl}
-        />
-        <Main />
-      </Layout>
+      <>
+        <Hero {...heroProps} />
+        <ContentSections sections={contentSections} />
+      </>
     );
   }
 }
