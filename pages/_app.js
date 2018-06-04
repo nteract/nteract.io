@@ -7,20 +7,12 @@ import { Footer } from '@components/footer';
 import { WindowSize } from 'react-fns';
 
 // Should these types come from next.js directly somehow?
-type AppContext = {
-  pathname: string,
-  query: any,
-  req?: any,
-  res?: any,
-  jsonPageRes?: any,
-  err?: any,
-};
 type AppProps<P> = {
   Component: React.Component<*, *> & {
-    getInitialProps: ?(ctx: AppContext) => P,
+    getInitialProps: ?(ctx: Context<*>) => P,
   },
   router: *,
-  ctx: AppContext,
+  ctx: Context<*>,
 };
 
 class MyApp extends App {
