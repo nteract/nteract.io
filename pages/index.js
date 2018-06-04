@@ -4,6 +4,8 @@ import { Hero } from '@components/hero';
 import { Type } from '@components/typography';
 import { ContentSections, ContentSection } from '@components/content-section';
 
+import { Button, Buttons } from '@components/button';
+
 const videoProps = {
   poster: 'https://nteract.github.io/assets/images/nteract_app_demo@2x.png',
   preload: 'auto',
@@ -43,6 +45,7 @@ class Home extends React.Component<null, null> {
             <Hero.Title>
               <>nteract and create with data, words, and visuals.</>
             </Hero.Title>
+
             <Type.p>
               Fire up this desktop application and develop engaging documents
               with prose, executable code in a favorite language, pictures, and
@@ -53,22 +56,17 @@ class Home extends React.Component<null, null> {
               student, or developer, use nteract to write code-driven,
               interactive stories.
             </Type.p>
-            <Hero.Actions
-              padding="20px 0 0 0"
-              items={[
-                {
-                  primary: true,
-                  label: 'Download for macOS (alpha)',
-                  icon:
-                    'https://nteract.github.io/assets/images/icon-nteract-download.svg',
-                },
-              ]}
-              message={
-                <Type.p small padding="10px 0 0 0">
-                  Download for other platforms
-                </Type.p>
-              }
-            />
+
+            <Buttons padding="20px 0 0 0">
+              <Button
+                primary
+                label="Download for macOS (alpha)"
+                icon="https://nteract.github.io/assets/images/icon-nteract-download.svg"
+              />
+            </Buttons>
+            <Type.p small padding="10px 0 0 0">
+              Download for other platforms
+            </Type.p>
           </Hero.Pane>
           <Hero.Pane visual padding="40px 0 0 0">
             <Video {...videoProps} />
