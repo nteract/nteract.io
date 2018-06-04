@@ -183,7 +183,39 @@ class Home extends React.Component<null, null> {
     return (
       <>
         <Hero {...heroProps} />
-        <ContentSections sections={contentSections} />
+        <ContentSections>
+          <ContentSection
+            panes={[
+              {
+                children: (
+                  <>
+                    <ContentSection.Title>
+                      Interactivity Where You Need It Most
+                    </ContentSection.Title>
+                    <Type.p>
+                      nteract is a desktop-based computing environment, which
+                      means that the application can take advantage of all the
+                      goodies that your operating system provides, like file
+                      search and click to open. nteract and the desktop belong
+                      together.
+                    </Type.p>
+                  </>
+                ),
+              },
+              {
+                visual: true,
+                children: (
+                  <>
+                    <img
+                      src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
+                      alt="interactivity"
+                    />
+                  </>
+                ),
+              },
+            ]}
+          />
+        </ContentSections>
       </>
     );
   }

@@ -24,9 +24,8 @@ const Title = ({ children, typeProps, ...titleProps }: TitleProps) => (
 
 type ContentSectionProps = {
   index: number,
-  children: React.Node,
+  children?: React.Node,
   panes: *,
-  rest: *,
 };
 
 const ContentSection = ({
@@ -45,21 +44,20 @@ const ContentSection = ({
   );
 };
 
+ContentSection.defaultProps = {
+  index: 0,
+};
+
 ContentSection.Pane = StyledContentSection.Pane;
 ContentSection.Title = Title;
 
 type ContentSectionsProps = {
-  sections: Array<{
-    panes: Array<{
-      children: React.Node,
-      visual?: boolean,
-    }>,
-  }>,
+  children: React.Node,
 };
 
-const ContentSections = ({ sections }: ContentSectionsProps) =>
-  sections.map((section, i) => (
-    <ContentSection key={i} index={i} {...section} />
-  ));
+const ContentSections = ({ children }: ContentSectionsProps) =>
+  React.Children.map(children, (child, index) =>
+    React.cloneElement(child, { index }),
+  );
 
 export { ContentSection, ContentSections };
