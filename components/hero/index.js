@@ -24,31 +24,20 @@ const Actions = ({ items, message, ...buttonsProps }) =>
     </>
   ) : null;
 
-const Content = ({ panes, ...rest }) =>
-  panes.length
-    ? panes.map(({ children, title, actions, ...paneProps }, i) => (
-        <StyledHero.Pane key={i} {...paneProps}>
-          {title && <Title {...title} />}
-          {children}
-          {actions && <Actions {...actions} />}
-        </StyledHero.Pane>
-      ))
-    : null;
+const Content = ({ children, ...rest }) => (children ? children : null);
 
 type HeroProps = {
   color: string,
-  content: *,
+  children: React.Node,
 };
 
-const Hero = ({ color, content, ...rest }: HeroProps) => {
+const Hero = ({ color, children, ...rest }: HeroProps) => {
   return (
     <StyledHero color={color} {...rest}>
       <StyledHero.Background>
         <HeroPattern />
       </StyledHero.Background>
-      <StyledHero.Wrapper>
-        <Content {...content} />
-      </StyledHero.Wrapper>
+      <StyledHero.Wrapper>{children}</StyledHero.Wrapper>
     </StyledHero>
   );
 };
@@ -56,5 +45,10 @@ const Hero = ({ color, content, ...rest }: HeroProps) => {
 Hero.defaultProps = {
   color: colors.darknavy,
 };
+
+Hero.Content = Content;
+Hero.Pane = StyledHero.Pane;
+Hero.Actions = Actions;
+Hero.Title = Title;
 
 export { Hero };
