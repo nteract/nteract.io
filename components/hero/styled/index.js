@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 `;
 
 const Pane = styled.div`
+  position: relative;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -72,7 +73,7 @@ const StyledHero = styled.div`
       }
     }
   }
-  
+
   ${Type.p}{
   color: rgba(255, 255, 255, 0.5);
   }

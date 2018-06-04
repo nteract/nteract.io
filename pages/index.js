@@ -49,6 +49,7 @@ class Home extends React.Component<null, null> {
               interactive stories.
             </Type.p>
 
+            {/* Call to Action */}
             <Buttons padding="20px 0 0 0">
               <Button
                 primary
