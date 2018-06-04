@@ -1,34 +1,26 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import { Hero } from '@components/hero';
 import { Type } from '@components/typography';
 import { ContentSections, ContentSection } from '@components/content-section';
-
 import { Button, Buttons } from '@components/button';
 
-const videoProps = {
-  poster: 'https://nteract.github.io/assets/images/nteract_app_demo@2x.png',
-  preload: 'auto',
-  autoPlay: true,
-  muted: true,
-  loop: 'loop',
-  sources: [
-    {
-      src:
-        'https://nteract.github.io/assets/images/video/nteract_app_demo@2x.mp4',
-      type: 'video/mp4',
-    },
-    {
-      src:
-        'https://nteract.github.io/assets/images/video/nteract_app_demo@2x.webm',
-      type: 'video/webm',
-    },
-  ],
-};
-
-const Video = ({ sources, ...rest }) => (
-  <video {...rest}>
-    {sources.map((source, i) => <source {...source} key={i} />)}
+const DemoVideo = () => (
+  <video
+    poster="https://nteract.github.io/assets/images/nteract_app_demo@2x.png"
+    preload="auto"
+    autoPlay
+    muted
+    loop="loop"
+  >
+    <source
+      src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.mp4"
+      type="video/mp4"
+    />
+    <source
+      src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.webm"
+      type="video/webm"
+    />
   </video>
 );
 
@@ -68,8 +60,9 @@ class Home extends React.Component<null, null> {
               Download for other platforms
             </Type.p>
           </Hero.Pane>
+
           <Hero.Pane visual padding="40px 0 0 0">
-            <Video {...videoProps} />
+            <DemoVideo />
           </Hero.Pane>
         </Hero>
         <ContentSections>
