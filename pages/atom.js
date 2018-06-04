@@ -1,41 +1,34 @@
 // @flow
-import Layout from "../components/layout/layout";
-import { ContentSection } from "../components/content-section/content-section";
-import React from "react";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { darcula } from "react-syntax-highlighter/styles/hljs";
-import {
-  PageHeader,
-  PageHeaderLeft,
-  PageHeaderRight
-} from "../components/page-header/page-header";
+import * as React from 'react';
+import { Hero } from '@components/hero';
+import { Type } from '@components/typography';
+import { ContentSections, ContentSection } from '@components/content-section';
+import { Button, Buttons } from '@components/button';
+
+import { CutoffImage } from '@components/cutoff-image';
+
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/styles/hljs';
 
 const installCode = `apm install hydrogen`;
 
 const InteractiveCoding = () => (
   <ContentSection>
-    <div className="panes center-vertically">
-      <div className="pane-50 pane">
-        <div className="section-graphic">
-          <video
-            style={{ boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)" }}
-            autoPlay
-            loop
-          >
-            <source src="static/atom/interactive.mp4" type="video/mp4" />
-            <image src="static/atom/interactive.png" alt="Interactive coding" />
-          </video>
-        </div>
-      </div>
-      <div className="pane-50 pane">
-        <h3>Interactive computing in Atom</h3>
-        <p>Choose which code to execute based on your needs.</p>
-        <p>
-          Run the whole file, a single line, a selection, or let Hydrogen decide
-          which code to run based on the current cursor position.
-        </p>
-      </div>
-    </div>
+    <ContentSection.Pane>
+      <h3>Interactive computing in Atom</h3>
+      <p>Choose which code to execute based on your needs.</p>
+      <p>
+        Run the whole file, a single line, a selection, or let Hydrogen decide
+        which code to run based on the current cursor position.
+      </p>
+    </ContentSection.Pane>
+
+    <ContentSection.Pane visual>
+      <video style={{ boxShadow: '0 4px 14px 0 rgba(0,0,0,.1)' }} autoPlay loop>
+        <source src="static/atom/interactive.mp4" type="video/mp4" />
+        <image src="static/atom/interactive.png" alt="Interactive coding" />
+      </video>
+    </ContentSection.Pane>
   </ContentSection>
 );
 
@@ -51,7 +44,7 @@ const WatchExpressions = () => (
       <div className="pane-50 pane">
         <div className="section-graphic">
           <video
-            style={{ boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)" }}
+            style={{ boxShadow: '0 4px 14px 0 rgba(0,0,0,.1)' }}
             autoPlay
             loop
           >
@@ -73,7 +66,7 @@ const InspectCode = () => (
       <div className="pane-50 pane">
         <div className="section-graphic">
           <video
-            style={{ boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)" }}
+            style={{ boxShadow: '0 4px 14px 0 rgba(0,0,0,.1)' }}
             autoPlay
             loop
           >
@@ -97,47 +90,73 @@ const InspectCode = () => (
   </ContentSection>
 );
 
+/*
+
+.cutoff-image {
+  position: absolute;
+  top: 0;
+  z-index: 4;
+  transition: $transition;
+  //width: 100%;
+  left: 0;
+  width: 100%;
+  @include tablet {
+    width: 120%;
+    max-width: 200%;
+  }
+  @include tablet {
+    top: 80px;
+  }
+  &:hover {
+    top: -40px;
+    @include tablet {
+      top: 50px;
+    }
+  }
+}
+
+ */
+
 export default class AtomPage extends React.Component<*, *> {
   render() {
-    let themeColor = "#232323";
-
-    const h4Styles = {
-      color: "rgba(255,255,255,0.8)",
-      marginBottom: "0"
-    };
+    let themeColor = '#232323';
 
     return (
-      <Layout pageTitle=": Hydrogen for Atom" themeColor={themeColor}>
-        <PageHeader themeColor={themeColor}>
-          <PageHeaderLeft>
-            <h1>Hydrogen</h1>
+      <>
+        <Hero color={themeColor}>
+          <Hero.Pane padding="0 20px 0 0">
+            <Hero.Title>Hydrogen</Hero.Title>
 
-            <p>
+            <Type.p>
               Run your code with an interactive REPL session with your language
               of choice inside GitHub’s <a href="https://atom.io/">Atom</a> text
               editor.
-            </p>
-            <p>
+            </Type.p>
+            <Type.p>
               All the power of Jupyter kernels, inside your favorite text
               editor.
-            </p>
-            <h4 style={h4Styles}>Install Hydrogen now with</h4>
+            </Type.p>
+            <h4
+              style={{
+                color: 'rgba(255,255,255,0.8)',
+                marginBottom: '0',
+              }}
+            >
+              Install Hydrogen now with
+            </h4>
             <SyntaxHighlighter language="zsh" style={darcula}>
               {installCode}
             </SyntaxHighlighter>
-          </PageHeaderLeft>
-          <PageHeaderRight>
-            <img
-              src="static/atom/featured.png"
-              alt="Hydrogen"
-              className="cutoff-image"
-            />
-          </PageHeaderRight>
-        </PageHeader>
-        <InteractiveCoding />
-        <WatchExpressions />
-        <InspectCode />
-      </Layout>
+          </Hero.Pane>
+          <Hero.Pane visual>
+            <CutoffImage src="static/atom/featured.png" alt="Hydrogen" />
+          </Hero.Pane>
+        </Hero>
+
+        <ContentSections>
+          <InteractiveCoding />
+        </ContentSections>
+      </>
     );
   }
 }
