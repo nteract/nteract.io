@@ -81,99 +81,6 @@ const heroProps = {
   },
 };
 
-/**
- * These are our content sections
- */
-const contentSections = [
-  {
-    panes: [
-      {
-        children: (
-          <>
-            <ContentSection.Title>
-              Interactivity Where You Need It Most
-            </ContentSection.Title>
-            <Type.p>
-              nteract is a desktop-based computing environment, which means that
-              the application can take advantage of all the goodies that your
-              operating system provides, like file search and click to open.
-              nteract and the desktop belong together.
-            </Type.p>
-          </>
-        ),
-      },
-      {
-        visual: true,
-        children: (
-          <>
-            <img
-              src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
-              alt="interactivity"
-            />
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    panes: [
-      {
-        children: (
-          <>
-            <ContentSection.Title>Composability for All</ContentSection.Title>
-            <Type.p>
-              nteract is built on top of a rich ecosystem of packages that allow
-              developers to write software built on top of the notebook document
-              format and the code execution protocol. You can visit our GitHub
-              organization to find out which packages you can start to develop
-              with.
-            </Type.p>
-          </>
-        ),
-      },
-      {
-        visual: true,
-        children: (
-          <>
-            <img
-              src="https://nteract.github.io/assets/images/feature_nteract_composable@2x.png"
-              alt="Composability"
-            />
-          </>
-        ),
-      },
-    ],
-  },
-  {
-    panes: [
-      {
-        children: (
-          <>
-            <ContentSection.Title>Open to All</ContentSection.Title>
-            <Type.p>
-              nteract is completely open-source and licensed under the BSD
-              3-Clause License. We love getting pull requests and issues from
-              our users, if you're interested in opening one check out our
-              contributor documentation.
-            </Type.p>
-          </>
-        ),
-      },
-      {
-        visual: true,
-        children: (
-          <>
-            <img
-              src="https://nteract.github.io/assets/images/feature_nteract_open_to_all@2x.png"
-              alt="Composability"
-            />
-          </>
-        ),
-      },
-    ],
-  },
-];
-
 class Home extends React.Component<null, null> {
   static async getInitialProps(ctx: *) {
     return {};
@@ -184,37 +91,64 @@ class Home extends React.Component<null, null> {
       <>
         <Hero {...heroProps} />
         <ContentSections>
-          <ContentSection
-            panes={[
-              {
-                children: (
-                  <>
-                    <ContentSection.Title>
-                      Interactivity Where You Need It Most
-                    </ContentSection.Title>
-                    <Type.p>
-                      nteract is a desktop-based computing environment, which
-                      means that the application can take advantage of all the
-                      goodies that your operating system provides, like file
-                      search and click to open. nteract and the desktop belong
-                      together.
-                    </Type.p>
-                  </>
-                ),
-              },
-              {
-                visual: true,
-                children: (
-                  <>
-                    <img
-                      src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
-                      alt="interactivity"
-                    />
-                  </>
-                ),
-              },
-            ]}
-          />
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>
+                Interactivity Where You Need It Most
+              </ContentSection.Title>
+              <Type.p>
+                nteract is a desktop-based computing environment, which means
+                that the application can take advantage of all the goodies that
+                your operating system provides, like file search and click to
+                open. nteract and the desktop belong together.
+              </Type.p>
+            </ContentSection.Pane>
+
+            <ContentSection.Pane visual>
+              <img
+                src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
+                alt="interactivity"
+              />
+            </ContentSection.Pane>
+          </ContentSection>
+
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>Composability for All</ContentSection.Title>
+              <Type.p>
+                nteract is built on top of a rich ecosystem of packages that
+                allow developers to write software built on top of the notebook
+                document format and the code execution protocol. You can visit
+                our GitHub organization to find out which packages you can start
+                to develop with.
+              </Type.p>
+            </ContentSection.Pane>
+
+            <ContentSection.Pane visual>
+              <img
+                src="https://nteract.github.io/assets/images/feature_nteract_composable@2x.png"
+                alt="Composability"
+              />
+            </ContentSection.Pane>
+          </ContentSection>
+
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>Open to All</ContentSection.Title>
+              <Type.p>
+                nteract is completely open-source and licensed under the BSD
+                3-Clause License. We love getting pull requests and issues from
+                our users, if you're interested in opening one check out our
+                contributor documentation.
+              </Type.p>
+            </ContentSection.Pane>
+            <ContentSection.Pane visual>
+              <img
+                src="https://nteract.github.io/assets/images/feature_nteract_open_to_all@2x.png"
+                alt="Composability"
+              />
+            </ContentSection.Pane>
+          </ContentSection>
         </ContentSections>
       </>
     );
