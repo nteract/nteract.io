@@ -7,22 +7,18 @@ import HeroPattern from './pattern';
 
 import { colors } from '@common/constants';
 
-const Title = ({ component = 'h1', ...rest }) => {
+type TitleProps = {
+  component: string,
+};
+
+const Title = ({ component, ...rest }: TitleProps) => {
   const TextComponent = Type[component];
   return <TextComponent {...rest} padding="0 0 20px 0" />;
 };
 
-const Actions = ({ items, message, ...buttonsProps }) =>
-  items.length ? (
-    <>
-      <Buttons {...buttonsProps}>
-        {items.map(({ children, ...buttonProps }, i) => (
-          <Button key={i} {...buttonProps} />
-        ))}
-      </Buttons>
-      {message && message}
-    </>
-  ) : null;
+Title.defaultProps = {
+  component: 'h1',
+};
 
 type HeroProps = {
   color: string,
@@ -45,7 +41,6 @@ Hero.defaultProps = {
 };
 
 Hero.Pane = StyledHero.Pane;
-Hero.Actions = Actions;
 Hero.Title = Title;
 
 export { Hero };
