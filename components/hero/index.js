@@ -24,8 +24,6 @@ const Actions = ({ items, message, ...buttonsProps }) =>
     </>
   ) : null;
 
-const Content = ({ children, ...rest }) => (children ? children : null);
-
 type HeroProps = {
   color: string,
   children: React.Node,
@@ -46,7 +44,6 @@ Hero.defaultProps = {
   color: colors.darknavy,
 };
 
-Hero.Content = Content;
 Hero.Pane = StyledHero.Pane;
 Hero.Actions = Actions;
 Hero.Title = Title;
