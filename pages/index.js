@@ -30,57 +30,6 @@ const Video = ({ sources, ...rest }) => (
   </video>
 );
 
-/**
- * These props make up our hero
- */
-const heroProps = {
-  content: {
-    panes: [
-      {
-        title: {
-          children: <>nteract and create with data, words, and visuals.</>,
-        },
-        padding: '0 20px 0 0',
-        children: (
-          <>
-            <Type.p>
-              Fire up this desktop application and develop engaging documents
-              with prose, executable code in a favorite language, pictures, and
-              more.
-            </Type.p>
-            <Type.p>
-              If you are a data scientist, researcher, journalist, educator,
-              student, or developer, use nteract to write code-driven,
-              interactive stories.
-            </Type.p>
-          </>
-        ),
-        actions: {
-          padding: '20px 0 0 0',
-          items: [
-            {
-              primary: true,
-              label: 'Download for macOS (alpha)',
-              icon:
-                'https://nteract.github.io/assets/images/icon-nteract-download.svg',
-            },
-          ],
-          message: (
-            <Type.p small padding="10px 0 0 0">
-              Download for other platforms
-            </Type.p>
-          ),
-        },
-      },
-      {
-        padding: '40px 0 0 0',
-        visual: true,
-        children: <Video {...videoProps} />,
-      },
-    ],
-  },
-};
-
 class Home extends React.Component<null, null> {
   static async getInitialProps(ctx: *) {
     return {};
@@ -89,7 +38,55 @@ class Home extends React.Component<null, null> {
   render() {
     return (
       <>
-        <Hero {...heroProps} />
+        <Hero
+          content={{
+            panes: [
+              {
+                title: {
+                  children: (
+                    <>nteract and create with data, words, and visuals.</>
+                  ),
+                },
+                padding: '0 20px 0 0',
+                children: (
+                  <>
+                    <Type.p>
+                      Fire up this desktop application and develop engaging
+                      documents with prose, executable code in a favorite
+                      language, pictures, and more.
+                    </Type.p>
+                    <Type.p>
+                      If you are a data scientist, researcher, journalist,
+                      educator, student, or developer, use nteract to write
+                      code-driven, interactive stories.
+                    </Type.p>
+                  </>
+                ),
+                actions: {
+                  padding: '20px 0 0 0',
+                  items: [
+                    {
+                      primary: true,
+                      label: 'Download for macOS (alpha)',
+                      icon:
+                        'https://nteract.github.io/assets/images/icon-nteract-download.svg',
+                    },
+                  ],
+                  message: (
+                    <Type.p small padding="10px 0 0 0">
+                      Download for other platforms
+                    </Type.p>
+                  ),
+                },
+              },
+              {
+                padding: '40px 0 0 0',
+                visual: true,
+                children: <Video {...videoProps} />,
+              },
+            ],
+          }}
+        />
         <ContentSections>
           <ContentSection>
             <ContentSection.Pane>
