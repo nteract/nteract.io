@@ -1,19 +1,40 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import { Type } from '@components/typography';
 import { StyledContentSection } from './styled';
 
 const renderPanes = (panes, isOdd) =>
   panes.map((pane, i) => (
-    <StyledContentSection.Pane key={i} isOdd={isOdd} {...pane} />
+    <StyledContentSection.Pane key={i} isOdd={isOdd} visual={pane.visual}>
+      {pane.children}
+    </StyledContentSection.Pane>
   ));
 
-const Title = ({ children, typeProps, ...titleProps }) => (
+type TitleProps = {
+  children: React.Node,
+  typeProps?: *,
+  titleProps?: *,
+};
+
+const Title = ({ children, typeProps, ...titleProps }: TitleProps) => (
   <StyledContentSection.Title {...titleProps}>
     <Type.h2 {...typeProps}>{children}</Type.h2>
   </StyledContentSection.Title>
 );
 
-const ContentSection = ({ index, children, panes, ...rest }) => {
+type ContentSectionProps = {
+  index: number,
+  children: React.Node,
+  panes: *,
+  rest: *,
+};
+
+const ContentSection = ({
+  index,
+  children,
+  panes,
+  ...rest
+}: ContentSectionProps) => {
   const isOdd = parseInt(index) % 2;
   return (
     <StyledContentSection {...rest}>
@@ -27,7 +48,16 @@ const ContentSection = ({ index, children, panes, ...rest }) => {
 ContentSection.Pane = StyledContentSection.Pane;
 ContentSection.Title = Title;
 
-const ContentSections = ({ sections }) =>
+type ContentSectionsProps = {
+  sections: Array<{
+    panes: Array<{
+      children: React.Node,
+      visual?: boolean,
+    }>,
+  }>,
+};
+
+const ContentSections = ({ sections }: ContentSectionsProps) =>
   sections.map((section, i) => (
     <ContentSection key={i} index={i} {...section} />
   ));
