@@ -174,8 +174,8 @@ const contentSections = [
   },
 ];
 
-class Home extends React.Component {
-  static async getInitialProps(ctx) {
+class Home extends React.Component<null, null> {
+  static async getInitialProps(ctx: *) {
     return {};
   }
 
