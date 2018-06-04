@@ -1,6 +1,7 @@
-import Document, { Head, Main, NextScript } from "next/document";
-import styled, { ServerStyleSheet, injectGlobal } from "styled-components";
-import { normalize } from "polished";
+// @flow
+import Document, { Head, Main, NextScript } from 'next/document';
+import styled, { ServerStyleSheet, injectGlobal } from 'styled-components';
+import { normalize } from 'polished';
 /**
  * Reset our styles
  */
@@ -32,8 +33,8 @@ const DocWrapper = styled.div`
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
+    const page = renderPage((App) => (props) =>
+      sheet.collectStyles(<App {...props} />),
     );
     const styleTags = sheet.getStyleElement();
     return { ...page, styleTags };
@@ -47,10 +48,7 @@ export default class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />
           <title>nteract</title>
-          <meta
-            name="viewport"
-            content="width=device-width,initial-scale=1"
-          />
+          <meta name="viewport" content="width=device-width,initial-scale=1" />
         </Head>
         <body>
           <Main />
