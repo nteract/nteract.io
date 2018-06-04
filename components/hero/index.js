@@ -1,8 +1,11 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import { StyledHero } from '@components/hero/styled';
 import { Type } from '@components/typography';
 import { Button, Buttons } from '@components/button';
 import HeroPattern from './pattern';
+
+import { colors } from '@common/constants';
 
 const Title = ({ component = 'h1', ...rest }) => {
   const TextComponent = Type[component];
@@ -32,7 +35,12 @@ const Content = ({ panes, ...rest }) =>
       ))
     : null;
 
-const Hero = ({ color, content, ...rest }) => {
+type HeroProps = {
+  color: string,
+  content: *,
+};
+
+const Hero = ({ color, content, ...rest }: HeroProps) => {
   return (
     <StyledHero color={color} {...rest}>
       <StyledHero.Background>
@@ -43,6 +51,10 @@ const Hero = ({ color, content, ...rest }) => {
       </StyledHero.Wrapper>
     </StyledHero>
   );
+};
+
+Hero.defaultProps = {
+  color: colors.darknavy,
 };
 
 export { Hero };
