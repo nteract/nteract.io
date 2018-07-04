@@ -39,6 +39,7 @@ ContentSection.defaultProps = {
 
 ContentSection.Pane = StyledContentSection.Pane;
 ContentSection.Title = Title;
+ContentSection.Title.Section = StyledContentSection.Title.Section;
 
 type ContentSectionsProps = {
   children: React.Node,

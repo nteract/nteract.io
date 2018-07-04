@@ -121,10 +121,12 @@ class Header extends React.PureComponent {
           <StyledHeader>
             <StyledHeader.Wrapper>
               <StyledHeader.Section>
-                <img
-                  src="https://nteract.github.io/assets/images/feature_nteract_logo_header_white@2x.png"
-                  alt="nteract"
-                />
+                <Link href="/" prefetch>
+                  <img
+                    src="https://nteract.github.io/assets/images/feature_nteract_logo_header_white@2x.png"
+                    alt="nteract"
+                  />
+                </Link>
                 <NavItems {...leftNav} desktop />
               </StyledHeader.Section>
 
