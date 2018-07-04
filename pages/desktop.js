@@ -5,10 +5,14 @@ import { Type } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
 import { Video } from '@components/video';
+import { detectPlatform, getDownloadUrl } from '@lib/os-detect';
+import { DownloadFeaturette } from '@components/download-buttons';
 
 class Atom extends React.Component<null, null> {
-  static async getInitialProps(ctx: *) {
-    return {};
+  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
+    const platform = detectPlatform(ctx);
+    const assetUrl = await getDownloadUrl(platform);
+    return { platform, assetUrl };
   }
 
   render() {
@@ -23,13 +27,11 @@ class Atom extends React.Component<null, null> {
               narratives. Explore computing creatively. All the power of Jupyter
               notebooks, wrapped in native desktop goodness.
             </Type.p>
-            <Buttons padding="20px 0 0 0">
-              <Button
-                primary
-                label="Download for macOS (alpha)"
-                icon="https://nteract.github.io/assets/images/icon-nteract-download.svg"
-              />
-            </Buttons>
+            {/* Call to Action */}
+            <DownloadFeaturette
+              platform={this.props.platform}
+              assetUrl={this.props.assetUrl}
+            />
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">
