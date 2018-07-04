@@ -53,6 +53,10 @@ const StyledButton = styled.button.attrs({
       }
     `,
   )};
+
+  & + & {
+    margin-left: 12px;
+  }
 `;
 
 const Label = styled.div``;
