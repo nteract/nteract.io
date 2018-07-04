@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { StyledHero } from '@components/hero/styled';
 import { Type } from '@components/typography';
-import { Button, Buttons } from '@components/button';
 import HeroPattern from './pattern';
 
 import { colors } from '@common/constants';

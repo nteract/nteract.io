@@ -8,7 +8,7 @@ const StyledButtons = styled.div`
   ${margin};
 `;
 
-const StyledButton = styled.button.attrs({
+const StyledButton = styled.a.attrs({
   className: 'ripple',
 })`
   display: flex;
@@ -17,13 +17,13 @@ const StyledButton = styled.button.attrs({
   border-radius: 4px;
   user-select: none;
   outline: none;
+  text-decoration: none !important;
 
   &.animating {
     background-image: paint(ripple);
   }
   box-shadow: 0 4px 8px 0 rgba(50, 72, 101, 0.1),
     0 2px 2px 0 rgba(50, 72, 101, 0.1);
-  text-decoration: none;
   border: 0;
 
   transition: 0.2s ease-in-out all;

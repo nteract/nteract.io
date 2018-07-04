@@ -4,6 +4,8 @@ import { Hero } from '@components/hero';
 import { Type } from '@components/typography';
 import { ContentSections, ContentSection } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
+import { DownloadFeaturette } from '@components/download-buttons';
+import { detectPlatform, getDownloadUrl } from '@lib/os-detect';
 
 const DemoVideo = () => (
   <video
@@ -25,8 +27,10 @@ const DemoVideo = () => (
 );
 
 class Home extends React.Component<null, null> {
-  static async getInitialProps(ctx: *) {
-    return {};
+  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
+    const platform = detectPlatform(ctx);
+    const assetUrl = await getDownloadUrl(platform);
+    return { platform, assetUrl };
   }
 
   render() {
@@ -50,16 +54,10 @@ class Home extends React.Component<null, null> {
             </Type.p>
 
             {/* Call to Action */}
-            <Buttons padding="20px 0 0 0">
-              <Button
-                primary
-                label="Download for macOS (alpha)"
-                icon="https://nteract.github.io/assets/images/icon-nteract-download.svg"
-              />
-            </Buttons>
-            <Type.p small padding="10px 0 0 0">
-              Download for other platforms
-            </Type.p>
+            <DownloadFeaturette
+              platform={this.props.platform}
+              assetUrl={this.props.assetUrl}
+            />
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">
