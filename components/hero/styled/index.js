@@ -37,6 +37,10 @@ const Pane = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  img {
+    max-width: 100%;
+    display: block;
+  }
 
   &:last-of-type {
     justify-content: flex-end;

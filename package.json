@@ -10,13 +10,14 @@
     "autoprefixer": "^8.4.1",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-wrap-in-js": "^1.1.1",
+    "express": "^4.16.3",
     "fetch-github-organization": "^1.0.3",
     "glob": "^7.1.2",
     "in-view": "^0.6.1",
     "isomorphic-fetch": "^2.2.1",
     "mdi": "^2.2.43",
     "mdi-react": "^3.3.0",
-    "next": "^6.0.2",
+    "next": "6.1.1",
     "node-sass": "^4.9.0",
     "normalize-scss": "^7.0.1",
     "nteract-members": "^1.0.8",
@@ -24,8 +25,8 @@
     "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^2.1.4",
     "raw-loader": "^0.5.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
     "react-fns": "^1.4.0",
     "react-headroom": "^2.2.2",
     "react-spring": "^5.1.7",
@@ -55,9 +56,9 @@
   },
   "scripts": {
     "build": "next build",
-    "dev": "next -p 2020",
+    "dev": "node server.js",
     "flow": "flow",
     "prettier": "prettier --write './**/*.{js,scss}'",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js"
   }
 }
