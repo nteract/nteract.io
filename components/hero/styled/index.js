@@ -64,6 +64,18 @@ const StyledHero = styled.div`
   min-height: 600px;
   display: flex;
   position: relative;
+  a{
+    &:link,
+    &:visited, 
+    &:active,
+    &:hover{
+      color: white;
+      text-decoration: none;
+    }
+    &:hover{
+      text-decoration: underline;
+    }
+  }
   @media (max-width: 800px) {
     ${Wrapper} {
       flex-direction: column;
