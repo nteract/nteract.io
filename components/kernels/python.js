@@ -34,6 +34,11 @@ export default () => (
         logo="/static/python.png"
       >
         <h3>Installation</h3>
+        <p>
+          Python environments are added as kernels with ipykernel. Install
+          ipykernel into your environment to add it to
+          your list of kernels.
+        </p>
         <div className="columns">
           <div className="column">
             <h4>Using pip</h4>
