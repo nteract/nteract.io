@@ -9,11 +9,20 @@ import {
   ContentSectionPane
 } from "../content-section/content-section";
 
-const pipInstall = `python -m pip install ipykernel
-python -m ipykernel install --user`;
+const pipInstall = `python -m pip install ipykernel virtualenv
+python -m ipykernel install
+python -m virtualenv myenv
+source myenv/bin/activate
+pip install ipykernel
+pip install -r requirements.txt
+python -m ipykernel install --user --name myenv --display-name "Python (myenv)"`;
 
 const condaInstall = `conda install ipykernel
-python -m ipykernel install --user`;
+python -m ipykernel install
+conda env create -f environment.yml
+source activate myenv
+conda install ipykernel
+python -m ipykernel install --user --name myenv --display-name "Python (myenv)"`;
 
 export default () => (
   <ContentSection>
@@ -27,7 +36,7 @@ export default () => (
         <h3>Installation</h3>
         <div className="columns">
           <div className="column">
-            <h4>pip based</h4>
+            <h4>Using pip</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {pipInstall}
             </SyntaxHighlighter>
