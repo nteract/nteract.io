@@ -24,7 +24,9 @@ export default class RPage extends React.Component<*, *> {
             <h1>Kernels</h1>
             <p>
               Kernels connect your favorite languages to nteract projects for an
-              improved REPL experience.
+              improved REPL experience. To date, there are over
+              <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels"> 100
+              community-developed kernels</a> available on GitHub.
             </p>
             <div className="buttons">
               <Link href="/kernels/python">
