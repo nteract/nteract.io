@@ -1,14 +1,49 @@
 {
   "name": "nteract.io",
-  "version": "1.0.0",
   "description": "The server for nteract.io",
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "flow": "flow",
-    "start": "next start",
-    "prettier": "prettier --write './**/*.{js,scss}'"
+  "version": "1.0.0",
+  "author": "nteract contributors",
+  "bugs": {
+    "url": "https://github.com/nteract/nteract.io/issues"
   },
+  "dependencies": {
+    "autoprefixer": "^8.4.1",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-wrap-in-js": "^1.1.1",
+    "express": "^4.16.3",
+    "fetch-github-organization": "^1.0.3",
+    "glob": "^7.1.2",
+    "in-view": "^0.6.1",
+    "isomorphic-fetch": "^2.2.1",
+    "mdi": "^2.2.43",
+    "mdi-react": "^3.3.0",
+    "next": "6.1.1",
+    "node-sass": "^4.9.0",
+    "normalize-scss": "^7.0.1",
+    "nteract-members": "^1.0.8",
+    "polished": "^1.9.2",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-loader": "^2.1.4",
+    "raw-loader": "^0.5.1",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-fns": "^1.4.0",
+    "react-headroom": "^2.2.2",
+    "react-spring": "^5.1.7",
+    "react-syntax-highlighter": "^7.0.2",
+    "sass-loader": "^7.0.1",
+    "styled-components": "^3.2.6",
+    "styled-system": "^2.2.5"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.5.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "flow-bin": "^0.71.0",
+    "lint-staged": "^7.0.5",
+    "prettier": "^1.12.1"
+  },
+  "homepage": "https://github.com/nteract/nteract.io#readme",
+  "license": "BSD-3-Clause",
   "lint-staged": {
     "{lib,spec}/**/*.{js,scss}": [
       "prettier --write",
@@ -19,38 +54,11 @@
     "type": "git",
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
-  "author": "nteract contributors",
-  "license": "BSD-3-Clause",
-  "bugs": {
-    "url": "https://github.com/nteract/nteract.io/issues"
-  },
-  "homepage": "https://github.com/nteract/nteract.io#readme",
-  "dependencies": {
-    "autoprefixer": "^8.4.1",
-    "babel-plugin-module-resolver": "^3.1.1",
-    "babel-plugin-wrap-in-js": "^1.1.1",
-    "fetch-github-organization": "^1.0.3",
-    "glob": "^7.1.2",
-    "in-view": "^0.6.1",
-    "isomorphic-fetch": "^2.2.1",
-    "mdi": "^2.2.43",
-    "next": "^6.0.0",
-    "node-sass": "^4.9.0",
-    "normalize-scss": "^7.0.1",
-    "nteract-members": "^1.0.8",
-    "postcss-easy-import": "^3.0.0",
-    "postcss-loader": "^2.1.4",
-    "raw-loader": "^0.5.1",
-    "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-headroom": "^2.2.2",
-    "react-syntax-highlighter": "^7.0.2",
-    "sass-loader": "^7.0.1"
-  },
-  "devDependencies": {
-    "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "flow-bin": "^0.71.0",
-    "lint-staged": "^7.0.5",
-    "prettier": "^1.12.1"
+  "scripts": {
+    "build": "next build",
+    "dev": "node server.js",
+    "flow": "flow",
+    "prettier": "prettier --write './**/*.{js,scss}'",
+    "start": "NODE_ENV=production node server.js"
   }
 }

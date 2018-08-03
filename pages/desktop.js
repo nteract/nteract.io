@@ -1,43 +1,14 @@
 // @flow
-import Layout from "../components/layout/layout";
-import { ContentSection } from "../components/content-section/content-section";
-import React from "react";
+import * as React from 'react';
+import { Hero } from '@components/hero';
+import { Type } from '@components/typography';
+import { ContentSection, ContentSections } from '@components/content-section';
+import { Button, Buttons } from '@components/button';
+import { Video } from '@components/video';
+import { detectPlatform, getDownloadUrl } from '@lib/os-detect';
+import { DownloadFeaturette } from '@components/download-buttons';
 
-import {
-  PageHeader,
-  PageHeaderLeft,
-  PageHeaderRight
-} from "../components/page-header/page-header";
-
-import { detectPlatform, getDownloadUrl } from "../lib/os-detect";
-
-import { DownloadFeaturette } from "../components/download-buttons";
-
-const OpenNotebooksFeature = () => (
-  <ContentSection>
-    <div className="panes center-vertically">
-      <div className="pane-30 pane">
-        <h3>Double Click</h3>
-        <p>Open notebooks natively on Mac, Windows, and Linux</p>
-      </div>
-      <div className="pane-70 pane">
-        <div className="section-graphic">
-          <video
-            style={{
-              boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)",
-              transform: "translateX(50px)"
-            }}
-            src="/static/double-click-notebook.mp4"
-            autoPlay
-            loop
-          />
-        </div>
-      </div>
-    </div>
-  </ContentSection>
-);
-
-export default class DesktopPage extends React.Component<OSProps, void> {
+class Atom extends React.Component<null, null> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);
@@ -45,39 +16,48 @@ export default class DesktopPage extends React.Component<OSProps, void> {
   }
 
   render() {
-    let themeColor = "#244d64";
-
     return (
-      <Layout pageTitle=": The nteract Desktop App" themeColor={themeColor}>
-        <PageHeader themeColor={themeColor}>
-          <PageHeaderLeft>
-            <h1>Notebooks on your desktop</h1>
+      <>
+        <Hero color="rgb(36, 77, 100)">
+          <Hero.Pane padding="0 20px 0 0">
+            <Hero.Title>Notebooks on your desktop</Hero.Title>
 
-            <p>
+            <Type.p>
               Write code, prose, and embed interactive plots to tell powerful
               narratives. Explore computing creatively. All the power of Jupyter
               notebooks, wrapped in native desktop goodness.
-            </p>
-
-            <div className="mobile-only hero-mobile-message">
-              <h4>Connect with us</h4>
-            </div>
-
+            </Type.p>
+            {/* Call to Action */}
             <DownloadFeaturette
               platform={this.props.platform}
               assetUrl={this.props.assetUrl}
             />
-          </PageHeaderLeft>
-          <PageHeaderRight>
+          </Hero.Pane>
+
+          <Hero.Pane visual padding="40px 0 0 0">
             <img
               src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
-              alt=""
-              className="cutoff-image"
+              alt="Desktop Notebooks hero image"
             />
-          </PageHeaderRight>
-        </PageHeader>
-        <OpenNotebooksFeature />
-      </Layout>
+          </Hero.Pane>
+        </Hero>
+        <ContentSections>
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>Double Click</ContentSection.Title>
+              <Type.p>
+                Open notebooks natively on Mac, Windows, and Linux
+              </Type.p>
+            </ContentSection.Pane>
+
+            <ContentSection.Pane visual>
+              <Video mp4="/static/double-click-notebook.mp4" />
+            </ContentSection.Pane>
+          </ContentSection>
+        </ContentSections>
+      </>
     );
   }
 }
+
+export default Atom;
