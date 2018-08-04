@@ -38,6 +38,12 @@ export default class NodePage extends React.Component<*, *> {
               <Link href="/kernels/r">
                 <a className="button button-secondary">R</a>
               </Link>
+              <Link href="/kernels/julia">
+                <a className="button button-secondary">Julia</a>
+              </Link>
+              <Link href="/kernels/c++">
+                <a className="button button-secondary">C++</a>
+              </Link>
             </div>
           </PageHeaderLeft>
           <PageHeaderRight>

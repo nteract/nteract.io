@@ -6,14 +6,14 @@ import {
   ContentSectionPane
 } from "../../components/content-section/content-section";
 import React from "react";
-import R from "../../components/kernels/r";
+import Python from "../../components/kernels/julia";
 import {
   PageHeader,
   PageHeaderLeft,
   PageHeaderRight
 } from "../../components/page-header/page-header";
 
-export default class RPage extends React.Component<*, *> {
+export default class PythonPage extends React.Component<*, *> {
   render() {
     let themeColor = "#2C1F39";
 
@@ -36,10 +36,10 @@ export default class RPage extends React.Component<*, *> {
                 <a className="button button-secondary">Node.js</a>
               </Link>
               <Link href="/kernels/r">
-                <a className="button button-secondary active">R</a>
+                <a className="button button-secondary">R</a>
               </Link>
               <Link href="/kernels/julia">
-                <a className="button button-secondary">Julia</a>
+                <a className="button button-secondary active">Julia</a>
               </Link>
               <Link href="/kernels/c++">
                 <a className="button button-secondary">C++</a>
@@ -54,7 +54,7 @@ export default class RPage extends React.Component<*, *> {
             />
           </PageHeaderRight>
         </PageHeader>
-        <R />
+        <Python />
       </Layout>
     );
   }
