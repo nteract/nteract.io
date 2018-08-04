@@ -14,7 +14,7 @@ import {
 const condaInstall = `conda create -n cling
 source activate cling
 conda install xeus-cling notebook -c QuantStack -c conda-forge
-python -m ipykernel install --user --name myenv --display-name "C++ (cling)"`;
+python -m ipykernel install --user --name cling --display-name "C++ (cling)"`;
 
 export default () => (
   <ContentSection>
