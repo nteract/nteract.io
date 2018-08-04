@@ -15,7 +15,9 @@ export type KernelPageProps = {
 export const kernels = [
   { name: "python", path: "/kernels/python" },
   { name: "r", path: "/kernels/r" },
-  { name: "node.js", path: "/kernels/node" }
+  { name: "node.js", path: "/kernels/node" },
+  { name: "julia", path: "/kernels/julia" },
+  { name: "c++", path: "/kernels/c++" },
 ];
 
 export default (props: KernelPageProps, themeColor: "#444") => (
