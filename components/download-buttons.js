@@ -55,7 +55,7 @@ export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
                 />
               </div>
               <div className="button-label">
-                Download for {platform} (alpha)
+                Download for {platform} (beta)
               </div>
             </div>
           </div>
