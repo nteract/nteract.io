@@ -4,7 +4,7 @@ import Head from "next/head";
 import LanguageToggle from "../kernels/language-toggle";
 
 import Layout from "../layout/layout";
-import { ContentSection } from "../content-section/content-section";
+import { ContentSection } from "../content-section";
 import PageHeader from "./page-header";
 
 export type KernelPageProps = {
