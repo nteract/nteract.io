@@ -1,4 +1,3 @@
-// @flow
 import Layout from "../components/layout/layout";
 import { ContentSection } from "../components/content-section/content-section";
 import React from "react";
