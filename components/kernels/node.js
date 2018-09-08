@@ -6,14 +6,13 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import {
   ContentSection,
-  ContentSectionPane
-} from "../content-section/content-section";
+} from "../content-section";
 
 const install = `npm install -g ijavascript`;
 
 export default () => (
   <ContentSection>
-    <ContentSectionPane full>
+    <ContentSection.Pane full>
       <Kernel
         displayName="Node.JS"
         repository="https://github.com/n-riesco/ijavascript"
@@ -34,6 +33,6 @@ export default () => (
           </div>
         </div>
       </Kernel>
-    </ContentSectionPane>
+    </ContentSection.Pane>
   </ContentSection>
 );

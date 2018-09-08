@@ -6,8 +6,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import {
   ContentSection,
-  ContentSectionPane
-} from "../content-section/content-section";
+} from "../content-section";
 
 const pipInstall = `python -m pip install ipykernel virtualenv
 python -m ipykernel install
@@ -26,7 +25,7 @@ python -m ipykernel install --user --name myenv --display-name "Python (myenv)"`
 
 export default () => (
   <ContentSection>
-    <ContentSectionPane full>
+    <ContentSection.Pane full>
       <Kernel
         displayName="Python"
         repository="https://github.com/ipython/ipykernel"
@@ -54,6 +53,6 @@ export default () => (
           </div>
         </div>
       </Kernel>
-    </ContentSectionPane>
+    </ContentSection.Pane>
   </ContentSection>
 );
