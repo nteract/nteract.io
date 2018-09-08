@@ -38,7 +38,8 @@
   "devDependencies": {
     "babel-plugin-styled-components": "^1.5.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
-    "flow-bin": "^0.71.0",
+    "flow-bin": "^0.80.0",
+    "flow-typed": "^2.5.1",
     "lint-staged": "^7.0.5",
     "prettier": "^1.12.1"
   },
