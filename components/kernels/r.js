@@ -5,9 +5,8 @@ import Kernel from './kernel';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/styles/hljs';
 import {
-  ContentSection,
-  ContentSectionPane,
-} from '../content-section/content-section';
+  ContentSection
+} from '../content-section';
 
 const install = `install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
 devtools::install_github('IRkernel/IRkernel')
@@ -15,7 +14,7 @@ IRkernel::installspec()`;
 
 export default () => (
   <ContentSection>
-    <ContentSectionPane full>
+    <ContentSection.Pane full>
       <Kernel
         displayName="R"
         repository="https://github.com/IRkernel/IRkernel"
@@ -32,6 +31,6 @@ export default () => (
           </div>
         </div>
       </Kernel>
-    </ContentSectionPane>
+    </ContentSection.Pane>
   </ContentSection>
 );
