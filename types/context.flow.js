@@ -20,7 +20,8 @@ export type DocumentContext<Query> = Context<Query> & { renderPage: Function };
 
 export type EmptyQuery = {};
 
+export type Platforms = 'macOS' | 'Linux' | 'Windows';
 export type OSProps = {
-  platform: 'macOS' | 'Linux' | 'Windows',
+  platform: Platforms,
   assetUrl: string,
 };

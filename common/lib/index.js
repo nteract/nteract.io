@@ -2,8 +2,6 @@
 
 import "isomorphic-fetch";
 
-export type Platform = "macOS" | "Linux" | "Windows";
-
 const EXTENSIONS = {
   macOS: ".dmg",
   Linux: ".AppImage",

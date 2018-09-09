@@ -3,7 +3,7 @@ import * as React from "react";
 import Head from "next/head";
 import LanguageToggle from "../kernels/language-toggle";
 
-import Layout from "../layout/layout";
+import Layout from "../layout";
 import { ContentSection } from "../content-section";
 import PageHeader from "./page-header";
 

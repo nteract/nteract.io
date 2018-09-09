@@ -5,7 +5,7 @@ import { Type } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
 import { Video } from '@components/video';
-import { detectPlatform, getDownloadUrl } from '@lib/os-detect';
+import { detectPlatform, getDownloadUrl } from '@lib';
 import { DownloadFeaturette } from '@components/download-buttons';
 
 class Atom extends React.Component<null, null> {

@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout";
 
 import { ContentSection } from "../components/content-section/content-section";
 
-import { detectPlatform, getDownloadUrl } from "../common/lib/os-detect";
+import { detectPlatform, getDownloadUrl } from "../common/lib";
 
 import {
   PageHeader,
