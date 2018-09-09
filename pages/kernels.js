@@ -7,7 +7,13 @@ import { Button, Buttons } from '@components/button';
 import { withRouter } from 'next/router';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/styles/hljs';
-const VIEWS = {
+
+type Languages = 'python' | 'node' | 'r';
+
+type Slugs = 'kernels/python' | 'kernels/node' | 'kernels/r';
+type ViewsType = { [key: ?Languages]: Slugs };
+
+const VIEWS: ViewsType = {
   python: 'kernels/python',
   node: 'kernels/node',
   r: 'kernels/r',
@@ -81,7 +87,7 @@ const RenderContent = ({ view }) => {
   }
 };
 
-class KernelsPage extends React.Component<null, null> {
+class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string> }, { view: ?string}> {
   static async getInitialProps(ctx: *) {
     const {
       query: { slug },
