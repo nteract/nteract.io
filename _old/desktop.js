@@ -8,7 +8,7 @@ import {
   PageHeaderRight
 } from "../components/page-header/page-header";
 
-import { detectPlatform, getDownloadUrl } from "../common/lib/os-detect";
+import { detectPlatform, getDownloadUrl } from "../common/lib";
 
 import { DownloadFeaturette } from "../components/download-buttons";
 

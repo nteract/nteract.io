@@ -5,7 +5,7 @@ import { Type } from '@components/typography';
 import { ContentSections, ContentSection } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
 import { DownloadFeaturette } from '@components/download-buttons';
-import { detectPlatform, getDownloadUrl } from '@lib/os-detect';
+import { detectPlatform, getDownloadUrl } from '@lib';
 
 const DemoVideo = () => (
   <video
@@ -26,7 +26,13 @@ const DemoVideo = () => (
   </video>
 );
 
-class Home extends React.Component<null, null> {
+type HomeProps = { 
+  platform: Platforms,
+  assetUrl: string,
+}
+
+class Home extends React.Component<HomeProps, null> {
+  
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);

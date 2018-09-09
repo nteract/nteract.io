@@ -1,12 +1,12 @@
 // @flow
 import * as React from "react";
 
-import Layout from "../components/layout/layout";
+import Layout from "../components/layout";
 import {
   ContentSection
 } from "../components/content-section";
 import {
-  Header,
+  PageHeader
 } from "../components/page-header";
 
 const contributorsData = require("nteract-members");
@@ -53,12 +53,12 @@ const ContributorsList = contributorsData.map((person, index) => {
 
 const Contributors = () => (
   <ContentSection>
-    <ContentSectionPane layout="center">
+    <ContentSection.Pane layout="center">
       <h3>Contributors</h3>
       <div className="grid">
         <div className="grid-wrapper">{ContributorsList}</div>
       </div>
-    </ContentSectionPane>
+    </ContentSection.Pane>
   </ContentSection>
 );
 
@@ -69,10 +69,10 @@ export default class AboutPage extends React.Component<OSProps, void> {
     return (
       <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
-          <PageHeaderLeft>
+          <PageHeader.Left>
             <h1>About nteract</h1>
             <p>{`We're people, not software!`}</p>
-          </PageHeaderLeft>
+          </PageHeader.Left>
         </PageHeader>
         <Mission />
         <Contributors />

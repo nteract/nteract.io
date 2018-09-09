@@ -1,3 +1,4 @@
+import React from "react"
 import { StyledPageHeader } from './styled'
 
 const Title = ({ children }) => (<h1>{children}</h1>)
