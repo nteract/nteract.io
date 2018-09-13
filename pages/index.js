@@ -119,7 +119,7 @@ const Main = () => (
           <p>
             nteract is completely open-source and licensed under the BSD
             3-Clause License. We love getting pull requests and issues from our
-            users, if you're interested in opening one check out our contributor
+            users; if you're interested in opening one, check out our contributor
             documentation.
           </p>
         </div>
