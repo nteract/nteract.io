@@ -65,7 +65,6 @@ const Contributors = () => (
 export default class AboutPage extends React.Component<OSProps, void> {
   render() {
     let themeColor = "#334865";
-
     return (
       <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
