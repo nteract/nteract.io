@@ -36,7 +36,7 @@ const Hero = ({ color, children, ...rest }: HeroProps) => {
 };
 
 Hero.defaultProps = {
-  color: colors.darknavy,
+  color: colors.darkNavyColor,
 };
 
 Hero.Pane = StyledHero.Pane;

@@ -58,7 +58,7 @@ const Pane = styled.div`
 `;
 
 const StyledHero = styled.div`
-  background-color: ${({ color }) => (color ? color : colors.darknavy)};
+  background-color: ${({ color }) => (color ? color : colors.darkNavyColor)};
   padding-top: ${spacing.headerHeight}px;
   overflow: hidden;
   min-height: 600px;
