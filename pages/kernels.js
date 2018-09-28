@@ -121,19 +121,19 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
             </Type.p>
             <Buttons padding="20px 0 0 0">
               <Button
-                primary
+                secondary
                 label="Python"
                 onClick={() => this.changeView(VIEWS.python)}
                 active={() => this.activeView(VIEWS.python)}
               />
               <Button
-                primary
+                secondary
                 label="Node.js"
                 onClick={() => this.changeView(VIEWS.node)}
                 active={() => this.activeView(VIEWS.node)}
               />
               <Button
-                primary
+                secondary
                 label="R"
                 onClick={() => this.changeView(VIEWS.r)}
                 active={() => this.activeView(VIEWS.r)}
