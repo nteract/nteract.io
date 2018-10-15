@@ -6,8 +6,6 @@ import { Footer } from '../footer'
 export default ({ pageTitle, themeColor, children }) => { 
     return (<StyledLayout>
                 <Head pageTitle={pageTitle} />
-                <Header themeColor={themeColor} /> 
-                <div className="page">{children}</div>
-                <Footer />
+                <StyledPage>{children}</StyledPage>
             </StyledLayout>)
 }
