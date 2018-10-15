@@ -12,6 +12,7 @@ const colors = {
   primaryColor,
   linkColor,
   bgColor,
+  colorTextBase: '#313131',
   darkPrimaryColor: `darken(${primaryColor}, 5%)`,
   lightPrimaryColor: `lighten(${primaryColor}, 42%)`,
   darkColor: '#333',
@@ -33,11 +34,15 @@ const colors = {
   highlightColor: '#ffe9b3'
 };
 
-const timing = '0.38s';
+const timing = 0.38;
 const easing = globalEasing;
 const transition =  `${timing} all ${easing}`;
+const timingAnimation = `${0.38*2.5}`;
+const timingAnimationDelay = `${0.38*2.5/2}`;
 const animations = {
   timing,
+  timingAnimation,
+  timingAnimationDelay,
   easing,
   transition
 }

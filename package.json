@@ -17,7 +17,7 @@
     "isomorphic-fetch": "^2.2.1",
     "mdi": "^2.2.43",
     "mdi-react": "^3.3.0",
-    "next": "^6.1.2",
+    "next": "^7.0.2",
     "node-sass": "^4.9.0",
     "normalize-scss": "^7.0.1",
     "nteract-members": "^1.0.8",

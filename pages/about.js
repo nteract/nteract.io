@@ -2,18 +2,19 @@
 import * as React from "react";
 
 import Layout from "../components/layout";
+import { StyledPerson, StyledPersonAvatar, StyledPersonDetails, StyledPersonName, StyledPersonTitle, StyledPersonSocial, StyledPersonSocialItem, StyledGridWrapper, StyledGrid } from '../components/layout/styled'
 import {
   ContentSection
 } from "../components/content-section";
 import {
   PageHeader
 } from "../components/page-header";
-
+import { Type } from '../components/typography'
 const contributorsData = require("nteract-members");
 
 const Mission = () => (
   <ContentSection>
-    <ContentSection.Pane>
+    <ContentSection.Pane full>
       <h3>Mission</h3>
       <p>
         Create fantastic interactive computing experiences that allow people to
@@ -28,15 +29,15 @@ const ContributorsList = contributorsData.map((person, index) => {
     return null;
   }
   return (
-    <div key={index} className="person">
-      <div className="person-avatar">
+    <StyledPerson key={index} >
+      <StyledPersonAvatar>
         <img src={person.avatar_url} />
-      </div>
-      <div className="person-details">
-        <div className="person-name">{person.name || "@" + person.login}</div>
-      </div>
-      <div className="person-social">
-        <div key={index} className="social-item">
+      </StyledPersonAvatar>
+      <StyledPersonDetails>
+        <StyledPersonName>{person.name || "@" + person.login}</StyledPersonName>
+      </StyledPersonDetails>
+      <StyledPersonSocial>
+        <StyledPersonSocialItem key={index}>
           <a href={person.html_url} target="_blank">
             <i className="mdi mdi-github-circle" />
           </a>
@@ -45,18 +46,18 @@ const ContributorsList = contributorsData.map((person, index) => {
               <i className="mdi mdi-web" />
             </a>
           ) : null}
-        </div>
-      </div>
-    </div>
+        </StyledPersonSocialItem>
+      </StyledPersonSocial>
+    </StyledPerson>
   );
 });
 
 const Contributors = () => (
   <ContentSection>
-    <ContentSection.Pane layout="center">
-      <h3>Contributors</h3>
+    <ContentSection.Pane layout="center" full>
+      <Type.h3>Contributors</Type.h3>
       <div className="grid">
-        <div className="grid-wrapper">{ContributorsList}</div>
+        <StyledGridWrapper>{ContributorsList}</StyledGridWrapper>
       </div>
     </ContentSection.Pane>
   </ContentSection>
@@ -69,8 +70,8 @@ export default class AboutPage extends React.Component<OSProps, void> {
       <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
         <PageHeader themeColor={themeColor}>
           <PageHeader.Left>
-            <h1>About nteract</h1>
-            <p>{`We're people, not software!`}</p>
+            <Type.h1>About nteract</Type.h1>
+            <Type.p>{`We're people, not software!`}</Type.p>
           </PageHeader.Left>
         </PageHeader>
         <Mission />

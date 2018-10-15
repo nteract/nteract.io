@@ -7,7 +7,7 @@ const Right = ({ children }) => (<StyledPageHeader.Right>{children}</StyledPageH
 
 
 const PageHeader = ({ children, themeColor }) => (
-    <StyledPageHeader style={{ themeColor }}>
+    <StyledPageHeader style={{ backgroundColor: themeColor }}>
         <StyledPageHeader.Wrapper>{children}</StyledPageHeader.Wrapper>
     </StyledPageHeader>
 )

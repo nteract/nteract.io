@@ -103,7 +103,7 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
     this.setState(
       (state) => (state.view !== view ? { ...state, view } : state),
     );
-    this.props.url.push(`/${view}`, `/${view}`);
+    this.props.router.push(`/${view}`, `/${view}`);
   };
 
   activeView = (view) => view === this.state.view;
