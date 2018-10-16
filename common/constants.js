@@ -1,38 +1,40 @@
 const unit = 12;
 const gutter = unit * 2;
 const globalWidth = 1250;
-const globalEasing = 'cubic-bezier(0.24, 0.8, 0, 0.97)'
+const globalEasing = `cubic-bezier(0.24, 0.8, 0, 0.97)`
 const headerHeight = 100;
 
-const primaryColor = '#5764c6';
+const primaryColor = `rgba(87, 100, 198, 1)`;
 const linkColor = primaryColor;
-const bgColor = '#f8f8f8';
+const bgColor = `rgba(248, 248, 248, 1)`;
 const colors = {
   // Core colors
   primaryColor,
   linkColor,
   bgColor,
-  colorTextBase: '#313131',
-  darkPrimaryColor: `darken(${primaryColor}, 5%)`,
-  lightPrimaryColor: `lighten(${primaryColor}, 42%)`,
-  darkColor: '#333',
-  darkGrayColor: '#666',
-  grayColor: '#999',
-  lightGrayColor: '#ccc',
-  lightColor: '#fff',
-  darkLinkColor: `darken(${linkColor}, 10%)`,
-  borderColor: '#efefef',
-  darkBgColor: `darken(${bgColor}, 3%')`,
-  lightBgColor: '#fff',
-  darkNavyColor: '#334865',
-  kernelColor: 'rgb(44, 31, 57)',
+  colorTextBase: `rgba(49, 49, 49, 1)`,
+  darkPrimaryColor: `${primaryColor}`,
+  lightPrimaryColor: `${primaryColor}`,
+  darkColor: `#333`,
+  darkGrayColor: `#666`,
+  grayColor: `#999`,
+  lightGrayColor: `#ccc`,
+  lightColor: `#fff`,
+  darkLinkColor: `${linkColor}`,
+  borderColor: `#efefef`,
+  darkBgColor: `${bgColor}`,
+
+  lightBgColor: `#fff`,
+  darkNavyColor: `#334865`,
+  kernelColor: `rgb(44, 31, 57)`,
   // Control colors
-  controlColorSuccess: '#32b643',
-  controlColorWarning: '#ffb700',
-  controlColorDanger: '#e85600',
+  controlColorSuccess: `#32b643`,
+  controlColorWarning: `#ffb700`,
+  controlColorDanger: `#e85600`,
   // Meta colors
-  codeColor:'#e06870',
-  highlightColor: '#ffe9b3'
+  codeColor:`#e06870`,
+  dropShadow: `rgba(8, 12, 16, 0.2)`,
+  highlightColor: `#ffe9b3`
 };
 
 const timing = 0.38;
@@ -63,14 +65,14 @@ const spacing = {
 
 
 const effects = { 
-  dropShadow: '0px 2px 8px rgba(darken($main-color, 25%), 0.4)',
-  dropShadowLight: '0px 2px 6px rgba(darken($main-color, 25%), 0.08")',
-  dropShadowXL: '0px 10px 20px rgba(darken($main-color, 25%), 0.4)',
-  dropShadowXLLight: '0px 10px 20px rgba(darken($main-color, 25%), 0.2)',
-  dropShadowL: '0px 6px 14px rgba(darken($main-color, 25%), 0.4)',
-  dropShadowLLight: '0px 6px 14px rgba(darken($main-color, 25%), 0.1)',
-  dropShadowPressed: '0px 2px 2px rgba(darken($main-color, 25%), 0.2)',
-  textShadowDefault: '0px 1px 2px rgba(darken($main-color, 25%), 0.5)',
+  dropShadow: `0px 2px 8px rgba(${colors.dropShadow}`,
+  dropShadowLight: `0px 2px 6px ${colors.dropShadow}`,
+  dropShadowXL: `0px 10px 20px ${colors.dropShadow}`,
+  dropShadowXLLight: `0px 10px 20px ${colors.dropShadow}`,
+  dropShadowL: `0px 6px 14px ${colors.dropShadow}`,
+  dropShadowLLight: `0px 6px 14px ${colors.dropShadow}`,
+  dropShadowPressed: `0px 2px 2px ${colors.dropShadow};`,
+  textShadowDefault: `0px 1px 2px ${colors.dropShadow}`,
 }
 
 export { spacing, colors, fonts, effects, animations };
