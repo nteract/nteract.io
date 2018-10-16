@@ -5,7 +5,6 @@ const globalWidth = 1250;
 const globalEasing = `cubic-bezier(0.24, 0.8, 0, 0.97)`
 const headerHeight = 100;
 
-
 const timing = 0.38;
 const easing = globalEasing;
 const transition =  `${timing} all ${easing}`;

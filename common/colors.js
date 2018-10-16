@@ -35,6 +35,7 @@ let darkPrimaryColor = darken(primaryColor, 5);
 let lightPrimaryColor =  lighten(primaryColor, 42);
 let darkColor = '#333';
 let darkGrayColor ='#666';
+let darkerGrayColor = '#2B2B2B'
 let grayColor = '#999';
 let lightGrayColor = '#ccc';
 let lightColor = '#fff';
@@ -51,7 +52,7 @@ let controlColorDanger =  '#e85600';
 // Meta colors
 let codeColor = '#e06870';
 let highlightColor =  '#ffe9b3';
-
+let lightCodeColor = '#BABABA'
 
 export const colors = {
   // Core colors
@@ -65,6 +66,7 @@ export const colors = {
   lightPrimaryColor,
   darkColor,
   darkGrayColor,
+  darkerGrayColor,
   grayColor,
   lightGrayColor,
   lightColor,
@@ -78,5 +80,6 @@ export const colors = {
   controlColorDanger,
   // Meta colors
   codeColor,
+  lightCodeColor,
   highlightColor,
 };
