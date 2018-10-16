@@ -62,6 +62,7 @@ const MobileMenu = styled.div`
       font-size: 20px;
       text-decoration: none;
       color: white;
+      z-index: 101;
       padding-top: 10px;
     }
   }
