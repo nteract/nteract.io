@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import { colors } from 'common/constants'
+import { colors } from 'common/colors'
 import Layout from '@components/layout'
 import { Hero } from '@components/hero';
 import { Type, BashPre } from '@components/typography';
@@ -37,7 +37,7 @@ class Atom extends React.Component<null, null> {
             </Type.p>
 
             <Type.h4 padding="20px 0 0 0">Install Hydrogen now with</Type.h4>
-            <BashPre color="#232323">{`apm install hydrogen`}</BashPre>
+            <BashPre bgColor={colors.darkerGrayColor} color={colors.lightCodeColor}>{`apm install hydrogen`}</BashPre>
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">

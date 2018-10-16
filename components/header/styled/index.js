@@ -30,6 +30,13 @@ const NavWrapper = styled.div`
   display: flex;
 `;
 
+const Logo = styled.div`
+position: relative;
+z-index: 9999;
+max-width: 140px;
+min-width: 140px;
+margin-right: 12px;
+`
 const MobileMenu = styled.div`
   position: fixed;
   top: 0;
@@ -117,7 +124,7 @@ const Section = styled.div`
     justify-content: flex-end;
   }
 `;
-
+StyledHeader.Logo = Logo
 StyledHeader.Wrapper = Wrapper;
 StyledHeader.Section = Section;
 StyledHeader.NavWrapper = NavWrapper;
