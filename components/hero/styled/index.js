@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { colors, spacing } from '@common/constants';
+import { spacing } from '@common/constants';
+import { colors } from '@common/colors';
 import { margin, padding, wrapperStyles } from '@common/styled';
 import { Type } from '@components/typography';
 

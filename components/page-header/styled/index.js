@@ -1,10 +1,12 @@
 import styled, { css } from 'styled-components';
 import { sif, wrapperStyles } from '@common/styled';
-import { colors, spacing, effects, animations } from '@common/constants'
+import { colors } from '@common/colors';
+import { spacing, effects, animations } from '@common/constants'
 import { globalWrapper, handheld, tablet, desktop, tabletUp } from '@common/mixins';
 import { StyledButton, StyledButtons } from '@components/button/styled';
 import { CutoffImage } from '@components/cutoff-image'
 import { StyledFeaturette } from '@components/download-buttons'
+
 const StyledVideoPlaceholder = styled.div``
 const PageHeaderMobileMessage = styled.div``
 const PageHeaderWrapper = styled.div``
@@ -41,6 +43,7 @@ ${PageHeaderWrapper} {
 ${Left} {
     display: flex;
     flex-direction: column;
+    align-itmes: flex-start;
     justify-content: flex-end;
     padding-right: ${spacing.gutter*2}px;
     padding-bottom: ${spacing.gutter*2}px;
