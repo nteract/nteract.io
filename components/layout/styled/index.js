@@ -62,7 +62,6 @@ export const StyledPersonSocialItem = styled.div`
     display: block;
 `
 
-// TODO (translate & + & to css)
 export const StyledKernelHeaderButton = styled.div`
     border: 1px solid rgba(${colors.colorTextBase}, 0.15);
     background: white;
