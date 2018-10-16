@@ -69,22 +69,23 @@ const socialItems = {
 const MobileMenu = ({ open, ...rest }) =>
   open ? <StyledHeader.MobileMenu {...rest} /> : null;
 
-const NavItems = ({ items, ...rest }) => (
-  <StyledHeader.NavWrapper {...rest}>
-    {items.map(({ label, href, target, icon, ...linkProps }, i) => {
-      const content = icon ? icon : label;
-      return target ? (
-        <a key={i} href={href} target={target} {...linkProps}>
-          {content}
-        </a>
-      ) : (
-        <Link key={i} href={href} {...linkProps}>
-          <a href={href}>{content}</a>
-        </Link>
-      );
-    })}
-  </StyledHeader.NavWrapper>
-);
+const NavItems = ({ items, ...rest }) => {
+  let links = items.map(({ label, href, target, icon, ...linkProps }, i) => {
+    const content = icon ? icon : label;
+    return target ? (
+      <a key={i} href={href} target={target} {...linkProps}>
+        {content}
+      </a>
+    ) : (
+      <Link key={i} href={href} {...linkProps}>
+        <a href={href}>{content}</a>
+      </Link>
+    );
+  })
+  return (<StyledHeader.NavWrapper {...rest}>
+    {links}
+  </StyledHeader.NavWrapper>)
+}
 
 const MobileMenuButton = ({ open, ...rest }) => {
   const IconComponent = open ? CloseIcon : MenuIcon;
@@ -105,7 +106,9 @@ class Header extends React.PureComponent {
       });
     }
   };
-
+  handleClick = () => {
+    this.closeMenu()
+  }
   closeMenu = () => {
     if (this.state.mobileMenuOpen) {
       this.setState({
@@ -139,9 +142,9 @@ class Header extends React.PureComponent {
             </StyledHeader.Wrapper>
           </StyledHeader>
           <MobileMenu open={this.state.mobileMenuOpen}>
-            <NavItems {...leftNav} />
-            <NavItems {...rightNav} />
-            <NavItems {...socialItems} row />
+            <NavItems onClick={this.handleClick} {...leftNav} />
+            <NavItems onClick ={this.handleClick} {...rightNav} />
+            <NavItems onClick ={this.handleClick} {...socialItems} row />
             <StyledHero.Background>
               <Pattern />
             </StyledHero.Background>
