@@ -1,10 +1,12 @@
 // @flow
 import * as React from 'react';
+import { colors } from 'common/constants'
+import Layout from '@components/layout'
 import { Hero } from '@components/hero';
-import { Type } from '@components/typography';
+import { Type, BashPre } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
-
+ 
 const Video = ({ mp4, webm, poster }) => (
   <video poster={poster} preload="auto" autoPlay muted loop="loop">
     {mp4 ? <source src={mp4} type="video/mp4" /> : null}
@@ -19,7 +21,7 @@ class Atom extends React.Component<null, null> {
 
   render() {
     return (
-      <>
+      <Layout>
         <Hero color="#232323">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>Hydrogen</Hero.Title>
@@ -34,8 +36,8 @@ class Atom extends React.Component<null, null> {
               editor.
             </Type.p>
 
-            <Type.h5 padding="20px 0 0 0">Install Hydrogen now with</Type.h5>
-            <pre><code>apm install hydrogen</code></pre>
+            <Type.h4 padding="20px 0 0 0">Install Hydrogen now with</Type.h4>
+            <BashPre color="#232323">{`apm install hydrogen`}</BashPre>
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">
@@ -64,7 +66,7 @@ class Atom extends React.Component<null, null> {
           </ContentSection>
 
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }

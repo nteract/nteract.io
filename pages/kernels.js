@@ -1,12 +1,16 @@
 // @flow
 import * as React from 'react';
 import  Layout from '@components/layout';
+import Python from '@components/kernels/python';
+import R from '@components/kernels/r';
+import Node from '@components/kernels/node';
 import { Hero } from '@components/hero';
 import { Type, BashPre } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { PageHeader } from '@components/page-header';
 import { Button, Buttons } from '@components/button';
-import { colors } from '@common/constants';
+import { CutoffImage } from '@components/cutoff-image';
+import { colors } from '@common/colors';
 import { withRouter } from 'next/router';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/styles/hljs';
@@ -29,6 +33,16 @@ IRkernel::installspec()`;
 
 
 
+const RenderContentImproved = ({ view }) => {
+  switch (view) {
+    case VIEWS.node:
+      return <Node />
+    case VIEWS.r:
+      return <R />
+    default: 
+      return <Python />
+  }
+}
 const RenderContent = ({ view }) => {
   switch (view) {
     case VIEWS.node:
@@ -45,8 +59,8 @@ const RenderContent = ({ view }) => {
               already have it!
             </Type.p>
             <Type.h4 padding="20px 0 0 0">From the terminal</Type.h4>
-            <BashPre>
-              <code>npm install -g ijavascript</code>
+            <BashPre bgColor={colors.bgColor}>
+              {`npm install -g ijavascript`}
             </BashPre>
           </ContentSection.Pane>
         </ContentSection>
@@ -73,22 +87,18 @@ const RenderContent = ({ view }) => {
           <ContentSection.Pane>
             <ContentSection.Title kernel>
               <ContentSection.Title.Section>
-                <img src="/static/python.png" />
+                <img src="/static/python.png" /> Python
               </ContentSection.Title.Section>
             </ContentSection.Title>
 
               <Type.h3> Installation</Type.h3>
               <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
-              <BashPre>
-                <code>python -m pip install ipykernel
-                      python -m ipykernel install --user</code>
+              <BashPre bgColor={colors.bgColor}>
+                {`python -m pip install ipykernel\npython -m ipykernel install --user`}
               </BashPre>
-              <Type.h4 padding="100px 0 0 0">Using Conda</Type.h4>
-            <BashPre>
-              <code>
-                conda install ipykernel\n
-                python -m ipykernel install --user
-              </code>
+              <Type.h4 padding="40px 0 0 0">Using Conda</Type.h4>
+            <BashPre bgColor={colors.bgColor}>
+                {`conda install ipykernel\npython -m ipykernel install --user`}
             </BashPre>
           </ContentSection.Pane>
         </ContentSection>
@@ -150,7 +160,7 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
           </PageHeader.Left>
 
           <PageHeader.Right visual padding="40px 0 0 0">
-            <img src="/static/kernels-terminal.png" alt="Kernels hero image" />
+            <CutoffImage src="/static/kernels-terminal.png" alt="Kernels hero image" />
           </PageHeader.Right>
         </PageHeader>
         <ContentSections>
