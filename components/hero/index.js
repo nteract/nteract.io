@@ -4,7 +4,7 @@ import { StyledHero } from '@components/hero/styled';
 import { Type } from '@components/typography';
 import HeroPattern from './pattern';
 
-import { colors } from '@common/constants';
+import { colors } from '@common/colors';
 
 type TitleProps = {
   component: string,
@@ -36,7 +36,7 @@ const Hero = ({ color, children, ...rest }: HeroProps) => {
 };
 
 Hero.defaultProps = {
-  color: colors.darkNavyColor,
+  color: colors.darkPrimaryColor,
 };
 
 Hero.Pane = StyledHero.Pane;

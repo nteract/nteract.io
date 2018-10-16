@@ -1,8 +1,7 @@
 // @flow
 import styled, { css } from 'styled-components';
 import { sif, wrapperStyles } from '@common/styled';
-
-import { colors } from '@common/constants';
+import { colors } from '@common/colors';
 const gutter = 40;
 
 const Title = styled.div`
@@ -106,7 +105,7 @@ const StyledContentSection = styled.section`
     }
   }
   p {
-    color: ${colors.darkPrimaryColor};
+    color: ${colors.colorTextBase};
     line-height: 2rem;
     margin: 0 0 1rem;
     font-weight: 300;

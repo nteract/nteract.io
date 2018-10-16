@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { spacing, colors } from '@common/constants';
+import { spacing } from '@common/constants';
+import { colors } from '@common/colors';
 import { sif, padding, margin } from '@common/styled';
 import { lighten } from 'polished';
 const StyledButtons = styled.div`
@@ -63,7 +64,7 @@ const StyledButton = styled.a.attrs({
     text-shadow: 0px 1px 2px rgba(8, 12, 16, 0.5);
   `)}
   ${sif('active')(css`
-    background-color: ${colors.darkNavyColor};
+    background-color: ${colors.darkPrimaryColor};
   `)}
   ${StyledButton}:not(:first-child) {
     margin-left: 12px;

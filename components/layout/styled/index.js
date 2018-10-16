@@ -1,6 +1,7 @@
 
 import styled, { css } from 'styled-components';
-import { spacing, colors, effects, animations } from '@common/constants'
+import { spacing, effects, animations } from '@common/constants'
+import { colors } from '@common/colors';
 import { handheld } from '@common/mixins';
 export const StyledPage = styled.div`
     flex: 1;
