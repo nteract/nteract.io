@@ -13,7 +13,6 @@ const Background = styled.div`
   display: flex;
   justify-content: center;
   overflow: hidden;
-  z-index: -1;
   svg {
     position: absolute;
     width: calc(${spacing.globalWidth}px + 200px) !important;
