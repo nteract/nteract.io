@@ -11,7 +11,6 @@ const StyledCutoffImage = styled.img`
   transition: 0.2s ease-in-out all;
   left: 0;
   max-width: 100%;
-  /** TODO: Figure out these SCSS to styled components changes */
   /**
   @include tablet {
     width: 120%;
@@ -23,7 +22,6 @@ const StyledCutoffImage = styled.img`
   **/
   &:hover {
     top: 40px;
-    /** TODO: Figure out these SCSS to styled components changes */
     /*@include tablet {
       top: 50px;
     }*/

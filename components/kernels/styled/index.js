@@ -68,7 +68,6 @@ export const KernelHeaderButton = styled.a`
         box-shadow: ${effects.dropShadowLLight};
     }
 `
-// TODO what does & + & do?
 
 export const LanguageToggle = styled.section`
     height: 41px;

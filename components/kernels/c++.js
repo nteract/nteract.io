@@ -1,44 +1,61 @@
 // @flow
-import * as React from "react";
-
-import Kernel from "./kernel";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { github } from "react-syntax-highlighter/styles/hljs";
+import Layout from "../../components/layout/layout";
+import Link from "next/link";
 import {
   ContentSection,
   ContentSectionPane
-} from "../content-section/content-section";
+} from "../../components/content-section/content-section";
+import React from "react";
+import Node from "../../components/kernels/c++";
+import {
+  PageHeader,
+  PageHeaderLeft,
+  PageHeaderRight
+} from "../../components/page-header/page-header";
 
+export default class NodePage extends React.Component<*, *> {
+  render() {
+    let themeColor = "#2C1F39";
 
-
-const condaInstall = `conda create -n cling
-source activate cling
-conda install xeus-cling notebook -c QuantStack -c conda-forge
-python -m ipykernel install --user --name cling --display-name "C++ (cling)"`;
-
-export default () => (
-  <ContentSection>
-    <ContentSectionPane full>
-      <Kernel
-        displayName="C++"
-        repository="https://github.com/QuantStack/xeus-cling"
-        installURL="https://github.com/QuantStack/xeus-cling#installation"
-        logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/200px-ISO_C%2B%2B_Logo.svg.png"
-      >
-        <h3>Installation</h3>
-        <p>
-          The C++ kernel xeus-cling is installed with conda and added with ipykernel.
-          your list of kernels.
-        </p>
-        <div className="columns">
-          <div className="column">
-            <h4>Using conda</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {condaInstall}
-            </SyntaxHighlighter>
-          </div>
-        </div>
-      </Kernel>
-    </ContentSectionPane>
-  </ContentSection>
-);
+    return (
+      <Layout pageTitle=": connect with nteract" themeColor={themeColor}>
+        <PageHeader themeColor={themeColor}>
+          <PageHeaderLeft>
+            <h1>Kernels</h1>
+            <p>
+              Kernels connect your favorite languages to nteract projects for an
+              improved REPL experience. To date, there are over
+              <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels"> 100
+              community-developed kernels</a> available on GitHub.
+            </p>
+            <div className="buttons">
+              <Link href="/kernels/python">
+                <a className="button button-secondary">Python</a>
+              </Link>
+              <Link href="/kernels/node">
+                <a className="button button-secondary">Node.js</a>
+              </Link>
+              <Link href="/kernels/r">
+                <a className="button button-secondary">R</a>
+              </Link>
+              <Link href="/kernels/julia">
+                <a className="button button-secondary">Julia</a>
+              </Link>
+              <Link href="/kernels/c++">
+                <a className="button button-secondary active">C++</a>
+              </Link>
+            </div>
+          </PageHeaderLeft>
+          <PageHeaderRight>
+            <img
+              src="/static/kernels-terminal.png"
+              alt="Hydrogen"
+              className="cutoff-image"
+            />
+          </PageHeaderRight>
+        </PageHeader>
+        <Node />
+      </Layout>
+    );
+  }
+}
