@@ -25,6 +25,7 @@ const colors = {
   darkBgColor: `darken(${bgColor}, 3%')`,
   lightBgColor: '#fff',
   darkNavyColor: '#334865',
+  kernelColor: 'rgb(44, 31, 57)',
   // Control colors
   controlColorSuccess: '#32b643',
   controlColorWarning: '#ffb700',

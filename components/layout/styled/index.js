@@ -8,7 +8,6 @@ export const StyledPage = styled.div`
     flex-direction: column;
 `
 
-
 export const StyledGridWrapper = styled.div`
     display: flex;
     flex-wrap: wrap;

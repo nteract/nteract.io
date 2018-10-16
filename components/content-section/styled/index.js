@@ -2,6 +2,7 @@
 import styled, { css } from 'styled-components';
 import { sif, wrapperStyles } from '@common/styled';
 
+import { colors } from '@common/constants';
 const gutter = 40;
 
 const Title = styled.div`
@@ -20,6 +21,16 @@ const Title = styled.div`
 `;
 
 const Pane = styled.div`
+  ${sif('center')(css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    p {
+      max-width: 580px;
+    }
+  `)}
   @media (min-width: 801px) {
     width: 50%;
     ${sif('full')(
@@ -93,6 +104,12 @@ const StyledContentSection = styled.section`
     code {
       width: 100%;
     }
+  }
+  p {
+    color: ${colors.darkPrimaryColor};
+    line-height: 2rem;
+    margin: 0 0 1rem;
+    font-weight: 300;
   }
 `;
 

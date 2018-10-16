@@ -2,8 +2,6 @@
 import * as React from "react";
 import Head from "next/head";
 import LanguageToggle from "../kernels/language-toggle";
-
-import Layout from "../layout";
 import { ContentSection } from "../content-section";
 import PageHeader from "./page-header";
 
@@ -21,7 +19,7 @@ export const kernels = [
 ];
 
 export default (props: KernelPageProps, themeColor: "#444") => (
-  <Layout pageTitle={`: kernels - ${props.language}`} themeColor={themeColor}>
+  <>
     <Head>
       <link rel="stylesheet" href="/static/kernels.css" />
     </Head>
@@ -32,5 +30,5 @@ export default (props: KernelPageProps, themeColor: "#444") => (
       </header>
       <props.Kernel />
     </ContentSection>
-  </Layout>
+  </>
 );

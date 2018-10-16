@@ -2,11 +2,10 @@ import styled, { css } from 'styled-components';
 import { fonts } from '@common/constants';
 import { color, padding, margin, sif } from '@common/styled';
 
-const headingDefaults = css`
+export const headingDefaults = () => css`
   font-family: ${fonts.headings};
-  line-height: 1.25;
   @media (min-width: 801px) {
-    max-width: 85%;
+    max-width: 100%;
   }
   margin: 0;
   padding: 0;
@@ -15,6 +14,9 @@ const headingDefaults = css`
   ${color};
   ${padding};
   ${margin};
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
 `;
 
 const bodyDefaults = css`
@@ -29,28 +31,28 @@ const bodyDefaults = css`
 const StyledType = styled.div``;
 
 const h1 = styled.h1`
-  ${headingDefaults};
+  ${headingDefaults()};
   font-size: 2.25rem;
-  font-weight: 400;
 `;
+
 const h2 = styled.h2`
   font-size: 2rem;
-  ${headingDefaults};
+  ${headingDefaults()};
 `;
 const h3 = styled.h3`
   font-size: 1.75rem;
-  ${headingDefaults};
+  ${headingDefaults()};
 `;
 const h4 = styled.h4`
   font-size: 1.5rem;
-  ${headingDefaults};
+  ${headingDefaults()};
 `;
 const h5 = styled.h5`
   font-size: 1.2rem;
-  ${headingDefaults};
+  ${headingDefaults()};
 `;
 const h6 = styled.h6`
-  ${headingDefaults};
+  ${headingDefaults()};
   font-size: 1rem;
 `;
 

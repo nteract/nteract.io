@@ -3,10 +3,13 @@ import * as React from 'react';
 import { Hero } from '@components/hero';
 import { Type } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
+import { PageHeader } from '@components/page-header';
 import { Button, Buttons } from '@components/button';
+import { colors } from '@common/constants';
 import { withRouter } from 'next/router';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { github } from 'react-syntax-highlighter/styles/hljs';
+
 
 type Languages = 'python' | 'node' | 'r';
 
@@ -111,11 +114,10 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
   render() {
     return (
       <>
-        <Hero color="rgb(44, 31, 57)">
-          <Hero.Pane padding="0 20px 0 0">
-            <Hero.Title>Kernels</Hero.Title>
-
-            <Type.p>
+        <PageHeader themeColor="rgb(44, 31, 57)">
+          <PageHeader.Left>         
+            <PageHeader.Title>Kernels</PageHeader.Title>
+            <Type.p color={colors.lightGrayColor}>
               Kernels connect your favorite languages to nteract projects for an
               improved REPL experience.
             </Type.p>
@@ -124,27 +126,27 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
                 secondary
                 label="Python"
                 onClick={() => this.changeView(VIEWS.python)}
-                active={() => this.activeView(VIEWS.python)}
+                active={this.activeView(VIEWS.python)}
               />
               <Button
                 secondary
                 label="Node.js"
                 onClick={() => this.changeView(VIEWS.node)}
-                active={() => this.activeView(VIEWS.node)}
+                active={this.activeView(VIEWS.node)}
               />
               <Button
                 secondary
                 label="R"
                 onClick={() => this.changeView(VIEWS.r)}
-                active={() => this.activeView(VIEWS.r)}
+                active={this.activeView(VIEWS.r)}
               />
             </Buttons>
-          </Hero.Pane>
+          </PageHeader.Left>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <PageHeader.Right visual padding="40px 0 0 0">
             <img src="/static/kernels-terminal.png" alt="Kernels hero image" />
-          </Hero.Pane>
-        </Hero>
+          </PageHeader.Right>
+        </PageHeader>
         <ContentSections>
           <RenderContent view={this.state.view} />
         </ContentSections>

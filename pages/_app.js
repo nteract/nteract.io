@@ -38,7 +38,7 @@ class MyApp extends App {
           <WindowSize>
             {(size) => (
               <>
-                <Header size={size.width > 0 ? { ...size } : null} />
+                <Header />
                 <Component
                   {...pageProps}
                   size={size.width > 0 ? { ...size } : null}

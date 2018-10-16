@@ -2,39 +2,14 @@ import styled, { css } from 'styled-components';
 import { sif, wrapperStyles } from '@common/styled';
 import { colors, spacing, effects, animations } from '@common/constants'
 import { globalWrapper, handheld, tablet, desktop, tabletUp } from '@common/mixins';
-import { CutoffImage } from './../../cutoff-image'
-import { StyledFeaturette } from '../../download-buttons'
-
-
-const StyledVideoPlaceholder = styled.div`
-`
-/*
-  ${desktop(css`
-    display: none!important;
-  `)}
-  display: none!important;
-  ${handheld(css`
-    display: inherit;
-  `)}
-*/
+import { StyledButton, StyledButtons } from '@components/button/styled';
+import { CutoffImage } from '@components/cutoff-image'
+import { StyledFeaturette } from '@components/download-buttons'
+const StyledVideoPlaceholder = styled.div``
 const PageHeaderMobileMessage = styled.div``
 const PageHeaderWrapper = styled.div``
-const PageHeaderButtons  = styled.div``
-const PageHeaderButton =  styled.div`
-    ${sif('secondary')(css`
-        background: rgba(${colors.mainColor}, 0.5)
-    `)}
-    ${sif('active')(css`
-        background: ${colors.mainColor}
-    `)}
-`
-const Left = styled.div`
-
-`
-
-const Right = styled.div`
-
-`
+const Left = styled.div``
+const Right = styled.div``
 const PageHeader = styled.div`
 background-color: transparent;
 background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
@@ -45,6 +20,7 @@ background-repeat: no-repeat;
 padding-top: ${spacing.headerHeight}px;
 overflow: hidden;
 ${PageHeaderWrapper} {
+    color: rgba(255,255,255,0.5);
     ${globalWrapper()}
     font-weight: 300;
     display: flex;
@@ -61,25 +37,16 @@ ${PageHeaderWrapper} {
     ${StyledFeaturette} {
         margin-bottom: ${spacing.gutter*2}px;
     }
-    ${PageHeaderButtons} {
-        ${PageHeaderButton} {
-            ${sif('secondary')(css`
-                background: rgba(${colors.mainColor}, 0.5);
-            `)}
-            ${sif('active')(css`
-                background: ${colors.mainColor};
-            `)}
-        }
-    }
 }
 ${Left} {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-right: ${spacing.gutter*2};
-    padding-bottom: ${spacing.gutter*2};
-    p, ${PageHeaderButtons} {
+    padding-right: ${spacing.gutter*2}px;
+    padding-bottom: ${spacing.gutter*2}px;
+    p, ${StyledButtons} {
         animation-delay: ${animations.timingAnimationDelay/3}s;
+
     }
     ${tabletUp(css`
         max-width: 550px;
@@ -90,13 +57,13 @@ ${Left} {
     ${handheld(css`
         padding-right: 0;
         padding-bottom: 0;
-        padding-top: $gutter;
+        padding-top: ${spacing.gutter}px;
         align-items: flex-start;
         max-width: 100%;
-        h1, p, ${PageHeaderButtons} {
+        h1, p, ${StyledButtons} {
             max-width: 480px;
         }
-        ${PageHeaderButtons} {
+        ${StyledButtons} {
             width: 100%;
             justify-content: flex-start;
         }
