@@ -2,6 +2,12 @@ import styled, { css } from 'styled-components';
 import { spacing } from '@common/constants';
 
 const sif = (prop) => (styles) => (props) => props[prop] && styles;
+const bgColor = ({ bgColor }) => 
+  bgColor &&
+  css`
+    background: ${bgColor};
+  `;
+
 const color = ({ color }) =>
   color &&
   css`
@@ -46,4 +52,4 @@ const defaultWrapper = styled.div`
   }
 `;
 
-export { wrapperStyles, defaultWrapper, sif, color, margin, padding };
+export { wrapperStyles, defaultWrapper, sif, bgColor, color, margin, padding };
