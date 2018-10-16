@@ -35,6 +35,7 @@ position: relative;
 z-index: 9999;
 max-width: 140px;
 min-width: 140px;
+margin-top: 6px;
 margin-right: 12px;
 `
 const MobileMenu = styled.div`
