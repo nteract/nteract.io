@@ -1,7 +1,8 @@
 // @flow
 import * as React from 'react';
+import  Layout from '@components/layout';
 import { Hero } from '@components/hero';
-import { Type } from '@components/typography';
+import { Type, BashPre } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { PageHeader } from '@components/page-header';
 import { Button, Buttons } from '@components/button';
@@ -26,6 +27,8 @@ const rCode = `install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pb
 devtools::install_github('IRkernel/IRkernel')
 IRkernel::installspec()`;
 
+
+
 const RenderContent = ({ view }) => {
   switch (view) {
     case VIEWS.node:
@@ -42,9 +45,9 @@ const RenderContent = ({ view }) => {
               already have it!
             </Type.p>
             <Type.h4 padding="20px 0 0 0">From the terminal</Type.h4>
-            <pre>
+            <BashPre>
               <code>npm install -g ijavascript</code>
-            </pre>
+            </BashPre>
           </ContentSection.Pane>
         </ContentSection>
       );
@@ -70,20 +73,23 @@ const RenderContent = ({ view }) => {
           <ContentSection.Pane>
             <ContentSection.Title kernel>
               <ContentSection.Title.Section>
-                <img src="/static/python.png" />Python Installation
+                <img src="/static/python.png" />
               </ContentSection.Title.Section>
             </ContentSection.Title>
-            <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
-            <pre>
-              <code>npm install -g ijavascript</code>
-            </pre>
-          </ContentSection.Pane>
 
-          <ContentSection.Pane>
-            <Type.h4 padding="105px 0 0 0">Using Conda</Type.h4>
-            <pre>
-              <code>npm install -g ijavascript</code>
-            </pre>
+              <Type.h3> Installation</Type.h3>
+              <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
+              <BashPre>
+                <code>python -m pip install ipykernel
+                      python -m ipykernel install --user</code>
+              </BashPre>
+              <Type.h4 padding="100px 0 0 0">Using Conda</Type.h4>
+            <BashPre>
+              <code>
+                conda install ipykernel\n
+                python -m ipykernel install --user
+              </code>
+            </BashPre>
           </ContentSection.Pane>
         </ContentSection>
       );
@@ -113,7 +119,7 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
 
   render() {
     return (
-      <>
+      <Layout>
         <PageHeader themeColor="rgb(44, 31, 57)">
           <PageHeader.Left>         
             <PageHeader.Title>Kernels</PageHeader.Title>
@@ -150,7 +156,7 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
         <ContentSections>
           <RenderContent view={this.state.view} />
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }

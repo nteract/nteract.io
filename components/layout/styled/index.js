@@ -67,9 +67,9 @@ export const StyledKernelHeaderButton = styled.div`
     background: white;
     box-shadow: ${effects.dropShadowLight};
     border-radius: 8px;
-    padding: ${spacing.unit};
+    padding: ${spacing.unit}px;
     display: block;
-    transition: ${animations.transition};
+    transition: ${animations.transition}s;
     :hover {
         transform: translateY(-4px);
         box-shadow: ${effects.dropShadowLLight};
@@ -94,7 +94,7 @@ export const StyledLayout = styled.div`
         max-width: 100%;
     }
     pre {
-        padding: ${spacing.gutter} !important;
+        padding: ${spacing.gutter}px;
         max-width: 100% !important;
         overflow-x: scroll;
         box-shadow: ${effects.dropShadowPressed};

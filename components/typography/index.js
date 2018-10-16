@@ -1,3 +1,3 @@
-import { StyledType as Type } from '@components/typography/styled';
+import { StyledType as Type, BashPre } from '@components/typography/styled';
 
-export { Type };
+export { Type, BashPre };

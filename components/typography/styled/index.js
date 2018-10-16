@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { fonts } from '@common/constants';
+import { fonts, colors } from '@common/constants';
 import { color, padding, margin, sif } from '@common/styled';
 
 export const headingDefaults = () => css`
@@ -27,7 +27,14 @@ const bodyDefaults = css`
   ${padding};
   ${margin};
 `;
-
+const BashPre = styled.pre`
+    display: block;
+    height: 100px;
+    overflow-x: auto !important;
+    padding: 0.5em;
+    color: rgb(51, 51, 51);
+    background: ${colors.bgColor};
+`;
 const StyledType = styled.div``;
 
 const h1 = styled.h1`
@@ -76,4 +83,4 @@ StyledType.h5 = h5;
 StyledType.h6 = h6;
 StyledType.p = p;
 
-export { StyledType };
+export { StyledType, BashPre };
