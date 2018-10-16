@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
+import { spacing, colors } from '@common/constants';
 import { sif, padding, margin } from '@common/styled';
 import { lighten } from 'polished';
 const StyledButtons = styled.div`
@@ -51,10 +51,21 @@ const StyledButton = styled.a.attrs({
       &:hover {
         background-color: ${lighten(0.05, '#f02563')};
       }
-    `,
+    `
   )};
-
-  & + & {
+  ${sif('secondary')(css`
+    background: rgba(163, 183, 213, 0.15);
+    color: #c8d4e5;
+    padding-left: 18px;
+    padding-right: 18px;
+    -webkit-box-shadow: 0px 2px 6px rgba(8, 12, 16, 0.08);
+    box-shadow: 0px 2px 6px rgba(8, 12, 16, 0.08);
+    text-shadow: 0px 1px 2px rgba(8, 12, 16, 0.5);
+  `)}
+  ${sif('active')(css`
+    background-color: ${colors.darkNavyColor};
+  `)}
+  ${StyledButton}:not(:first-child) {
     margin-left: 12px;
   }
 `;

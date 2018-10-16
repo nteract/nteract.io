@@ -15,11 +15,11 @@ const contributorsData = require("nteract-members");
 const Mission = () => (
   <ContentSection>
     <ContentSection.Pane full>
-      <h3>Mission</h3>
-      <p>
+      <Type.h3>Mission</Type.h3>
+      <Type.p>
         Create fantastic interactive computing experiences that allow people to
         collaborate with each other with ease.
-      </p>
+      </Type.p>
     </ContentSection.Pane>
   </ContentSection>
 );
@@ -54,7 +54,7 @@ const ContributorsList = contributorsData.map((person, index) => {
 
 const Contributors = () => (
   <ContentSection>
-    <ContentSection.Pane layout="center" full>
+    <ContentSection.Pane center layout="center" full>
       <Type.h3>Contributors</Type.h3>
       <div className="grid">
         <StyledGridWrapper>{ContributorsList}</StyledGridWrapper>
@@ -67,11 +67,13 @@ export default class AboutPage extends React.Component<OSProps, void> {
   render() {
     let themeColor = "#334865";
     return (
-      <Layout pageTitle=": We're people, not software!" themeColor={themeColor}>
+      <Layout>
         <PageHeader themeColor={themeColor}>
           <PageHeader.Left>
-            <Type.h1>About nteract</Type.h1>
-            <Type.p>{`We're people, not software!`}</Type.p>
+            <PageHeader.Title>
+              <>About nteract</>
+            </PageHeader.Title>
+              <p>{`We're people, not software!`}</p>
           </PageHeader.Left>
         </PageHeader>
         <Mission />

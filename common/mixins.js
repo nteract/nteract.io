@@ -48,8 +48,8 @@ export const belowLargeDisplay = (content) => css`
     }
 `
 export const centerContent = () => css`
-margin-right: auto;
-margin-left: auto;
+    margin-right: auto;
+    margin-left: auto;
 `
 export const globalWrapper = () => css`
     ${centerContent()}
