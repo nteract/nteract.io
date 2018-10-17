@@ -98,7 +98,7 @@ class Atom extends React.Component<null, null> {
               editor.
             </Type.p>
 
-            <Type.h4 padding="20px 0 0 0">Install Hydrogen now with</Type.h4>
+            <Type.h4 style={{color: 'rgba(255,255,255, 0.8)'}} padding="20px 0 0 0">Install Hydrogen now with</Type.h4>
             <BashPre bgColor={colors.darkerGrayColor} color={colors.lightCodeColor}>{`apm install hydrogen`}</BashPre>
           </Hero.Pane>
 

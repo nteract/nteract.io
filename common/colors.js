@@ -36,7 +36,8 @@ let lightPrimaryColor =  lighten(primaryColor, 42);
 let darkColor = '#333';
 let darkGrayColor ='#666';
 let darkerGrayColor = '#2B2B2B'
-let grayColor = '#999';
+let grayColor = '#999'
+let darkNavyColor = '#334865;';
 let lightGrayColor = '#ccc';
 let lightColor = '#fff';
 let linkColor =  primaryColor;
@@ -68,6 +69,7 @@ export const colors = {
   darkGrayColor,
   darkerGrayColor,
   grayColor,
+  darkNavyColor,
   lightGrayColor,
   lightColor,
   darkLinkColor,
