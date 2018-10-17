@@ -35,10 +35,6 @@ const Hero = ({ color, children, ...rest }: HeroProps) => {
   );
 };
 
-Hero.defaultProps = {
-  color: colors.darkPrimaryColor,
-};
-
 Hero.Pane = StyledHero.Pane;
 Hero.Title = Title;
 

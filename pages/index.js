@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import Layout from '@components/layout';
 import { Hero } from '@components/hero';
 import { Type } from '@components/typography';
 import { ContentSections, ContentSection } from '@components/content-section';
@@ -41,7 +42,7 @@ class Home extends React.Component<HomeProps, null> {
 
   render() {
     return (
-      <>
+      <Layout >
         <Hero>
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
@@ -130,7 +131,7 @@ class Home extends React.Component<HomeProps, null> {
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }
