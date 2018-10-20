@@ -7,6 +7,7 @@ import { Button, Buttons } from '@components/button';
 import { Video } from '@components/video';
 import { detectPlatform, getDownloadUrl } from '@lib';
 import { DownloadFeaturette } from '@components/download-buttons';
+import { CutoffImage } from '@components/cutoff-image';
 
 class Atom extends React.Component<null, null> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
@@ -35,7 +36,7 @@ class Atom extends React.Component<null, null> {
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">
-            <img
+            <CutoffImage
               src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
               alt="Desktop Notebooks hero image"
             />

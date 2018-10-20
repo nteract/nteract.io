@@ -6,6 +6,7 @@ import { Hero } from '@components/hero';
 import { Type, BashPre } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
+import { CutoffImage } from '@components/cutoff-image';
  
 const Video = ({ mp4, webm, poster }) => (
   <video poster={poster} preload="auto" autoPlay muted loop="loop">
@@ -103,7 +104,7 @@ class Atom extends React.Component<null, null> {
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0">
-            <img src="/static/atom/featured.png" alt="Atom Hero Image" />
+            <CutoffImage src="/static/atom/featured.png" alt="Atom Hero Image" />
           </Hero.Pane>
         </Hero>
         <ContentSections>
