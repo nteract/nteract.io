@@ -1,29 +1,12 @@
 {
+  "presets": ["next/babel"],
   "plugins": [
     "transform-flow-strip-types",
-    [
-      "module-resolver",
-      {
-        "root": ["."],
-        "alias": {
-          "styles": "./styles"
-        },
-        "cwd": "babelrc"
-      }
-    ],
-    [
-      "wrap-in-js",
-      {
-        "extensions": ["css$"]
-      }
-    ],
     [
       "styled-components",
       {
         "ssr": true
       }
     ]
-  ],
-  "presets": ["next/babel"],
-  "ignore": []
+  ]
 }

@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import { colors } from 'common/colors'
+import { colors } from '@common/colors'
 import Layout from '@components/layout'
 import { Hero } from '@components/hero';
 import { Type, BashPre } from '@components/typography';
 import { ContentSection, ContentSections } from '@components/content-section';
 import { Button, Buttons } from '@components/button';
 import { CutoffImage } from '@components/cutoff-image';
- 
+
 const Video = ({ mp4, webm, poster }) => (
   <video poster={poster} preload="auto" autoPlay muted loop="loop">
     {mp4 ? <source src={mp4} type="video/mp4" /> : null}
@@ -25,7 +25,7 @@ const InspectCode = () => (
             alt="Demo of code completion using atom, hydrogen and python"
           />
       </ContentSection.Pane>
-      
+
       <ContentSection.Pane>
         <ContentSection.Title>Code Completion and Documentation</ContentSection.Title>
         <Type.p>
