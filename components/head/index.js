@@ -155,6 +155,5 @@ export default ({
     />
 
     <meta name="theme-color" content={themeColor} />
-    <style dangerouslySetInnerHTML={{ __html: mdi }} />
   </Head>
 );
