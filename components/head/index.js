@@ -1,18 +1,20 @@
 // @flow
-import React from "react";
-import Head from "next/head";
-import mdi from "../../static/mdi/css/materialdesignicons.css";
+import React from 'react';
+import Head from 'next/head';
 type HeadProps = {
   pageTitle: string,
-  themeColor: string
+  themeColor: string,
 };
 
 export default ({
-  pageTitle = ":  write your next code-driven story.",
-  themeColor = "#334865"
+  pageTitle = ':  write your next code-driven story.',
+  themeColor = '#334865',
 }: HeadProps) => (
   <Head>
-    <title>nteract{pageTitle}</title>
+    <title>
+      nteract
+      {pageTitle}
+    </title>
     <meta charSet="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     <link rel="canonical" href="https://nteract.io/" />
@@ -108,7 +110,6 @@ export default ({
     <link rel="preconnect" href="https://nteract.io/" />
     <link rel="prefetch" href="https://nteract.io/" />
     <link rel="prerender" href="https://nteract.io/" />
-    <link rel="subresource" href="/static/stylesheets/main.css" />
 
     <meta
       name="description"
