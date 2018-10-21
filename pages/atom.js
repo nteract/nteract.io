@@ -29,7 +29,7 @@ const InspectCode = () => (
       <ContentSection.Pane>
         <ContentSection.Title>Code Completion and Documentation</ContentSection.Title>
         <Type.p>
-          Code completion and a inspector for displaying metadata, like
+          Code completion and an inspector for displaying metadata, like
           documentation, are there to make your coding experience seamless.
         </Type.p>
         <Type.p>
