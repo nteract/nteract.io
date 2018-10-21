@@ -18,7 +18,7 @@
     "mdi": "^2.2.43",
     "mdi-react": "^3.3.0",
     "next": "^7.0.2",
-    "nteract-members": "^1.1.0",
+    "nteract-members": "^1.1.1",
     "polished": "^1.9.2",
     "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^2.1.4",
