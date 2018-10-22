@@ -1,8 +1,8 @@
 // @flow
-import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
-import { sif, padding, margin } from '@common/styled';
-import { lighten } from 'polished';
+import styled, { css } from "styled-components";
+import { spacing } from "@common/constants";
+import { sif, padding, margin } from "@common/styled";
+import { lighten } from "polished";
 
 const StyledCutoffImage = styled.img`
   position: absolute;

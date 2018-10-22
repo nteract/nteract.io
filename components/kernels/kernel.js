@@ -1,6 +1,13 @@
 // @flow
 import * as React from "react";
-import { Kernel, KernelWrapper, KernelHeader, KernelHeaderButtons, KernelHeaderButton, LangLogo } from './styled'
+import {
+  Kernel,
+  KernelWrapper,
+  KernelHeader,
+  KernelHeaderButtons,
+  KernelHeaderButton,
+  LangLogo
+} from "./styled";
 export type KernelProps = {
   displayName: string,
   installURL: string,
@@ -23,10 +30,7 @@ export default (props: KernelProps) => (
         </div>
         <div className="kernel-header-section">
           <KernelHeaderButtons>
-            <KernelHeaderButton
-              href={props.repository}
-              target="_blank"
-            >
+            <KernelHeaderButton href={props.repository} target="_blank">
               {`GitHub Repository`}
             </KernelHeaderButton>{" "}
             <KernelHeaderButton
@@ -36,7 +40,7 @@ export default (props: KernelProps) => (
             >
               Installation Docs
             </KernelHeaderButton>
-          </ KernelHeaderButtons>
+          </KernelHeaderButtons>
         </div>
       </KernelHeader>
       <div className="kernel-body">

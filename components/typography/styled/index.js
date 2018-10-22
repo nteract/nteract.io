@@ -1,7 +1,7 @@
-import styled, { css } from 'styled-components';
-import { fonts } from '@common/constants';
-import { colors } from '@common/colors';
-import { bgColor, color, padding, margin, sif } from '@common/styled';
+import styled, { css } from "styled-components";
+import { fonts } from "@common/constants";
+import { colors } from "@common/colors";
+import { bgColor, color, padding, margin, sif } from "@common/styled";
 
 export const headingDefaults = () => css`
   font-family: ${fonts.headings};
@@ -29,17 +29,16 @@ const bodyDefaults = css`
   ${margin};
 `;
 const BashPre = styled.pre`
-    white-space: pre-wrap;       /* Since CSS 2.1 */
-    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
-    white-space: -pre-wrap;      /* Opera 4-6 */
-    white-space: -o-pre-wrap;    /* Opera 7 */
-    word-wrap: break-word; 
-    display: block;
-    overflow-x: auto !important;
-    padding: 0.5em;
-    color: ${colors.colorTextBase};
-    ${color}
-    ${bgColor};
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word;
+  display: block;
+  overflow-x: auto !important;
+  padding: 0.5em;
+  color: ${colors.colorTextBase};
+  ${color} ${bgColor};
 `;
 const StyledType = styled.div``;
 
@@ -76,7 +75,7 @@ const p = styled.p`
     margin-top: 20px;
   }
 
-  ${sif('small')(css`
+  ${sif("small")(css`
     font-size: 12px;
   `)};
 `;

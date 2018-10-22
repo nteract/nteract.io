@@ -1,69 +1,69 @@
-import React from 'react';
-import { StyledHeader } from '@components/header/styled';
-import { StyledHero } from '@components/hero/styled';
-import Pattern from '@components/hero/pattern';
+import React from "react";
+import { StyledHeader } from "@components/header/styled";
+import { StyledHero } from "@components/hero/styled";
+import Pattern from "@components/hero/pattern";
 import {
   SlackIcon,
   GithubCircleIcon,
   TwitterCircleIcon,
   MenuIcon,
-  CloseIcon,
-} from 'mdi-react';
-import Link from 'next/link';
+  CloseIcon
+} from "mdi-react";
+import Link from "next/link";
 
 const leftNav = {
   items: [
     {
-      label: 'Blog',
-      href: 'https://blog.nteract.io/',
-      target: '_blank',
+      label: "Blog",
+      href: "https://blog.nteract.io/",
+      target: "_blank"
     },
     {
-      label: 'About',
-      href: '/about',
-      prefetch: true,
-    },
-  ],
+      label: "About",
+      href: "/about",
+      prefetch: true
+    }
+  ]
 };
 
 const rightNav = {
   items: [
     {
-      label: 'Desktop',
-      href: '/desktop',
-      prefetch: true,
+      label: "Desktop",
+      href: "/desktop",
+      prefetch: true
     },
     {
-      label: 'Atom',
-      href: '/atom',
-      prefetch: true,
+      label: "Atom",
+      href: "/atom",
+      prefetch: true
     },
     {
-      label: 'Kernels',
-      href: '/kernels',
-      prefetch: true,
-    },
-  ],
+      label: "Kernels",
+      href: "/kernels",
+      prefetch: true
+    }
+  ]
 };
 
 const socialItems = {
   items: [
     {
       icon: <SlackIcon color="currentColor" />,
-      href: 'https://slackin-nteract.now.sh/',
-      target: '_blank',
+      href: "https://slackin-nteract.now.sh/",
+      target: "_blank"
     },
     {
       icon: <GithubCircleIcon color="currentColor" />,
-      href: 'https://github.com/nteract',
-      target: '_blank',
+      href: "https://github.com/nteract",
+      target: "_blank"
     },
     {
       icon: <TwitterCircleIcon color="currentColor" />,
-      href: 'https://twitter.com/nteractio',
-      target: '_blank',
-    },
-  ],
+      href: "https://twitter.com/nteractio",
+      target: "_blank"
+    }
+  ]
 };
 
 const MobileMenu = ({ open, ...rest }) =>
@@ -81,11 +81,9 @@ const NavItems = ({ items, ...rest }) => {
         <a href={href}>{content}</a>
       </Link>
     );
-  })
-  return (<StyledHeader.NavWrapper {...rest}>
-    {links}
-  </StyledHeader.NavWrapper>)
-}
+  });
+  return <StyledHeader.NavWrapper {...rest}>{links}</StyledHeader.NavWrapper>;
+};
 
 const MobileMenuButton = ({ open, ...rest }) => {
   const IconComponent = open ? CloseIcon : MenuIcon;
@@ -97,22 +95,22 @@ const MobileMenuButton = ({ open, ...rest }) => {
 };
 class Header extends React.PureComponent {
   state = {
-    mobileMenuOpen: false,
+    mobileMenuOpen: false
   };
   openMenu = () => {
     if (!this.state.mobileMenuOpen) {
       this.setState({
-        mobileMenuOpen: true,
+        mobileMenuOpen: true
       });
     }
   };
   handleClick = () => {
-    this.closeMenu()
-  }
+    this.closeMenu();
+  };
   closeMenu = () => {
     if (this.state.mobileMenuOpen) {
       this.setState({
-        mobileMenuOpen: false,
+        mobileMenuOpen: false
       });
     }
   };
@@ -143,8 +141,8 @@ class Header extends React.PureComponent {
           </StyledHeader>
           <MobileMenu open={this.state.mobileMenuOpen}>
             <NavItems onClick={this.handleClick} {...leftNav} />
-            <NavItems onClick ={this.handleClick} {...rightNav} />
-            <NavItems onClick ={this.handleClick} {...socialItems} row />
+            <NavItems onClick={this.handleClick} {...rightNav} />
+            <NavItems onClick={this.handleClick} {...socialItems} row />
             <StyledHero.Background>
               <Pattern />
             </StyledHero.Background>
@@ -165,6 +163,6 @@ class Header extends React.PureComponent {
 const navigation = {
   left: leftNav,
   right: rightNav,
-  social: socialItems,
+  social: socialItems
 };
 export { Header, navigation, NavItems };

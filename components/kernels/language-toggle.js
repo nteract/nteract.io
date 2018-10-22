@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Link from "next/link";
-import { StyledLanguageToggle, StyledKernelListItem } from './styled'
+import { StyledLanguageToggle, StyledKernelListItem } from "./styled";
 type KernelSelect = {
   path: string,
   name: string
@@ -12,7 +12,7 @@ type LanguageToggleProps = {
   current: string
 };
 
-const LanguageToggle = ({kernels, current}: LanguageToggleProps) => (
+const LanguageToggle = ({ kernels, current }: LanguageToggleProps) => (
   <StyledLanguageToggle>
     <ul>
       {kernels.map((kernel: KernelSelect) => (

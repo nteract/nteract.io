@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
+import styled, { css } from "styled-components";
+import { spacing } from "@common/constants";
 
-const sif = (prop) => (styles) => (props) => props[prop] && styles;
-const bgColor = ({ bgColor }) => 
+const sif = prop => styles => props => props[prop] && styles;
+const bgColor = ({ bgColor }) =>
   bgColor &&
   css`
     background: ${bgColor};

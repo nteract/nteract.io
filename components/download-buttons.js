@@ -1,12 +1,10 @@
 // @flow
-import React from 'react';
-import { Button, Buttons } from '@components/button';
-import { Type } from '@components/typography';
-import { WindowsIcon, LinuxIcon, AppleIcon } from 'mdi-react';
-import styled, { css } from 'styled-components';
-export const StyledFeaturette = styled.div`
-
-`
+import React from "react";
+import { Button, Buttons } from "@components/button";
+import { Type } from "@components/typography";
+import { WindowsIcon, LinuxIcon, AppleIcon } from "mdi-react";
+import styled, { css } from "styled-components";
+export const StyledFeaturette = styled.div``;
 export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
   return (
     <>
@@ -19,7 +17,7 @@ export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
         />
       </Buttons>
       <Type.p small padding="10px 0 0 0">
-        <span style={{ display: 'flex', alignItems: 'center' }}>
+        <span style={{ display: "flex", alignItems: "center" }}>
           Download for&nbsp;
           <a
             href="https://github.com/nteract/nteract/releases/latest"

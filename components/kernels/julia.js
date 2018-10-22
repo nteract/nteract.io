@@ -25,8 +25,11 @@ export default class PythonPage extends React.Component<*, *> {
             <p>
               Kernels connect your favorite languages to nteract projects for an
               improved REPL experience. To date, there are over
-              <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels"> 100
-              community-developed kernels</a> available on GitHub.
+              <a href="https://github.com/jupyter/jupyter/wiki/Jupyter-kernels">
+                {" "}
+                100 community-developed kernels
+              </a>{" "}
+              available on GitHub.
             </p>
             <div className="buttons">
               <Link href="/kernels/python">

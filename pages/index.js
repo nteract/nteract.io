@@ -1,12 +1,12 @@
 // @flow
-import * as React from 'react';
-import Layout from '@components/layout';
-import { Hero } from '@components/hero';
-import { Type } from '@components/typography';
-import { ContentSections, ContentSection } from '@components/content-section';
-import { Button, Buttons } from '@components/button';
-import { DownloadFeaturette } from '@components/download-buttons';
-import { detectPlatform, getDownloadUrl } from '@lib';
+import * as React from "react";
+import Layout from "@components/layout";
+import { Hero } from "@components/hero";
+import { Type } from "@components/typography";
+import { ContentSections, ContentSection } from "@components/content-section";
+import { Button, Buttons } from "@components/button";
+import { DownloadFeaturette } from "@components/download-buttons";
+import { detectPlatform, getDownloadUrl } from "@lib";
 
 const DemoVideo = () => (
   <video
@@ -27,13 +27,12 @@ const DemoVideo = () => (
   </video>
 );
 
-type HomeProps = { 
+type HomeProps = {
   platform: Platforms,
-  assetUrl: string,
-}
+  assetUrl: string
+};
 
 class Home extends React.Component<HomeProps, null> {
-  
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);
@@ -42,7 +41,7 @@ class Home extends React.Component<HomeProps, null> {
 
   render() {
     return (
-      <Layout >
+      <Layout>
         <Hero>
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>

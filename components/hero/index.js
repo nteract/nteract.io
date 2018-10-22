@@ -1,13 +1,13 @@
 // @flow
-import * as React from 'react';
-import { StyledHero } from '@components/hero/styled';
-import { Type } from '@components/typography';
-import HeroPattern from './pattern';
+import * as React from "react";
+import { StyledHero } from "@components/hero/styled";
+import { Type } from "@components/typography";
+import HeroPattern from "./pattern";
 
-import { colors } from '@common/colors';
+import { colors } from "@common/colors";
 
 type TitleProps = {
-  component: string,
+  component: string
 };
 
 const Title = ({ component, ...rest }: TitleProps) => {
@@ -16,12 +16,12 @@ const Title = ({ component, ...rest }: TitleProps) => {
 };
 
 Title.defaultProps = {
-  component: 'h1',
+  component: "h1"
 };
 
 type HeroProps = {
   color: string,
-  children: React.Node,
+  children: React.Node
 };
 
 const Hero = ({ color, children, ...rest }: HeroProps) => {

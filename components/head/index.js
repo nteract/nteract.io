@@ -1,14 +1,14 @@
 // @flow
-import React from 'react';
-import Head from 'next/head';
+import React from "react";
+import Head from "next/head";
 type HeadProps = {
   pageTitle: string,
-  themeColor: string,
+  themeColor: string
 };
 
 export default ({
-  pageTitle = ':  write your next code-driven story.',
-  themeColor = '#334865',
+  pageTitle = ":  write your next code-driven story.",
+  themeColor = "#334865"
 }: HeadProps) => (
   <Head>
     <title>

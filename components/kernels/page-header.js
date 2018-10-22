@@ -1,7 +1,5 @@
 import Head from "next/head";
-import {
-  PageHeader,
-} from "../page-header";
+import { PageHeader } from "../page-header";
 
 export default themeColor => (
   <PageHeader themeColor={themeColor}>

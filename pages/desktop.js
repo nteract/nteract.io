@@ -1,13 +1,13 @@
 // @flow
-import * as React from 'react';
-import { Hero } from '@components/hero';
-import { Type } from '@components/typography';
-import { ContentSection, ContentSections } from '@components/content-section';
-import { Button, Buttons } from '@components/button';
-import { Video } from '@components/video';
-import { detectPlatform, getDownloadUrl } from '@lib';
-import { DownloadFeaturette } from '@components/download-buttons';
-import { CutoffImage } from '@components/cutoff-image';
+import * as React from "react";
+import { Hero } from "@components/hero";
+import { Type } from "@components/typography";
+import { ContentSection, ContentSections } from "@components/content-section";
+import { Button, Buttons } from "@components/button";
+import { Video } from "@components/video";
+import { detectPlatform, getDownloadUrl } from "@lib";
+import { DownloadFeaturette } from "@components/download-buttons";
+import { CutoffImage } from "@components/cutoff-image";
 
 class Atom extends React.Component<null, null> {
   static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {

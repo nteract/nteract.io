@@ -1,16 +1,16 @@
-import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
-import { wrapperStyles, sif } from '@common/styled';
+import styled, { css } from "styled-components";
+import { spacing } from "@common/constants";
+import { wrapperStyles, sif } from "@common/styled";
 
 const NavWrapper = styled.div`
-  ${sif('desktop')(
+  ${sif("desktop")(
     css`
       @media (max-width: 800px) {
         display: none;
       }
-    `,
+    `
   )};
-  ${sif('row')(
+  ${sif("row")(
     css`
       @media (min-width: 801px) {
         padding-left: 10px;
@@ -25,7 +25,7 @@ const NavWrapper = styled.div`
           padding-left: 10px;
         }
       }
-    `,
+    `
   )};
   display: flex;
 `;

@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 import Link from "next/link";
-import { navigation, NavItems } from '@components/header';
-import { StyledFooter } from '@components/footer/styled';
+import { navigation, NavItems } from "@components/header";
+import { StyledFooter } from "@components/footer/styled";
 
-const Footer = (props) => (
+const Footer = props => (
   <StyledFooter>
     <StyledFooter.Wrapper>
       <StyledFooter.Section>

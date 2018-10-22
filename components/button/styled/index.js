@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
-import { colors } from '@common/colors';
-import { sif, padding, margin } from '@common/styled';
-import { lighten } from 'polished';
+import styled, { css } from "styled-components";
+import { spacing } from "@common/constants";
+import { colors } from "@common/colors";
+import { sif, padding, margin } from "@common/styled";
+import { lighten } from "polished";
 const StyledButtons = styled.div`
   display: flex;
   ${padding};
@@ -10,7 +10,7 @@ const StyledButtons = styled.div`
 `;
 
 const StyledButton = styled.a.attrs({
-  className: 'ripple',
+  className: "ripple"
 })`
   display: flex;
   align-items: center;
@@ -42,7 +42,7 @@ const StyledButton = styled.a.attrs({
   --ripple-color: rgba(255, 255, 255, 0.5);
   --animation-tick: 200;
 
-  ${sif('primary')(
+  ${sif("primary")(
     css`
       background-color: #f02563;
       color: white;
@@ -50,11 +50,11 @@ const StyledButton = styled.a.attrs({
       text-shadow: 0 1px 2px rgba(8, 12, 16, 0.5);
 
       &:hover {
-        background-color: ${lighten(0.05, '#f02563')};
+        background-color: ${lighten(0.05, "#f02563")};
       }
     `
   )};
-  ${sif('secondary')(css`
+  ${sif("secondary")(css`
     background: rgba(163, 183, 213, 0.15);
     color: #c8d4e5;
     padding-left: 18px;
@@ -63,7 +63,7 @@ const StyledButton = styled.a.attrs({
     box-shadow: 0px 2px 6px rgba(8, 12, 16, 0.08);
     text-shadow: 0px 1px 2px rgba(8, 12, 16, 0.5);
   `)}
-  ${sif('active')(css`
+  ${sif("active")(css`
     background-color: ${colors.darkPrimaryColor};
   `)}
   ${StyledButton}:not(:first-child) {
