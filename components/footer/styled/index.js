@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { sif, defaultWrapper } from '@common/styled';
+import styled, { css } from "styled-components";
+import { sif, defaultWrapper } from "@common/styled";
 
 const Wrapper = styled(defaultWrapper)``;
 const Section = styled.div`

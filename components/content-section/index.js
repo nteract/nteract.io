@@ -1,12 +1,12 @@
 // @flow
-import * as React from 'react';
-import { Type } from '@components/typography';
-import { StyledContentSection } from './styled';
+import * as React from "react";
+import { Type } from "@components/typography";
+import { StyledContentSection } from "./styled";
 
 type TitleProps = {
   children: React.Node,
   typeProps?: *,
-  titleProps?: *,
+  titleProps?: *
 };
 
 const Title = ({ children, typeProps, ...titleProps }: TitleProps) => (
@@ -17,7 +17,7 @@ const Title = ({ children, typeProps, ...titleProps }: TitleProps) => (
 
 type ContentSectionProps = {
   index: number,
-  children?: React.Node,
+  children?: React.Node
 };
 
 const ContentSection = ({ index, children, ...rest }: ContentSectionProps) => {
@@ -26,7 +26,7 @@ const ContentSection = ({ index, children, ...rest }: ContentSectionProps) => {
     <StyledContentSection {...rest}>
       <StyledContentSection.Wrapper>
         {React.Children.map(children, (child, index) =>
-          React.cloneElement(child, { isOdd }),
+          React.cloneElement(child, { isOdd })
         )}
       </StyledContentSection.Wrapper>
     </StyledContentSection>
@@ -34,7 +34,7 @@ const ContentSection = ({ index, children, ...rest }: ContentSectionProps) => {
 };
 
 ContentSection.defaultProps = {
-  index: 0,
+  index: 0
 };
 
 ContentSection.Pane = StyledContentSection.Pane;
@@ -42,12 +42,12 @@ ContentSection.Title = Title;
 ContentSection.Title.Section = StyledContentSection.Title.Section;
 
 type ContentSectionsProps = {
-  children: React.Node,
+  children: React.Node
 };
 
 const ContentSections = ({ children }: ContentSectionsProps) =>
   React.Children.map(children, (child, index) =>
-    React.cloneElement(child, { index }),
+    React.cloneElement(child, { index })
   );
 
 export { ContentSection, ContentSections };

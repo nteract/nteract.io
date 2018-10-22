@@ -1,48 +1,45 @@
 // @flow
-import * as React from 'react';
-import  Layout from '@components/layout';
-import Python from '@components/kernels/python';
-import R from '@components/kernels/r';
-import Node from '@components/kernels/node';
-import { Hero } from '@components/hero';
-import { Type, BashPre } from '@components/typography';
-import { ContentSection, ContentSections } from '@components/content-section';
-import { PageHeader } from '@components/page-header';
-import { Button, Buttons } from '@components/button';
-import { CutoffImage } from '@components/cutoff-image';
-import { colors } from '@common/colors';
-import { withRouter } from 'next/router';
-import SyntaxHighlighter from 'react-syntax-highlighter';
-import { github } from 'react-syntax-highlighter/styles/hljs';
+import * as React from "react";
+import Layout from "@components/layout";
+import Python from "@components/kernels/python";
+import R from "@components/kernels/r";
+import Node from "@components/kernels/node";
+import { Hero } from "@components/hero";
+import { Type, BashPre } from "@components/typography";
+import { ContentSection, ContentSections } from "@components/content-section";
+import { PageHeader } from "@components/page-header";
+import { Button, Buttons } from "@components/button";
+import { CutoffImage } from "@components/cutoff-image";
+import { colors } from "@common/colors";
+import { withRouter } from "next/router";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { github } from "react-syntax-highlighter/styles/hljs";
 
+type Languages = "python" | "node" | "r";
 
-type Languages = 'python' | 'node' | 'r';
-
-type Slugs = 'kernels/python' | 'kernels/node' | 'kernels/r';
+type Slugs = "kernels/python" | "kernels/node" | "kernels/r";
 type ViewsType = { [key: ?Languages]: Slugs };
 
 const VIEWS: ViewsType = {
-  python: 'kernels/python',
-  node: 'kernels/node',
-  r: 'kernels/r',
+  python: "kernels/python",
+  node: "kernels/node",
+  r: "kernels/r"
 };
 
 const rCode = `install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
 devtools::install_github('IRkernel/IRkernel')
 IRkernel::installspec()`;
 
-
-
 const RenderContentImproved = ({ view }) => {
   switch (view) {
     case VIEWS.node:
-      return <Node />
+      return <Node />;
     case VIEWS.r:
-      return <R />
-    default: 
-      return <Python />
+      return <R />;
+    default:
+      return <Python />;
   }
-}
+};
 const RenderContent = ({ view }) => {
   switch (view) {
     case VIEWS.node:
@@ -51,7 +48,8 @@ const RenderContent = ({ view }) => {
           <ContentSection.Pane>
             <ContentSection.Title kernel>
               <ContentSection.Title.Section>
-                <img src="/static/nodejs-icon.svg" />Node.js Installation
+                <img src="/static/nodejs-icon.svg" />
+                Node.js Installation
               </ContentSection.Title.Section>
             </ContentSection.Title>
             <Type.p>
@@ -91,14 +89,14 @@ const RenderContent = ({ view }) => {
               </ContentSection.Title.Section>
             </ContentSection.Title>
 
-              <Type.h3> Installation</Type.h3>
-              <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
-              <BashPre bgColor={colors.bgColor}>
-                {`python -m pip install ipykernel\npython -m ipykernel install --user`}
-              </BashPre>
-              <Type.h4 padding="40px 0 0 0">Using Conda</Type.h4>
+            <Type.h3> Installation</Type.h3>
+            <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
             <BashPre bgColor={colors.bgColor}>
-                {`conda install ipykernel\npython -m ipykernel install --user`}
+              {`python -m pip install ipykernel\npython -m ipykernel install --user`}
+            </BashPre>
+            <Type.h4 padding="40px 0 0 0">Using Conda</Type.h4>
+            <BashPre bgColor={colors.bgColor}>
+              {`conda install ipykernel\npython -m ipykernel install --user`}
             </BashPre>
           </ContentSection.Pane>
         </ContentSection>
@@ -106,32 +104,33 @@ const RenderContent = ({ view }) => {
   }
 };
 
-class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string> }, { view: ?string}> {
+class KernelsPage extends React.Component<
+  { slug: ?Languages, url: Array<string> },
+  { view: ?string }
+> {
   static async getInitialProps(ctx: *) {
     const {
-      query: { slug },
+      query: { slug }
     } = ctx;
     return { slug };
   }
 
   state = {
-    view: VIEWS[this.props.slug] || VIEWS.python,
+    view: VIEWS[this.props.slug] || VIEWS.python
   };
 
-  changeView = (view) => {
-    this.setState(
-      (state) => (state.view !== view ? { ...state, view } : state),
-    );
+  changeView = view => {
+    this.setState(state => (state.view !== view ? { ...state, view } : state));
     this.props.router.push(`/${view}`, `/${view}`);
   };
 
-  activeView = (view) => view === this.state.view;
+  activeView = view => view === this.state.view;
 
   render() {
     return (
       <Layout>
         <PageHeader themeColor="rgb(44, 31, 57)">
-          <PageHeader.Left>         
+          <PageHeader.Left>
             <PageHeader.Title>Kernels</PageHeader.Title>
             <Type.p color={colors.lightGrayColor}>
               Kernels connect your favorite languages to nteract projects for an
@@ -160,7 +159,10 @@ class KernelsPage extends React.Component<{ slug: ?Languages, url: Array<string>
           </PageHeader.Left>
 
           <PageHeader.Right visual padding="40px 0 0 0">
-            <CutoffImage src="/static/kernels-terminal.png" alt="Kernels hero image" />
+            <CutoffImage
+              src="/static/kernels-terminal.png"
+              alt="Kernels hero image"
+            />
           </PageHeader.Right>
         </PageHeader>
         <ContentSections>

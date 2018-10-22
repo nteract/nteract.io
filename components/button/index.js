@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import { StyledButton, StyledButtons } from '@components/button/styled';
+import { StyledButton, StyledButtons } from "@components/button/styled";
 
 const Icon = ({ icon }) => {
-  if (icon && icon.includes('http')) {
+  if (icon && icon.includes("http")) {
     return <img src={icon} role="presentational" />;
   }
   return null;

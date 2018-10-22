@@ -29,7 +29,7 @@
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "license": "BSD-3-Clause",
   "lint-staged": {
-    "{lib,spec}/**/*.{js,scss}": [
+    "./**/*.js": [
       "prettier --write",
       "git add"
     ]
@@ -42,7 +42,7 @@
     "build": "next build",
     "dev": "node server.js",
     "flow": "flow",
-    "prettier": "prettier --write './**/*.{js}'",
+    "prettier": "prettier --write './**/*.js'",
     "start": "NODE_ENV=production node server.js"
   }
 }

@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
-import { spacing } from '@common/constants';
-import { colors } from '@common/colors';
-import { margin, padding, wrapperStyles } from '@common/styled';
-import { Type } from '@components/typography';
+import styled, { css } from "styled-components";
+import { spacing } from "@common/constants";
+import { colors } from "@common/colors";
+import { margin, padding, wrapperStyles } from "@common/styled";
+import { Type } from "@components/typography";
 
 const Background = styled.div`
   position: absolute;
@@ -51,7 +51,7 @@ const Pane = styled.div`
     max-width: 100%;
   }
   ${({ width }) => css`
-    width: ${width ? width : '50%'};
+    width: ${width ? width : "50%"};
   `};
 
   ${padding};

@@ -1,15 +1,15 @@
 if (registerPaint) {
   registerPaint(
-    'ripple',
+    "ripple",
     class {
       static get inputProperties() {
         return [
-          'background-color',
-          '--ripple-color',
-          '--animation-tick',
-          '--ripple-x',
-          '--ripple-y',
-          '--ripple-speed',
+          "background-color",
+          "--ripple-color",
+          "--animation-tick",
+          "--ripple-x",
+          "--ripple-y",
+          "--ripple-speed"
         ];
       }
       static get contextOptions() {
@@ -22,17 +22,17 @@ if (registerPaint) {
            *  Note: if animating and crisp lines are less important, disabling scaling
            *  improves polyfill performance, since it reduces the canvas size by 75%.
            */
-          scaling: false,
+          scaling: false
         };
       }
       paint(ctx, geom, properties) {
-        const bgColor = properties.get('background-color').toString();
-        const rippleColor = properties.get('--ripple-color').toString();
-        const x = parseFloat(properties.get('--ripple-x').toString());
-        const y = parseFloat(properties.get('--ripple-y').toString());
+        const bgColor = properties.get("background-color").toString();
+        const rippleColor = properties.get("--ripple-color").toString();
+        const x = parseFloat(properties.get("--ripple-x").toString());
+        const y = parseFloat(properties.get("--ripple-y").toString());
         const speed =
-          parseFloat((properties.get('--ripple-speed') || '').toString()) || 1;
-        let tick = parseFloat(properties.get('--animation-tick').toString());
+          parseFloat((properties.get("--ripple-speed") || "").toString()) || 1;
+        let tick = parseFloat(properties.get("--animation-tick").toString());
         tick *= speed;
         if (tick < 0) tick = 0;
         if (tick > 1000) tick = 1000;
@@ -45,12 +45,12 @@ if (registerPaint) {
         ctx.arc(
           x,
           y, // center
-          geom.width * tick / 1000, // radius
+          (geom.width * tick) / 1000, // radius
           0, // startAngle
-          2 * Math.PI, //endAngle
+          2 * Math.PI //endAngle
         );
         ctx.fill();
       }
-    },
+    }
   );
 }

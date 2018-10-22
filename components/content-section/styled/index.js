@@ -1,13 +1,13 @@
 // @flow
-import styled, { css } from 'styled-components';
-import { sif, wrapperStyles } from '@common/styled';
-import { colors } from '@common/colors';
+import styled, { css } from "styled-components";
+import { sif, wrapperStyles } from "@common/styled";
+import { colors } from "@common/colors";
 const gutter = 40;
 
 const Title = styled.div`
   padding-bottom: 20px;
   max-width: 80%;
-  ${sif('kernel')(
+  ${sif("kernel")(
     css`
       max-width: 100%;
       width: 100%;
@@ -15,12 +15,12 @@ const Title = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
-    `,
+    `
   )};
 `;
 
 const Pane = styled.div`
-  ${sif('center')(css`
+  ${sif("center")(css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,13 +29,12 @@ const Pane = styled.div`
     p {
       max-width: 580px;
     }
-  `)}
-  @media (min-width: 801px) {
+  `)} @media (min-width: 801px) {
     width: 50%;
-    ${sif('full')(
+    ${sif("full")(
       css`
         width: 100%;
-      `,
+      `
     )};
   }
   img {
@@ -43,12 +42,12 @@ const Pane = styled.div`
     display: block;
   }
 
-  ${sif('visual')(
+  ${sif("visual")(
     css`
       @media (max-width: 800px) {
         padding-top: 80px;
       }
-    `,
+    `
   )};
 
   @media (min-width: 801px) {
@@ -62,12 +61,12 @@ const Pane = styled.div`
       padding-left: ${gutter}px;
       padding-right: 0;
     }
-    ${sif('visual')(
+    ${sif("visual")(
       css`
         width: 48%;
-      `,
+      `
     )};
-    ${sif('isOdd')(
+    ${sif("isOdd")(
       css`
         &:nth-of-type(1) {
           order: 2;
@@ -79,7 +78,7 @@ const Pane = styled.div`
           padding-right: ${gutter}px;
           padding-left: 0;
         }
-      `,
+      `
     )};
   }
 `;

@@ -4,9 +4,7 @@ import * as React from "react";
 import Kernel from "./kernel";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
-import {
-  ContentSection,
-} from "../content-section";
+import { ContentSection } from "../content-section";
 
 const pipInstall = `python -m pip install ipykernel virtualenv
 python -m ipykernel install
@@ -35,8 +33,7 @@ export default () => (
         <h3>Installation</h3>
         <p>
           Python environments are added as kernels with ipykernel. Install
-          ipykernel into your environment to add it to
-          your list of kernels.
+          ipykernel into your environment to add it to your list of kernels.
         </p>
         <div className="columns">
           <div className="column">

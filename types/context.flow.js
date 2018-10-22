@@ -3,7 +3,7 @@ export type ServerContext<Query> = {
   res: {},
   pathname: string,
   query: Query,
-  err: Error,
+  err: Error
 };
 
 export type ClientContext<Query> = {
@@ -11,7 +11,7 @@ export type ClientContext<Query> = {
   pathname: string,
   query: Query,
   jsonPageRes?: Response,
-  err: Error,
+  err: Error
 };
 
 export type Context<Query> = ClientContext<Query> | ServerContext<Query>;
@@ -20,8 +20,8 @@ export type DocumentContext<Query> = Context<Query> & { renderPage: Function };
 
 export type EmptyQuery = {};
 
-export type Platforms = 'macOS' | 'Linux' | 'Windows';
+export type Platforms = "macOS" | "Linux" | "Windows";
 export type OSProps = {
   platform: Platforms,
-  assetUrl: string,
+  assetUrl: string
 };

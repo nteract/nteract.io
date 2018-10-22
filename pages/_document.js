@@ -1,8 +1,8 @@
 // @flow
-import * as React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
-import styled, { ServerStyleSheet, injectGlobal } from 'styled-components';
-import { normalize } from 'polished';
+import * as React from "react";
+import Document, { Head, Main, NextScript } from "next/document";
+import styled, { ServerStyleSheet, injectGlobal } from "styled-components";
+import { normalize } from "polished";
 /**
  * Reset our styles
  */
@@ -34,8 +34,8 @@ const DocWrapper = styled.div`
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }: DocumentContext<*>) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage((App) => (props) =>
-      sheet.collectStyles(<App {...props} />),
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
     );
     const styleTags = sheet.getStyleElement();
     return { ...page, styleTags };

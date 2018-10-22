@@ -4,9 +4,7 @@ import * as React from "react";
 import Kernel from "./kernel";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
-import {
-  ContentSection,
-} from "../content-section";
+import { ContentSection } from "../content-section";
 
 const install = `npm install -g ijavascript`;
 
