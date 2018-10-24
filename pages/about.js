@@ -46,11 +46,11 @@ const ContributorsList = contributorsData.map((person, index) => {
       <StyledPersonSocial>
         <StyledPersonSocialItem key={index}>
           <a href={person.html_url} target="_blank">
-            <GithubCircleIcon />
+            <GithubCircleIcon color="black" />
           </a>
           {person.blog ? (
             <a href={person.blog} target="_blank">
-              <WebIcon />
+              <WebIcon color="black" />
             </a>
           ) : null}
         </StyledPersonSocialItem>
