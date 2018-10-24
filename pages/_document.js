@@ -1,12 +1,12 @@
 // @flow
 import * as React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
-import styled, { ServerStyleSheet, injectGlobal } from "styled-components";
+import styled, { ServerStyleSheet, createGlobalStyle } from "styled-components";
 import { normalize } from "polished";
 /**
  * Reset our styles
  */
-injectGlobal`
+const GlobalStyles = createGlobalStyle`
 ${normalize()};
 *{
 box-sizing: border-box;
@@ -53,6 +53,7 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           <Main />
+          <GlobalStyles />
           <NextScript />
         </body>
       </html>

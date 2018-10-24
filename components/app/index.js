@@ -1,14 +1,20 @@
 import React from "react";
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { StyledApp } from "@components/app/styled";
 
-const App = props => {
-  injectGlobal`
-  body, html{
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;=
-  }
+const GlobalStyles = createGlobalStyle`
+body, html{
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;=
+}
 `;
-  return <StyledApp {...props}>{props.children}</StyledApp>;
+
+const App = props => {
+  return (
+    <>
+      <GlobalStyles />
+      <StyledApp {...props}>{props.children}</StyledApp>
+    </>
+  );
 };
 
 export { App };
