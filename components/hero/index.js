@@ -35,6 +35,10 @@ const Hero = ({ color, children, ...rest }: HeroProps) => {
   );
 };
 
+Hero.defaultProps = {
+  color: "#334865"
+};
+
 Hero.Pane = StyledHero.Pane;
 Hero.Title = Title;
 

@@ -105,7 +105,7 @@ const RenderContent = ({ view }) => {
 };
 
 class KernelsPage extends React.Component<
-  { slug: ?Languages, url: Array<string> },
+  { slug: ?Languages, url: Array<string>, router: * },
   { view: ?string }
 > {
   static async getInitialProps(ctx: *) {

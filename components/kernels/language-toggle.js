@@ -18,7 +18,7 @@ const LanguageToggle = ({ kernels, current }: LanguageToggleProps) => (
       {kernels.map((kernel: KernelSelect) => (
         <StyledKernelListItem
           key={kernel.path}
-          selected={props.current === kernel.name}
+          selected={current === kernel.name}
         >
           <Link href={kernel.path} prefetch>
             <a>{kernel.name}</a>

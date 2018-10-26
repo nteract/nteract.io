@@ -3,6 +3,8 @@ import * as React from "react";
 import Document, { Head, Main, NextScript } from "next/document";
 import styled, { ServerStyleSheet, createGlobalStyle } from "styled-components";
 import { normalize } from "polished";
+
+import type { Context } from "next";
 /**
  * Reset our styles
  */
@@ -31,8 +33,10 @@ const DocWrapper = styled.div`
   }
 `;
 
+type DocumentContext = Context & { renderPage: Function };
+
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }: DocumentContext<*>) {
+  static getInitialProps({ renderPage }: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const page = renderPage(App => props =>
       sheet.collectStyles(<App {...props} />)

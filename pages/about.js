@@ -2,7 +2,7 @@
 import * as React from "react";
 import { GithubCircleIcon, WebIcon } from "mdi-react";
 
-import Layout from "../components/layout";
+import Layout from "@components/layout";
 import {
   StyledPerson,
   StyledPersonAvatar,
@@ -13,10 +13,10 @@ import {
   StyledPersonSocialItem,
   StyledGridWrapper,
   StyledGrid
-} from "../components/layout/styled";
-import { ContentSection } from "../components/content-section";
-import { PageHeader } from "../components/page-header";
-import { Type } from "../components/typography";
+} from "@components/layout/styled";
+import { ContentSection } from "@components/content-section";
+import { PageHeader } from "@components/page-header";
+import { Type } from "@components/typography";
 const contributorsData = require("nteract-members");
 
 const Mission = () => (

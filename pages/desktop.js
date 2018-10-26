@@ -9,8 +9,10 @@ import { detectPlatform, getDownloadUrl } from "@lib";
 import { DownloadFeaturette } from "@components/download-buttons";
 import { CutoffImage } from "@components/cutoff-image";
 
-class Atom extends React.Component<null, null> {
-  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
+import type { Context } from "next";
+
+class Atom extends React.Component<OSProps> {
+  static async getInitialProps(ctx: Context): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);
     return { platform, assetUrl };

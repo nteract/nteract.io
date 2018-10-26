@@ -6,13 +6,15 @@ import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import { WindowSize } from "react-fns";
 
+import type { Context } from "next";
+
 // Should these types come from next.js directly somehow?
 type AppProps<P> = {
   Component: React.Component<*, *> & {
-    getInitialProps: ?(ctx: Context<*>) => P
+    getInitialProps: ?(ctx: Context) => P
   },
   router: *,
-  ctx: Context<*>
+  ctx: Context
 };
 
 class MyApp extends App {

@@ -1,17 +1,13 @@
 // @flow
-import Layout from "../../components/layout/layout";
+import Layout from "@components/layout";
 import Link from "next/link";
-import {
-  ContentSection,
-  ContentSectionPane
-} from "../../components/content-section/content-section";
 import React from "react";
-import Python from "../../components/kernels/julia";
+import Python from "@components/kernels/julia";
 import {
   PageHeader,
   PageHeaderLeft,
   PageHeaderRight
-} from "../../components/page-header/page-header";
+} from "@components/page-header";
 
 export default class PythonPage extends React.Component<*, *> {
   render() {
