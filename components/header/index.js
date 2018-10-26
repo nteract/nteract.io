@@ -42,6 +42,10 @@ const rightNav = {
       label: "Kernels",
       href: "/kernels",
       prefetch: true
+    },
+    {
+      label: "Components",
+      href: "https://components.nteract.io/"
     }
   ]
 };
