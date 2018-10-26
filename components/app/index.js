@@ -1,10 +1,19 @@
 import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { StyledApp } from "@components/app/styled";
-
+import { normalize } from "polished";
+/**
+ * Reset our styles
+ */
 const GlobalStyles = createGlobalStyle`
-body, html{
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;=
+${normalize()};
+*{
+box-sizing: border-box;
+}
+html, body{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 `;
 
