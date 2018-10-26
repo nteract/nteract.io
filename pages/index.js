@@ -8,6 +8,8 @@ import { Button, Buttons } from "@components/button";
 import { DownloadFeaturette } from "@components/download-buttons";
 import { detectPlatform, getDownloadUrl } from "@lib";
 
+import type { Context } from "next";
+
 const DemoVideo = () => (
   <video
     poster="https://nteract.github.io/assets/images/nteract_app_demo@2x.png"
@@ -27,13 +29,8 @@ const DemoVideo = () => (
   </video>
 );
 
-type HomeProps = {
-  platform: Platforms,
-  assetUrl: string
-};
-
-class Home extends React.Component<HomeProps, null> {
-  static async getInitialProps(ctx: Context<EmptyQuery>): Promise<OSProps> {
+class Home extends React.Component<OSProps, null> {
+  static async getInitialProps(ctx: Context): Promise<OSProps> {
     const platform = detectPlatform(ctx);
     const assetUrl = await getDownloadUrl(platform);
     return { platform, assetUrl };

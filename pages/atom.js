@@ -8,10 +8,15 @@ import { ContentSection, ContentSections } from "@components/content-section";
 import { Button, Buttons } from "@components/button";
 import { CutoffImage } from "@components/cutoff-image";
 
-const Video = ({ mp4, webm, poster }) => (
-  <video poster={poster} preload="auto" autoPlay muted loop="loop">
-    {mp4 ? <source src={mp4} type="video/mp4" /> : null}
-    {webm ? <source src={webm} type="video/webm" /> : null}
+type VideoProps =
+  | { mp4: string, webm: string, poster: string }
+  | { mp4: string, poster: string }
+  | { webm: string, poster: string };
+
+const Video = (props: VideoProps) => (
+  <video poster={props.poster} preload="auto" autoPlay muted loop="loop">
+    {props.mp4 ? <source src={props.mp4} type="video/mp4" /> : null}
+    {props.webm ? <source src={props.webm} type="video/webm" /> : null}
   </video>
 );
 

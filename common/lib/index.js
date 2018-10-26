@@ -1,5 +1,7 @@
 // @flow
 
+import type { Context } from "next";
+
 import "isomorphic-fetch";
 
 const EXTENSIONS = {
@@ -8,7 +10,7 @@ const EXTENSIONS = {
   Windows: ".exe"
 };
 
-export function detectPlatform(ctx: Context<*>): Platform {
+export function detectPlatform(ctx: Context): Platform {
   if (ctx.req && ctx.req.headers) {
     // Server side
     const ua = ctx.req.headers["user-agent"];

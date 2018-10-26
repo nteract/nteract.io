@@ -1,17 +1,10 @@
-[ignore]
-.*/node_modules/config-chain/test/broken.json.*
-.*/node_modules/npmconf/test/fixtures/package.json.*
-.*/node_modules/babel-plugin-transform-react-remove-prop-types/src/index.js.*
-
-[include]
-types/context.flow.js
-
 [libs]
-types/
+flow-typed
+types
 
 [options]
 module.name_mapper='^@pages\(/.+\)?$' -> '<PROJECT_ROOT>/pages\1'
 module.name_mapper='^@components\(/.+\)?$' -> '<PROJECT_ROOT>/components\1'
-module.name_mapper='^@lib\(/.+\)?$' -> '<PROJECT_ROOT>/lib\1'
+module.name_mapper='^@lib\(/.+\)?$' -> '<PROJECT_ROOT>/common/lib'
 module.name_mapper='^@common\(/.+\)?$' -> '<PROJECT_ROOT>/common\1'
 module.name_mapper='^@static\(/.+\)?$' -> '<PROJECT_ROOT>/static\1'
