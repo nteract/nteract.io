@@ -20,7 +20,7 @@ const Left = styled.div``;
 const Right = styled.div``;
 const PageHeader = styled.div`
 background-color: transparent;
-background-image: url(https://nteract.github.io/assets/images/hero_header_bg@2x.png);
+background-image: url(/static/hero_header_bg@2x.png);
 background-position: top center;
 background-attachment: fixed;
 background-size: ${spacing.globalWidth + 200}px;

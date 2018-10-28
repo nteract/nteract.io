@@ -12,20 +12,14 @@ import type { Context } from "next";
 
 const DemoVideo = () => (
   <video
-    poster="https://nteract.github.io/assets/images/nteract_app_demo@2x.png"
+    poster="/static/nteract_app_demo@2x.png"
     preload="auto"
     autoPlay
     muted
     loop="loop"
   >
-    <source
-      src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.mp4"
-      type="video/mp4"
-    />
-    <source
-      src="https://nteract.github.io/assets/images/video/nteract_app_demo@2x.webm"
-      type="video/webm"
-    />
+    <source src="/static/nteract_app_demo@2x.mp4" type="video/mp4" />
+    <source src="/static/nteract_app_demo@2x.webm" type="video/webm" />
   </video>
 );
 
@@ -83,7 +77,7 @@ class Home extends React.Component<OSProps, null> {
 
             <ContentSection.Pane visual>
               <img
-                src="https://nteract.github.io/assets/images/feature_nteract_desktop@2x.png"
+                src="/static/feature_nteract_desktop@2x.png"
                 alt="interactivity"
               />
             </ContentSection.Pane>
@@ -103,7 +97,7 @@ class Home extends React.Component<OSProps, null> {
 
             <ContentSection.Pane visual>
               <img
-                src="https://nteract.github.io/assets/images/feature_nteract_composable@2x.png"
+                src="/static/feature_nteract_composable@2x.png"
                 alt="Composability"
               />
             </ContentSection.Pane>
@@ -121,7 +115,7 @@ class Home extends React.Component<OSProps, null> {
             </ContentSection.Pane>
             <ContentSection.Pane visual>
               <img
-                src="https://nteract.github.io/assets/images/feature_nteract_open_to_all@2x.png"
+                src="/static/feature_nteract_open_to_all@2x.png"
                 alt="Composability"
               />
             </ContentSection.Pane>
