@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.2 (29753) - http://www.bohemiancoding.com/sketch -->
+    <title>icon_nteract_download</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.0980392157   0 0 0 0 0.176470588   0 0 0 0 0.28627451  0 0 0 0.6 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="nteract-page" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="nteract-landing-page---1a" transform="translate(-241.000000, -421.000000)">
+            <g id="hero">
+                <g id="hero_content" transform="translate(230.000000, 166.000000)">
+                    <g id="download" transform="translate(0.000000, 250.000000)">
+                        <g id="button_download" filter="url(#filter-1)">
+                            <g id="icon_nteract_download" transform="translate(17.000000, 7.000000)">
+                                <polygon id="Fill-1" fill="#A3B7D6" points="18.9999 30.9729 30.9999 38.0709 30.9999 15.0709 18.9999 8.2429"></polygon>
+                                <polygon id="Fill-2" fill="#C8D4E6" points="7.0002 15.0708 7.0002 38.0708 19.0002 30.9728 19.0002 8.2438"></polygon>
+                                <polygon id="Fill-3" fill="#5D779B" points="18.9999 0.0003 -0.0001 11.5713 2.9999 13.0713 18.9999 3.8723 34.9999 13.0713 34.9999 35.5713 37.9999 33.5713 37.9999 10.9693"></polygon>
+                                <polygon id="Fill-4" fill="#334866" points="0 34.5711 3 36.0711 3 13.0711 0 11.5721"></polygon>
+                                <polygon id="Fill-5" fill="#A3B7D6" points="2.9997 36.0714 7.0007 38.0714 7.0007 15.0704 2.9997 13.0714"></polygon>
+                                <polygon id="Fill-6" fill="#EDF1F8" points="2.9997 13.071 7.0007 15.071 18.9997 8.243 30.9997 15.071 30.9997 38.071 34.9997 35.571 34.9997 13.071 18.9997 3.872"></polygon>
+                                <polygon id="Fill-7" fill="#F98CAF" points="19.0004 12.905 26.8234 17.422 26.8234 26.456 18.9994 30.973 11.1764 26.456 11.1764 17.422"></polygon>
+                                <polygon id="Fill-8" fill="#F21860" points="18.9997 30.9733 19.0007 21.9383 11.1767 17.4223 11.1767 26.4563"></polygon>
+                                <polygon id="Fill-9" fill="#F21860" points="19.0005 21.9387 26.8235 17.4227 26.8235 26.4557 18.9995 30.9737"></polygon>
+                                <polygon id="Path" fill="#FFFFFF" points="24.625 22.25 19.3125 27.5625 14 22.25 17.1875 22.25 17.1875 18 21.4375 18 21.4375 22.25"></polygon>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

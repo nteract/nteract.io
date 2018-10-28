@@ -13,7 +13,7 @@ export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
           primary
           label={`Download for ${platform} (beta)`}
           href={assetUrl}
-          icon="https://nteract.github.io/assets/images/icon-nteract-download.svg"
+          icon="/static/icon_nteract_download.svg"
         />
       </Buttons>
       <Type.p small padding="10px 0 0 0">

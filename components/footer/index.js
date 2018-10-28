@@ -10,7 +10,7 @@ const Footer = props => (
         <Link href="https://numfocus.org/">
           <a target="_blank">
             <img
-              src="https://nteract.github.io/assets/images/sponsor-numfocus.png"
+              src="/static/sponsor-numfocus.png"
               alt="NumFocus"
             />
           </a>
