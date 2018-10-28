@@ -28,7 +28,7 @@ export default () => (
         displayName="Python"
         repository="https://github.com/ipython/ipykernel"
         installURL="http://ipython.readthedocs.io/en/stable/install/kernel_install.html"
-        logo="/static/python.png"
+        logo="/static/python.svg"
       >
         <h3>Installation</h3>
         <p>

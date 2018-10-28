@@ -69,7 +69,7 @@ const RenderContent = ({ view }) => {
           <ContentSection.Pane full>
             <ContentSection.Title kernel>
               <ContentSection.Title.Section>
-                <img src="/static/r.png" />R Installation
+                <img src="/static/r.svg" />R Installation
               </ContentSection.Title.Section>
             </ContentSection.Title>
             <Type.h4 padding="10px 0 0 0">Within R</Type.h4>
@@ -85,7 +85,7 @@ const RenderContent = ({ view }) => {
           <ContentSection.Pane>
             <ContentSection.Title kernel>
               <ContentSection.Title.Section>
-                <img src="/static/python.png" /> Python
+                <img src="/static/python.svg" /> Python
               </ContentSection.Title.Section>
             </ContentSection.Title>
 
