@@ -77,7 +77,7 @@ class Home extends React.Component<OSProps, null> {
 
             <ContentSection.Pane visual>
               <img
-                src="/static/feature_nteract_desktop@2x.png"
+                src="/static/feature_nteract_desktop.svg"
                 alt="interactivity"
               />
             </ContentSection.Pane>
@@ -97,7 +97,7 @@ class Home extends React.Component<OSProps, null> {
 
             <ContentSection.Pane visual>
               <img
-                src="/static/feature_nteract_composable@2x.png"
+                src="/static/feature_nteract_composable.svg"
                 alt="Composability"
               />
             </ContentSection.Pane>
@@ -115,7 +115,7 @@ class Home extends React.Component<OSProps, null> {
             </ContentSection.Pane>
             <ContentSection.Pane visual>
               <img
-                src="/static/feature_nteract_open_to_all@2x.png"
+                src="/static/feature_nteract_open_to_all.svg"
                 alt="Composability"
               />
             </ContentSection.Pane>

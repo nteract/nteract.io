@@ -17,7 +17,7 @@ export default () => (
         displayName="R"
         repository="https://github.com/IRkernel/IRkernel"
         installURL="https://irkernel.github.io/installation/"
-        logo="/static/r.png"
+        logo="/static/r.svg"
       >
         <h3>Installation</h3>
         <div className="columns">
