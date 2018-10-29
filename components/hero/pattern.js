@@ -15539,7 +15539,6 @@ export default ({ width, ...rest }) => (
               />
               <circle id="Oval" fill="#8AE7FA" cx="601" cy="101" r="1" />
               <circle id="Oval" fill="#8AE7FA" cx="661" cy="181" r="1" />
-              <circle id="Oval" fill="#8AE7FA" cx="821" cy="61" r="1" />
               <circle id="Oval" fill="#8AE7FA" cx="1101" cy="101" r="1" />
               <circle id="Oval" fill="#8AE7FA" cx="561" cy="61" r="1" />
               <circle id="Oval" fill="#8AE7FA" cx="141" cy="121" r="1" />
@@ -15614,7 +15613,7 @@ export default ({ width, ...rest }) => (
                 fill="url(#linearGradient-101)"
                 opacity="0.25"
                 x="841"
-                y="81"
+                y="91"
                 width="20"
                 height="20"
               />
@@ -15624,7 +15623,7 @@ export default ({ width, ...rest }) => (
                 fill="url(#linearGradient-101)"
                 opacity="0.25"
                 x="831"
-                y="71"
+                y="81"
                 width="20"
                 height="20"
               />
@@ -15634,7 +15633,7 @@ export default ({ width, ...rest }) => (
                 fill="url(#linearGradient-101)"
                 opacity="0.25"
                 x="821"
-                y="61"
+                y="71"
                 width="20"
                 height="20"
               />
