@@ -24,7 +24,6 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta charSet="utf-8" />
-          <title>nteract</title>
           <meta name="viewport" content="width=device-width,initial-scale=1" />
         </Head>
         <body>
