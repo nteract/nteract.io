@@ -95,7 +95,7 @@ const StyledHeader = styled.header`
     opacity: 0.5;
     text-decoration: none;
     padding: 0 0 0 ${spacing.gutter}px;
-    transform: translateY(8px);
+    transform: translateY(3px);
     font-weight: 500;
     display: block;
 
