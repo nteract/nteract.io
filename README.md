@@ -9,13 +9,17 @@ We serve an express app that does [server rendered react using next](https://zei
 ```
 git clone https://github.com/nteract/nteract.io
 cd nteract.io
-npm install
-npm run dev
+yarn
+yarn dev
 ```
 
 ## Deployment
 
-We run [nteract.io](https://nteract.io/) on [now.sh](https://zeit.co/now). You'll need `now` to deploy:
+We run [nteract.io](https://nteract.io/) on [now.sh](https://zeit.co/now). If your PR gets merged, it will automatically get deployed and if succesful aliased as the 🆕 nteract.io. 🎉
+
+### Deploying by Hand
+
+You'll need `now` to deploy:
 
 ```
 npm install -g now
@@ -64,7 +68,7 @@ $ now
 > Deployment complete!
 ```
 
-If you have the access/ability, you'll want to verify the site is working then run:
+If you need to alias the site to make it live, verify that it's working then run:
 
 ```
 now alias <addressFromAbove> https://nteract.io
