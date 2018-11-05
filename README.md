@@ -15,7 +15,7 @@ yarn dev
 
 ## Deployment
 
-We run [nteract.io](https://nteract.io/) on [now.sh](https://zeit.co/now). If your PR gets merged, it will automatically get deployed and if succesful aliased as the 🆕 nteract.io. 🎉
+We run [nteract.io](https://nteract.io/) on [now.sh](https://zeit.co/now). If your PR gets merged, it will automatically get deployed and if successful aliased as the 🆕 nteract.io. 🎉
 
 ### Deploying by Hand
 
