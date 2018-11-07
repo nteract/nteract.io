@@ -13,8 +13,8 @@
     "next": "7.0.2",
     "nteract-members": "1.1.1",
     "polished": "2.3.0",
-    "react": "16.6.0",
-    "react-dom": "16.6.0",
+    "react": "16.6.1",
+    "react-dom": "16.6.1",
     "react-fns": "1.4.0",
     "react-syntax-highlighter": "9.0.1",
     "styled-components": "4.0.3"
