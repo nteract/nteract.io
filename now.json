@@ -1,4 +1,7 @@
 {
   "name": "nteract-site",
-  "alias": "nteract.io"
+  "alias": "nteract.io",
+  "env": {
+    "GH_TOKEN": "@gh-token-public"
+  }
 }

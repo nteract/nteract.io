@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { GithubCircleIcon, WebIcon } from "mdi-react";
+import { GraphQLClient } from "graphql-request";
 
 import Layout from "@components/layout";
 import {
@@ -17,7 +18,57 @@ import {
 import { ContentSection } from "@components/content-section";
 import { PageHeader } from "@components/page-header";
 import { Type } from "@components/typography";
-const contributorsData = require("nteract-members");
+
+type Member = {
+  name: ?string,
+  login: string,
+  websiteUrl: ?string,
+  avatarUrl: string,
+  url: string
+};
+
+async function getMembers(organisation: string) {
+  const token = process.env.GH_TOKEN;
+
+  if (!token) {
+    console.error("'GH_TOKEN' not set. Could not fetch nteract members.");
+    return [];
+  }
+
+  const client = new GraphQLClient("https://api.github.com/graphql", {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
+
+  const query = `{
+    organization(login: ${organisation}) {
+      members(first: 100) {
+        totalCount
+          nodes {
+            name
+            login
+            websiteUrl
+            avatarUrl
+            url
+          }
+      }
+    }
+  }`;
+
+  try {
+    const data = await client.request(query);
+    if (data.organization.members.totalCount > 100) {
+      console.error(
+        "100+ members in the organization. That's too much for one GraphQL call."
+      );
+    }
+    return data.organization.members.nodes;
+  } catch (e) {
+    console.error(e);
+    return [];
+  }
+}
 
 const Mission = () => (
   <ContentSection>
@@ -31,25 +82,25 @@ const Mission = () => (
   </ContentSection>
 );
 
-const ContributorsList = contributorsData.map((person, index) => {
+const Contributor = ({ person }) => {
   if (!person.login) {
     return null;
   }
   return (
-    <StyledPerson key={index}>
+    <StyledPerson>
       <StyledPersonAvatar>
-        <img src={person.avatar_url} />
+        <img src={person.avatarUrl} />
       </StyledPersonAvatar>
       <StyledPersonDetails>
         <StyledPersonName>{person.name || "@" + person.login}</StyledPersonName>
       </StyledPersonDetails>
       <StyledPersonSocial>
-        <StyledPersonSocialItem key={index}>
-          <a href={person.html_url} target="_blank">
+        <StyledPersonSocialItem>
+          <a href={person.url} target="_blank">
             <GithubCircleIcon color="black" />
           </a>
-          {person.blog ? (
-            <a href={person.blog} target="_blank">
+          {person.websiteUrl ? (
+            <a href={person.websiteUrl} target="_blank">
               <WebIcon color="black" />
             </a>
           ) : null}
@@ -57,20 +108,31 @@ const ContributorsList = contributorsData.map((person, index) => {
       </StyledPersonSocial>
     </StyledPerson>
   );
-});
+};
 
-const Contributors = () => (
+const Contributors = ({ members }: { members: Member[] }) => (
   <ContentSection>
     <ContentSection.Pane center layout="center" full>
       <Type.h3>Contributors</Type.h3>
       <div className="grid">
-        <StyledGridWrapper>{ContributorsList}</StyledGridWrapper>
+        <StyledGridWrapper>
+          {members.map(member => (
+            <Contributor person={member} key={member.login} />
+          ))}
+        </StyledGridWrapper>
       </div>
     </ContentSection.Pane>
   </ContentSection>
 );
 
-export default class AboutPage extends React.Component<OSProps, void> {
+export default class AboutPage extends React.Component<
+  { ...OSProps, members: Member[] },
+  void
+> {
+  static async getInitialProps() {
+    return { members: await getMembers("nteract") };
+  }
+
   render() {
     let themeColor = "#334865";
     return (
@@ -84,7 +146,7 @@ export default class AboutPage extends React.Component<OSProps, void> {
           </PageHeader.Left>
         </PageHeader>
         <Mission />
-        <Contributors />
+        <Contributors members={this.props.members} />
       </Layout>
     );
   }
