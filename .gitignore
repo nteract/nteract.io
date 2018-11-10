@@ -41,3 +41,4 @@ jspm_packages
 .idea
 
 package-lock.json
+nteract-members.json
