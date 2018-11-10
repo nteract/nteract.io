@@ -1,3 +1,4 @@
+// @flow
 import styled, { css } from "styled-components";
 import { spacing } from "@common/constants";
 import { colors } from "@common/colors";
@@ -67,7 +68,7 @@ const StyledHero = styled.div`
   position: relative;
   a{
     &:link,
-    &:visited, 
+    &:visited,
     &:active,
     &:hover{
       color: white;

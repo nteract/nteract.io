@@ -2,23 +2,12 @@
 import * as React from "react";
 import { colors } from "@common/colors";
 import Layout from "@components/layout";
+import { Video } from "@components/video";
 import { Hero } from "@components/hero";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
 import { Button, Buttons } from "@components/button";
 import { CutoffImage } from "@components/cutoff-image";
-
-type VideoProps =
-  | { mp4: string, webm: string, poster: string }
-  | { mp4: string, poster: string }
-  | { webm: string, poster: string };
-
-const Video = (props: VideoProps) => (
-  <video poster={props.poster} preload="auto" autoPlay muted loop="loop">
-    {props.mp4 ? <source src={props.mp4} type="video/mp4" /> : null}
-    {props.webm ? <source src={props.webm} type="video/webm" /> : null}
-  </video>
-);
 
 const InspectCode = () => (
   <ContentSection center>

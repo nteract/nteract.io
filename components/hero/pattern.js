@@ -1,10 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+// @flow
+import * as React from "react";
+import styled from "styled-components";
 
 const StyledSVG = styled.svg`
   display: block;
 `;
-export default ({ width, ...rest }) => (
+export default () => (
   <StyledSVG width="1422px" height="542px" viewBox="0 0 1422 542">
     <defs>
       <linearGradient

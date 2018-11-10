@@ -12,8 +12,7 @@ import {
   StyledPersonTitle,
   StyledPersonSocial,
   StyledPersonSocialItem,
-  StyledGridWrapper,
-  StyledGrid
+  StyledGridWrapper
 } from "@components/layout/styled";
 import { ContentSection } from "@components/content-section";
 import { PageHeader } from "@components/page-header";

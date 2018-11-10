@@ -1,5 +1,7 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import Link from "next/link";
+// $FlowFixMe
 import styles from "./navigation.scss";
 
 export default () => (
