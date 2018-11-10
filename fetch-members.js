@@ -1,5 +1,5 @@
 const { GraphQLClient } = require("graphql-request");
-const { writeFileSync } = require("fs");
+const { writeFileSync, existsSync, mkdirSync } = require("fs");
 
 async function fetchMembers(organisation) {
   const token = process.env.GH_TOKEN;
@@ -46,7 +46,8 @@ async function fetchMembers(organisation) {
 
 async function main() {
   const members = await fetchMembers("nteract");
-  writeFileSync("./nteract-members.json", JSON.stringify(members));
+  if (!existsSync("generated")) mkdirSync("generated");
+  writeFileSync("./generated/nteract-members.json", JSON.stringify(members));
 }
 
 main();
