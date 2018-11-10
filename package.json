@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "express": "4.16.4",
-    "graphql-request": "^1.8.2",
     "isomorphic-fetch": "2.2.1",
     "mdi-react": "4.4.0",
     "next": "7.0.2",
@@ -23,6 +22,7 @@
     "babel-plugin-styled-components": "1.8.0",
     "babel-plugin-transform-flow-strip-types": "6.22.0",
     "flow-bin": "0.84.0",
+    "graphql-request": "^1.8.2",
     "lint-staged": "8.0.4",
     "prettier": "1.15.1"
   },
@@ -39,8 +39,9 @@
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
   "scripts": {
+    "prebuild": "node fetch-members.js",
     "build": "next build",
-    "dev": "node server.js",
+    "dev": "npm run prebuild && node server.js",
     "flow": "flow",
     "prettier": "prettier --write './**/*.js'",
     "start": "NODE_ENV=production node server.js"
