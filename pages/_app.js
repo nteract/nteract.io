@@ -8,7 +8,7 @@ import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import { WindowSize } from "react-fns";
 import type { Context } from "next";
-
+Router.events.on("routeChangeComplete", (url: string) => gtag.pageview(url));
 // Should these types come from next.js directly somehow?
 type AppProps<P> = {
   Component: React.Component<*, *> & {
