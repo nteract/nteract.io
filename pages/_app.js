@@ -1,11 +1,12 @@
 // @flow
 import App, { Container } from "next/app";
 import React from "react";
+import * as gtag from "../gtag";
+import Router from "next/router";
 import { App as AppWrapper } from "@components/app";
 import { Header } from "@components/header";
 import { Footer } from "@components/footer";
 import { WindowSize } from "react-fns";
-
 import type { Context } from "next";
 
 // Should these types come from next.js directly somehow?
