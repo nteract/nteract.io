@@ -3,7 +3,7 @@ import * as React from "react";
 
 export const SlackButton = () => (
   <a
-    href="https://slackin-nteract.now.sh/"
+    href="https://slack.nteract.io/"
     target="_blank"
     className="button button-secondary button-icon-only"
     title="Join us on Slack!"

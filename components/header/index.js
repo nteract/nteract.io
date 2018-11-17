@@ -54,7 +54,7 @@ const socialItems = {
   items: [
     {
       icon: <SlackIcon color="currentColor" />,
-      href: "https://slackin-nteract.now.sh/",
+      href: "https://slack.nteract.io/",
       target: "_blank"
     },
     {
