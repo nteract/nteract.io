@@ -7,19 +7,10 @@ import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
 const pipInstall = `python -m pip install ipykernel virtualenv
-python -m ipykernel install
-python -m virtualenv myenv
-source myenv/bin/activate
-pip install ipykernel
-pip install -r requirements.txt
-python -m ipykernel install --user --name myenv --display-name "Python (myenv)"`;
+python -m ipykernel install`;
 
 const condaInstall = `conda install ipykernel
-python -m ipykernel install
-conda env create -f environment.yml
-source activate myenv
-conda install ipykernel
-python -m ipykernel install --user --name myenv --display-name "Python (myenv)"`;
+python -m ipykernel install`;
 
 export default () => (
   <ContentSection>

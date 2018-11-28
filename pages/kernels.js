@@ -3,6 +3,8 @@ import * as React from "react";
 import Layout from "@components/layout";
 import Python from "@components/kernels/python";
 import R from "@components/kernels/r";
+import Cplusplus from "@components/kernels/c++";
+import Julia from "@components/kernels/julia";
 import Node from "@components/kernels/node";
 import { Hero } from "@components/hero";
 import { Type, BashPre } from "@components/typography";
@@ -15,99 +17,45 @@ import { withRouter } from "next/router";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 
-type Languages = "python" | "node" | "r";
+type Language = "python" | "node" | "r" | "cplusplus" | "julia";
 
-type Slugs = "kernels/python" | "kernels/node" | "kernels/r";
-type ViewsType = { [key: ?Languages]: Slugs };
+type ViewsType = {| name: string, path: Language |};
 
-const VIEWS: ViewsType = {
-  python: "kernels/python",
-  node: "kernels/node",
-  r: "kernels/r"
+const LanguageSlugs: { [string]: Language } = {
+  Python: "python",
+  Node: "node",
+  R: "r",
+  CPlusPlus: "cplusplus",
+  Julia: "julia"
 };
 
-const rCode = `install.packages(c('repr', 'IRdisplay', 'evaluate', 'crayon', 'pbdZMQ', 'devtools', 'uuid', 'digest'))
-devtools::install_github('IRkernel/IRkernel')
-IRkernel::installspec()`;
+const VIEWS: Array<ViewsType> = [
+  { name: "Python", path: LanguageSlugs.Python },
+  { name: "Node.js", path: LanguageSlugs.Node },
+  { name: "R", path: LanguageSlugs.R },
+  { name: "Julia", path: LanguageSlugs.Julia },
+  { name: "C++", path: LanguageSlugs.CPlusPlus }
+];
 
-const RenderContentImproved = ({ view }) => {
+const RenderContent = ({ view }) => {
   switch (view) {
-    case VIEWS.node:
+    case LanguageSlugs.Node:
       return <Node />;
-    case VIEWS.r:
+    case LanguageSlugs.R:
       return <R />;
+    case LanguageSlugs.CPlusPlus:
+      return <Cplusplus />;
+    case LanguageSlugs.Julia:
+      return <Julia />;
     default:
       return <Python />;
   }
 };
-const RenderContent = ({ view }) => {
-  switch (view) {
-    case VIEWS.node:
-      return (
-        <ContentSection>
-          <ContentSection.Pane>
-            <ContentSection.Title kernel>
-              <ContentSection.Title.Section>
-                <img src="/static/nodejs-icon.svg" />
-                Node.js Installation
-              </ContentSection.Title.Section>
-            </ContentSection.Title>
-            <Type.p>
-              Note: nteract 0.1.0 includes a bundled node.js kernel. You likely
-              already have it!
-            </Type.p>
-            <Type.h4 padding="20px 0 0 0">From the terminal</Type.h4>
-            <BashPre bgColor={colors.bgColor}>
-              {`npm install -g ijavascript`}
-            </BashPre>
-          </ContentSection.Pane>
-        </ContentSection>
-      );
-    case VIEWS.r:
-      return (
-        <ContentSection>
-          <ContentSection.Pane full>
-            <ContentSection.Title kernel>
-              <ContentSection.Title.Section>
-                <img src="/static/r.svg" />R Installation
-              </ContentSection.Title.Section>
-            </ContentSection.Title>
-            <Type.h4 padding="10px 0 0 0">Within R</Type.h4>
-            <SyntaxHighlighter language="r" style={github}>
-              {rCode}
-            </SyntaxHighlighter>
-          </ContentSection.Pane>
-        </ContentSection>
-      );
-    default:
-      return (
-        <ContentSection>
-          <ContentSection.Pane>
-            <ContentSection.Title kernel>
-              <ContentSection.Title.Section>
-                <img src="/static/python.svg" /> Python
-              </ContentSection.Title.Section>
-            </ContentSection.Title>
-
-            <Type.h3> Installation</Type.h3>
-            <Type.h4 padding="10px 0 0 0">pip based</Type.h4>
-            <BashPre bgColor={colors.bgColor}>
-              {`python -m pip install ipykernel\npython -m ipykernel install --user`}
-            </BashPre>
-            <Type.h4 padding="40px 0 0 0">Using Conda</Type.h4>
-            <BashPre bgColor={colors.bgColor}>
-              {`conda install ipykernel\npython -m ipykernel install --user`}
-            </BashPre>
-          </ContentSection.Pane>
-        </ContentSection>
-      );
-  }
-};
 
 class KernelsPage extends React.Component<
-  { slug: ?Languages, url: Array<string>, router: * },
+  { slug: ?Language, url: Array<string>, router: * },
   { view: ?string }
-> {
+  > {
   static async getInitialProps(ctx: *) {
     const {
       query: { slug }
@@ -116,12 +64,14 @@ class KernelsPage extends React.Component<
   }
 
   state = {
-    view: VIEWS[this.props.slug] || VIEWS.python
+    view: this.props.slug || LanguageSlugs.Python
   };
 
   changeView = view => {
     this.setState(state => (state.view !== view ? { ...state, view } : state));
-    this.props.router.push(`/${view}`, `/${view}`);
+    this.props.router.push(`/kernels/${view}`, `/kernels/${view}`, {
+      shallow: true
+    });
   };
 
   activeView = view => view === this.state.view;
@@ -137,24 +87,16 @@ class KernelsPage extends React.Component<
               improved REPL experience.
             </Type.p>
             <Buttons padding="20px 0 0 0">
-              <Button
+              {/** use :any to avoid Flow error from this bug: https://github.com/facebook/flow/issues/2221 */}
+              {(Object.values(VIEWS): any).map(view => (
+                <Button
                 secondary
-                label="Python"
-                onClick={() => this.changeView(VIEWS.python)}
-                active={this.activeView(VIEWS.python)}
+                key={view.name}
+                label={view.name}
+                onClick={() => this.changeView(view.path)}
+                active={this.activeView(view.path)}
               />
-              <Button
-                secondary
-                label="Node.js"
-                onClick={() => this.changeView(VIEWS.node)}
-                active={this.activeView(VIEWS.node)}
-              />
-              <Button
-                secondary
-                label="R"
-                onClick={() => this.changeView(VIEWS.r)}
-                active={this.activeView(VIEWS.r)}
-              />
+              ))}
             </Buttons>
           </PageHeader.Left>
 
