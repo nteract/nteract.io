@@ -28,7 +28,7 @@ export const KernelHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding-bottom: ${spacing.unit};
+  padding-bottom: ${spacing.unit}px;
   border-bottom: 1px solid rgba(${colors.colorTextBase}, 0.15);
   margin-bottom: ${spacing.gutter};
   ${handheld(css`
@@ -40,9 +40,9 @@ export const KernelHeader = styled.div`
     display: flex;
     align-items: center;
     ${handheld(css`
-      margin-bottom: ${spacing.gutter};
+      margin-bottom: ${spacing.gutter}px;
     `)} ${LangLogo} {
-      margin-right: ${spacing.unit};
+      margin-right: ${spacing.unit}px;
       max-width: 48px;
     }
   }
@@ -53,12 +53,14 @@ export const KernelHeaderButtons = styled.div`
 `;
 
 export const KernelHeaderButton = styled.a`
+  color: ${colors.linkColor};
   border: 1px solid rgba(${colors.colorTextBase}, 0.15);
   background: white;
   box-shadow: ${effects.dropShadowLight};
   border-radius: 8px;
-  padding: ${spacing.unit};
+  padding: ${spacing.unit}px;
   display: block;
+  text-decoration: none;
   transition: ${animations.transition};
   :hover {
     transform: translateY(-4px);
