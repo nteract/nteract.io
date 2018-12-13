@@ -6,21 +6,27 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const pipInstall = `python3 -m venv my_environment_name
-source my_environment_name/bin/activate
-python -m pip install ipykernel
-python -m ipykernel install`;
+const pipInstall = `python3 -m venv my_environment_name  # create a virtual environment
+source my_environment_name/bin/activate  # activate the virtual environment
+python -m pip install ipykernel  # install the python kernel (ipykernel) into the virtual environment
+python -m ipykernel install  # install python kernel into nteract's available kernel list`;
 
-const pip2Install = `python -m pip install virtualenv
-cd my_project_folder
-virtualenv my_project
-source my_project/bin/activate
-python -m pip install ipykernel
-python -m ipykernel install`;
+const pip2Install = `python -m pip install virtualenv  # install a package for creating virtual environment
+cd my_project_folder  # create a project folder
+virtualenv my_project  # create a virtual environment
+source my_project/bin/activate  # activate the virtual environment
+python -m pip install ipykernel  # install the python kernel (ipykernel) into the virtual environment
+python -m ipykernel install # install python kernel into nteract's available kernel list`;
+
+const pipGlobalInstall = `python3 -m pip install ipykernel  # install the python kernel (ipykernel) globally
+python3 -m ipykernel install  # install python kernel into nteract's available kernel list`;
+
+const pip2Install = `python -m pip install ipykernel  # install the python kernel (ipykernel) globally
+python -m ipykernel install # install python kernel into nteract's available kernel list`;
 
 const condaInstall = `conda create -n my_conda python=3   # Or python=2 for Python 2
 source activate my_conda    # On Windows, remove the word 'source'
-conda install ipykernel
+conda install ipykernel  # install Python kernel (ipykernel) into the conda environment
 python -m ipykernel install`;
 
 export default () => (
@@ -34,28 +40,40 @@ export default () => (
       >
         <h3>Installation</h3>
         <p>
-          To use Python in nteract, a Python kernel, ipykernel, is added to
-          an environment, such as a virtual environment or conda environment.
+          To use Python in nteract, a Python kernel, ipykernel, is added to an
+          environment, such as a virtual environment or conda environment.
           Installing ipykernel into your environment will add Python to your
-          list of kernels.
+          available kernels' list in nteract.
         </p>
         <div className="columns">
           <div className="column">
-            <h4>Using pip and Python 3</h4>
+            <h4>Using conda</h4>
+            <SyntaxHighlighter language="zsh" style={github}>
+              {condaInstall}
+            </SyntaxHighlighter>
+          </div>
+          <div className="column">
+            <h4>Using Python3 with pip and a virtual environment</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {pipInstall}
             </SyntaxHighlighter>
           </div>
           <div className="column">
-            <h4>Using pip and Python 2</h4>
+            <h4>Using Python 2 with pip and a virtual environment</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {pip2Install}
             </SyntaxHighlighter>
           </div>
           <div className="column">
-            <h4>Using conda</h4>
+            <h4>Using Python3 globally (without a virtual environment)</h4>
             <SyntaxHighlighter language="zsh" style={github}>
-              {condaInstall}
+              {pipGlobalInstall}
+            </SyntaxHighlighter>
+          </div>
+          <div className="column">
+            <h4>Using Python 2 globally (without a virtual environment)</h4>
+            <SyntaxHighlighter language="zsh" style={github}>
+              {pip2GlobalInstall}
             </SyntaxHighlighter>
           </div>
         </div>
