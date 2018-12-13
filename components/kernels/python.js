@@ -6,10 +6,21 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const pipInstall = `python -m pip install ipykernel virtualenv
+const pipInstall = `python3 -m venv my_environment_name
+source my_environment_name/bin/activate
+python -m pip install ipykernel
 python -m ipykernel install`;
 
-const condaInstall = `conda install ipykernel
+const pip2Install = `python -m pip install virtualenv
+cd my_project_folder
+virtualenv my_project
+source my_project/bin/activate
+python -m pip install ipykernel
+python -m ipykernel install`;
+
+const condaInstall = `conda create -n my_conda python=3   # Or python=2 for Python 2
+source activate my_conda    # On Windows, remove the word 'source'
+conda install ipykernel
 python -m ipykernel install`;
 
 export default () => (
@@ -23,14 +34,22 @@ export default () => (
       >
         <h3>Installation</h3>
         <p>
-          Python environments are added as kernels with ipykernel. Install
-          ipykernel into your environment to add it to your list of kernels.
+          To use Python in nteract, a Python kernel, ipykernel, is added to
+          an environment, such as a virtual environment or conda environment.
+          Installing ipykernel into your environment will add Python to your
+          list of kernels.
         </p>
         <div className="columns">
           <div className="column">
-            <h4>Using pip</h4>
+            <h4>Using pip and Python 3</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {pipInstall}
+            </SyntaxHighlighter>
+          </div>
+          <div className="column">
+            <h4>Using pip and Python 2</h4>
+            <SyntaxHighlighter language="zsh" style={github}>
+              {pip2Install}
             </SyntaxHighlighter>
           </div>
           <div className="column">
