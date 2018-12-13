@@ -64,6 +64,13 @@ export default () => (
               {pip2Install}
             </SyntaxHighlighter>
           </div>
+        </div>
+        <p>
+          Alternatively, you may wish to install the Python kernel, ipykernel,
+          globally on your system. This enables you to use the Python kernel
+          without creating a virtual environment.
+        </p>
+        <div className="columns">
           <div className="column">
             <h4>Using Python3 globally (without a virtual environment)</h4>
             <SyntaxHighlighter language="zsh" style={github}>
