@@ -71,7 +71,7 @@ class Atom extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visuals>
+            <ContentSection.Pane visual>
               <Video mp4="/static/double-click-notebook.mp4" />
             </ContentSection.Pane>
           </ContentSection>
