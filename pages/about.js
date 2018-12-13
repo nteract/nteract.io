@@ -32,7 +32,7 @@ const Mission = () => (
       <Type.h3>Mission</Type.h3>
       <Type.p>
         Create fantastic interactive computing experiences that allow people to
-        collaborate with each other with ease.
+        collaborate with ease.
       </Type.p>
     </ContentSection.Pane>
   </ContentSection>
