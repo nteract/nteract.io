@@ -45,17 +45,18 @@ class Atom extends React.Component<OSProps> {
           </Hero.Pane>
         </Hero>
         <ContentSections>
-        <ContentSection>
+          <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>What is nteract?</ContentSection.Title>
               <Type.p>
-              nteract is a next-gen React-based UI for Jupyter notebooks. It
-              provides a simple, intuitive interface and offers several
-              improvements over the classic Jupyter UI, such as inline cell
-              toolbars, drag and droppable cells, and a built-in data explorer.
+                nteract is a next-gen React-based UI for Jupyter notebooks. It
+                provides a simple, intuitive interface and offers several
+                improvements over the classic Jupyter UI, such as inline cell
+                toolbars, drag and droppable cells, and a built-in data
+                explorer.
               </Type.p>
             </ContentSection.Pane>
-
+          </ContentSection>
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>Double Click</ContentSection.Title>
