@@ -56,6 +56,12 @@ class Atom extends React.Component<OSProps> {
                 explorer.
               </Type.p>
             </ContentSection.Pane>
+            <ContentSection.Pane visual>
+              <Image>
+                <src="/static/notebook-vega-altair.png"
+                alt="Desktop Notebooks hero image" />
+              </Image>
+            </ContentSection.Pane>
           </ContentSection>
           <ContentSection>
             <ContentSection.Pane>
@@ -65,7 +71,7 @@ class Atom extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane visuals>
               <Video mp4="/static/double-click-notebook.mp4" />
             </ContentSection.Pane>
           </ContentSection>
