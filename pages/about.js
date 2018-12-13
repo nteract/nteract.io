@@ -34,6 +34,14 @@ const Mission = () => (
         Create fantastic interactive computing experiences that allow people to
         collaborate with ease.
       </Type.p>
+      <Type.p>
+        Emphasize simplicity and composability as core design principles to
+        provide users ideal building blocks for their unique data applications.
+      </Type.p>
+      <Type.p>
+        Value our contributors and users and cooperate to produce solutions that
+        delight others.
+      </Type.p>
     </ContentSection.Pane>
   </ContentSection>
 );
