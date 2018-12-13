@@ -21,7 +21,7 @@ python -m ipykernel install # install python kernel into nteract's available ker
 const pipGlobalInstall = `python3 -m pip install ipykernel  # install the python kernel (ipykernel) globally
 python3 -m ipykernel install  # install python kernel into nteract's available kernel list`;
 
-const pip2Install = `python -m pip install ipykernel  # install the python kernel (ipykernel) globally
+const pip2GlobalInstall = `python -m pip install ipykernel  # install the python kernel (ipykernel) globally
 python -m ipykernel install # install python kernel into nteract's available kernel list`;
 
 const condaInstall = `conda create -n my_conda python=3   # Or python=2 for Python 2
