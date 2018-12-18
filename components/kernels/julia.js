@@ -5,8 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const install = `
-# From a Julia prompt
+const install = `# From a Julia prompt
 using Pkg
 Pkg.add("IJulia")`;
 
@@ -23,9 +22,10 @@ export default () => (
         <div className="columns">
           <div className="column">
             <p>
-              Install Julia to your system. https://julialang.org/downloads/
+              Install <a href="https://julialang.org/downloads/">Julia</a> to
+              your system.
             </p>
-            <h4>Within Julia</h4>
+            <h4>Within Julia, install IJulia kernel</h4>
             <SyntaxHighlighter language="julia" style={github}>
               {install}
             </SyntaxHighlighter>
