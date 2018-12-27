@@ -22,6 +22,11 @@ const leftNav = {
       label: "About",
       href: "/about",
       prefetch: true
+    },
+    {
+      label: "Feedback",
+      href: "https://github.com/nteract/nteract/issues/new/choose",
+      target: "_blank"
     }
   ]
 };

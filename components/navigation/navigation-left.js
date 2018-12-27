@@ -13,5 +13,12 @@ export default () => (
     <Link href="/about" as="/about">
       <a className="nav-item">About</a>
     </Link>
+    <a
+      href="https://github.com/nteract/nteract/issues/new/choose"
+      target="_blank"
+      className="nav-item"
+    >
+      Feedback
+    </a>
   </div>
 );
