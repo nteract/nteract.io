@@ -6,6 +6,7 @@ import R from "@components/kernels/r";
 import Cplusplus from "@components/kernels/c++";
 import Julia from "@components/kernels/julia";
 import Node from "@components/kernels/node";
+import Scala from "@components/kernels/scala";
 import { Hero } from "@components/hero";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
@@ -26,7 +27,8 @@ const LanguageSlugs: { [string]: Language } = {
   Node: "node",
   R: "r",
   CPlusPlus: "cplusplus",
-  Julia: "julia"
+  Julia: "julia",
+  Scala: "scala"
 };
 
 const VIEWS: Array<ViewsType> = [
@@ -34,7 +36,8 @@ const VIEWS: Array<ViewsType> = [
   { name: "Node.js", path: LanguageSlugs.Node },
   { name: "R", path: LanguageSlugs.R },
   { name: "Julia", path: LanguageSlugs.Julia },
-  { name: "C++", path: LanguageSlugs.CPlusPlus }
+  { name: "C++", path: LanguageSlugs.CPlusPlus },
+  { name: "Scala", path: LanguageSlugs.Scala }
 ];
 
 const RenderContent = ({ view }) => {
@@ -47,6 +50,8 @@ const RenderContent = ({ view }) => {
       return <Cplusplus />;
     case LanguageSlugs.Julia:
       return <Julia />;
+    case LanguageSlugs.Scala:
+      return <Scala />;
     default:
       return <Python />;
   }
@@ -55,7 +60,7 @@ const RenderContent = ({ view }) => {
 class KernelsPage extends React.Component<
   { slug: ?Language, url: Array<string>, router: * },
   { view: ?string }
-  > {
+> {
   static async getInitialProps(ctx: *) {
     const {
       query: { slug }
@@ -90,12 +95,12 @@ class KernelsPage extends React.Component<
               {/** use :any to avoid Flow error from this bug: https://github.com/facebook/flow/issues/2221 */}
               {(Object.values(VIEWS): any).map(view => (
                 <Button
-                secondary
-                key={view.name}
-                label={view.name}
-                onClick={() => this.changeView(view.path)}
-                active={this.activeView(view.path)}
-              />
+                  secondary
+                  key={view.name}
+                  label={view.name}
+                  onClick={() => this.changeView(view.path)}
+                  active={this.activeView(view.path)}
+                />
               ))}
             </Buttons>
           </PageHeader.Left>

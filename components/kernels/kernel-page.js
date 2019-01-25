@@ -15,7 +15,8 @@ export const kernels = [
   { name: "r", path: "/kernels/r" },
   { name: "node.js", path: "/kernels/node" },
   { name: "julia", path: "/kernels/julia" },
-  { name: "c++", path: "/kernels/c++" }
+  { name: "c++", path: "/kernels/c++" },
+  { name: "scala", path: "/kernels/scala" }
 ];
 
 export default (props: KernelPageProps, themeColor: "#444") => (
