@@ -25,15 +25,15 @@ export default () => (
         logo="/static/scala-spiral.png"
       >
         <h3>Installation</h3>
+        <p>
+          Install{" "}
+          <a href="https://docs.scala-lang.org/getting-started-sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html">
+            Scala
+          </a>{" "}
+          to your system.
+        </p>
         <div className="columns">
           <div className="column">
-            <p>
-              Install{" "}
-              <a href="https://docs.scala-lang.org/getting-started-sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html">
-                Scala
-              </a>{" "}
-              to your system.
-            </p>
             <h4>
               From the command line, install the almond (formerly jupyter-scala)
               kernel
