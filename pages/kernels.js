@@ -18,7 +18,7 @@ import { withRouter } from "next/router";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 
-type Language = "python" | "node" | "r" | "cplusplus" | "julia";
+type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala";
 
 type ViewsType = {| name: string, path: Language |};
 
