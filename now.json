@@ -1,7 +1,9 @@
 {
   "name": "nteract-site",
   "alias": "nteract.io",
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
   "env": {
     "GH_TOKEN": "@gh-token-public"
-  }
+  },
+  "version": 2
 }
