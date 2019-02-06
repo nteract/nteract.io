@@ -5,10 +5,10 @@
   "builds": [
     {
       "src": "next.config.js",
-      "use": "@now/next",
-      "env": {
-        "GH_TOKEN": "@gh-token-public"
-      }
+      "use": "@now/next"
     }
-  ]
+  ],
+  "env": {
+    "GH_TOKEN": "@gh-token-public"
+  }
 }
