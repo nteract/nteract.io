@@ -1,10 +1,7 @@
 const webpack = require("./webpack.config");
 
 module.exports = {
-  webpack: (config, { dev }) => {
-    config.resolve = webpack.resolve;
-    return config;
-  },
+  target: "serverless",
   exportPathMap: async function(defaultPathMap) {
     return {
       "/kernels/python": { page: "/kernels", query: { slug: "python" } },

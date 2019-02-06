@@ -39,6 +39,7 @@
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
   "scripts": {
+    "now-build": "next build",
     "build": "next build",
     "dev": "next",
     "flow": "flow",
