@@ -10,7 +10,7 @@
     "express": "4.16.4",
     "isomorphic-fetch": "2.2.1",
     "mdi-react": "4.4.0",
-    "next": "7.0.2",
+    "next": "^8.0.0-canary.18",
     "polished": "2.3.3",
     "react": "16.7.0",
     "react-dom": "16.7.0",
