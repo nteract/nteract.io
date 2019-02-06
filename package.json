@@ -39,6 +39,7 @@
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
   "scripts": {
+    "now-build": "npm run build",
     "prebuild": "node fetch-members.js",
     "build": "next build",
     "dev": "npm run prebuild && node server.js",
