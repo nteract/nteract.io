@@ -39,11 +39,10 @@
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
   "scripts": {
-    "prebuild": "node fetch-members.js",
     "build": "next build",
-    "dev": "npm run prebuild && node server.js",
+    "dev": "next",
     "flow": "flow",
     "prettier": "prettier --write './**/*.js'",
-    "start": "NODE_ENV=production node server.js"
+    "start": "next start"
   }
 }

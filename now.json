@@ -4,8 +4,8 @@
   "alias": "nteract.io",
   "builds": [
     {
-      "src": "next.config.js",
-      "use": "@now/next"
+      "src": "server.js",
+      "use": "@now/node"
     }
   ],
   "env": {

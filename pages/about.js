@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
 import { GithubCircleIcon, WebIcon } from "mdi-react";
-const NTERACT_MEMBERS = require("../generated/nteract-members.json");
+
+import { fetchMembers } from "../fetch-members";
 
 import Layout from "@components/layout";
 import {
@@ -90,6 +91,14 @@ const Contributors = ({ members }: { members: Member[] }) => (
 );
 
 export default class AboutPage extends React.Component<OSProps, void> {
+  static async getInitialProps() {
+    const members = await fetchMembers();
+
+    return {
+      members
+    };
+  }
+
   render() {
     let themeColor = "#334865";
     return (
@@ -103,7 +112,7 @@ export default class AboutPage extends React.Component<OSProps, void> {
           </PageHeader.Left>
         </PageHeader>
         <Mission />
-        <Contributors members={NTERACT_MEMBERS} />
+        <Contributors members={this.props.members} />
       </Layout>
     );
   }
