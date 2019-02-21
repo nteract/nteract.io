@@ -12,8 +12,8 @@
     "mdi-react": "4.4.0",
     "next": "7.0.3",
     "polished": "2.3.3",
-    "react": "16.8.2",
-    "react-dom": "16.8.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
     "react-fns": "1.4.0",
     "react-syntax-highlighter": "9.0.1",
     "styled-components": "4.1.3"
