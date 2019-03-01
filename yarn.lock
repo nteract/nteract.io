@@ -4279,10 +4279,10 @@ please-upgrade-node@^3.0.2:
   dependencies:
     semver-compare "^1.0.0"
 
-polished@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/polished/-/polished-3.0.0.tgz#72a61e9729f8cfbcf2d6968441dc1f6f723a9fd6"
-  integrity sha512-qgxFjrkdnOrcHm/ulPjvK4jwzFv2zOdwY7JmaOX2iqTkLw2tA8U+YqYd5EDo5plPOZ2xpsGXeWWwj/C+/3nL5g==
+polished@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/polished/-/polished-3.0.1.tgz#e9b7c9d7043aac78f3cd1470330227068cc56649"
+  integrity sha512-rhel+zWmzx9SzxiX2osdQ+n1Cl4zFI0aoMtfr7fZT5EhlQUIwfPJUnpEAZkJrN+/fBTkIYgtr5sq6bZssMuvCg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     babel-plugin-preval "3.0.1"
