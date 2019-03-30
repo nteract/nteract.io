@@ -11,7 +11,7 @@
     "isomorphic-fetch": "2.2.1",
     "mdi-react": "4.4.0",
     "next": "7.0.3",
-    "polished": "3.0.4",
+    "polished": "4.0.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-fns": "1.4.0",
