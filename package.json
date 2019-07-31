@@ -15,7 +15,7 @@
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-fns": "1.4.0",
-    "react-syntax-highlighter": "9.0.1",
+    "react-syntax-highlighter": "11.0.2",
     "styled-components": "4.2.1"
   },
   "devDependencies": {
