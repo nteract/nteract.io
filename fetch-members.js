@@ -17,7 +17,7 @@ async function fetchMembers(organisation) {
 
   const query = `{
     organization(login: ${organisation}) {
-      members(first: 100) {
+      membersWithRole(first: 100) {
         totalCount
           nodes {
             name
@@ -32,12 +32,7 @@ async function fetchMembers(organisation) {
 
   try {
     const data = await client.request(query);
-    if (data.organization.members.totalCount > 100) {
-      console.error(
-        "100+ members in the organization. That's too much for one GraphQL call."
-      );
-    }
-    return data.organization.members.nodes;
+    return data.organization.membersWithRole.nodes;
   } catch (e) {
     console.error(e);
     return [];
