@@ -4,11 +4,5 @@
   "env": {
     "GH_TOKEN": "@gh-token-public"
   },
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/next"
-    }
-  ]
+  "version": 2
 }
