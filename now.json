@@ -4,5 +4,11 @@
   "env": {
     "GH_TOKEN": "@gh-token-public"
   },
-  "version": 2
+  "version": 2,
+  "routes": [
+    {
+      "src": "/kernels/(.*)",
+      "dest": "/kernels?slug=$1"
+    }
+  ]
 }
