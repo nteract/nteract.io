@@ -30,7 +30,7 @@ const LanguageSlugs: { [string]: Language } = {
   CPlusPlus: "cplusplus",
   Julia: "julia",
   Scala: "scala",
-  Dotnet: ".Net"
+  Dotnet: "dotnet"
 };
 
 const VIEWS: Array<ViewsType> = [
