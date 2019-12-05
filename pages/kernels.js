@@ -111,7 +111,7 @@ class KernelsPage extends React.Component<
           </PageHeader.Left>
 
           <PageHeader.Right visual padding="40px 0 0 0">
-            <CutoffImage
+            <CutoffImage style={{left: '20px'}}
               src="/static/kernels-terminal.png"
               alt="Kernels hero image"
             />
