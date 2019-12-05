@@ -40,7 +40,7 @@ const VIEWS: Array<ViewsType> = [
   { name: "Julia", path: LanguageSlugs.Julia },
   { name: "C++", path: LanguageSlugs.CPlusPlus },
   { name: "Scala", path: LanguageSlugs.Scala },
-  { name: ".Net", path: LanguageSlugs.Dotnet }
+  { name: ".NET", path: LanguageSlugs.Dotnet }
 ];
 
 const RenderContent = ({ view }) => {

@@ -13,19 +13,19 @@ export default () => (
   <ContentSection>
     <ContentSection.Pane full>
       <Kernel
-        displayName=".Net Interactive"
+        displayName=".NET Interactive"
         repository="https://github.com/dotnet/try"
         installURL="https://github.com/dotnet/try/blob/master/NotebooksLocalExperience.md"
         logo="/static/dotnet-icon.png"
       >
         <h3>Installation</h3>
         <p>
-        Install <a href="https://dotnet.microsoft.com/download">.Net Core sdk</a> to
+        Install <a href="https://dotnet.microsoft.com/download">.NET Core sdk</a> to
               your system.
         </p>
         <div className="columns">
           <div className="column">
-            <h4>With .Net Core sdk 3.0 installed, from the terminal install the global tool</h4>
+            <h4>With .NET Core sdk 3.0 installed, from the terminal install the global tool</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
             </SyntaxHighlighter>
