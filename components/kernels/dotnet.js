@@ -33,7 +33,7 @@ export default () => (
             <SyntaxHighlighter language="zsh" style={github}>
               {installKernelSpecs}
             </SyntaxHighlighter>
-            C# and F# langauges are now available
+            The .NET kernel supports both C# and F#
           </div>
         </div>
       </Kernel>
