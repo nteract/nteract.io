@@ -29,7 +29,7 @@ export default () => (
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
             </SyntaxHighlighter>
-            <h4>Now from a the terminal install the kernel specs</h4>
+            <h4>Now from the terminal install the kernel specs</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {installKernelSpecs}
             </SyntaxHighlighter>
