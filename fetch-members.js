@@ -16,7 +16,7 @@ async function fetchMembers(organisation) {
   });
 
   const query = `{
-    organization(login: ${organisation}) {
+    organization(login: "${organisation}") {
       membersWithRole(first: 100) {
         totalCount
           nodes {
