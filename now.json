@@ -1,8 +1,10 @@
 {
   "name": "nteract-site",
   "alias": "nteract.io",
-  "env": {
-    "GH_TOKEN": "@gh-token-public"
+  "build": {
+    "env": {
+      "GH_TOKEN": "@gh-token-public"
+    }
   },
   "version": 2,
   "routes": [
