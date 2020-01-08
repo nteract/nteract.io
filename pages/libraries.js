@@ -24,7 +24,9 @@ class Atom extends React.Component<OSProps> {
       <>
         <Hero color="rgb(36, 77, 100)">
           <Hero.Pane padding="0 20px 0 0">
-            <Hero.Title>Enhancing end-to-end notebook workflows</Hero.Title>
+            <Hero.Title>
+              Enhancing notebook workflows from end-to-end
+            </Hero.Title>
 
             <Type.p>
               The nteract core SDK and application suite provide an interface
@@ -61,7 +63,7 @@ class Atom extends React.Component<OSProps> {
             <ContentSection.Pane>
               <ContentSection.Title>scrapbook</ContentSection.Title>
               <Type.p>
-                Scrapbook is a python library which adds the ability to save
+                Scrapbook is a Python library which adds the ability to save
                 data and image results from inside your notebook. This enables
                 the ability to later fetch all of the resulting 'scraps' across
                 collections of notebook executions in a programatic fashion.
@@ -71,13 +73,13 @@ class Atom extends React.Component<OSProps> {
             </ContentSection.Pane>
 
             <ContentSection.Pane visual>
-              <Video mp4="/static/double-click-notebook.mp4" />
+              <Video webm="/static/scrapbook_basics.webm" />
             </ContentSection.Pane>
           </ContentSection>
 
           <ContentSection>
+            <ContentSection.Title>bookstore</ContentSection.Title>
             <ContentSection.Pane>
-              <ContentSection.Title>bookstore</ContentSection.Title>
               <Type.p>
                 Ever need to find out what your notebook looked like 5 days ago?
                 Bookstore provides a server extension for jupyter to enable
@@ -86,10 +88,6 @@ class Atom extends React.Component<OSProps> {
                 specific notebook versions as a mechanism for sharing stable
                 notebook versions with colleagues.
               </Type.p>
-            </ContentSection.Pane>
-
-            <ContentSection.Pane visual>
-              <Video mp4="/static/double-click-notebook.mp4" />
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>

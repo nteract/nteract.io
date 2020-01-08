@@ -4,7 +4,7 @@ import { Hero } from "@components/hero";
 import { colors } from "@common/colors";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
-import { Button, Buttons } from "@components/button";
+import { Button } from "@components/button";
 import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
 import { DownloadFeaturette } from "@components/download-buttons";
@@ -65,10 +65,11 @@ class Atom extends React.Component<OSProps> {
             <ContentSection.Pane>
               <ContentSection.Title>Hydrogen for Atom</ContentSection.Title>
               <Type.p>
-                Hydrogen is an extension for the Atom code editor that allows
-                you to run your code with an interactive REPL session with your
-                language of choice. Get started with Hydrogen by installing it
-                in your Atom editor.
+                <a href="https://nteract.gitbooks.io/hydrogen/">Hydrogen</a> is
+                an extension for the Atom code editor that allows you to run
+                your code with an interactive REPL session with your language of
+                choice. Get started with Hydrogen by installing it in your Atom
+                editor.
                 <BashPre
                   bgColor={colors.darkerGrayColor}
                   color={colors.lightCodeColor}
@@ -86,9 +87,10 @@ class Atom extends React.Component<OSProps> {
               <ContentSection.Title>commuter</ContentSection.Title>
               <Type.p>
                 Have a lot of notebooks that you'd quickly like to preview and
-                share with your team or the world. Deploy commuter, a simple
-                application for listing, viewing, and sharing Jupyter notebooks
-                stored in Amazon S3, Google Cloud Storage, and more.
+                share with your team or the world. Deploy{" "}
+                <a href="https://github.com/nteract/commuter">commuter</a>, a
+                simple application for listing, viewing, and sharing Jupyter
+                notebooks stored in Amazon S3, Google Cloud Storage, and more.
               </Type.p>
             </ContentSection.Pane>
 
@@ -102,10 +104,12 @@ class Atom extends React.Component<OSProps> {
               <ContentSection.Title>nteract play</ContentSection.Title>
               <Type.p>
                 nteract is not just about notebooks! Interactive experiences of
-                all sorts are powerful for users. nteract play is a web app that
-                allows you to execute code against a Binder instance. nteract
-                play is built using the nteract core SDK and is a great showcase
-                for how you can use the SDK to build unique nteract-based apps.
+                all sorts are powerful for users.{" "}
+                <a href="https://play.nteract.io">nteract play</a> is a web app
+                that allows you to execute code against a Binder instance.
+                nteract play is built using the nteract core SDK and is a great
+                showcase for how you can use the SDK to build unique
+                nteract-based apps.
               </Type.p>
             </ContentSection.Pane>
             <ContentSection.Pane>
@@ -114,10 +118,13 @@ class Atom extends React.Component<OSProps> {
               </ContentSection.Title>
               <Type.p>
                 Coming to nteract from Jupyter Notebook or JupyterLab? Try out
-                the nteract Jupyter extension! It runs in your Jupyter or
-                JupyterHub server alongisde your other notebook UIs and allows
-                you to work with notebooks in an nteract-style UI in a familiar
-                environment.
+                the{" "}
+                <a href="https://github.com/nteract/nteract/tree/master/applications/jupyter-extension">
+                  nteract Jupyter extension
+                </a>
+                ! It runs in your Jupyter or JupyterHub server alongisde your
+                other notebook UIs and allows you to work with notebooks in an
+                nteract-style UI in a familiar environment.
               </Type.p>
             </ContentSection.Pane>
           </ContentSection>
