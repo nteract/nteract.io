@@ -80,42 +80,6 @@ class Atom extends React.Component<OSProps> {
 
           <ContentSection>
             <ContentSection.Pane>
-              <ContentSection.Title>nteract play</ContentSection.Title>
-              <Type.p>
-                nteract is not just about notebooks! Interactive experiences of
-                all sorts are powerful for users. nteract play is a web app that
-                allows you to execute code against a Binder instance. nteract
-                play is built using the nteract core SDK and is a great showcase
-                for how you can use the SDK to build unique nteract-based apps.
-              </Type.p>
-            </ContentSection.Pane>
-
-            <ContentSection.Pane visual>
-              <Video mp4="/static/double-click-notebook.mp4" />
-            </ContentSection.Pane>
-          </ContentSection>
-
-          <ContentSection>
-            <ContentSection.Pane>
-              <ContentSection.Title>
-                The nteract Jupyter Extension
-              </ContentSection.Title>
-              <Type.p>
-                Coming to nteract from Jupyter Notebook or JupyterLab? Try out
-                the nteract Jupyter extension! It runs in your Jupyter or
-                JupyterHub server alongisde your other notebook UIs and allows
-                you to work with notebooks in an nteract-style UI in a familiar
-                environment.
-              </Type.p>
-            </ContentSection.Pane>
-
-            <ContentSection.Pane visual>
-              <Video mp4="/static/double-click-notebook.mp4" />
-            </ContentSection.Pane>
-          </ContentSection>
-
-          <ContentSection>
-            <ContentSection.Pane>
               <ContentSection.Title>commuter</ContentSection.Title>
               <Type.p>
                 Have a lot of notebooks that you'd quickly like to preview and
@@ -127,6 +91,31 @@ class Atom extends React.Component<OSProps> {
 
             <ContentSection.Pane visual>
               <img src="https://cloud.githubusercontent.com/assets/836375/23089382/e330effa-f53c-11e6-85d0-7561ccdbe163.gif" />
+            </ContentSection.Pane>
+          </ContentSection>
+
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>nteract play</ContentSection.Title>
+              <Type.p>
+                nteract is not just about notebooks! Interactive experiences of
+                all sorts are powerful for users. nteract play is a web app that
+                allows you to execute code against a Binder instance. nteract
+                play is built using the nteract core SDK and is a great showcase
+                for how you can use the SDK to build unique nteract-based apps.
+              </Type.p>
+            </ContentSection.Pane>
+            <ContentSection.Pane>
+              <ContentSection.Title>
+                The nteract Jupyter Extension
+              </ContentSection.Title>
+              <Type.p>
+                Coming to nteract from Jupyter Notebook or JupyterLab? Try out
+                the nteract Jupyter extension! It runs in your Jupyter or
+                JupyterHub server alongisde your other notebook UIs and allows
+                you to work with notebooks in an nteract-style UI in a familiar
+                environment.
+              </Type.p>
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>

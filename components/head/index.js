@@ -106,7 +106,7 @@ export default ({
 
     <meta
       name="description"
-      content="nteract is a desktop application that allows you to develop rich documents that contain prose, executable code, and images."
+      content="nteract is an open source organization committed to building the future of interactive computing."
     />
     <meta name="robots" content="index,follow,noodp" />
     <meta name="googlebot" content="index,follow" />

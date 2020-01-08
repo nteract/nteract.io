@@ -6,8 +6,6 @@ import { ContentSection, ContentSections } from "@components/content-section";
 import { Button, Buttons } from "@components/button";
 import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
-import { DownloadFeaturette } from "@components/download-buttons";
-import { CutoffImage } from "@components/cutoff-image";
 
 import type { Context } from "next";
 
@@ -32,14 +30,29 @@ class Atom extends React.Component<OSProps> {
               packages that allow you to build your own interactive notebook
               applications. The nteract team uses the core SDK to build
               nteract's suite of applications. The same SDK is available for you
-              to build your own interactive notebook apps. Read the core SDK
-              docs to get started!
+              to build your own interactive notebook apps.
             </Type.p>
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0"></Hero.Pane>
         </Hero>
         <ContentSections>
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>
+                Get started with the core SDK
+              </ContentSection.Title>
+              <Type.p>
+                To get started building nteract-based apps with our SDK, please
+                visit <a href="https://docs.nteract.io/#/">our documentation</a>
+                .
+              </Type.p>
+            </ContentSection.Pane>
+
+            <ContentSection.Pane visual>
+              <Video mp4="https://github.com/nteract/logos/raw/master/nteract_logo_cube_book/exports/animations/nteract_logo_wide_idle_animation.mp4" />
+            </ContentSection.Pane>
+          </ContentSection>
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
@@ -64,35 +77,6 @@ class Atom extends React.Component<OSProps> {
                 and extensions of these technologies in your nteract-based
                 applications.
               </Type.p>
-            </ContentSection.Pane>
-            <ContentSection.Pane>
-              <ContentSection.Title>
-                Building notebooks for all
-              </ContentSection.Title>
-              <Type.p>
-                The nteract core SDK is provided as part of our machine to
-                provide notebook experiences for everyone. With this SDK, you
-                can quickly integrate and iterate on a notebook UI for your
-                application.
-              </Type.p>
-            </ContentSection.Pane>
-          </ContentSection>
-
-          <ContentSection>
-            <ContentSection.Pane>
-              <ContentSection.Title>
-                Get started with the core SDK
-              </ContentSection.Title>
-              <Type.p>
-                Hydrogen is an extension for the Atom code editor that allows
-                you to run your code with an interactive REPL session with your
-                language of choice. Get started with Hydrogen by installing it
-                in your Atom editor.
-              </Type.p>
-            </ContentSection.Pane>
-
-            <ContentSection.Pane visual>
-              <img src="https://cloud.githubusercontent.com/assets/13285808/20360886/7e03e524-ac03-11e6-9176-37677f226619.gif" />
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>

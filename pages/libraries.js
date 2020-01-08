@@ -32,11 +32,6 @@ class Atom extends React.Component<OSProps> {
               execute notebooks headlessly, generate reports from notebooks for
               members of your organization, and more.
             </Type.p>
-            {/* Call to Action */}
-            <DownloadFeaturette
-              platform={this.props.platform}
-              assetUrl={this.props.assetUrl}
-            />
           </Hero.Pane>
 
           <Hero.Pane visual padding="40px 0 0 0"></Hero.Pane>
