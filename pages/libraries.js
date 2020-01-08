@@ -47,10 +47,14 @@ class Atom extends React.Component<OSProps> {
               <ContentSection.Title>papermill</ContentSection.Title>
               <Type.p>
                 Parameterizing and executing Jupyter Notebooks is made simple in
-                a CLI and python client with papermill. It executes your
-                notebooks as inputs and saves the results to any of a number of
-                different IO locations (S3, GCS, AzureBlob, etc) allowing for
-                easy scheduled and programatic executions of notebook templates.
+                a CLI and Python client with{" "}
+                <a href="https://github.com/nteract/papermill" target="_blank">
+                  papermill
+                </a>
+                . It executes your notebooks as inputs and saves the results to
+                any of a number of different IO locations (S3, GCS, AzureBlob,
+                etc) allowing for easy scheduled and programatic executions of
+                notebook templates.
               </Type.p>
             </ContentSection.Pane>
 
@@ -63,12 +67,15 @@ class Atom extends React.Component<OSProps> {
             <ContentSection.Pane>
               <ContentSection.Title>scrapbook</ContentSection.Title>
               <Type.p>
-                Scrapbook is a Python library which adds the ability to save
-                data and image results from inside your notebook. This enables
-                the ability to later fetch all of the resulting 'scraps' across
+                <a href="https://github.com/nteract/scrapbook" target="_blank">
+                  Scrapbook
+                </a>{" "}
+                is a Python library which adds the ability to save data and
+                image results from inside your notebook. This enables the
+                ability to later fetch all of the resulting 'scraps' across
                 collections of notebook executions in a programatic fashion.
                 Essentially the library adds a return value from executing a
-                python notebook.
+                Python notebook.
               </Type.p>
             </ContentSection.Pane>
 
@@ -82,11 +89,14 @@ class Atom extends React.Component<OSProps> {
             <ContentSection.Pane>
               <Type.p>
                 Ever need to find out what your notebook looked like 5 days ago?
-                Bookstore provides a server extension for jupyter to enable
-                saving notebook versions over time as checkpoints are made
-                during development. It also grants the ability to publish
-                specific notebook versions as a mechanism for sharing stable
-                notebook versions with colleagues.
+                <a href="https://github.com/nteract/bookstore" target="_blank">
+                  Bookstore
+                </a>{" "}
+                provides a server extension for Jupyter to enable saving
+                notebook versions over time as checkpoints are made during
+                authoring. It also grants the ability to publish specific
+                notebook versions as a mechanism for sharing stable notebook
+                versions with colleagues.
               </Type.p>
             </ContentSection.Pane>
           </ContentSection>

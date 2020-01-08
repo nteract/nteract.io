@@ -48,11 +48,17 @@ class Atom extends React.Component<OSProps> {
                 The nteract Desktop App
               </ContentSection.Title>
               <Type.p>
-                The nteract desktop application allows you to quickly view,
-                edit, and publish notebooks from your desktop. It's
-                cross-platform, so you can use it on your favorite operating
-                system. The desktop application is a great tool for first-time
-                and veteran notebook users, alike.
+                The{" "}
+                <a
+                  href="https://github.com/nteract/nteract/releases/latest"
+                  target="_blank"
+                >
+                  nteract desktop applicatio
+                </a>{" "}
+                allows you to quickly view, edit, and publish notebooks from
+                your desktop. It's cross-platform, so you can use it on your
+                favorite operating system. The desktop application is a great
+                tool for first-time and veteran notebook users, alike.
               </Type.p>
             </ContentSection.Pane>
 
@@ -65,8 +71,10 @@ class Atom extends React.Component<OSProps> {
             <ContentSection.Pane>
               <ContentSection.Title>Hydrogen for Atom</ContentSection.Title>
               <Type.p>
-                <a href="https://nteract.gitbooks.io/hydrogen/">Hydrogen</a> is
-                an extension for the Atom code editor that allows you to run
+                <a href="https://nteract.gitbooks.io/hydrogen/" target="_blank">
+                  Hydrogen
+                </a>{" "}
+                is an extension for the Atom code editor that allows you to run
                 your code with an interactive REPL session with your language of
                 choice. Get started with Hydrogen by installing it in your Atom
                 editor.
@@ -88,8 +96,10 @@ class Atom extends React.Component<OSProps> {
               <Type.p>
                 Have a lot of notebooks that you'd quickly like to preview and
                 share with your team or the world. Deploy{" "}
-                <a href="https://github.com/nteract/commuter">commuter</a>, a
-                simple application for listing, viewing, and sharing Jupyter
+                <a href="https://github.com/nteract/commuter" target="_blank">
+                  commuter
+                </a>
+                , a simple application for listing, viewing, and sharing Jupyter
                 notebooks stored in Amazon S3, Google Cloud Storage, and more.
               </Type.p>
             </ContentSection.Pane>
@@ -105,10 +115,12 @@ class Atom extends React.Component<OSProps> {
               <Type.p>
                 nteract is not just about notebooks! Interactive experiences of
                 all sorts are powerful for users.{" "}
-                <a href="https://play.nteract.io">nteract play</a> is a web app
-                that allows you to execute code against a Binder instance.
-                nteract play is built using the nteract core SDK and is a great
-                showcase for how you can use the SDK to build unique
+                <a href="https://play.nteract.io" target="_blank">
+                  nteract play
+                </a>{" "}
+                is a web app that allows you to execute code against a Binder
+                instance. nteract play is built using the nteract core SDK and
+                is a great showcase for how you can use the SDK to build unique
                 nteract-based apps.
               </Type.p>
             </ContentSection.Pane>
@@ -119,7 +131,10 @@ class Atom extends React.Component<OSProps> {
               <Type.p>
                 Coming to nteract from Jupyter Notebook or JupyterLab? Try out
                 the{" "}
-                <a href="https://github.com/nteract/nteract/tree/master/applications/jupyter-extension">
+                <a
+                  href="https://github.com/nteract/nteract/tree/master/applications/jupyter-extension"
+                  target="_blank"
+                >
                   nteract Jupyter extension
                 </a>
                 ! It runs in your Jupyter or JupyterHub server alongisde your

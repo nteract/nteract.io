@@ -47,7 +47,10 @@ class Atom extends React.Component<OSProps> {
               </ContentSection.Title>
               <Type.p>
                 To get started building nteract-based apps with our SDK, please
-                visit <a href="https://docs.nteract.io/#/">our documentation</a>
+                visit{" "}
+                <a href="https://docs.nteract.io/" target="_blank">
+                  our documentation
+                </a>
                 .
               </Type.p>
             </ContentSection.Pane>

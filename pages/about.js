@@ -51,6 +51,10 @@ const Mission = () => (
           </li>
         </ul>
       </Type.p>
+      <Type.p>
+        Software is not possible without people. Thank you to all the
+        contributors who have helped build the nteract open source ecosystem.
+      </Type.p>
     </ContentSection.Pane>
   </ContentSection>
 );
