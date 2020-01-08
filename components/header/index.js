@@ -49,6 +49,11 @@ const rightNav = {
       prefetch: true
     },
     {
+      label: "Kernels",
+      href: "/kernels",
+      prefetch: true
+    },
+    {
       label: "Donate",
       href: "https://numfocus.org/donate-to-nteract",
       prefetch: false
