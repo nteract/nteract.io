@@ -7,21 +7,9 @@ import { ContentSections, ContentSection } from "@components/content-section";
 import { Button, Buttons } from "@components/button";
 import { DownloadFeaturette } from "@components/download-buttons";
 import { detectPlatform, getDownloadUrl } from "@lib";
+import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
-
-const DemoVideo = () => (
-  <video
-    poster="/static/nteract_app_demo@2x.png"
-    preload="auto"
-    autoPlay
-    muted
-    loop="loop"
-  >
-    <source src="/static/nteract_app_demo@2x.mp4" type="video/mp4" />
-    <source src="/static/nteract_app_demo@2x.webm" type="video/webm" />
-  </video>
-);
 
 class Home extends React.Component<OSProps, null> {
   static async getInitialProps(ctx: Context): Promise<OSProps> {

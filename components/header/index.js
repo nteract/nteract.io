@@ -47,6 +47,11 @@ const rightNav = {
       label: "Libraries",
       href: "/libraries",
       prefetch: true
+    },
+    {
+      label: "Donate",
+      href: "https://numfocus.org/donate-to-nteract",
+      prefetch: false
     }
   ]
 };

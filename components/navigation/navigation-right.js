@@ -13,5 +13,8 @@ export default () => (
     <Link as="/libraries" href="/libraries" prefetch>
       <a className="nav-item">Libraries</a>
     </Link>
+    <a className="nav-item" href="https://numfocus.org/donate-to-nteract">
+      Donate
+    </a>
   </div>
 );

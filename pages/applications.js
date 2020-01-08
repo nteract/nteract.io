@@ -9,6 +9,7 @@ import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
 import { DownloadFeaturette } from "@components/download-buttons";
 import { CutoffImage } from "@components/cutoff-image";
+import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
 
@@ -36,7 +37,9 @@ class Atom extends React.Component<OSProps> {
             </Type.p>
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0"></Hero.Pane>
+          <Hero.Pane visual padding="40px 0 0 0">
+            <DemoVideo />
+          </Hero.Pane>
         </Hero>
         <ContentSections>
           <ContentSection>

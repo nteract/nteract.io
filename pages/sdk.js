@@ -6,6 +6,7 @@ import { ContentSection, ContentSections } from "@components/content-section";
 import { Button, Buttons } from "@components/button";
 import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
+import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
 
@@ -34,7 +35,9 @@ class Atom extends React.Component<OSProps> {
             </Type.p>
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0"></Hero.Pane>
+          <Hero.Pane visual padding="40px 0 0 0">
+            <DemoVideo />
+          </Hero.Pane>
         </Hero>
         <ContentSections>
           <ContentSection>
