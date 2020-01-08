@@ -34,23 +34,19 @@ const leftNav = {
 const rightNav = {
   items: [
     {
-      label: "Desktop",
-      href: "/desktop",
+      label: "Core SDK",
+      href: "/sdk",
       prefetch: true
     },
     {
-      label: "Atom",
-      href: "/atom",
+      label: "Applications",
+      href: "/applications",
       prefetch: true
     },
     {
-      label: "Kernels",
-      href: "/kernels",
+      label: "Libraries",
+      href: "/libraries",
       prefetch: true
-    },
-    {
-      label: "Components",
-      href: "https://components.nteract.io/"
     }
   ]
 };

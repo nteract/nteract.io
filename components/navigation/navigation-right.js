@@ -4,14 +4,14 @@ import Link from "next/link";
 
 export default () => (
   <div className="nav buttons">
-    <Link as="/desktop" href="/desktop" prefetch>
-      <a className="nav-item">Desktop</a>
+    <Link as="/sdk" href="/sdk" prefetch>
+      <a className="nav-item">core SDK</a>
     </Link>
-    <Link as="/atom" href="/atom" prefetch>
-      <a className="nav-item">Atom</a>
+    <Link as="/applications" href="/applications" prefetch>
+      <a className="nav-item">Applications</a>
     </Link>
-    <Link as="/kernels" href="/kernels" prefetch>
-      <a className="nav-item">Kernels</a>
+    <Link as="/libraries" href="/libraries" prefetch>
+      <a className="nav-item">Libraries</a>
     </Link>
   </div>
 );

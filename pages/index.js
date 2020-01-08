@@ -36,18 +36,21 @@ class Home extends React.Component<OSProps, null> {
         <Hero>
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
-              <>nteract and create with data, words, and visuals.</>
+              <>nteract: building the future of interactive computing.</>
             </Hero.Title>
 
             <Type.p>
-              Fire up this desktop application and develop engaging documents
-              with prose, executable code in a favorite language, pictures, and
-              more.
+              nteract is an open-source organization committed to creating
+              fantastic interactive computing experiences that allow people to
+              collaborate with ease.
             </Type.p>
             <Type.p>
-              If you are a data scientist, researcher, journalist, educator,
-              student, or developer, use nteract to write code-driven,
-              interactive stories.
+              We build SDKs, applications, and libraries that help you and your
+              team make the most of interactive notebooks and REPLs.
+            </Type.p>
+            <Type.p>
+              To dive into the nteract ecosystem, start by trying out our
+              desktop application for interactive notebooks.
             </Type.p>
 
             {/* Call to Action */}
@@ -65,13 +68,14 @@ class Home extends React.Component<OSProps, null> {
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
-                Interactivity Where You Need It Most
+                Enhance your productivity with nteract's application suite
               </ContentSection.Title>
               <Type.p>
-                nteract is a desktop-based computing environment, which means
-                that the application can take advantage of all the goodies that
-                your operating system provides, like file search and click to
-                open. nteract and the desktop belong together.
+                The nteract ecosystem provides a wide variety of notebook-based
+                applications for your scenario. Whether you want to edit
+                notebooks in a desktop app or in your favorite editor, nteract
+                provides you the tools you need to leverage the full power of
+                interactive notebooks.
               </Type.p>
             </ContentSection.Pane>
 
@@ -85,13 +89,15 @@ class Home extends React.Component<OSProps, null> {
 
           <ContentSection>
             <ContentSection.Pane>
-              <ContentSection.Title>Composability for All</ContentSection.Title>
+              <ContentSection.Title>
+                Build your own interactive applications
+              </ContentSection.Title>
               <Type.p>
-                nteract is built on top of a rich ecosystem of packages that
-                allow developers to write software built on top of the notebook
-                document format and the code execution protocol. You can visit
-                our GitHub organization to find out which packages you can start
-                to develop with.
+                Interactive notebooks and REPLs are a powerful way for people to
+                interact with machines. nteract provides a client-side SDK for
+                integrating notebook and REPL UIs into your software. The same
+                SDK used to build the nteract suite of applications is available
+                to you!
               </Type.p>
             </ContentSection.Pane>
 
@@ -105,12 +111,15 @@ class Home extends React.Component<OSProps, null> {
 
           <ContentSection>
             <ContentSection.Pane>
-              <ContentSection.Title>Open to All</ContentSection.Title>
+              <ContentSection.Title>
+                Create end-to-end workflows
+              </ContentSection.Title>
               <Type.p>
-                nteract is completely open-source and licensed under the BSD
-                3-Clause License. We love getting pull requests and issues from
-                our users, if you're interested in opening one check out our
-                contributor documentation.
+                There's more to notebooks that writing them! The nteract
+                ecossytem provides a set of libraries for headlessly executing
+                notebooks, managing organizatonal notebooks, using notebooks for
+                reporting and more. Use these tools to build an end-to-end
+                notebook experience for you and your team.
               </Type.p>
             </ContentSection.Pane>
             <ContentSection.Pane visual>
