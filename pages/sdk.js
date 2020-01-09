@@ -10,17 +10,11 @@ import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
 
-class Atom extends React.Component<OSProps> {
-  static async getInitialProps(ctx: Context): Promise<OSProps> {
-    const platform = detectPlatform(ctx);
-    const assetUrl = await getDownloadUrl(platform);
-    return { platform, assetUrl };
-  }
-
+class SDK extends React.Component<OSProps> {
   render() {
     return (
       <>
-        <Hero color="rgb(36, 77, 100)">
+        <Hero color="#232323">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
               Bringing the power of notebooks to every application
@@ -91,4 +85,4 @@ class Atom extends React.Component<OSProps> {
   }
 }
 
-export default Atom;
+export default SDK;

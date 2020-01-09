@@ -3,26 +3,17 @@ import * as React from "react";
 import { Hero } from "@components/hero";
 import { Type } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
-import { Button, Buttons } from "@components/button";
 import { Video } from "@components/video";
-import { detectPlatform, getDownloadUrl } from "@lib";
-import { DownloadFeaturette } from "@components/download-buttons";
-import { CutoffImage } from "@components/cutoff-image";
+
 import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
 
-class Atom extends React.Component<OSProps> {
-  static async getInitialProps(ctx: Context): Promise<OSProps> {
-    const platform = detectPlatform(ctx);
-    const assetUrl = await getDownloadUrl(platform);
-    return { platform, assetUrl };
-  }
-
+class Libraries extends React.Component<OSProps> {
   render() {
     return (
       <>
-        <Hero color="rgb(36, 77, 100)">
+        <Hero color="#8e44ad">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
               Enhancing notebook workflows from end-to-end
@@ -103,4 +94,4 @@ class Atom extends React.Component<OSProps> {
   }
 }
 
-export default Atom;
+export default Libraries;

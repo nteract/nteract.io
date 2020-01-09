@@ -4,22 +4,11 @@ import { Hero } from "@components/hero";
 import { colors } from "@common/colors";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
-import { Button } from "@components/button";
-import { Video } from "@components/video";
-import { detectPlatform, getDownloadUrl } from "@lib";
-import { DownloadFeaturette } from "@components/download-buttons";
-import { CutoffImage } from "@components/cutoff-image";
 import DemoVideo from "@components/demo-video";
 
 import type { Context } from "next";
 
-class Atom extends React.Component<OSProps> {
-  static async getInitialProps(ctx: Context): Promise<OSProps> {
-    const platform = detectPlatform(ctx);
-    const assetUrl = await getDownloadUrl(platform);
-    return { platform, assetUrl };
-  }
-
+class Applications extends React.Component<OSProps> {
   render() {
     return (
       <>
@@ -150,4 +139,4 @@ class Atom extends React.Component<OSProps> {
   }
 }
 
-export default Atom;
+export default Applications;
