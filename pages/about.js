@@ -31,16 +31,29 @@ const Mission = () => (
     <ContentSection.Pane full>
       <Type.h3>Mission</Type.h3>
       <Type.p>
-        Create fantastic interactive computing experiences that allow people to
-        collaborate with ease.
+        The nteract open source organization is commited to building the future
+        of interactive computing. We are committd to:
       </Type.p>
       <Type.p>
-        Emphasize simplicity and composability as core design principles to
-        provide users ideal building blocks for their unique data applications.
+        <ul>
+          <li>
+            Creating fantastic interactive computing experiences that allow
+            people to collaborate with ease.
+          </li>
+          <li>
+            Emphasizing simplicity and composability as core design principles
+            to provide users ideal building blocks for their unique data
+            applications.
+          </li>
+          <li>
+            Valuing our contributors and users and cooperating to produce
+            solutions that delight others.
+          </li>
+        </ul>
       </Type.p>
       <Type.p>
-        Value our contributors and users and cooperate to produce solutions that
-        delight others.
+        Software is not possible without people. Thank you to all the
+        contributors who have helped build the nteract open source ecosystem.
       </Type.p>
     </ContentSection.Pane>
   </ContentSection>
@@ -97,9 +110,8 @@ export default class AboutPage extends React.Component<OSProps, void> {
         <PageHeader themeColor={themeColor}>
           <PageHeader.Left>
             <PageHeader.Title>
-              <>About nteract</>
+              <>About the nteract open source organization</>
             </PageHeader.Title>
-            <p>{`We're people, not software!`}</p>
           </PageHeader.Left>
         </PageHeader>
         <Mission />
