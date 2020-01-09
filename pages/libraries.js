@@ -52,9 +52,8 @@ class Atom extends React.Component<OSProps> {
                   papermill
                 </a>
                 . It executes your notebooks as inputs and saves the results to
-                any of a number of different IO locations (S3, GCS, AzureBlob,
-                etc) allowing for easy scheduled and programatic executions of
-                notebook templates.
+                Amazon S3, Azure Storage, and more allowing for easy scheduled
+                and programatic executions of notebook templates.
               </Type.p>
             </ContentSection.Pane>
 
@@ -74,8 +73,6 @@ class Atom extends React.Component<OSProps> {
                 image results from inside your notebook. This enables the
                 ability to later fetch all of the resulting 'scraps' across
                 collections of notebook executions in a programatic fashion.
-                Essentially the library adds a return value from executing a
-                Python notebook.
               </Type.p>
             </ContentSection.Pane>
 

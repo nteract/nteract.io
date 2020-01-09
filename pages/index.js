@@ -56,7 +56,7 @@ class Home extends React.Component<OSProps, null> {
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
-                Enhance your productivity with nteract's application suite
+                Enhance your productivity with nteract's app suite
               </ContentSection.Title>
               <Type.p>
                 The nteract ecosystem provides a wide variety of notebook-based
@@ -78,7 +78,7 @@ class Home extends React.Component<OSProps, null> {
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
-                Build your own interactive applications
+                Build your own interactive notebook apps
               </ContentSection.Title>
               <Type.p>
                 Interactive notebooks and REPLs are a powerful way for people to
@@ -100,12 +100,12 @@ class Home extends React.Component<OSProps, null> {
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
-                Create end-to-end workflows
+                Create end-to-end workflows with notebooks
               </ContentSection.Title>
               <Type.p>
                 There's more to notebooks that writing them! The nteract
-                ecossytem provides a set of libraries for headlessly executing
-                notebooks, managing organizatonal notebooks, using notebooks for
+                ecosytem provides a set of libraries for headlessly executing
+                notebooks, managing your team's notebooks, using notebooks for
                 reporting and more. Use these tools to build an end-to-end
                 notebook experience for you and your team.
               </Type.p>

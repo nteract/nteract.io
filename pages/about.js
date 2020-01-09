@@ -46,7 +46,7 @@ const Mission = () => (
             applications.
           </li>
           <li>
-            Valuing our contributors and users and cooperate to produce
+            Valuing our contributors and users and cooperating to produce
             solutions that delight others.
           </li>
         </ul>

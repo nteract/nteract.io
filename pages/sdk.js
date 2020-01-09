@@ -74,14 +74,14 @@ class Atom extends React.Component<OSProps> {
             </ContentSection.Pane>
             <ContentSection.Pane>
               <ContentSection.Title>
-                Built on popular technologies
+                Built on dependable technologies
               </ContentSection.Title>
               <Type.p>
-                The nteract core SDK is built on top of popular technologies
-                like React, Redux, and RxJS. In addition to the functionality
-                provided by the nteract core SDK, you can leverage the resources
-                and extensions of these technologies in your nteract-based
-                applications.
+                The nteract core SDK is built on top of popular and dependable
+                technologies like React, Redux, and RxJS. In addition to the
+                functionality provided by the nteract core SDK, you can leverage
+                the resources and extensions of these technologies in your
+                nteract-based applications.
               </Type.p>
             </ContentSection.Pane>
           </ContentSection>

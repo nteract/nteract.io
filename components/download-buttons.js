@@ -11,7 +11,7 @@ export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
       <Buttons padding="20px 0 0 0">
         <Button
           primary
-          label={`Download for ${platform} (beta)`}
+          label={`Try the nteract desktop app for ${platform}`}
           href={assetUrl}
           icon="/static/icon_nteract_download.svg"
         />

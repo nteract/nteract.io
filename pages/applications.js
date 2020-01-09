@@ -53,7 +53,7 @@ class Atom extends React.Component<OSProps> {
                   href="https://github.com/nteract/nteract/releases/latest"
                   target="_blank"
                 >
-                  nteract desktop applicatio
+                  nteract desktop application
                 </a>{" "}
                 allows you to quickly view, edit, and publish notebooks from
                 your desktop. It's cross-platform, so you can use it on your
@@ -118,7 +118,8 @@ class Atom extends React.Component<OSProps> {
                 <a href="https://play.nteract.io" target="_blank">
                   nteract play
                 </a>{" "}
-                is a web app that allows you to execute code against a Binder
+                is a web app that allows you to execute code against a{" "}
+                <a href="https://mybinder.org/">Binder</a>
                 instance. nteract play is built using the nteract core SDK and
                 is a great showcase for how you can use the SDK to build unique
                 nteract-based apps.
