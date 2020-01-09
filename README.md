@@ -74,5 +74,5 @@ $ now
 If you need to alias the site to make it live, verify that it's working then run:
 
 ```
-now alias <addressFromAbove> https://nteract.io
+now --prod
 ```
