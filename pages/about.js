@@ -31,8 +31,8 @@ const Mission = () => (
     <ContentSection.Pane full>
       <Type.h3>Mission</Type.h3>
       <Type.p>
-        The nteract open source organization is commited to building the future
-        of interactive computing. We are committd to:
+        The nteract open source organization is committed to building the future
+        of interactive computing. We are committed to:
       </Type.p>
       <Type.p>
         <ul>
