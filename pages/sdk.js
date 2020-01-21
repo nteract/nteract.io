@@ -48,7 +48,6 @@ class SDK extends React.Component<OSProps> {
                 .
               </Type.p>
             </ContentSection.Pane>
-
             <ContentSection.Pane visual>
               <Video mp4="https://github.com/nteract/logos/raw/master/nteract_logo_cube_book/exports/animations/nteract_logo_wide_idle_animation.mp4" />
             </ContentSection.Pane>
@@ -79,6 +78,39 @@ class SDK extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
           </ContentSection>
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>
+                Data Explorer
+              </ContentSection.Title>
+              <Type.p>
+                A GUI-driven way to visualize your dataframes (and dataframe-like data) using a variety of charting methods that can also be deployed as a stand-alone module. See the {" "}
+                <a href="https://data-explorer.nteract.io/" target="_blank">
+                  documentation here
+                </a>
+                .
+              </Type.p>
+            </ContentSection.Pane>
+            <ContentSection.Pane visual>
+              <img src="https://user-images.githubusercontent.com/1863892/55675008-07632e80-5871-11e9-9dac-0a71450faf7b.gif" />            </ContentSection.Pane>
+          </ContentSection>
+          <ContentSection>
+            <ContentSection.Pane>
+              <ContentSection.Title>
+                Semiotic
+              </ContentSection.Title>
+              <Type.p>
+                A React-based data visualization library with rich annotations, network visualization, summary charts, interactivity and more.
+                <a href="https://semiotic.nteract.io/" target="_blank">
+                  Check out the interactive documentation.
+                </a> (It also has bar charts and lines charts)
+              </Type.p>
+            </ContentSection.Pane>
+            <ContentSection.Pane visual>
+              <img src="https://github.com/nteract/semiotic/raw/master/semiotic_logo_horizontal.png" />
+            </ContentSection.Pane>
+          </ContentSection>
+
         </ContentSections>
       </>
     );
