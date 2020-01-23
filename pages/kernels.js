@@ -7,6 +7,7 @@ import Cplusplus from "@components/kernels/c++";
 import Julia from "@components/kernels/julia";
 import Node from "@components/kernels/node";
 import Scala from "@components/kernels/scala";
+import Dotnet from "@components/kernels/dotnet";
 import { Hero } from "@components/hero";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
@@ -18,7 +19,7 @@ import { withRouter } from "next/router";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 
-type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala";
+type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala" | "dotnet";
 
 type ViewsType = {| name: string, path: Language |};
 
@@ -28,7 +29,8 @@ const LanguageSlugs: { [string]: Language } = {
   R: "r",
   CPlusPlus: "cplusplus",
   Julia: "julia",
-  Scala: "scala"
+  Scala: "scala",
+  Dotnet: "dotnet"
 };
 
 const VIEWS: Array<ViewsType> = [
@@ -37,7 +39,8 @@ const VIEWS: Array<ViewsType> = [
   { name: "R", path: LanguageSlugs.R },
   { name: "Julia", path: LanguageSlugs.Julia },
   { name: "C++", path: LanguageSlugs.CPlusPlus },
-  { name: "Scala", path: LanguageSlugs.Scala }
+  { name: "Scala", path: LanguageSlugs.Scala },
+  { name: ".NET", path: LanguageSlugs.Dotnet }
 ];
 
 const RenderContent = ({ view }) => {
@@ -52,6 +55,8 @@ const RenderContent = ({ view }) => {
       return <Julia />;
     case LanguageSlugs.Scala:
       return <Scala />;
+    case LanguageSlugs.Dotnet:
+        return <Dotnet />;
     default:
       return <Python />;
   }
@@ -106,7 +111,7 @@ class KernelsPage extends React.Component<
           </PageHeader.Left>
 
           <PageHeader.Right visual padding="40px 0 0 0">
-            <CutoffImage
+            <CutoffImage style={{left: '20px'}}
               src="/static/kernels-terminal.png"
               alt="Kernels hero image"
             />
