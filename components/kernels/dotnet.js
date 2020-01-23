@@ -6,7 +6,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const install = `dotnet tool install -g dotnet-interactive`;
+const install = `dotnet tool install -g Microsoft.dotnet-interactive`;
 const installKernelSpecs = `dotnet interactive jupyter install`;
 
 export default () => (
@@ -14,8 +14,8 @@ export default () => (
     <ContentSection.Pane full>
       <Kernel
         displayName=".NET Interactive"
-        repository="https://github.com/dotnet/try"
-        installURL="https://github.com/dotnet/try/blob/master/NotebooksLocalExperience.md"
+        repository="https://github.com/dotnet/interactive"
+        installURL="https://github.com/dotnet/interactive/blob/master/NotebooksLocalExperience.md"
         logo="/static/dotnet-icon.png"
       >
         <h3>Installation</h3>
@@ -25,7 +25,7 @@ export default () => (
         </p>
         <div className="columns">
           <div className="column">
-            <h4>With .NET Core sdk 3.0 installed, from the terminal install the global tool</h4>
+            <h4>With .NET Core sdk 3.1 installed, from the terminal install the global tool</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
             </SyntaxHighlighter>
