@@ -15,7 +15,7 @@ export default () => (
       <Kernel
         displayName=".NET Interactive"
         repository="https://github.com/dotnet/interactive"
-        installURL="https://github.com/dotnet/interactive/blob/master/NotebooksLocalExperience.md"
+        installURL="https://github.com/dotnet/interactive/blob/master/docs/NotebooksLocalExperience.md"
         logo="/static/dotnet-icon.png"
       >
         <h3>Installation</h3>
