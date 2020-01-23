@@ -20,20 +20,20 @@ export default () => (
       >
         <h3>Installation</h3>
         <p>
-        Install <a href="https://dotnet.microsoft.com/download">.NET Core sdk</a> to
+        Install <a href="https://dotnet.microsoft.com/download">.NET Core SDK</a> to
               your system.
         </p>
         <div className="columns">
           <div className="column">
-            <h4>With .NET Core sdk 3.1 installed, from the terminal install the global tool</h4>
+            <h4>First, install the .NET Core SDK 3.1. Then use the command line tool to install the global tool.</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
             </SyntaxHighlighter>
-            <h4>Now from the terminal install the kernel specs</h4>
+            <h4> Install the .NET interactive kernel from the command line.</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {installKernelSpecs}
             </SyntaxHighlighter>
-            The .NET kernel supports both C# and F#
+            The .NET kernel supports both C# and F# languages
           </div>
         </div>
       </Kernel>
