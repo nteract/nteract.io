@@ -3,12 +3,19 @@ import * as React from "react";
 import { Hero } from "@components/hero";
 import { Type } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
-import { Button, Buttons } from "@components/button";
+import { Header } from "@components/header";
 import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
 import DemoVideo from "@components/demo-video";
+import styled, { css } from "styled-components";
 
 import type { Context } from "next";
+
+const FortyPXHero = styled.div`
+  height: 40px;
+  overflow: hidden;
+  width: 100%;
+`;
 
 class SDK extends React.Component<OSProps> {
   render() {
@@ -78,6 +85,9 @@ class SDK extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
           </ContentSection>
+          <FortyPXHero>
+            <Hero color="#232323" />
+          </FortyPXHero>
           <ContentSection>
             <ContentSection.Pane>
               <ContentSection.Title>
