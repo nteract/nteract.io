@@ -86,7 +86,9 @@ class SDK extends React.Component<OSProps> {
             </ContentSection.Pane>
           </ContentSection>
           <FortyPXHero>
-            <Hero color="#232323" />
+            <Hero color="#232323">
+              <React.Fragment></React.Fragment>
+            </Hero>
           </FortyPXHero>
           <ContentSection>
             <ContentSection.Pane>
