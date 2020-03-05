@@ -103,7 +103,7 @@ class Home extends React.Component<OSProps, null> {
                 Create end-to-end workflows with notebooks
               </ContentSection.Title>
               <Type.p>
-                There's more to notebooks that writing them! The nteract
+                There's more to notebooks than writing them! The nteract
                 ecosytem provides a set of libraries for headlessly executing
                 notebooks, managing your team's notebooks, using notebooks for
                 reporting and more. Use these tools to build an end-to-end
