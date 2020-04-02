@@ -2635,10 +2635,10 @@ find-up@3.0.0, find-up@^3.0.0:
   dependencies:
     locate-path "^3.0.0"
 
-flow-bin@0.84.0:
-  version "0.84.0"
-  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.84.0.tgz#4cb2364c750fb37a7840524fa62456b53f64cdcb"
-  integrity sha512-ocji8eEYp+YfICsm+F6cIHUcD7v5sb0/ADEXm6gyUKdjQzmSckMrPUdZtyfP973t3YGHKliUMxMvIBHyR5LbXQ==
+flow-bin@0.122.0:
+  version "0.122.0"
+  resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.122.0.tgz#c723a2b33b1a70bd10204704ae1dc776d5d89d79"
+  integrity sha512-my8N5jgl/A+UVby9E7NDppHdhLgRbWgKbmFZSx2MSYMRh3d9YGnM2MM+wexpUpl0ftY1IM6ZcUwaAhrypLyvlA==
 
 flush-write-stream@^1.0.0:
   version "1.0.3"
