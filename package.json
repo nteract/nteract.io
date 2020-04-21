@@ -24,7 +24,7 @@
     "flow-bin": "0.84.0",
     "graphql-request": "1.8.2",
     "lint-staged": "10.1.7",
-    "prettier": "2.0.4"
+    "prettier": "2.0.5"
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "license": "BSD-3-Clause",
