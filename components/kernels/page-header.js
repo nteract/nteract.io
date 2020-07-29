@@ -7,7 +7,9 @@ export default themeColor => (
       <PageHeader.Title>Kernels</PageHeader.Title>
       <p>
         Kernels connect your favorite languages to nteract projects for an
-        improved REPL experience.
+        improved REPL experience. nteract looks for installed kernels in
+        your local python/pip or conda environment. More detailed instructions 
+        for various kernels can be found below.
       </p>
     </PageHeader.Left>
     <PageHeader.Right />
