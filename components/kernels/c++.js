@@ -5,10 +5,7 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const condaInstall = `conda create -n cling
-source activate cling
-conda install xeus-cling notebook -c QuantStack -c conda-forge
-python -m ipykernel install --user --name myenv --display-name "C++ (cling)"`;
+const condaInstall = `conda install -c conda-forge xeus-cling`;
 
 export default () => (
   <ContentSection>
@@ -16,13 +13,13 @@ export default () => (
       <Kernel
         displayName="C++"
         repository="https://github.com/QuantStack/xeus-cling"
-        installURL="https://github.com/QuantStack/xeus-cling#installation"
+        installURL="https://xeus-cling.readthedocs.io/en/latest/installation.html"
         logo="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/200px-ISO_C%2B%2B_Logo.svg.png"
       >
         <h3>Installation</h3>
         <p>
-          The C++ kernel xeus-cling is installed with conda and added with
-          ipykernel to your list of kernels.
+          The C++ kernel, xeus-cling, is installed with conda and uses conda-forge as the package source.
+          Installing using conda will also install the kernelspec by default. The kernelspec provides nteract information about the xeus-kernel needed for its use.
         </p>
         <div className="columns">
           <div className="column">
