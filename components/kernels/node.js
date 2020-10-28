@@ -32,7 +32,7 @@ export default () => (
               node nteract kernel. You should see an indicator
               in the bottom left that displays the kernel as node.
             </p>
-            <h4>Installing the ijavascript kernels</h4>
+            <h4>Installing the ijavascript kernel</h4>
             <p>If you wish to explore another Javascript kernel, you may install ijavascript from the terminal.</p>
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
