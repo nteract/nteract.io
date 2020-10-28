@@ -22,7 +22,7 @@ export default () => (
       >
         <h3>Installation</h3>
         <p>
-          nteract includes a bundled node.js kernel. You may begin working with it after starting the nteract app.
+          nteract includes a bundled Node.js kernel. You may begin working with it after starting the nteract app.
         </p>
         <div className="columns">
           <div className="column">
