@@ -7,7 +7,7 @@ import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 import kernels from '../../pages/kernels';
 
-const install = `// From a terminal
+const install = `
 npm install -g ijavascript
 ijsinstall`;
 
