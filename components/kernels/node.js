@@ -29,7 +29,7 @@ export default () => (
             <h4>Use nteract's node.js kernel</h4>
             <p>
               From the nteract app's Runtime menu, select the
-              node nteract kernel. You should see an indicator
+              Node nteract kernel. You should see an indicator
               in the bottom left that displays the kernel as node.
             </p>
             <h4>Installing the ijavascript kernel</h4>
