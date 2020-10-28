@@ -57,7 +57,12 @@ const rightNav = {
       label: "Donate",
       href: "https://numfocus.org/donate-to-nteract",
       prefetch: false
-    }
+    },
+    {
+      label: "Help",
+      href: "https://nteract.slack.com/",
+      prefetch: false
+    },
   ]
 };
 
@@ -65,7 +70,7 @@ const socialItems = {
   items: [
     {
       icon: <SlackIcon color="currentColor" />,
-      href: "https://slack.nteract.io/",
+      href: "https://nteract.slack.com/",
       target: "_blank"
     },
     {
