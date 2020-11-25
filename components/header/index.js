@@ -54,6 +54,11 @@ const rightNav = {
       prefetch: true
     },
     {
+      label: "Docs",
+      href: "https://docs.nteract.io",
+      prefetch: false
+    },
+    {
       label: "Help",
       href: "https://join.slack.com/t/nteract/shared_invite/zt-ijrf78gm-ZldhpD7dzWzALnZs0JwGVg",
       prefetch: false
