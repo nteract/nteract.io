@@ -54,13 +54,13 @@ const rightNav = {
       prefetch: true
     },
     {
-      label: "Donate",
-      href: "https://numfocus.org/donate-to-nteract",
+      label: "Help",
+      href: "https://join.slack.com/t/nteract/shared_invite/zt-ijrf78gm-ZldhpD7dzWzALnZs0JwGVg",
       prefetch: false
     },
     {
-      label: "Help",
-      href: "https://join.slack.com/t/nteract/shared_invite/zt-ijrf78gm-ZldhpD7dzWzALnZs0JwGVg",
+      label: "Donate",
+      href: "https://numfocus.org/donate-to-nteract",
       prefetch: false
     },
   ]
