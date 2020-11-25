@@ -63,7 +63,7 @@ class Home extends React.Component<OSProps, null> {
                 applications for your scenario. Whether you want to edit
                 notebooks in a desktop app or in your favorite editor, nteract
                 provides you the tools you need to leverage the full power of
-                interactive notebooks.
+                interactive notebooks and the Jupyter ecosystem.
               </Type.p>
             </ContentSection.Pane>
 
