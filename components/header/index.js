@@ -60,7 +60,7 @@ const rightNav = {
     },
     {
       label: "Help",
-      href: "https://nteract.slack.com/",
+      href: "https://join.slack.com/t/nteract/shared_invite/zt-ijrf78gm-ZldhpD7dzWzALnZs0JwGVg",
       prefetch: false
     },
   ]
