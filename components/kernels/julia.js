@@ -12,6 +12,7 @@ julia> Pkg.add("IJulia")`;
 const updateKernel = `# From a Julia prompt
 julia> using Pkg
 julia> Pkg.update("IJulia")
+julia> using IJulia
 julia> IJulia.installkernel("Julia nteract")`;
 
 export default () => (
