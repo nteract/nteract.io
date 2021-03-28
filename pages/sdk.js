@@ -8,6 +8,7 @@ import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
 import DemoVideo from "@components/demo-video";
 import styled, { css } from "styled-components";
+import Layout from "@components/layout";
 
 import type { Context } from "next";
 
@@ -20,7 +21,7 @@ const FortyPXHero = styled.div`
 class SDK extends React.Component<OSProps> {
   render() {
     return (
-      <>
+      <Layout>
         <Hero color="#232323">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
@@ -124,7 +125,7 @@ class SDK extends React.Component<OSProps> {
           </ContentSection>
 
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }
