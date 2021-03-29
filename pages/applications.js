@@ -5,13 +5,13 @@ import { colors } from "@common/colors";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
 import DemoVideo from "@components/demo-video";
-
+import Layout from "@components/layout";
 import type { Context } from "next";
 
 class Applications extends React.Component<OSProps> {
   render() {
     return (
-      <>
+      <Layout>
         <Hero color="rgb(36, 77, 100)">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
@@ -134,7 +134,7 @@ class Applications extends React.Component<OSProps> {
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }

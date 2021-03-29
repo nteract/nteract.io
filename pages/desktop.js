@@ -8,6 +8,7 @@ import { Video } from "@components/video";
 import { detectPlatform, getDownloadUrl } from "@lib";
 import { DownloadFeaturette } from "@components/download-buttons";
 import { CutoffImage } from "@components/cutoff-image";
+import Layout from "@components/layout";
 
 import type { Context } from "next";
 
@@ -20,7 +21,7 @@ class Atom extends React.Component<OSProps> {
 
   render() {
     return (
-      <>
+      <Layout>
         <Hero color="rgb(36, 77, 100)">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>Notebooks on your desktop</Hero.Title>
@@ -58,7 +59,7 @@ class Atom extends React.Component<OSProps> {
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }

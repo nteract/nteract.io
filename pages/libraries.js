@@ -6,13 +6,14 @@ import { ContentSection, ContentSections } from "@components/content-section";
 import { Video } from "@components/video";
 
 import DemoVideo from "@components/demo-video";
+import Layout from "@components/layout";
 
 import type { Context } from "next";
 
 class Libraries extends React.Component<OSProps> {
   render() {
     return (
-      <>
+      <Layout>
         <Hero color="#8e44ad">
           <Hero.Pane padding="0 20px 0 0">
             <Hero.Title>
@@ -89,7 +90,7 @@ class Libraries extends React.Component<OSProps> {
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>
-      </>
+      </Layout>
     );
   }
 }
