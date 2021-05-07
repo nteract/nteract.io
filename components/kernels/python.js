@@ -8,7 +8,7 @@ import { ContentSection } from "../content-section";
 
 const pipInstall = `
 python3 -m venv my_environment_name      # create a virtual environment
-source my_environment_name/bin/activate  # activate the virtual environment
+source my_environment_name/bin/activate  # activate the virtual environment. On Windows, use \`my_environment_name\\Scripts\\activate\` instead
 python -m pip install ipykernel          # install the python kernel (ipykernel) into the virtual environment
 python -m ipykernel install              # install python kernel into nteract's available kernel list`;
 
@@ -18,7 +18,7 @@ python3 -m ipykernel install      # install python kernel into nteract's availab
 
 const condaInstall = `
 conda create -n my_conda python=3
-source activate my_conda           # On Windows, remove the word 'source'
+conda activate my_conda
 conda install ipykernel            # install Python kernel (ipykernel) into the conda environment
 python -m ipykernel install        # install python kernel into nteract's available kernel list`;
 
