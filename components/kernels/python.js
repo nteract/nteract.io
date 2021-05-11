@@ -6,9 +6,15 @@ import SyntaxHighlighter from "react-syntax-highlighter";
 import { github } from "react-syntax-highlighter/styles/hljs";
 import { ContentSection } from "../content-section";
 
-const pipInstall = `
+const pipInstallLinux = `
 python3 -m venv my_environment_name      # create a virtual environment
 source my_environment_name/bin/activate  # activate the virtual environment
+python -m pip install ipykernel          # install the python kernel (ipykernel) into the virtual environment
+python -m ipykernel install              # install python kernel into nteract's available kernel list`;
+
+const pipInstallWindows = `
+python3 -m venv my_environment_name      # create a virtual environment
+my_environment_name\\Scripts\\activate\  # activate the virtual environment
 python -m pip install ipykernel          # install the python kernel (ipykernel) into the virtual environment
 python -m ipykernel install              # install python kernel into nteract's available kernel list`;
 
@@ -18,7 +24,7 @@ python3 -m ipykernel install      # install python kernel into nteract's availab
 
 const condaInstall = `
 conda create -n my_conda python=3
-source activate my_conda           # On Windows, remove the word 'source'
+conda activate my_conda
 conda install ipykernel            # install Python kernel (ipykernel) into the conda environment
 python -m ipykernel install        # install python kernel into nteract's available kernel list`;
 
@@ -46,9 +52,15 @@ export default () => (
             </SyntaxHighlighter>
           </div>
           <div className="column">
-            <h4>Using Python3 with pip and a virtual environment</h4>
+            <h4>Using Python3 with pip and a virtual environment on macOS and Linux</h4>
             <SyntaxHighlighter language="zsh" style={github}>
-              {pipInstall}
+              {pipInstallLinux}
+            </SyntaxHighlighter>
+          </div>
+          <div className="column">
+            <h4>Using Python3 with pip and a virtual environment on Windows</h4>
+            <SyntaxHighlighter language="zsh" style={github}>
+              {pipInstallWindows}
             </SyntaxHighlighter>
           </div>
         </div>
