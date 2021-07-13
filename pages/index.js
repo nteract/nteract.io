@@ -59,8 +59,10 @@ class Home extends React.Component<OSProps, null> {
                 Enhance your productivity with nteract's app suite
               </ContentSection.Title>
               <Type.p>
-                The nteract ecosystem provides a wide variety of notebook-based
-                applications for your scenario. Whether you want to edit
+                The nteract ecosystem provides a wide variety of
+                notebook-based{" "}
+                <a href='applications'>applications</a>{" "}
+                for your scenario. Whether you want to edit
                 notebooks in a desktop app or in your favorite editor, nteract
                 provides you the tools you need to leverage the full power of
                 interactive notebooks and the Jupyter ecosystem.
@@ -82,8 +84,9 @@ class Home extends React.Component<OSProps, null> {
               </ContentSection.Title>
               <Type.p>
                 Interactive notebooks and REPLs are a powerful way for people to
-                interact with machines. nteract provides a client-side SDK for
-                integrating notebook and REPL UIs into your software. The same
+                interact with machines. nteract provides a{" "}
+                <a href="sdk">client-side SDK</a>{" "}
+                for integrating notebook and REPL UIs into your software. The same
                 SDK used to build the nteract suite of applications is available
                 to you!
               </Type.p>
@@ -104,7 +107,9 @@ class Home extends React.Component<OSProps, null> {
               </ContentSection.Title>
               <Type.p>
                 There's more to notebooks than writing them! The nteract
-                ecosytem provides a set of libraries for headlessly executing
+                ecosystem provides a set of{" "}
+                <a href="libraries">libraries</a>{" "}
+                for headlessly executing
                 notebooks, managing your team's notebooks, using notebooks for
                 reporting and more. Use these tools to build an end-to-end
                 notebook experience for you and your team.
