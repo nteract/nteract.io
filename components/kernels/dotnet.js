@@ -25,7 +25,7 @@ export default () => (
         </p>
         <div className="columns">
           <div className="column">
-            <h4>First, install the .NET Core SDK 3.1. Then use the command line tool to install the global tool.</h4>
+            <h4>First, install the .NET Core SDK 5.0. Then use the command line tool to install the global tool.</h4>
             <SyntaxHighlighter language="zsh" style={github}>
               {install}
             </SyntaxHighlighter>
