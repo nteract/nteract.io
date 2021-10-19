@@ -3,7 +3,7 @@ import { StyledHeader } from "@components/header/styled";
 import { StyledHero } from "@components/hero/styled";
 import Pattern from "@components/hero/pattern";
 import {
-  SlackIcon,
+  DiscordIcon,
   GithubCircleIcon,
   TwitterCircleIcon,
   MenuIcon,
@@ -60,7 +60,7 @@ const rightNav = {
     },
     {
       label: "Help",
-      href: "https://join.slack.com/t/nteract/shared_invite/zt-ijrf78gm-ZldhpD7dzWzALnZs0JwGVg",
+      href: "https://discord.gg/tQrtRwuxqW",
       prefetch: false
     },
     {
@@ -74,8 +74,8 @@ const rightNav = {
 const socialItems = {
   items: [
     {
-      icon: <SlackIcon color="currentColor" />,
-      href: "https://nteract.slack.com/",
+      icon: <DiscordIcon color="currentColor" />,
+      href: "https://discord.gg/tQrtRwuxqW",
       target: "_blank"
     },
     {
