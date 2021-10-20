@@ -2,7 +2,9 @@
 import React from "react";
 import { Button, Buttons } from "@components/button";
 import { Type } from "@components/typography";
-import { WindowsIcon, LinuxIcon, AppleIcon } from "mdi-react";
+import WindowsIcon from "mdi-react/MicrosoftWindowsIcon";
+import LinuxIcon from "mdi-react/LinuxIcon";
+import AppleIcon from "mdi-react/AppleIcon";
 import styled, { css } from "styled-components";
 export const StyledFeaturette = styled.div``;
 export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
