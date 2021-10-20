@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import { GithubCircleIcon, WebIcon } from "mdi-react";
+import GithubCircleIcon from "mdi-react/GithubIcon";
+import WebIcon from "mdi-react/WebIcon";
 const NTERACT_MEMBERS = require("../generated/nteract-members.json");
 
 import Layout from "@components/layout";

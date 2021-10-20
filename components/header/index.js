@@ -2,13 +2,11 @@ import React from "react";
 import { StyledHeader } from "@components/header/styled";
 import { StyledHero } from "@components/hero/styled";
 import Pattern from "@components/hero/pattern";
-import {
-  DiscordIcon,
-  GithubCircleIcon,
-  TwitterCircleIcon,
-  MenuIcon,
-  CloseIcon
-} from "mdi-react";
+import DiscordIcon from "mdi-react/DiscordIcon";
+import GithubCircleIcon from "mdi-react/GithubIcon";
+import TwitterCircleIcon from "mdi-react/TwitterIcon";
+import MenuIcon from "mdi-react/MenuIcon";
+import CloseIcon from "mdi-react/CloseIcon";
 import Link from "next/link";
 
 const leftNav = {
