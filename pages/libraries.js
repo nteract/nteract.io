@@ -50,7 +50,7 @@ class Libraries extends React.Component<OSProps> {
             </ContentSection.Pane>
 
             <ContentSection.Pane visual>
-              <img src="https://github.com/nteract/papermill/raw/master/docs/img/enable_parameters.gif" />
+              <img src="https://github.com/nteract/papermill/raw/main/docs/img/enable_parameters.gif" />
             </ContentSection.Pane>
           </ContentSection>
 
