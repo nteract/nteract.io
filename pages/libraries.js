@@ -77,7 +77,7 @@ class Libraries extends React.Component<OSProps> {
             <ContentSection.Title>bookstore</ContentSection.Title>
             <ContentSection.Pane>
               <Type.p>
-                Ever need to find out what your notebook looked like 5 days ago?
+                Ever need to find out what your notebook looked like 5 days ago?&nbsp;
                 <a href="https://github.com/nteract/bookstore" target="_blank">
                   Bookstore
                 </a>{" "}
