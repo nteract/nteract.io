@@ -8,6 +8,7 @@ import Julia from "@components/kernels/julia";
 import Node from "@components/kernels/node";
 import Scala from "@components/kernels/scala";
 import Dotnet from "@components/kernels/dotnet";
+import Kotlin from "@components/kernels/kotlin";
 import { Hero } from "@components/hero";
 import { Type, BashPre } from "@components/typography";
 import { ContentSection, ContentSections } from "@components/content-section";
@@ -30,7 +31,8 @@ const LanguageSlugs: { [string]: Language } = {
   CPlusPlus: "cplusplus",
   Julia: "julia",
   Scala: "scala",
-  Dotnet: "dotnet"
+  Dotnet: "dotnet",
+  Kotlin: "kotlin"
 };
 
 const VIEWS: Array<ViewsType> = [
@@ -40,7 +42,8 @@ const VIEWS: Array<ViewsType> = [
   { name: "Julia", path: LanguageSlugs.Julia },
   { name: "C++", path: LanguageSlugs.CPlusPlus },
   { name: "Scala", path: LanguageSlugs.Scala },
-  { name: ".NET", path: LanguageSlugs.Dotnet }
+  { name: ".NET", path: LanguageSlugs.Dotnet },
+  { name: "Kotlin", path: LanguageSlugs.Kotlin }
 ];
 
 const RenderContent = ({ view }) => {
@@ -57,6 +60,8 @@ const RenderContent = ({ view }) => {
       return <Scala />;
     case LanguageSlugs.Dotnet:
         return <Dotnet />;
+    case LanguageSlugs.Kotlin:
+      return <Kotlin />;
     default:
       return <Python />;
   }
