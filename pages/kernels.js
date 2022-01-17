@@ -9,16 +9,12 @@ import Node from "@components/kernels/node";
 import Scala from "@components/kernels/scala";
 import Dotnet from "@components/kernels/dotnet";
 import Kotlin from "@components/kernels/kotlin";
-import { Hero } from "@components/hero";
-import { Type, BashPre } from "@components/typography";
-import { ContentSection, ContentSections } from "@components/content-section";
+import { Type } from "@components/typography";
+import { ContentSections } from "@components/content-section";
 import { PageHeader } from "@components/page-header";
 import { Button, Buttons } from "@components/button";
-import { CutoffImage } from "@components/cutoff-image";
 import { colors } from "@common/colors";
 import { withRouter } from "next/router";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { github } from "react-syntax-highlighter/styles/hljs";
 
 type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala" | "dotnet";
 
