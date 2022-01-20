@@ -8,16 +8,13 @@ import Julia from "@components/kernels/julia";
 import Node from "@components/kernels/node";
 import Scala from "@components/kernels/scala";
 import Dotnet from "@components/kernels/dotnet";
-import { Hero } from "@components/hero";
-import { Type, BashPre } from "@components/typography";
-import { ContentSection, ContentSections } from "@components/content-section";
+import Kotlin from "@components/kernels/kotlin";
+import { Type } from "@components/typography";
+import { ContentSections } from "@components/content-section";
 import { PageHeader } from "@components/page-header";
 import { Button, Buttons } from "@components/button";
-import { CutoffImage } from "@components/cutoff-image";
 import { colors } from "@common/colors";
 import { withRouter } from "next/router";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { github } from "react-syntax-highlighter/styles/hljs";
 
 type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala" | "dotnet";
 
@@ -30,7 +27,8 @@ const LanguageSlugs: { [string]: Language } = {
   CPlusPlus: "cplusplus",
   Julia: "julia",
   Scala: "scala",
-  Dotnet: "dotnet"
+  Dotnet: "dotnet",
+  Kotlin: "kotlin"
 };
 
 const VIEWS: Array<ViewsType> = [
@@ -40,7 +38,8 @@ const VIEWS: Array<ViewsType> = [
   { name: "Julia", path: LanguageSlugs.Julia },
   { name: "C++", path: LanguageSlugs.CPlusPlus },
   { name: "Scala", path: LanguageSlugs.Scala },
-  { name: ".NET", path: LanguageSlugs.Dotnet }
+  { name: ".NET", path: LanguageSlugs.Dotnet },
+  { name: "Kotlin", path: LanguageSlugs.Kotlin }
 ];
 
 const RenderContent = ({ view }) => {
@@ -57,6 +56,8 @@ const RenderContent = ({ view }) => {
       return <Scala />;
     case LanguageSlugs.Dotnet:
         return <Dotnet />;
+    case LanguageSlugs.Kotlin:
+      return <Kotlin />;
     default:
       return <Python />;
   }
@@ -109,13 +110,6 @@ class KernelsPage extends React.Component<
               ))}
             </Buttons>
           </PageHeader.Left>
-
-          <PageHeader.Right visual padding="40px 0 0 0">
-            <CutoffImage style={{left: '60px'}}
-              src="/static/kernels-terminal.png"
-              alt="Kernels hero image"
-            />
-          </PageHeader.Right>
         </PageHeader>
         <ContentSections>
           <RenderContent view={this.state.view} />
