@@ -16,7 +16,7 @@ import { Button, Buttons } from "@components/button";
 import { colors } from "@common/colors";
 import { withRouter } from "next/router";
 
-type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala" | "dotnet";
+type Language = "python" | "node" | "r" | "cplusplus" | "julia" | "scala" | "dotnet" | "kotlin";
 
 type ViewsType = {| name: string, path: Language |};
 
