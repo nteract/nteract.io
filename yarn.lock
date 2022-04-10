@@ -3579,10 +3579,10 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
-mdi-react@8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-8.2.0.tgz#af81711fc597f04d4c3f7777424f15ca234d9b80"
-  integrity sha512-94ddMSkWlBSqs8mL+xql+zyh3wjtYSBaPsD5gchwILA06wv31z/lZQ4By83RLco/Ia2me2fUdeAw5TQiO8+sLQ==
+mdi-react@8.3.1:
+  version "8.3.1"
+  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-8.3.1.tgz#64e1744125f169ccd9bfaeaecbc77017bd66644a"
+  integrity sha512-2L1ie7rypQZZdFcqAJMe5ZLdYcsQVggYH9RC0jolG/5dgUz9vPWR4PBWDZ7XOjqwBzzenRTppui4Y8MZfy8xfA==
 
 media-typer@0.3.0:
   version "0.3.0"
