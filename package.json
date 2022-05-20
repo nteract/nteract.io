@@ -21,7 +21,7 @@
   "devDependencies": {
     "babel-plugin-styled-components": "2.0.7",
     "babel-plugin-transform-flow-strip-types": "6.22.0",
-    "flow-bin": "0.84.0",
+    "flow-bin": "0.178.1",
     "graphql-request": "1.8.2",
     "lint-staged": "12.4.1",
     "prettier": "2.6.2"
