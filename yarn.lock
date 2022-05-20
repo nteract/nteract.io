@@ -3614,10 +3614,10 @@ md5.js@^1.3.4:
     inherits "^2.0.1"
     safe-buffer "^5.1.2"
 
-mdi-react@8.3.1:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-8.3.1.tgz#64e1744125f169ccd9bfaeaecbc77017bd66644a"
-  integrity sha512-2L1ie7rypQZZdFcqAJMe5ZLdYcsQVggYH9RC0jolG/5dgUz9vPWR4PBWDZ7XOjqwBzzenRTppui4Y8MZfy8xfA==
+mdi-react@8.4.0:
+  version "8.4.0"
+  resolved "https://registry.yarnpkg.com/mdi-react/-/mdi-react-8.4.0.tgz#ad7e4ee8e3a57286f30cf6018b1b40b4f53073bc"
+  integrity sha512-qAuZcZL6Kliut4949Mr7GUb+WaiSVBaYQgx06ReUflqB++O9gVjeQ8eTMQbEFF4inzUZv9YyhNTdX9u0B1MinQ==
 
 media-typer@0.3.0:
   version "0.3.0"
