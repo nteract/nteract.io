@@ -68,13 +68,13 @@ export const TwitterButton = () => (
   </a>
 );
 
-export default () => (
-  <div
-    className="icon-buttons buttons"
-    style={{ transform: "translateY(6px)" }}
-  >
-    <DiscordButton />
-    <GitHubButton />
-    <TwitterButton />
-  </div>
-);
+const SocialButtons = () => <div
+  className="icon-buttons buttons"
+  style={{ transform: "translateY(6px)" }}
+>
+  <DiscordButton />
+  <GitHubButton />
+  <TwitterButton />
+</div>;
+
+export default SocialButtons;

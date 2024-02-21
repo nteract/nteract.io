@@ -9,6 +9,9 @@
 const path = require("path");
 
 module.exports = {
+  output: {
+    hashFunction: "xxhash64",
+  },
   resolve: {
     alias: {
       "@pages": path.resolve(__dirname, "pages"),

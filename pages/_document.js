@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import styled, { ServerStyleSheet } from "styled-components";
 import { GA_TRACKING_ID } from '../gtag'
 import type { Context } from "next";
@@ -19,7 +19,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <html lang="en">
+      <Html lang="en">
         <Head>
           {this.props.styleTags}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
@@ -44,7 +44,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }

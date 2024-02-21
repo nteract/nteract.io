@@ -1,5 +1,5 @@
 // @flow
-import App, { Container } from "next/app";
+import App from "next/app";
 import React from "react";
 import * as gtag from "../gtag";
 import Router from "next/router";
@@ -37,7 +37,6 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
     return (
       <AppWrapper>
-        <Container>
           <WindowSize>
             {size => (
               <>
@@ -50,7 +49,6 @@ class MyApp extends App {
               </>
             )}
           </WindowSize>
-        </Container>
       </AppWrapper>
     );
   }
