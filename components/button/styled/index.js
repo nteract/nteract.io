@@ -66,7 +66,7 @@ const StyledButton = styled.a.attrs({
   ${sif("active")(css`
     background-color: ${colors.darkPrimaryColor};
   `)}
-  ${StyledButton}:not(:first-child) {
+  &:not(:first-child) {
     margin-left: 12px;
   }
 `;

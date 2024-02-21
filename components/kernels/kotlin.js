@@ -33,59 +33,59 @@ cd kotlin-jupyter
 ./gradlew install   # run Gradle task that will install Kernel. Python is not needed
 `
 
-export default () => (
-  <ContentSection>
-    <ContentSection.Pane full>
-      <Kernel
-        displayName="Kotlin"
-        repository="https://github.com/Kotlin/kotlin-jupyter"
-        installURL="https://github.com/Kotlin/kotlin-jupyter#installation"
-        logo="/static/kotlin-icon.svg"
-      >
-        <h3>Installation</h3>
-        <p>
-          Kotlin kernel can be installed with conda, PyPi or from sources.
-        </p>
-        <div className="columns">
-          <div className="column">
-            <h4>Using conda</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {condaInstall}
-            </SyntaxHighlighter>
-          </div>
-          <div className="column">
-            <h4>Using Python3 with pip and a virtual environment on macOS and Linux</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {pipInstallLinux}
-            </SyntaxHighlighter>
-          </div>
-          <div className="column">
-            <h4>Using Python3 with pip and a virtual environment on Windows</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {pipInstallWindows}
-            </SyntaxHighlighter>
-          </div>
-          <div className="column">
-            <h4>From sources globally</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {sourcesInstall}
-            </SyntaxHighlighter>
-          </div>
+const Kotlin = () => <ContentSection>
+  <ContentSection.Pane full>
+    <Kernel
+      displayName="Kotlin"
+      repository="https://github.com/Kotlin/kotlin-jupyter"
+      installURL="https://github.com/Kotlin/kotlin-jupyter#installation"
+      logo="/static/kotlin-icon.svg"
+    >
+      <h3>Installation</h3>
+      <p>
+        Kotlin kernel can be installed with conda, PyPi or from sources.
+      </p>
+      <div className="columns">
+        <div className="column">
+          <h4>Using conda</h4>
+          <SyntaxHighlighter language="zsh" style={github}>
+            {condaInstall}
+          </SyntaxHighlighter>
         </div>
-        <p>
-          Alternatively, you may wish to install the Kotlin kernel
-          globally on your system. This enables you to use the Kotlin kernel
-          without creating a virtual environment.
-        </p>
-        <div className="columns">
-          <div className="column">
-            <h4>Using Python3 globally (without a virtual environment)</h4>
-            <SyntaxHighlighter language="zsh" style={github}>
-              {pipGlobalInstall}
-            </SyntaxHighlighter>
-          </div>
+        <div className="column">
+          <h4>Using Python3 with pip and a virtual environment on macOS and Linux</h4>
+          <SyntaxHighlighter language="zsh" style={github}>
+            {pipInstallLinux}
+          </SyntaxHighlighter>
         </div>
-      </Kernel>
-    </ContentSection.Pane>
-  </ContentSection>
-);
+        <div className="column">
+          <h4>Using Python3 with pip and a virtual environment on Windows</h4>
+          <SyntaxHighlighter language="zsh" style={github}>
+            {pipInstallWindows}
+          </SyntaxHighlighter>
+        </div>
+        <div className="column">
+          <h4>From sources globally</h4>
+          <SyntaxHighlighter language="zsh" style={github}>
+            {sourcesInstall}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+      <p>
+        Alternatively, you may wish to install the Kotlin kernel
+        globally on your system. This enables you to use the Kotlin kernel
+        without creating a virtual environment.
+      </p>
+      <div className="columns">
+        <div className="column">
+          <h4>Using Python3 globally (without a virtual environment)</h4>
+          <SyntaxHighlighter language="zsh" style={github}>
+            {pipGlobalInstall}
+          </SyntaxHighlighter>
+        </div>
+      </div>
+    </Kernel>
+  </ContentSection.Pane>
+</ContentSection>;
+
+export default Kotlin;

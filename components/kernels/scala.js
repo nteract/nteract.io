@@ -15,35 +15,35 @@ coursier bootstrap \\
 ./almond --install
 `;
 
-export default () => (
-  <ContentSection>
-    <ContentSection.Pane full>
-      <Kernel
-        displayName="Scala"
-        repository="https://github.com/almond-sh/almond"
-        installURL="https://almond.sh/docs/quick-start-install"
-        logo="/static/scala-spiral.png"
-      >
-        <h3>Installation</h3>
-        <p>
-          Install{" "}
-          <a href="https://docs.scala-lang.org/getting-started-sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html">
-            Scala
-          </a>{" "}
-          to your system.
-        </p>
-        <div className="columns">
-          <div className="column">
-            <h4>
-              From the command line, install the almond (formerly jupyter-scala)
-              kernel
-            </h4>
-            <SyntaxHighlighter language="scala" style={github}>
-              {install}
-            </SyntaxHighlighter>
-          </div>
+const Scala = () => <ContentSection>
+  <ContentSection.Pane full>
+    <Kernel
+      displayName="Scala"
+      repository="https://github.com/almond-sh/almond"
+      installURL="https://almond.sh/docs/quick-start-install"
+      logo="/static/scala-spiral.png"
+    >
+      <h3>Installation</h3>
+      <p>
+        Install{" "}
+        <a href="https://docs.scala-lang.org/getting-started-sbt-track/getting-started-with-scala-and-sbt-on-the-command-line.html">
+          Scala
+        </a>{" "}
+        to your system.
+      </p>
+      <div className="columns">
+        <div className="column">
+          <h4>
+            From the command line, install the almond (formerly jupyter-scala)
+            kernel
+          </h4>
+          <SyntaxHighlighter language="scala" style={github}>
+            {install}
+          </SyntaxHighlighter>
         </div>
-      </Kernel>
-    </ContentSection.Pane>
-  </ContentSection>
-);
+      </div>
+    </Kernel>
+  </ContentSection.Pane>
+</ContentSection>;
+
+export default Scala;
