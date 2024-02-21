@@ -1,12 +1,14 @@
 const webpack = require("./webpack.config");
 
 module.exports = {
-  webpack: (config, { dev }) => {
+  webpack: (config, { }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       ...webpack.resolve.alias
     };
     return config;
   },
-  target: "serverless"
+  compiler: {
+    styledComponents: true
+  }
 };
