@@ -1,40 +1,32 @@
-const { GraphQLClient } = require("graphql-request");
+const fetch = require("isomorphic-fetch");
 const { writeFileSync, existsSync, mkdirSync } = require("fs");
 
 async function fetchMembers(organisation) {
-  const token = process.env.GH_TOKEN;
-
-  if (!token) {
-    console.error("'GH_TOKEN' not set. Could not fetch nteract members.");
-    return [];
-  }
-
-  const client = new GraphQLClient("https://api.github.com/graphql", {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
-
-  const query = `{
-    organization(login: "${organisation}") {
-      membersWithRole(first: 100) {
-        totalCount
-          nodes {
-            name
-            login
-            websiteUrl
-            avatarUrl
-            url
-          }
-      }
-    }
-  }`;
-
+  const url = `https://api.github.com/orgs/${organisation}/public_members`;
+  
   try {
-    const data = await client.request(query);
-    return data.organization.membersWithRole.nodes;
+    const response = await fetch(url, {
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'User-Agent': 'nteract-member-fetcher'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const members = await response.json();
+    
+    return members.map(member => ({
+      name: member.name || null,
+      login: member.login,
+      websiteUrl: member.blog || null,
+      avatarUrl: member.avatar_url,
+      url: member.html_url
+    }));
   } catch (e) {
-    console.error(e);
+    console.error(`Error fetching members for ${organisation}:`, e);
     return [];
   }
 }
