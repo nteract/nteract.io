@@ -9,5 +9,5 @@ jobs:
         with:
           node-version: '22'
       - run: yarn
-      - run: NODE_OPTIONS=--openssl-legacy-provider yarn build
-      - run: yarn flow
+      - run: yarn build
+      - run: yarn type-check
