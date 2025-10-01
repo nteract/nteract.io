@@ -16,7 +16,7 @@
     "react-dom": "18.2.0",
     "react-fns": "1.4.0",
     "react-syntax-highlighter": "9.0.1",
-    "styled-components": "6.1.8"
+    "styled-components": "6.1.19"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "2.0.7",
