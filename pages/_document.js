@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import type { Context } from "next";
 import styled, { ServerStyleSheet } from "styled-components";
 import { GA_TRACKING_ID } from '../gtag'
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: any) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
