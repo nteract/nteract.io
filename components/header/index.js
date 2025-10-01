@@ -101,7 +101,7 @@ const NavItems = ({ items, ...rest }) => {
       </a>
     ) : (
       <Link key={i} href={href} {...linkProps}>
-        <a href={href}>{content}</a>
+        {content}
       </Link>
     );
   });

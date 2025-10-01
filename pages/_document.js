@@ -1,27 +1,41 @@
 // @flow
 import * as React from "react";
 import Document, { Head, Html, Main, NextScript } from "next/document";
+import type { Context } from "next";
 import styled, { ServerStyleSheet } from "styled-components";
 import { GA_TRACKING_ID } from '../gtag'
-import type { Context } from "next";
-
-type DocumentContext = Context & { renderPage: Function };
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }: DocumentContext) {
+  static async getInitialProps(ctx: any) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />)
-    );
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
     return (
       <Html lang="en">
         <Head>
-          {this.props.styleTags}
           {/* Global Site Tag (gtag.js) - Google Analytics */}
           <script
             async

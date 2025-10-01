@@ -3,14 +3,14 @@ import * as React from "react";
 import Link from "next/link";
 
 const NavigationRight = () => <div className="nav buttons">
-  <Link as="/sdk" href="/sdk" prefetch>
-    <a className="nav-item">core SDK</a>
+  <Link as="/sdk" href="/sdk" prefetch className="nav-item">
+    core SDK
   </Link>
-  <Link as="/applications" href="/applications" prefetch>
-    <a className="nav-item">Applications</a>
+  <Link as="/applications" href="/applications" prefetch className="nav-item">
+    Applications
   </Link>
-  <Link as="/libraries" href="/libraries" prefetch>
-    <a className="nav-item">Libraries</a>
+  <Link as="/libraries" href="/libraries" prefetch className="nav-item">
+    Libraries
   </Link>
   <a className="nav-item" href="https://numfocus.org/donate-to-nteract">
     Donate
