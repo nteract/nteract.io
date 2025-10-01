@@ -8,10 +8,8 @@ const Footer = () => (
   <StyledFooter>
     <StyledFooter.Wrapper>
       <StyledFooter.Section>
-        <Link href="https://numfocus.org/">
-          <a target="_blank">
-            <img src="/static/sponsor-numfocus.png" alt="NumFocus" />
-          </a>
+        <Link href="https://numfocus.org/" target="_blank">
+          <img src="/static/sponsor-numfocus.png" alt="NumFocus" />
         </Link>
       </StyledFooter.Section>
       <StyledFooter.Section>
