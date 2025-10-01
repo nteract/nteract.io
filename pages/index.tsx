@@ -47,7 +47,7 @@ class Home extends React.Component<OSProps> {
             />
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <Hero.Pane $visual padding="40px 0 0 0">
             <DemoVideo />
           </Hero.Pane>
         </Hero>
@@ -67,9 +67,9 @@ class Home extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img
-                src="/static/feature_nteract_desktop.svg"
+                src="/feature_nteract_desktop.svg"
                 alt="interactivity"
               />
             </ContentSection.Pane>
@@ -89,9 +89,9 @@ class Home extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img
-                src="/static/feature_nteract_composable.svg"
+                src="/feature_nteract_composable.svg"
                 alt="Composability"
               />
             </ContentSection.Pane>
@@ -111,9 +111,9 @@ class Home extends React.Component<OSProps> {
                 your team.
               </Type.p>
             </ContentSection.Pane>
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img
-                src="/static/feature_nteract_open_to_all.svg"
+                src="/feature_nteract_open_to_all.svg"
                 alt="Composability"
               />
             </ContentSection.Pane>

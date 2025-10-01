@@ -19,14 +19,14 @@ const Title = styled.div`
 `;
 
 type PaneProps = {
-  center?: boolean;
-  full?: boolean;
-  visual?: boolean;
-  isOdd?: boolean;
+  $center?: boolean;
+  $full?: boolean;
+  $visual?: boolean;
+  $isOdd?: boolean;
 };
 
 const Pane = styled.div<PaneProps>`
-  ${sif("center")(css`
+  ${sif("$center")(css`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,7 +37,7 @@ const Pane = styled.div<PaneProps>`
     }
   `)} @media (min-width: 801px) {
     width: 50%;
-    ${sif("full")(
+    ${sif("$full")(
       css`
         width: 100%;
       `
@@ -48,7 +48,7 @@ const Pane = styled.div<PaneProps>`
     display: block;
   }
 
-  ${sif("visual")(
+  ${sif("$visual")(
     css`
       @media (max-width: 800px) {
         padding-top: 80px;
@@ -67,12 +67,12 @@ const Pane = styled.div<PaneProps>`
       padding-left: ${gutter}px;
       padding-right: 0;
     }
-    ${sif("visual")(
+    ${sif("$visual")(
       css`
         width: 48%;
       `
     )};
-    ${sif("isOdd")(
+    ${sif("$isOdd")(
       css`
         &:nth-of-type(1) {
           order: 2;

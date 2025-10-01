@@ -29,12 +29,12 @@ python -m ipykernel install        # install python kernel into nteract's availa
 
 const Python = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="Python"
         repository="https://github.com/ipython/ipykernel"
         installURL="http://ipython.readthedocs.io/en/stable/install/kernel_install.html"
-        logo="/static/python.svg"
+        logo="/python.svg"
       >
         <h3>Installation</h3>
         <p>

@@ -25,7 +25,7 @@ class Applications extends React.Component<OSProps> {
             </Type.p>
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <Hero.Pane $visual padding="40px 0 0 0">
             <DemoVideo />
           </Hero.Pane>
         </Hero>
@@ -50,7 +50,7 @@ class Applications extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png" />
             </ContentSection.Pane>
           </ContentSection>
@@ -73,7 +73,7 @@ class Applications extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img src="https://cloud.githubusercontent.com/assets/13285808/20360886/7e03e524-ac03-11e6-9176-37677f226619.gif" />
             </ContentSection.Pane>
           </ContentSection>
@@ -92,7 +92,7 @@ class Applications extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img src="https://cloud.githubusercontent.com/assets/836375/23089382/e330effa-f53c-11e6-85d0-7561ccdbe163.gif" />
             </ContentSection.Pane>
           </ContentSection>

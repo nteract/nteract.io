@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 import { fonts } from "@common/constants";
 import { colors } from "@common/colors";
-import { bgColor, color, padding, margin, sif } from "@common/styled";
+import { sif } from "@common/styled";
 
 type StyledProps = {
   color?: string;
-  padding?: string;
+  $padding?: string;
   margin?: string;
 };
 
@@ -18,9 +18,9 @@ export const headingDefaults = () => css<StyledProps>`
   padding: 0;
   color: currentColor;
   font-weight: 300;
-  ${color};
-  ${padding};
-  ${margin};
+  ${({ color }) => color && css`color: ${color};`};
+  ${({ $padding }) => $padding && css`padding: ${$padding};`};
+  ${({ margin }) => margin && css`margin: ${margin};`};
   line-height: 1.2;
   margin-bottom: 1.5rem;
   margin-top: 0;
@@ -30,9 +30,9 @@ const bodyDefaults = css<StyledProps>`
   line-height: 1.75em;
   margin: 0;
   padding: 0;
-  ${color};
-  ${padding};
-  ${margin};
+  ${({ color }) => color && css`color: ${color};`};
+  ${({ $padding }) => $padding && css`padding: ${$padding};`};
+  ${({ margin }) => margin && css`margin: ${margin};`};
 `;
 
 type BashPreProps = {
@@ -50,12 +50,13 @@ const BashPre = styled.pre<BashPreProps>`
   overflow-x: auto !important;
   padding: 0.5em;
   color: ${colors.colorTextBase};
-  ${color} ${bgColor};
+  ${({ color }) => color && css`color: ${color};`}
+  ${({ bgColor }) => bgColor && css`background: ${bgColor};`};
 `;
 
 type HeadingProps = {
   color?: string;
-  padding?: string;
+  $padding?: string;
   margin?: string;
 };
 
@@ -91,9 +92,9 @@ const h6 = styled.h6<HeadingProps>`
 
 type PProps = {
   color?: string;
-  padding?: string;
+  $padding?: string;
   margin?: string;
-  small?: boolean;
+  $small?: boolean;
 };
 
 const p = styled.p<PProps>`
@@ -103,7 +104,7 @@ const p = styled.p<PProps>`
     margin-top: 20px;
   }
 
-  ${sif("small")(css`
+  ${sif("$small")(css`
     font-size: 12px;
   `)};
 `;

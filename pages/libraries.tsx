@@ -27,7 +27,7 @@ class Libraries extends React.Component<OSProps> {
             </Type.p>
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <Hero.Pane $visual padding="40px 0 0 0">
             <DemoVideo />
           </Hero.Pane>
         </Hero>
@@ -47,7 +47,7 @@ class Libraries extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
+            <ContentSection.Pane $visual>
               <img src="https://github.com/nteract/papermill/raw/main/docs/img/enable_parameters.gif" />
             </ContentSection.Pane>
           </ContentSection>
@@ -66,8 +66,8 @@ class Libraries extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
-              <Video webm="/static/scrapbook_basics.webm" />
+            <ContentSection.Pane $visual>
+              <Video webm="/scrapbook_basics.webm" />
             </ContentSection.Pane>
           </ContentSection>
 

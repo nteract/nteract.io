@@ -37,7 +37,7 @@ class Atom extends React.Component<OSProps> {
             />
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <Hero.Pane $visual padding="40px 0 0 0">
             <CutoffImage
               src="https://cloud.githubusercontent.com/assets/836375/18421299/d95ad398-783b-11e6-8b23-d54cf7caad1e.png"
               alt="Desktop Notebooks hero image"
@@ -53,8 +53,8 @@ class Atom extends React.Component<OSProps> {
               </Type.p>
             </ContentSection.Pane>
 
-            <ContentSection.Pane visual>
-              <Video mp4="/static/double-click-notebook.mp4" />
+            <ContentSection.Pane $visual>
+              <Video mp4="/double-click-notebook.mp4" />
             </ContentSection.Pane>
           </ContentSection>
         </ContentSections>

@@ -10,12 +10,12 @@ const installKernelSpecs = `dotnet interactive jupyter install`;
 
 const Dotnet = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName=".NET Interactive"
         repository="https://github.com/dotnet/interactive"
         installURL="https://github.com/dotnet/interactive/blob/master/README.md"
-        logo="/static/dotnet-icon.png"
+        logo="/dotnet-icon.png"
       >
         <h3>Installation</h3>
         <p>

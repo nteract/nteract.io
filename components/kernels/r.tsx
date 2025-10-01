@@ -11,12 +11,12 @@ IRkernel::installspec()`;
 
 export default () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="R"
         repository="https://github.com/IRkernel/IRkernel"
         installURL="https://irkernel.github.io/installation/"
-        logo="/static/r.svg"
+        logo="/r.svg"
       >
         <h3>Installation</h3>
         <div className="columns">

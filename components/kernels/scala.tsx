@@ -16,12 +16,12 @@ coursier bootstrap \\
 
 const Scala = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="Scala"
         repository="https://github.com/almond-sh/almond"
         installURL="https://almond.sh/docs/quick-start-install"
-        logo="/static/scala-spiral.png"
+        logo="/scala-spiral.png"
       >
         <h3>Installation</h3>
         <p>

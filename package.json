@@ -7,7 +7,6 @@
     "url": "https://github.com/nteract/nteract.io/issues"
   },
   "dependencies": {
-    "express": "4.18.2",
     "isomorphic-fetch": "3.0.0",
     "mdi-react": "8.4.0",
     "next": "15.5.4",
@@ -19,7 +18,6 @@
     "styled-components": "6.1.19"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
@@ -46,9 +44,9 @@
     "now-build": "npm run build",
     "prebuild": "tsx fetch-members.ts",
     "build": "next build",
-    "dev": "npm run prebuild && tsx server.ts",
+    "dev": "npm run prebuild && next dev -p 8080",
     "prettier": "prettier --write './**/*.{js,ts,tsx}'",
-    "start": "NODE_ENV=production tsx server.ts",
+    "start": "NODE_ENV=production next start -p 8080",
     "type-check": "tsc --noEmit"
   }
 }

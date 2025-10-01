@@ -1,4 +1,6 @@
 import * as React from "react";
+import { useRouter } from "next/router";
+import type { GetStaticProps, GetStaticPaths } from "next";
 import Layout from "@components/layout";
 import Python from "@components/kernels/python";
 import R from "@components/kernels/r";
@@ -13,9 +15,6 @@ import { ContentSections } from "@components/content-section";
 import { PageHeader } from "@components/page-header";
 import { Button, Buttons } from "@components/button";
 import { colors } from "@common/colors";
-import { withRouter } from "next/router";
-import type { NextRouter } from "next/router";
-import type { NextPageContext } from "next";
 
 type Language =
   | "python"
@@ -51,7 +50,7 @@ const VIEWS: Array<ViewsType> = [
   { name: "Kotlin", path: LanguageSlugs.Kotlin },
 ];
 
-const RenderContent = ({ view }: { view: Language | null | undefined }) => {
+const RenderContent = ({ view }: { view: Language }) => {
   switch (view) {
     case LanguageSlugs.Node:
       return <Node />;
@@ -73,66 +72,68 @@ const RenderContent = ({ view }: { view: Language | null | undefined }) => {
 };
 
 interface KernelsPageProps {
-  slug?: Language;
-  router: NextRouter;
+  slug: Language;
 }
 
-interface KernelsPageState {
-  view: Language | null;
-}
+const KernelsPage: React.FC<KernelsPageProps> = ({ slug }) => {
+  const router = useRouter();
+  const [view, setView] = React.useState<Language>(slug);
 
-class KernelsPage extends React.Component<KernelsPageProps, KernelsPageState> {
-  static async getInitialProps(ctx: NextPageContext) {
-    const {
-      query: { slug },
-    } = ctx;
-    return { slug };
-  }
-
-  state: KernelsPageState = {
-    view: this.props.slug || LanguageSlugs.Python,
+  const changeView = (newView: Language) => {
+    setView(newView);
+    router.push(`/kernels/${newView}`, undefined, { shallow: true });
   };
 
-  changeView = (view: Language) => {
-    this.setState((state) =>
-      state.view !== view ? { ...state, view } : state
-    );
-    this.props.router.push(`/kernels/${view}`, `/kernels/${view}`, {
-      shallow: true,
-    });
+  const activeView = (checkView: Language) => checkView === view;
+
+  return (
+    <Layout>
+      <PageHeader themeColor="rgb(44, 31, 57)">
+        <PageHeader.Left>
+          <PageHeader.Title>Kernels</PageHeader.Title>
+          <Type.p color={colors.lightGrayColor}>
+            Kernels connect your favorite languages to nteract projects for an
+            improved REPL experience.
+          </Type.p>
+          <Buttons padding="20px 0 0 0">
+            {VIEWS.map((viewItem) => (
+              <Button
+                secondary
+                key={viewItem.name}
+                label={viewItem.name}
+                onClick={() => changeView(viewItem.path)}
+                active={activeView(viewItem.path)}
+              />
+            ))}
+          </Buttons>
+        </PageHeader.Left>
+      </PageHeader>
+      <ContentSections>
+        <RenderContent view={view} />
+      </ContentSections>
+    </Layout>
+  );
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = VIEWS.map((view) => ({
+    params: { slug: view.path },
+  }));
+
+  return {
+    paths,
+    fallback: false,
   };
+};
 
-  activeView = (view: Language) => view === this.state.view;
+export const getStaticProps: GetStaticProps<KernelsPageProps> = async ({ params }) => {
+  const slug = (params?.slug as Language) || "python";
 
-  render() {
-    return (
-      <Layout>
-        <PageHeader themeColor="rgb(44, 31, 57)">
-          <PageHeader.Left>
-            <PageHeader.Title>Kernels</PageHeader.Title>
-            <Type.p color={colors.lightGrayColor}>
-              Kernels connect your favorite languages to nteract projects for an
-              improved REPL experience.
-            </Type.p>
-            <Buttons padding="20px 0 0 0">
-              {VIEWS.map((view) => (
-                <Button
-                  secondary
-                  key={view.name}
-                  label={view.name}
-                  onClick={() => this.changeView(view.path)}
-                  active={this.activeView(view.path)}
-                />
-              ))}
-            </Buttons>
-          </PageHeader.Left>
-        </PageHeader>
-        <ContentSections>
-          <RenderContent view={this.state.view} />
-        </ContentSections>
-      </Layout>
-    );
-  }
-}
+  return {
+    props: {
+      slug,
+    },
+  };
+};
 
-export default withRouter(KernelsPage);
+export default KernelsPage;
