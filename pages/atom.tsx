@@ -10,8 +10,8 @@ import { CutoffImage } from "@components/cutoff-image";
 import type { NextPageContext } from "next";
 
 const InspectCode = () => (
-  <ContentSection center>
-    <ContentSection.Pane visual>
+  <ContentSection $center>
+    <ContentSection.Pane $visual>
       <Video
         style={{ boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)" }}
         mp4="static/atom/inspect.mp4"
@@ -37,10 +37,10 @@ const InspectCode = () => (
 );
 const InteractiveComputing = () => (
   <ContentSection>
-    <ContentSection.Pane visual>
+    <ContentSection.Pane $visual>
       <Video
-        mp4="/static/atom/interactive.mp4"
-        poster="/static/atom/interactive.png"
+        mp4="/atom/interactive.mp4"
+        poster="/atom/interactive.png"
         alt="Demo of interactive computing using atom, hydrogen, and python"
       />
     </ContentSection.Pane>
@@ -55,14 +55,14 @@ const InteractiveComputing = () => (
   </ContentSection>
 );
 const WatchExpressions = () => (
-  <ContentSection center>
+  <ContentSection $center>
     <ContentSection.Pane>
       <ContentSection.Title>Watch Expressions</ContentSection.Title>
       <Type.p>
         Get instant feedback on your written code every time you hit execute.
       </Type.p>
     </ContentSection.Pane>
-    <ContentSection.Pane visual>
+    <ContentSection.Pane $visual>
       <Video
         style={{ boxShadow: "0 4px 14px 0 rgba(0,0,0,.1)" }}
         mp4="static/atom/watch-expressions.mp4"
@@ -97,7 +97,7 @@ class Atom extends React.Component {
 
             <Type.h4
               style={{ color: "rgba(255,255,255, 0.8)" }}
-              padding="20px 0 0 0"
+              $padding="20px 0 0 0"
             >
               Install Hydrogen now with
             </Type.h4>
@@ -107,9 +107,9 @@ class Atom extends React.Component {
             >{`apm install hydrogen`}</BashPre>
           </Hero.Pane>
 
-          <Hero.Pane visual padding="40px 0 0 0">
+          <Hero.Pane $visual padding="40px 0 0 0">
             <CutoffImage
-              src="/static/atom/featured.png"
+              src="/atom/featured.png"
               alt="Atom Hero Image"
             />
           </Hero.Pane>

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 import { spacing } from "@common/constants";
 import { colors } from "@common/colors";
-import { margin, padding, wrapperStyles } from "@common/styled";
+import { wrapperStyles } from "@common/styled";
 import { Type } from "@components/typography";
 
 const Background = styled.div`
@@ -34,7 +34,7 @@ const Wrapper = styled.div`
 
 type PaneProps = {
   width?: string;
-  visual?: boolean;
+  $visual?: boolean;
   padding?: string;
   margin?: string;
 };
@@ -61,8 +61,8 @@ const Pane = styled.div<PaneProps>`
     width: ${width ? width : "50%"};
   `};
 
-  ${padding};
-  ${margin};
+  ${({ padding }) => padding && css`padding: ${padding};`};
+  ${({ margin }) => margin && css`margin: ${margin};`};
 `;
 
 const StyledHeroBase = styled.div<{ color?: string }>`

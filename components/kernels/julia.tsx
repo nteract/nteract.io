@@ -16,7 +16,7 @@ julia> IJulia.installkernel("Julia nteract")`;
 
 const Julia = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="Julia"
         repository="https://github.com/JuliaLang/IJulia.jl"

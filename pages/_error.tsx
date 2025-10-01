@@ -47,7 +47,7 @@ export default class Error extends React.Component<ErrorProps> {
     return (
       <Layout>
         <PageHeader themeColor="#334865" />
-        <ContentSection center>{message}</ContentSection>
+        <ContentSection $center>{message}</ContentSection>
       </Layout>
     );
   }

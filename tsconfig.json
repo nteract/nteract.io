@@ -18,7 +18,7 @@
       "@components/*": ["./components/*"],
       "@lib": ["./common/lib"],
       "@common/*": ["./common/*"],
-      "@static/*": ["./static/*"]
+      "@static/*": ["./public/*"]
     },
     "plugins": [
       {

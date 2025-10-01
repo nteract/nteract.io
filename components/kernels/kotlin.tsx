@@ -34,12 +34,12 @@ cd kotlin-jupyter
 
 const Kotlin = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="Kotlin"
         repository="https://github.com/Kotlin/kotlin-jupyter"
         installURL="https://github.com/Kotlin/kotlin-jupyter#installation"
-        logo="/static/kotlin-icon.svg"
+        logo="/kotlin-icon.svg"
       >
         <h3>Installation</h3>
         <p>Kotlin kernel can be installed with conda, PyPi or from sources.</p>

@@ -29,7 +29,7 @@ type Member = {
 
 const Mission = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Type.h3>Mission</Type.h3>
       <Type.p>
         The nteract open source organization is committed to building the future
@@ -90,7 +90,7 @@ const Contributor = ({ person }: { person: Member }) => {
 
 const Contributors = ({ members }: { members: Member[] }) => (
   <ContentSection>
-    <ContentSection.Pane center full>
+    <ContentSection.Pane $center $full>
       <Type.h3>Contributors</Type.h3>
       <div className="grid">
         <StyledGridWrapper>

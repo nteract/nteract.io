@@ -18,13 +18,13 @@ export const DownloadFeaturette = ({ platform, assetUrl }: OSProps) => {
     <>
       <Buttons padding="20px 0 0 0">
         <Button
-          primary
+          $primary
           label={`Try the nteract desktop app for ${platform}`}
           href={assetUrl}
-          icon="/static/icon_nteract_download.svg"
+          icon="/icon_nteract_download.svg"
         />
       </Buttons>
-      <Type.p small padding="10px 0 0 0">
+      <Type.p $small $padding="10px 0 0 0">
         <span style={{ display: "flex", alignItems: "center" }}>
           Download for&nbsp;
           <a

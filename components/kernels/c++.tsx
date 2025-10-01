@@ -8,7 +8,7 @@ const condaInstall = `conda install -c conda-forge xeus-cling`;
 
 export default () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="C++"
         repository="https://github.com/QuantStack/xeus-cling"

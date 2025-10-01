@@ -111,8 +111,8 @@ const MobileMenu = ({ open, ...rest }: MobileMenuProps) =>
 
 interface NavItemsProps extends NavConfig {
   onClick?: () => void;
-  desktop?: boolean;
-  row?: boolean;
+  $desktop?: boolean;
+  $row?: boolean;
 }
 
 const NavItems = ({ items, ...rest }: NavItemsProps) => {
@@ -184,24 +184,24 @@ class Header extends React.PureComponent<{}, HeaderState> {
                 <Link href="/" prefetch>
                   <StyledHeader.Logo>
                     <img
-                      src="/static/feature_nteract_logo_header_white.svg"
+                      src="/feature_nteract_logo_header_white.svg"
                       alt="nteract"
                     />
                   </StyledHeader.Logo>
                 </Link>
-                <NavItems {...leftNav} desktop />
+                <NavItems {...leftNav} $desktop />
               </StyledHeader.Section>
 
               <StyledHeader.Section>
-                <NavItems {...rightNav} desktop />
-                <NavItems {...socialItems} desktop row />
+                <NavItems {...rightNav} $desktop />
+                <NavItems {...socialItems} $desktop $row />
               </StyledHeader.Section>
             </StyledHeader.Wrapper>
           </StyledHeader>
           <MobileMenu open={this.state.mobileMenuOpen}>
             <NavItems onClick={this.handleClick} {...leftNav} />
             <NavItems onClick={this.handleClick} {...rightNav} />
-            <NavItems onClick={this.handleClick} {...socialItems} row />
+            <NavItems onClick={this.handleClick} {...socialItems} $row />
             <StyledHero.Background>
               <Pattern />
             </StyledHero.Background>

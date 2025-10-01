@@ -12,12 +12,12 @@ ijsinstall`;
 
 const Node = () => (
   <ContentSection>
-    <ContentSection.Pane full>
+    <ContentSection.Pane $full>
       <Kernel
         displayName="Node.JS"
         repository="https://github.com/n-riesco/ijavascript"
         installURL="http://n-riesco.github.io/ijavascript/doc/install.md.html"
-        logo="/static/nodejs-icon.svg"
+        logo="/nodejs-icon.svg"
       >
         <h3>Installation</h3>
         <p>

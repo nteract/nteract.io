@@ -17,7 +17,7 @@ const Title = ({ children, typeProps, ...titleProps }: TitleProps) => (
 type ContentSectionProps = {
   index?: number;
   children?: React.ReactNode;
-  center?: boolean;
+  $center?: boolean;
 };
 
 const ContentSectionComponent = ({
@@ -30,7 +30,7 @@ const ContentSectionComponent = ({
     <StyledContentSection {...rest}>
       <StyledContentSection.Wrapper>
         {React.Children.map(children, (child, index) =>
-          React.cloneElement(child as React.ReactElement, { isOdd })
+          React.cloneElement(child as React.ReactElement, { $isOdd: isOdd })
         )}
       </StyledContentSection.Wrapper>
     </StyledContentSection>
