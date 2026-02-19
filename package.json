@@ -15,7 +15,7 @@
     "react-dom": "18.2.0",
     "react-fns": "1.4.0",
     "react-syntax-highlighter": "9.0.1",
-    "styled-components": "6.1.19"
+    "styled-components": "6.3.11"
   },
   "devDependencies": {
     "@types/node": "^20.11.5",
