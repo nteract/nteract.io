@@ -3,7 +3,27 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "nteract",
-  description: "Interactive computing for you",
+  description:
+    "native interactive notebooks — fast to launch, agent ready, humans welcome.",
+  metadataBase: new URL("https://nteract.io"),
+  openGraph: {
+    title: "nteract",
+    description:
+      "native interactive notebooks — fast to launch, agent ready, humans welcome.",
+    url: "https://nteract.io",
+    siteName: "nteract",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "nteract",
+    description:
+      "native interactive notebooks — fast to launch, agent ready, humans welcome.",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({
