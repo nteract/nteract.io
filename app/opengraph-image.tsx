@@ -36,7 +36,7 @@ export default function OGImage() {
           style={{
             position: "absolute",
             bottom: "15px",
-            left: "-60px",
+            left: "-80px",
             display: "flex",
             transform: "rotate(-12deg)",
           }}
@@ -132,7 +132,7 @@ export default function OGImage() {
             flexDirection: "column",
             justifyContent: "center",
             gap: "8px",
-            marginLeft: "430px",
+            marginLeft: "416px",
             padding: "60px 80px",
           }}
         >
@@ -140,7 +140,7 @@ export default function OGImage() {
           <div
             style={{
               display: "flex",
-              fontSize: "24px",
+              fontSize: "28px",
               color: "#9ca3af",
               textTransform: "uppercase",
               letterSpacing: "6px",
@@ -154,7 +154,7 @@ export default function OGImage() {
           <div
             style={{
               display: "flex",
-              fontSize: "96px",
+              fontSize: "120px",
               fontWeight: "bold",
               color: "#111827",
               lineHeight: 1,
@@ -167,12 +167,19 @@ export default function OGImage() {
           <div
             style={{
               display: "flex",
-              fontSize: "32px",
+              flexDirection: "column",
+              fontSize: "36px",
               color: "#6b7280",
-              marginTop: "8px",
+              marginTop: "12px",
+              lineHeight: 1.3,
             }}
           >
-            Fast to launch. Agent ready. Humans welcome.
+            <span>
+              <span style={{ color: "#5E847D" }}>Fast to launch</span>
+              <span style={{ color: "#6b7280", padding: "0 12px" }}>·</span>
+              <span style={{ color: "#8A6E6E" }}>Agent ready</span>
+            </span>
+            <span style={{ color: "#7E6E8A" }}>Humans welcome</span>
           </div>
         </div>
       </div>
