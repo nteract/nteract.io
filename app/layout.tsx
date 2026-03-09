@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "nteract",
     description:
       "native interactive notebooks — fast to launch, agent ready, humans welcome.",

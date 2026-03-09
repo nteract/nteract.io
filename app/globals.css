@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --accent: 255 140 66; /* #FF8C42 Tangerine */
+  --accent: 45 212 191; /* #2DD4BF Teal */
 }
 
 body {
