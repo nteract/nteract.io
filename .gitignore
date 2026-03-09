@@ -42,3 +42,4 @@ jspm_packages
 
 package-lock.json
 generated/
+.vercel
