@@ -1,13 +1,14 @@
 name: Build and validate
-on: push
+on: [push, pull_request]
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: yarn
-      - run: yarn build
-      - run: yarn type-check
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm build
