@@ -31,6 +31,31 @@ export default function OGImage() {
           }}
         />
 
+        {/* Bottom wave - rendered early so logo can appear on top */}
+        <div
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "40px",
+            display: "flex",
+          }}
+        >
+          <svg
+            width="1200"
+            height="40"
+            viewBox="0 0 1200 40"
+            preserveAspectRatio="none"
+            style={{ display: "flex" }}
+          >
+            <path
+              d="M0 20 Q 75 0, 150 20 T 300 20 T 450 20 T 600 20 T 750 20 T 900 20 T 1050 20 T 1200 20 V 40 H 0 Z"
+              fill="#73C9FC"
+            />
+          </svg>
+        </div>
+
         {/* Logo - stylized corner, rotated, hanging off bottom-left */}
         <div
           style={{
@@ -182,19 +207,6 @@ export default function OGImage() {
             <span style={{ color: "#B5A3C0" }}>Humans welcome</span>
           </div>
 
-          {/* Call to action */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              marginTop: "32px",
-              fontSize: "28px",
-              fontWeight: 600,
-              color: "#2DD4BF",
-            }}
-          >
-            Download Now →
-          </div>
         </div>
       </div>
     ),
