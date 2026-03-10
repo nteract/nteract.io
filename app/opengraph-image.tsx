@@ -175,11 +175,25 @@ export default function OGImage() {
             }}
           >
             <span>
-              <span style={{ color: "#5E847D" }}>Fast to launch</span>
-              <span style={{ color: "#6b7280", padding: "0 12px" }}>·</span>
-              <span style={{ color: "#8A6E6E" }}>Agent ready</span>
+              <span style={{ color: "#7DB5AC" }}>Fast to launch</span>
+              <span style={{ color: "#9ca3af", padding: "0 12px" }}>·</span>
+              <span style={{ color: "#C4A3A3" }}>Agent ready</span>
             </span>
-            <span style={{ color: "#7E6E8A" }}>Humans welcome</span>
+            <span style={{ color: "#B5A3C0" }}>Humans welcome</span>
+          </div>
+
+          {/* Call to action */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginTop: "32px",
+              fontSize: "28px",
+              fontWeight: 600,
+              color: "#2DD4BF",
+            }}
+          >
+            Download Now →
           </div>
         </div>
       </div>
