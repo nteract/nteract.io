@@ -103,11 +103,11 @@ body {
   }
 
   .nteract-prose [data-rehype-pretty-code-figure] {
-    @apply overflow-hidden rounded-2xl border border-black/5 bg-gray-950 shadow-sm;
+    @apply overflow-hidden rounded-2xl border border-black/10 bg-slate-50 shadow-sm;
   }
 
   .nteract-prose [data-rehype-pretty-code-title] {
-    @apply border-b border-white/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-gray-300;
+    @apply border-b border-black/10 bg-white/70 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-gray-500;
   }
 
   .nteract-prose [data-rehype-pretty-code-figure] pre {
@@ -115,7 +115,7 @@ body {
   }
 
   .nteract-prose [data-rehype-pretty-code-figure] code {
-    @apply grid min-w-full bg-transparent px-0 py-4 font-medium text-gray-100;
+    @apply grid min-w-full bg-transparent px-0 py-4 font-medium text-gray-800;
     counter-reset: line;
   }
 
@@ -124,10 +124,10 @@ body {
   }
 
   .nteract-prose [data-rehype-pretty-code-figure] code [data-highlighted-line] {
-    @apply border-accent/80 bg-white/5;
+    @apply border-accent/80 bg-accent/10;
   }
 
   .nteract-prose [data-rehype-pretty-code-figure] code [data-highlighted-chars] {
-    @apply rounded bg-white/10;
+    @apply rounded bg-accent/15;
   }
 }
