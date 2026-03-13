@@ -1,25 +1,38 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import type { ReactNode } from "react";
+
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
+import { absoluteUrl, siteConfig } from "@/lib/site";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "nteract",
-  description:
-    "native interactive notebooks — fast to launch, agent ready, humans welcome.",
-  metadataBase: new URL("https://nteract.io"),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
   openGraph: {
-    title: "nteract",
-    description:
-      "native interactive notebooks — fast to launch, agent ready, humans welcome.",
-    url: "https://nteract.io",
-    siteName: "nteract",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     type: "website",
+    images: [
+      {
+        url: absoluteUrl("/opengraph-image"),
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — native interactive notebooks`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "nteract",
-    description:
-      "native interactive notebooks — fast to launch, agent ready, humans welcome.",
+    title: siteConfig.name,
+    description: siteConfig.description,
   },
   icons: {
     icon: "/icon.svg",
@@ -30,12 +43,16 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white">
-        {children}
+      <body className="min-h-screen bg-white text-gray-900 antialiased">
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <SiteFooter />
+        </div>
         <Analytics />
       </body>
     </html>

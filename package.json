@@ -7,21 +7,31 @@
     "url": "https://github.com/nteract/nteract.io/issues"
   },
   "dependencies": {
+    "@next/mdx": "^15.5.12",
     "@vercel/analytics": "^1.6.1",
     "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
     "next": "15.5.12",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rehype-pretty-code": "^0.14.3",
+    "remark-frontmatter": "^5.0.0",
+    "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/node": "^20.11.5",
     "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
+    "@vitejs/plugin-react": "^6.0.1",
     "autoprefixer": "^10.4.17",
+    "jsdom": "^28.1.0",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.0"
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
   "license": "BSD-3-Clause",
@@ -32,7 +42,9 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "start": "next start"
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "packageManager": "pnpm@10.30.0+sha512.2b5753de015d480eeb88f5b5b61e0051f05b4301808a82ec8b840c9d2adf7748eb352c83f5c1593ca703ff1017295bc3fdd3119abb9686efc96b9fcb18200937"
 }

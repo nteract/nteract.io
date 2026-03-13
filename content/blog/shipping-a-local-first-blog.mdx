@@ -1,0 +1,52 @@
+---
+title: Shipping a local-first blog
+description: How we added a lightweight MDX workflow to the site without adding operational overhead.
+date: 2026-03-10
+published: true
+tags:
+  - Product
+  - MDX
+  - Vercel
+---
+
+The new nteract blog lives in the same repository as the marketing site.
+That keeps the authoring flow simple: write an `.mdx` file, commit it, and let
+the regular deployment pipeline do the rest.
+
+## Why we kept it local
+
+For this site, the content needs were straightforward:
+
+- posts should live next to the code
+- deploys should stay static-first
+- the publishing model should work well in pull requests
+
+That made local MDX a better fit than introducing a CMS, webhook flow, or
+database-backed publishing system.
+
+## What the setup gives us
+
+Because the posts are compiled at build time, we can keep the runtime footprint
+small while still supporting richer writing. Technical posts can include fenced
+code blocks like this:
+
+```tsx
+export function BlogHeader({ title }: { title: string }) {
+  return (
+    <header className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm">
+      <p className="text-sm uppercase tracking-[0.35em] text-gray-400">
+        Local-first writing
+      </p>
+      <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900">
+        {title}
+      </h1>
+    </header>
+  );
+}
+```
+
+The rest of the site still looks and behaves like one product. The same layout,
+spacing, typography, and accent color now carry through from the home page to
+the blog.
+
+If you want the landing page, head back to the [main site](/).
