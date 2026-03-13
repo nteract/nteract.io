@@ -1,0 +1,105 @@
+---
+title: MDX formatting showcase
+description: A temporary visual reference post for validating the blog's typography, media, and code rendering.
+date: 2026-03-10
+published: true
+tags:
+  - Showcase
+  - MDX
+  - QA
+coverImage: /icon.svg
+---
+
+This temporary post is here to visually validate the formatting options currently
+available in the blog. It intentionally exercises **bold text**, *italic text*,
+inline `code`, internal links to the [home page](/), and external links like
+[Next.js](https://nextjs.org/).
+
+## Headings and paragraph rhythm
+
+Long-form content should feel like a natural extension of the rest of the site.
+This paragraph is useful for checking measure, line height, spacing, and the way
+links and inline code sit within body copy.
+
+### Unordered, ordered, and task lists
+
+- Top-level bullet items should align cleanly
+- Nested content should still read comfortably
+  - including a nested bullet
+  - and an item with `inline code`
+- Links inside lists should inherit the same styling as prose links
+
+1. Ordered items should use the same spacing rhythm
+2. Numbers should align clearly with multiline content
+3. The list should remain readable on narrow layouts
+
+- [x] GFM task lists should render as valid checklist content
+- [ ] Pending items should stay readable even if we do not heavily customize them
+
+### Blockquotes and separators
+
+> Fast to launch. Agent ready. Humans welcome.
+>
+> This blockquote helps validate the custom prose wrapper styling.
+
+---
+
+## Tables and images
+
+| Element | Purpose | What to look for |
+| --- | --- | --- |
+| Headings | Structure | Clear spacing and hierarchy |
+| Tables | Data display | Borders, padding, and readable alignment |
+| Images | Media support | Rounded corners and consistent framing |
+| Code blocks | Technical writing | Good contrast and comfortable scanning |
+
+![nteract brand mark](/icon.svg)
+
+### Image caption-style paragraph
+
+The image above uses the standard markdown image syntax so it runs through the
+same MDX component mapping as future post images.
+
+## Code blocks
+
+The next examples are here to validate fenced code blocks, code titles, and
+language-aware highlighting with a light theme.
+
+```bash title="terminal"
+pnpm install
+pnpm test
+pnpm build
+```
+
+#### TSX example
+
+```tsx title="components/blog/example-card.tsx"
+import Link from "next/link";
+
+type ExampleCardProps = {
+  title: string;
+  href: string;
+};
+
+export function ExampleCard({ title, href }: ExampleCardProps) {
+  return (
+    <Link
+      href={href}
+      className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-0.5"
+    >
+      <h3 className="text-xl font-semibold tracking-tight text-gray-900">
+        {title}
+      </h3>
+      <p className="mt-2 text-sm text-gray-600">
+        A small reusable card for linking into long-form content.
+      </p>
+    </Link>
+  );
+}
+```
+
+## Final check
+
+If this post looks polished, then the current MDX setup is covering the key
+authoring surfaces we support today. Once the blog has real content, this post
+can be deleted without changing the underlying rendering system.

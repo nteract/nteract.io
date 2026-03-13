@@ -8,10 +8,7 @@ describe("blog content utilities", () => {
   it("returns published posts in reverse chronological order by default", async () => {
     const posts = await getAllPosts();
 
-    expect(posts.map((post) => post.slug)).toEqual([
-      "shipping-a-local-first-blog",
-      "why-nteract-still-feels-fast",
-    ]);
+    expect(posts.map((post) => post.slug)).toEqual(["mdx-formatting-showcase"]);
     expect(posts.every((post) => post.published)).toBe(true);
   });
 
@@ -22,7 +19,8 @@ describe("blog content utilities", () => {
       includeUnpublished: true,
     });
 
-    expect(posts).toHaveLength(3);
+    expect(posts).toHaveLength(2);
+    expect(slugs).toContain("mdx-formatting-showcase");
     expect(slugs).toContain("draft-agent-ready-notebooks");
     expect(draft?.published).toBe(false);
   });
