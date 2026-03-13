@@ -6,7 +6,7 @@ import { BlogTagList } from "@/components/blog/tag-list";
 import { Prose } from "@/components/prose";
 import { Container } from "@/components/site-shell";
 import { formatPostDate, getAllSlugs, getPostBySlug } from "@/lib/blog";
-import { absoluteUrl, siteConfig } from "@/lib/site";
+import { absoluteUrl } from "@/lib/site";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -102,21 +102,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <Prose className="mt-10">
           <Content />
         </Prose>
-
-        <div className="mt-12 rounded-2xl border border-black/5 bg-gray-50 p-6 text-sm text-gray-500">
-          <p>
-            Posts are authored as local MDX files in the repository and ship with
-            the rest of the site.
-          </p>
-          <a
-            href={siteConfig.links.github}
-            className="mt-3 inline-flex font-medium text-gray-900 underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent"
-            rel="noreferrer"
-            target="_blank"
-          >
-            View the project on GitHub
-          </a>
-        </div>
       </article>
     </Container>
   );
