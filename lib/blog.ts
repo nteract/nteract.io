@@ -1,4 +1,3 @@
-import { cache } from "react";
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
@@ -95,29 +94,38 @@ function compareByDateDescending(left: BlogPostSummary, right: BlogPostSummary) 
   return new Date(right.date).getTime() - new Date(left.date).getTime();
 }
 
-const readAllPostsFromDisk = cache(async (): Promise<BlogPost[]> => {
-  const entries = await fs.readdir(BLOG_DIRECTORY, { withFileTypes: true });
-  const mdxFiles = entries
-    .filter((entry) => entry.isFile() && /\.mdx?$/.test(entry.name))
-    .map((entry) => entry.name);
+let postsPromise: Promise<BlogPost[]> | undefined;
 
-  const posts = await Promise.all(
-    mdxFiles.map(async (fileName) => {
-      const filePath = path.join(BLOG_DIRECTORY, fileName);
-      const source = await fs.readFile(filePath, "utf8");
-      const { content, data } = matter(source);
-      const frontmatter = parseFrontmatter(fileName, data as Record<string, unknown>);
+function readAllPostsFromDisk(): Promise<BlogPost[]> {
+  postsPromise ??= (async () => {
+    const entries = await fs.readdir(BLOG_DIRECTORY, { withFileTypes: true });
+    const mdxFiles = entries
+      .filter((entry) => entry.isFile() && /\.mdx?$/.test(entry.name))
+      .map((entry) => entry.name);
 
-      return {
-        slug: toSlug(fileName),
-        content,
-        ...frontmatter,
-      } satisfies BlogPost;
-    })
-  );
+    const posts = await Promise.all(
+      mdxFiles.map(async (fileName) => {
+        const filePath = path.join(BLOG_DIRECTORY, fileName);
+        const source = await fs.readFile(filePath, "utf8");
+        const { content, data } = matter(source);
+        const frontmatter = parseFrontmatter(
+          fileName,
+          data as Record<string, unknown>
+        );
 
-  return posts.sort(compareByDateDescending);
-});
+        return {
+          slug: toSlug(fileName),
+          content,
+          ...frontmatter,
+        } satisfies BlogPost;
+      })
+    );
+
+    return posts.sort(compareByDateDescending);
+  })();
+
+  return postsPromise;
+}
 
 export async function getAllPosts(
   options: BlogQueryOptions = {}

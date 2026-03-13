@@ -1,9 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 
-vi.mock("@/lib/blog", () => ({
-  getAllPosts: vi.fn(),
-}));
+vi.mock("@/lib/blog", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/blog")>();
+
+  return {
+    ...actual,
+    getAllPosts: vi.fn(),
+  };
+});
 
 import { getAllPosts } from "@/lib/blog";
 
