@@ -8,7 +8,9 @@ describe("blog content utilities", () => {
   it("returns published posts in reverse chronological order by default", async () => {
     const posts = await getAllPosts();
 
-    expect(posts.map((post) => post.slug)).toEqual(["mdx-formatting-showcase"]);
+    expect(posts.map((post) => post.slug)).toEqual([
+      "welcome-to-the-new-nteract-blog",
+    ]);
     expect(posts.every((post) => post.published)).toBe(true);
   });
 
@@ -20,7 +22,7 @@ describe("blog content utilities", () => {
     });
 
     expect(posts).toHaveLength(2);
-    expect(slugs).toContain("mdx-formatting-showcase");
+    expect(slugs).toContain("welcome-to-the-new-nteract-blog");
     expect(slugs).toContain("draft-agent-ready-notebooks");
     expect(draft?.published).toBe(false);
   });
