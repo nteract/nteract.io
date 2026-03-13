@@ -1,5 +1,30 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import createMDX from "@next/mdx";
+import type { NextConfig } from "next";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkGfm from "remark-gfm";
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: "github-light",
+          keepBackground: false,
+          defaultLang: {
+            block: "text",
+          },
+        },
+      ],
+    ],
+  },
+});
+
+const nextConfig: NextConfig = {
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
   async redirects() {
     return [
       {
@@ -46,4 +71,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+export default withMDX(nextConfig);
