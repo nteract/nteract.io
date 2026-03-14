@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
 import { Container } from "@/components/site-shell";
@@ -24,9 +22,6 @@ export default function Home() {
         <DownloadButtons />
 
         <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-          <Link href="/blog" className="transition-colors hover:text-gray-900">
-            Read the blog
-          </Link>
           <a
             href={siteConfig.links.github}
             className="transition-colors hover:text-gray-900"
