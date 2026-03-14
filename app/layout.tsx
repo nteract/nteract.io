@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import type { ReactNode } from "react";
 
-import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 import "./globals.css";
@@ -47,12 +46,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-gray-900 antialiased">
-        <div className="flex min-h-screen flex-col">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </div>
+      <body className="min-h-screen antialiased">
+        {children}
         <Analytics />
       </body>
     </html>

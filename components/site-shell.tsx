@@ -6,6 +6,7 @@ import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type ContainerProps = HTMLAttributes<HTMLDivElement>;
+type HeaderVariant = "light" | "dark";
 
 export function Container({ className, ...props }: ContainerProps) {
   return (
@@ -26,19 +27,26 @@ function SiteNavLink({
   href,
   label,
   external = false,
+  variant = "light",
 }: {
   href: string;
   label: string;
   external?: boolean;
+  variant?: HeaderVariant;
 }) {
-  const className =
-    "text-sm font-medium text-gray-500 transition-colors hover:text-gray-900";
+  const isDark = variant === "dark";
+  const linkClassName = cn(
+    "text-sm font-medium transition-colors",
+    isDark
+      ? "text-white/70 hover:text-white"
+      : "text-gray-500 hover:text-gray-900"
+  );
 
   if (external) {
     return (
       <a
         href={href}
-        className={className}
+        className={linkClassName}
         rel="noreferrer"
         target="_blank"
       >
@@ -48,21 +56,36 @@ function SiteNavLink({
   }
 
   return (
-    <Link href={href} className={className}>
+    <Link href={href} className={linkClassName}>
       {label}
     </Link>
   );
 }
 
-export function SiteHeader() {
+interface SiteHeaderProps {
+  variant?: HeaderVariant;
+}
+
+export function SiteHeader({ variant = "light" }: SiteHeaderProps) {
+  const isDark = variant === "dark";
+
   return (
-    <header className="border-b border-black/5 bg-white/90 backdrop-blur">
+    <header
+      className={cn(
+        isDark
+          ? "absolute inset-x-0 top-0 z-50 border-b border-white/10 bg-transparent"
+          : "border-b border-black/5 bg-white/90 backdrop-blur"
+      )}
+    >
       <Container className="flex h-16 items-center justify-between gap-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-3 text-gray-900 transition-opacity hover:opacity-80"
+          className={cn(
+            "inline-flex items-center gap-3 transition-opacity hover:opacity-80",
+            isDark ? "text-white" : "text-gray-900"
+          )}
         >
-          <Logo className="h-9 w-9" />
+          <Logo className="h-9 w-9" variant={isDark ? "light" : "default"} />
           <span className="text-base font-semibold tracking-tight">
             {siteConfig.name}
           </span>
@@ -70,7 +93,7 @@ export function SiteHeader() {
 
         <nav className="flex items-center gap-4 sm:gap-6">
           {navLinks.map((link) => (
-            <SiteNavLink key={link.href} {...link} />
+            <SiteNavLink key={link.href} {...link} variant={variant} />
           ))}
         </nav>
       </Container>
