@@ -1,50 +1,43 @@
-import Link from "next/link";
-
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
-import { Container } from "@/components/site-shell";
 import { siteConfig } from "@/lib/site";
 
 export default function Home() {
   return (
-    <Container className="flex min-h-[calc(100vh-8rem)] flex-col items-center justify-center py-16 sm:py-24">
-      <div className="mx-auto max-w-2xl text-center">
-        <Logo className="mx-auto mb-8 h-32 w-32 sm:h-40 sm:w-40" />
+    <main className="flex min-h-screen flex-col items-center justify-center px-4 py-16">
+      <div className="max-w-2xl mx-auto text-center">
+        <Logo className="w-40 h-40 mx-auto mb-8" />
 
-        <p className="mb-2 text-sm uppercase tracking-[0.35em] text-gray-400">
+        <p className="text-sm uppercase tracking-widest text-gray-400 mb-2">
           Native interactive notebooks
         </p>
-        <h1 className="mb-3 text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+        <h1 className="text-5xl font-bold text-gray-900 mb-3">
           {siteConfig.name}
         </h1>
-        <p className="mx-auto mb-8 max-w-md text-base text-gray-500 sm:text-lg">
+        <p className="text-base text-gray-500 mb-8 max-w-md mx-auto">
           Fast to launch. Agent ready. Humans welcome.
         </p>
 
         <DownloadButtons />
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-          <Link href="/blog" className="transition-colors hover:text-gray-900">
-            Read the blog
-          </Link>
+        <div className="mt-12 flex items-center justify-center gap-6 text-sm text-gray-500">
           <a
             href={siteConfig.links.github}
-            className="transition-colors hover:text-gray-900"
+            className="hover:text-gray-900 transition-colors"
             rel="noreferrer"
             target="_blank"
           >
             GitHub
           </a>
-          <a
-            href={siteConfig.links.releases}
-            className="transition-colors hover:text-gray-900"
-            rel="noreferrer"
-            target="_blank"
-          >
-            All Releases
-          </a>
         </div>
       </div>
-    </Container>
+
+      <footer className="mt-24 pb-8 text-center">
+        <p className="text-sm text-gray-400 italic max-w-md mx-auto">
+          "The purpose of computing is insight, not numbers."
+        </p>
+        <p className="text-xs text-gray-400 mt-1">— Richard Hamming</p>
+      </footer>
+    </main>
   );
 }

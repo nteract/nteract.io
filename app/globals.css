@@ -130,4 +130,55 @@ body {
   .nteract-prose [data-rehype-pretty-code-figure] code [data-highlighted-chars] {
     @apply rounded bg-accent/15;
   }
+
+  /* Dark mode / prose-invert styles */
+  .nteract-prose.prose-invert {
+    @apply text-neutral-300;
+  }
+
+  .nteract-prose.prose-invert h2,
+  .nteract-prose.prose-invert h3,
+  .nteract-prose.prose-invert h4 {
+    @apply text-white;
+  }
+
+  .nteract-prose.prose-invert p {
+    @apply text-neutral-300;
+  }
+
+  .nteract-prose.prose-invert strong {
+    @apply text-white;
+  }
+
+  .nteract-prose.prose-invert blockquote p {
+    @apply text-neutral-400;
+  }
+
+  .nteract-prose.prose-invert thead {
+    @apply border-white/10 text-white;
+  }
+
+  .nteract-prose.prose-invert tbody tr {
+    @apply border-white/5;
+  }
+
+  .nteract-prose.prose-invert [data-rehype-pretty-code-figure] {
+    @apply border-white/10 bg-white/5;
+  }
+
+  .nteract-prose.prose-invert [data-rehype-pretty-code-title] {
+    @apply border-white/10 bg-white/5 text-neutral-400;
+  }
+
+  .nteract-prose.prose-invert [data-rehype-pretty-code-figure] code {
+    @apply text-neutral-200;
+  }
+
+  .nteract-prose.prose-invert a {
+    @apply text-purple-400 hover:text-purple-300;
+  }
+
+  .nteract-prose.prose-invert li::marker {
+    @apply text-neutral-500;
+  }
 }

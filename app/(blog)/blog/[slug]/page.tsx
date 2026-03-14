@@ -68,24 +68,24 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <Container className="py-16 sm:py-20">
+    <Container className="py-12 sm:py-16">
       <article className="mx-auto max-w-3xl">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+          className="inline-flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-purple-400"
         >
           <span aria-hidden="true">←</span>
           Back to blog
         </Link>
 
-        <header className="mt-8 border-b border-black/5 pb-8">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400">
+        <header className="mt-8 border-b border-white/10 pb-8">
+          <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-500">
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
           </div>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-gray-600">
+          <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-400">
             {post.description}
           </p>
           <BlogTagList tags={post.tags} className="mt-6" />
@@ -94,12 +94,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {post.coverImage ? (
           <img
             alt={post.title}
-            className="mt-10 rounded-3xl border border-black/5 shadow-sm"
+            className="mt-10 rounded-3xl border border-white/10"
             src={post.coverImage}
           />
         ) : null}
 
-        <Prose className="mt-10">
+        <Prose className="mt-10 prose-invert">
           <Content />
         </Prose>
       </article>
