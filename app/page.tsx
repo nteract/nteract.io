@@ -2,7 +2,22 @@ import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
 import { siteConfig } from "@/lib/site";
 
-export default function Home() {
+async function getStableVersion(): Promise<string | null> {
+  try {
+    const res = await fetch(siteConfig.stableManifestUrl, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const manifest = await res.json();
+    return manifest.version ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export default async function Home() {
+  const version = await getStableVersion();
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-4 py-16">
       <div className="max-w-2xl mx-auto text-center">
@@ -18,7 +33,7 @@ export default function Home() {
           Fast to launch. Agent ready. Humans welcome.
         </p>
 
-        <DownloadButtons />
+        <DownloadButtons version={version} />
 
         <div className="mt-12 flex items-center justify-center gap-6 text-sm text-gray-500">
           <a

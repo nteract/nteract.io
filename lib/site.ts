@@ -5,8 +5,8 @@ export const siteConfig = {
     "native interactive notebooks — fast to launch, agent ready, humans welcome.",
   blogDescription:
     "Product notes, technical writing, and release stories from the nteract team.",
-  desktopReleases:
-    "https://github.com/nteract/desktop/releases/latest/download",
+  stableManifestUrl:
+    "https://github.com/nteract/desktop/releases/download/stable-latest/latest.json",
   links: {
     github: "https://github.com/nteract/desktop",
     releases: "https://github.com/nteract/desktop/releases",
