@@ -1,0 +1,9 @@
+{
+  "context_servers": {
+    "nteract": {
+      "command": "uvx",
+      "args": ["--prerelease", "allow", "nteract", "--nightly"],
+      "env": {},
+    },
+  },
+}
