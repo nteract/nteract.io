@@ -3,7 +3,6 @@
 import type { ReactNode } from "react";
 import { useMemo } from "react";
 
-import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type Download = {
@@ -70,7 +69,11 @@ function detectPlatform() {
   return "macOS";
 }
 
-export function DownloadButtons() {
+function getDownloadUrl(version: string, file: string): string {
+  return `https://github.com/nteract/desktop/releases/download/v${version}/${file}`;
+}
+
+export function DownloadButtons({ version }: { version: string | null }) {
   const platform = useMemo(detectPlatform, []);
   const primaryDownload =
     downloads.find((download) => download.platform === platform) ?? downloads[0];
@@ -78,10 +81,12 @@ export function DownloadButtons() {
     (download) => download.platform !== platform
   );
 
+  const fallbackUrl = "https://github.com/nteract/desktop/releases";
+
   return (
     <>
       <a
-        href={`${siteConfig.desktopReleases}/${primaryDownload.file}`}
+        href={version ? getDownloadUrl(version, primaryDownload.file) : fallbackUrl}
         className={cn(
           "inline-flex items-center gap-3 rounded-lg px-8 py-4",
           "bg-accent/90 text-lg font-medium text-white shadow-lg transition-all",
@@ -96,7 +101,7 @@ export function DownloadButtons() {
         {secondaryDownloads.map((download) => (
           <a
             key={download.platform}
-            href={`${siteConfig.desktopReleases}/${download.file}`}
+            href={version ? getDownloadUrl(version, download.file) : fallbackUrl}
             className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
           >
             {download.icon}
