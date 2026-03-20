@@ -7,7 +7,9 @@ import { cn } from "@/lib/utils";
 
 type Download = {
   platform: string;
-  file: string;
+  file?: string;
+  href?: string;
+  label?: string;
   icon: ReactNode;
 };
 
@@ -24,7 +26,8 @@ const downloads: Download[] = [
   },
   {
     platform: "Windows",
-    file: "nteract-stable-windows-x64.exe",
+    href: "https://github.com/nteract/desktop/issues/375",
+    label: "Windows (testers needed)",
     icon: (
       <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
         <path d="M21 13v5c0 1.57 -1.248 2.832 -2.715 2.923l-.113 .003l-.042 .018a1 1 0 0 1 -.336 .056l-.118 -.008l-4.676 -.585v-7.407zm-10 0v7.157l-5.3 -.662c-1.514 -.151 -2.7 -1.383 -2.7 -2.895v-3.6zm0 -9.158v7.158h-8v-3.6c0 -1.454 1.096 -2.648 2.505 -2.87zm10 2.058v5.1h-8v-7.409l4.717 -.589c1.759 -.145 3.283 1.189 3.283 2.898" />
@@ -83,10 +86,17 @@ export function DownloadButtons({ version }: { version: string | null }) {
 
   const fallbackUrl = "https://github.com/nteract/desktop/releases";
 
+  function resolveUrl(download: Download): string {
+    if (download.href) return download.href;
+    if (version && download.file) return getDownloadUrl(version, download.file);
+    return fallbackUrl;
+  }
+
   return (
     <>
       <a
-        href={version ? getDownloadUrl(version, primaryDownload.file) : fallbackUrl}
+        href={resolveUrl(primaryDownload)}
+        {...(primaryDownload.href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         className={cn(
           "inline-flex items-center gap-3 rounded-lg px-8 py-4",
           "bg-accent/90 text-lg font-medium text-white shadow-lg transition-all",
@@ -94,18 +104,19 @@ export function DownloadButtons({ version }: { version: string | null }) {
         )}
       >
         {primaryDownload.icon}
-        Download for {primaryDownload.platform}
+        {primaryDownload.label ?? `Download for ${primaryDownload.platform}`}
       </a>
 
       <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
         {secondaryDownloads.map((download) => (
           <a
             key={download.platform}
-            href={version ? getDownloadUrl(version, download.file) : fallbackUrl}
+            href={resolveUrl(download)}
+            {...(download.href ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
           >
             {download.icon}
-            {download.platform}
+            {download.label ?? download.platform}
           </a>
         ))}
       </div>

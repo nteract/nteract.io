@@ -39,6 +39,7 @@ jspm_packages
 .vscode
 .next
 .idea
+*.tsbuildinfo
 
 package-lock.json
 generated/
