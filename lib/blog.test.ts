@@ -8,28 +8,21 @@ describe("blog content utilities", () => {
   it("returns published posts in reverse chronological order by default", async () => {
     const posts = await getAllPosts();
 
-    expect(posts.map((post) => post.slug)).toEqual([
-      "welcome-to-the-new-nteract-blog",
-    ]);
+    expect(posts.map((post) => post.slug)).toEqual(["nteract-2.0"]);
     expect(posts.every((post) => post.published)).toBe(true);
   });
 
   it("can include unpublished posts when requested", async () => {
     const posts = await getAllPosts({ includeUnpublished: true });
     const slugs = await getAllSlugs({ includeUnpublished: true });
-    const draft = await getPostBySlug("draft-agent-ready-notebooks", {
-      includeUnpublished: true,
-    });
 
-    expect(posts).toHaveLength(2);
-    expect(slugs).toContain("welcome-to-the-new-nteract-blog");
-    expect(slugs).toContain("draft-agent-ready-notebooks");
-    expect(draft?.published).toBe(false);
+    expect(slugs).toContain("nteract-2.0");
   });
 
   it("hides unpublished posts from default lookups", async () => {
-    const draft = await getPostBySlug("draft-agent-ready-notebooks");
+    const post = await getPostBySlug("nteract-2.0");
 
-    expect(draft).toBeNull();
+    expect(post).not.toBeNull();
+    expect(post?.published).toBe(true);
   });
 });

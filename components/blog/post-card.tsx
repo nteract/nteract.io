@@ -9,28 +9,36 @@ type BlogPostCardProps = {
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   return (
-    <article className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 pl-8 transition-all hover:-translate-y-0.5 hover:bg-white/[0.08]">
-      {/* Purple ribbon accent on hover */}
-      <div className="absolute left-0 top-6 bottom-6 w-1 rounded-full bg-purple-500/0 transition-all group-hover:bg-purple-500" />
+    <article className="group relative bg-surface-container-low p-6 pl-8 transition-all hover:bg-surface-container">
+      {/* Teal rail accent on hover */}
+      <div className="absolute bottom-6 left-0 top-6 w-1 bg-transparent transition-all group-hover:bg-tertiary" />
 
-      <div className="mb-4 flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-        <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+      <div className="mb-4 flex flex-wrap items-center gap-3">
+        <time
+          dateTime={post.date}
+          className="font-mono text-[11px] uppercase tracking-widest text-secondary"
+        >
+          {formatPostDate(post.date)}
+        </time>
         {post.tags.length > 0 ? (
-          <span className="h-1 w-1 rounded-full bg-neutral-600" aria-hidden="true" />
+          <span
+            className="h-1 w-1 bg-outline-variant"
+            aria-hidden="true"
+          />
         ) : null}
         <BlogTagList tags={post.tags} />
       </div>
 
-      <h2 className="text-2xl font-semibold tracking-tight text-white">
+      <h2 className="font-headline text-2xl font-bold tracking-tight text-on-surface">
         <Link
           href={`/blog/${post.slug}`}
-          className="transition-colors group-hover:text-purple-400"
+          className="transition-colors group-hover:text-primary"
         >
           {post.title}
         </Link>
       </h2>
 
-      <p className="mt-3 text-base leading-7 text-neutral-400">
+      <p className="mt-3 text-base leading-7 text-on-surface-variant">
         {post.description}
       </p>
     </article>

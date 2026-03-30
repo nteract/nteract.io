@@ -1,10 +1,29 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-headline",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -46,7 +65,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen antialiased">
+      <body
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-screen font-body antialiased`}
+      >
         {children}
         <Analytics />
       </body>

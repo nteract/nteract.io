@@ -11,10 +11,10 @@ export function BlogTagList({ tags, className }: BlogTagListProps) {
   }
 
   return (
-    <ul className={cn("flex flex-wrap gap-2", className)}>
+    <ul className={cn("flex flex-wrap gap-3", className)}>
       {tags.map((tag) => (
         <li key={tag}>
-          <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-neutral-400">
+          <span className="inline-flex items-center bg-surface-container-high px-3 py-1 font-mono text-[11px] uppercase tracking-wider text-on-surface-variant">
             {tag}
           </span>
         </li>

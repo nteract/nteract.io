@@ -1,0 +1,126 @@
+---
+title: "nteract 2.0"
+description: "A ground-up rebuild of the notebook app. New runtime, new architecture, new everything."
+date: 2026-03-24
+published: true
+tags:
+  - nteract
+  - release
+  - notebooks
+---
+
+
+<video src="https://pub-d6c6294d12e242e7acb5f8d1eaf78e06.r2.dev/tada.mp4" autoPlay muted loop playsInline />
+
+Today we're releasing nteract 2.0. It's a ground-up rebuild of the [much-loved notebook app](https://github.com/nteract/archived-desktop-app). New runtime, new architecture, new everything. Here's what we built and why.
+
+## What is nteract?
+
+nteract is a desktop notebook app for macOS, Windows, and Linux. You double-click a `.ipynb` file, it opens, a kernel starts, and you're running code. No browser, no server to manage. Just straight up iteration.
+
+We originally built nteract on Electron back in 2016. This is a complete rewrite in Rust and TypeScript on Tauri. The app is native, the runtimes are managed by a background daemon. Your existing `.ipynb` files work as-is. There is much more power under the hood.
+
+## The big ideas
+
+### Zero-config Python Environments
+
+nteract is flipping how runtimes work with Python. We're not "kernel" based. We're project based.
+
+There are two modes:
+
+* Project based: `pyproject.toml`, `pixi.toml`, and `environment.yml` are detected by nteract, walked up to the closest match just like normal package managers do.
+* Inline dependencies: Store dependencies right in the notebook metadata, making the notebook reproducible and portable. Send it to a friend and they can run it (assuming they [trust](#trust) it).
+
+On top of that, nteract wants you to be able to iterate fast. There are prewarmed environments ready to go with the dependencies you want.
+
+<img src="https://pub-d6c6294d12e242e7acb5f8d1eaf78e06.r2.dev/dep-mgmt.png" alt="nteract inline dependency management in a notebook" />
+
+Whether you're on `uv` or `conda`, we've got you covered. `uv` for straight PyPI usage, `conda` for conda channels.
+
+<img src="https://pub-d6c6294d12e242e7acb5f8d1eaf78e06.r2.dev/settings-ui.png" alt="nteract settings showing uv and conda environment options" />
+
+### Trust
+
+### AI agents as first-class peers
+
+We're shipping an MCP server and a CLI to interface with notebooks. Agents can join you in the document and join as a realtime collaborator. Humans and agents share a live workspace instead of a file. No tab and file stomping.
+
+Agents can create and run cells, manage dependencies, manage runtime lifecycle. Humans can see changes in realtime. It's up to you if you want your agent to watch for changes themselves.
+
+Everyone gets the same realtime document.
+Multiple agents and multiple humans can all be in the same notebook simultaneously. Presence shows who's where — colored cursors, cell focus indicators, text attribution highlights with fade-out. */}
+
+
+### Local-first notebooks
+
+Every notebook is an [Automerge](https://automerge.org/) CRDT document. Cell edits happen locally. nThe frontend and daemon each run their own Automerge peer and sync over a binary pipe.
+
+This means:
+- **Instant editing.** Keystrokes don't wait for a server.
+- **Multi-window.** Open the same notebook in two windows. They stay in sync.
+- **Crash recovery.** The daemon persists the Automerge doc. If the app crashes, your work is there when you reopen.
+- **Autosave.** The daemon writes `.ipynb` on a debounce. No manual save needed (though <Kbd>mod+S</Kbd> still works).
+
+### The daemon: `runtimed`
+
+A background service (`runtimed`) runs on your machine and manages everything:
+
+- **Kernel lifecycle** — launch, interrupt, restart, shutdown. No more orphan kernels eating your CPU.
+- **Output storage** — a content-addressed blob store for images, plots, HTML. Your outputs are stored durably, not just in browser memory.
+- **Environment management** — prewarmed pools, inline dep caching, project file detection.
+- **Settings sync** — theme, default runtime, keepalive — synced via a separate Automerge doc across all windows.
+- **Notebook rooms** — each open notebook is a "room" with autosave, eviction on disconnect, and crash recovery.
+
+The daemon runs as a system service on macOS. It starts automatically and stays out of your way.
+
+## What you can do with it
+
+### For humans
+
+- Open `.ipynb` files natively — double-click from Finder/Explorer
+- Inline dependency management — add packages without leaving the notebook
+- Cell drag-and-drop, global find
+- ipywidgets support
+- Full terminal emulation for stream output — even interactive programs render correctly
+- Dark mode, synced settings, auto-update
+- Cell visibility toggles — hide source to show only outputs, like a dashboard view
+
+### For AI agents
+
+Tell your agent to add the MCP server:
+
+```
+uvx nteract
+```
+
+Then your AI can:
+- Create and manage notebooks
+- Write and execute code
+- Read outputs (text, images, errors)
+- Install dependencies
+- Pattern-match edit cells (`replace_match`, `replace_regex`)
+- Restart kernels, manage environment
+
+### Python bindings
+
+Use these to build custom notebook tooling on top of the runtime:
+
+```
+pip install runtimed
+```
+
+## Install
+
+**Desktop app:**
+
+[nteract.io](https://www.nteract.io)
+
+macOS DMG is signed and notarized. Linux has AppImage and .deb. Windows has an installer (not code-signed yet — expect a SmartScreen prompt).
+
+## What's next
+
+Widget state in the CRDT. More environment backends. Code signing on Windows. And whatever you build with it.
+
+<BlogCTA />
+
+[github.com/nteract/desktop](https://github.com/nteract/desktop)
