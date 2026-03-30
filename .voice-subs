@@ -1,0 +1,33 @@
+# Pronunciation substitutions for voice TTS
+# Format: WORD=REPLACEMENT (one per line, longest keys match first)
+#
+# Text substitutions are applied before G2P (grapheme-to-phoneme).
+# Phoneme overrides bypass G2P entirely — wrap the value in /slashes/:
+#   nteract=/ˈɛntəɹækt/
+
+# nteract ecosystem
+nteract.io=enteract dot eye oh
+nteract=/ˈɛntəɹækt/
+
+# File formats
+.ipynb=dot eye pie en bee
+.mdx=dot M D X
+
+# Tools and projects
+JupyterLab=Jupiter Lab
+Jupyter=Jupiter
+Automerge=Auto merge
+runtimed=runtime dee
+IPython=eye Python
+
+# Acronyms and initialisms
+MDX=M D X
+MCP=M C P
+REPL-style=repple style
+REPL=repple
+APIs=A P I s
+API=A P I
+GUI=gooey
+UI=U I
+CLI=C L I
+TTS=T T S

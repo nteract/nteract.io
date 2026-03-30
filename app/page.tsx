@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
 import { siteConfig } from "@/lib/site";
@@ -35,19 +37,38 @@ export default async function Home() {
 
         <DownloadButtons version={version} />
 
-        <div className="mt-12 flex items-center justify-center gap-6 text-sm text-gray-500">
+        {/* Launch callout — secondary to download */}
+        <Link
+          href="/blog/nteract-2.0"
+          className="group mt-16 inline-flex items-center gap-3 text-sm text-gray-500 transition-colors hover:text-gray-900"
+        >
+          <span className="text-base">🎉</span>
+          <span>
+            <span className="font-medium text-gray-700 group-hover:text-gray-900">nteract 2.0 is here</span>
+            {" "}— read the launch post
+          </span>
+          <span className="transition-transform group-hover:translate-x-0.5">→</span>
+        </Link>
+
+      </div>
+
+      <footer className="mt-24 pb-8 text-center">
+        <div className="flex items-center justify-center gap-6 text-sm text-gray-400 mb-8">
+          <Link
+            href="/blog"
+            className="hover:text-gray-600 transition-colors"
+          >
+            Blog
+          </Link>
           <a
             href={siteConfig.links.github}
-            className="hover:text-gray-900 transition-colors"
+            className="hover:text-gray-600 transition-colors"
             rel="noreferrer"
             target="_blank"
           >
             GitHub
           </a>
         </div>
-      </div>
-
-      <footer className="mt-24 pb-8 text-center">
         <p className="text-sm text-gray-400 italic max-w-md mx-auto">
           "The purpose of computing is insight, not numbers."
         </p>

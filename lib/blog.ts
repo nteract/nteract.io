@@ -12,6 +12,7 @@ export type BlogPostFrontmatter = {
   published: boolean;
   tags: string[];
   coverImage?: string;
+  ogImage?: string;
 };
 
 export type BlogPostSummary = BlogPostFrontmatter & {
@@ -75,6 +76,10 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     typeof data.coverImage === "string" && data.coverImage.trim().length > 0
       ? data.coverImage.trim()
       : undefined;
+  const ogImage =
+    typeof data.ogImage === "string" && data.ogImage.trim().length > 0
+      ? data.ogImage.trim()
+      : undefined;
 
   return {
     title,
@@ -83,6 +88,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     published,
     tags,
     coverImage,
+    ogImage,
   } satisfies BlogPostFrontmatter;
 }
 
