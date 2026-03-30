@@ -100,13 +100,14 @@ Something a little more wild you start to get used to is ephemeral notebooks. If
 
 ### For AI agents
 
-Tell your agent to add the MCP server:
+Install the `runt` CLI from the nteract menu (nteract → Install 'runt' Command in PATH), then start the MCP server:
 
 ```
-uvx nteract
+runt mcp
 ```
 
-Then your AI can:
+Point any MCP-capable client at it — Claude Code, Cursor, Warp, OpenCode, you name it. Your agent gets full access to:
+
 - Create and manage notebooks
 - Write and execute code
 - Read outputs (text, images, errors)
