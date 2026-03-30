@@ -6,6 +6,7 @@ import type { MDXComponents } from "mdx/types";
 import { BlogCTA } from "@/components/blog/cta";
 import { EnvPicker } from "@/components/blog/env-picker";
 import { Kbd } from "@/components/kbd";
+import { PeerDiagram } from "@/components/blog/peer-diagram";
 import { LightboxImage } from "@/components/blog/lightbox-image";
 import { Peekaboo } from "@/components/blog/peekaboo";
 import { cn } from "@/lib/utils";
@@ -106,6 +107,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     EnvPicker,
     Kbd,
     LightboxImage,
+    PeerDiagram,
     Peekaboo,
     ...components,
   };

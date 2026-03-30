@@ -77,6 +77,8 @@ We know there's a lot more power to this than we're letting on, so we leave it t
 
 Behind the scenes, every notebook is an [Automerge](https://automerge.org/) CRDT document. If the runtime goes down, it doesn't take your document down with it. You still have the copy you're editing. The frontend and the runtime daemon are each their own Automerge peer.
 
+<PeerDiagram />
+
 This means:
 - **Instant editing.** Keystrokes don't wait for a server.
 - **Crash recovery.** The daemon persists the Automerge doc. If the app crashes, your work is there when you reopen.
