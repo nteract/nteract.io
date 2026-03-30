@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { BlogPostCard } from "@/components/blog/post-card";
-import { getAllPosts } from "@/lib/blog";
+import { BlogTagList } from "@/components/blog/tag-list";
+import { formatPostDate, getAllPosts } from "@/lib/blog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -30,54 +31,98 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
+  const [latest, ...rest] = posts;
 
   return (
-    <div className="px-6 pb-24 pt-32 md:px-12">
+    <div className="px-6 pb-24 pt-12 md:px-12">
       <section className="mx-auto max-w-4xl">
-        {/* Back to home — peripheral */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-outline-variant transition-colors hover:text-on-surface"
-        >
-          <span aria-hidden="true">←</span>
-          nteract
-        </Link>
-
-        <div className="mb-24 mt-16">
-          <div className="mb-8 flex items-center gap-4">
-            <span className="font-mono text-xs uppercase tracking-widest text-secondary">
-              Local-first writing
-            </span>
-            <div className="h-px flex-grow bg-outline-variant/20" />
-          </div>
-
-          <h1 className="mb-8 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface md:text-8xl">
-            Notes from the nteract team
-          </h1>
-
-          <p className="max-w-2xl text-lg leading-relaxed text-on-surface/70">
-            {siteConfig.blogDescription}
-          </p>
-
-          <div className="mt-8">
-            <a
-              href={siteConfig.links.rss}
-              className="font-mono text-xs uppercase tracking-widest text-outline-variant transition-colors hover:text-tertiary"
-            >
-              Subscribe via RSS
-            </a>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          {posts.length > 0 ? (
-            posts.map((post) => <BlogPostCard key={post.slug} post={post} />)
-          ) : (
-            <div className="bg-surface-container-low px-6 py-10 text-on-surface-variant">
-              The first post is still in draft. Check back soon.
+        {latest ? (
+          <>
+            <div className="mb-6 flex items-center gap-4">
+              <time
+                dateTime={latest.date}
+                className="font-mono text-xs uppercase tracking-widest text-secondary"
+              >
+                {formatPostDate(latest.date)}
+              </time>
+              <div className="h-px flex-grow bg-outline-variant/20" />
+              <a
+                href={siteConfig.links.rss}
+                className="font-mono text-[11px] uppercase tracking-widest text-outline-variant transition-colors hover:text-on-surface"
+              >
+                RSS
+              </a>
             </div>
-          )}
-        </div>
+
+            <Link href={`/blog/${latest.slug}`} className="group block">
+              <h1 className="mb-6 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface transition-colors group-hover:text-secondary md:text-8xl">
+                {latest.title}
+              </h1>
+
+              {(() => {
+                const dot = latest.description.indexOf(".");
+                if (dot === -1) {
+                  return (
+                    <p className="mb-6 max-w-2xl text-xl leading-snug text-on-surface/60">
+                      {latest.description}
+                    </p>
+                  );
+                }
+                const lead = latest.description.slice(0, dot + 1);
+                const rest2 = latest.description.slice(dot + 1).trim();
+                return (
+                  <div className="mb-6 max-w-2xl space-y-2">
+                    <p className="font-headline text-2xl font-semibold tracking-tight text-on-surface/80 md:text-3xl">
+                      {lead}
+                    </p>
+                    {rest2 && (
+                      <p className="font-mono text-xs uppercase tracking-[0.25em] text-on-surface-variant">
+                        {rest2}
+                      </p>
+                    )}
+                  </div>
+                );
+              })()}
+
+              <div className="flex flex-wrap items-center gap-6">
+                <BlogTagList tags={latest.tags} />
+                <span className="font-mono text-[11px] uppercase tracking-widest text-secondary transition-colors group-hover:text-on-surface">
+                  Read the post →
+                </span>
+              </div>
+            </Link>
+
+            {/* Hero preview */}
+            <Link href={`/blog/${latest.slug}`} className="mt-10 block overflow-hidden">
+              <video
+                src="https://pub-d6c6294d12e242e7acb5f8d1eaf78e06.r2.dev/tada.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full"
+              />
+            </Link>
+          </>
+        ) : (
+          <div className="bg-surface-container-low px-6 py-10 text-on-surface-variant">
+            The first post is still in draft. Check back soon.
+          </div>
+        )}
+
+        {rest.length > 0 && (
+          <div className="mt-16 space-y-4">
+            <div className="mb-6 flex items-center gap-4">
+              <span className="font-mono text-[11px] uppercase tracking-widest text-outline-variant">
+                Older posts
+              </span>
+              <div className="h-px flex-grow bg-outline-variant/20" />
+            </div>
+            {rest.map((post) => (
+              <BlogPostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );
