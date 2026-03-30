@@ -49,8 +49,8 @@ export function BlogCTA() {
       <a
         href={href}
         {...(platform === "Windows" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="inline-flex items-center gap-2 bg-[#2DD4BF] px-8 py-4 font-headline font-bold transition-all hover:opacity-90 no-underline"
-        style={{ color: "#fff" }}
+        className="inline-flex items-center gap-2 bg-[#a993d1] px-8 py-4 font-headline font-bold transition-all hover:bg-[#cbb5f4] no-underline"
+        style={{ color: "#0e0e0e" }}
       >
         {label}
       </a>

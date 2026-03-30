@@ -149,7 +149,7 @@ body {
   }
 
   .nteract-prose.prose-invert > p:first-of-type {
-    @apply first-letter:float-left first-letter:mr-3 first-letter:text-5xl first-letter:font-bold first-letter:text-[#94ccff];
+    @apply first-letter:float-left first-letter:mr-3 first-letter:text-5xl first-letter:font-bold first-letter:text-[#a993d1];
     font-family: var(--font-headline), "Space Grotesk", system-ui, sans-serif;
   }
 
@@ -177,7 +177,7 @@ body {
   }
 
   .nteract-prose.prose-invert blockquote {
-    @apply border-l-2 border-[#8ef4e9]/50 pl-5;
+    @apply border-l-2 border-[#a993d1]/50 pl-5;
   }
 
   .nteract-prose.prose-invert blockquote p {
@@ -199,7 +199,7 @@ body {
 
   .nteract-prose.prose-invert [data-rehype-pretty-code-figure]::before {
     content: "";
-    @apply absolute bottom-0 left-0 top-0 w-1 bg-[#8ef4e9];
+    @apply absolute bottom-0 left-0 top-0 w-1 bg-[#a993d1];
   }
 
   .nteract-prose.prose-invert [data-rehype-pretty-code-title] {
@@ -222,13 +222,13 @@ body {
 
   /* Inline code */
   .nteract-prose.prose-invert code:not([data-rehype-pretty-code-figure] code) {
-    @apply bg-[#1f1f1f] px-1.5 py-0.5 text-[0.9em] text-[#8ef4e9];
+    @apply bg-[#1f1f1f] px-1.5 py-0.5 text-[0.9em] text-[#a993d1];
     font-family: var(--font-mono), "JetBrains Mono", monospace;
   }
 
-  /* Links — tertiary teal with underline */
+  /* Links — secondary purple with underline */
   .nteract-prose.prose-invert a {
-    @apply text-[#8ef4e9] underline decoration-[#8ef4e9]/30 underline-offset-4 transition-colors hover:text-[#8ef4e9] hover:decoration-[#8ef4e9]/60;
+    @apply text-[#a993d1] underline decoration-[#a993d1]/30 underline-offset-4 transition-colors hover:text-[#cbb5f4] hover:decoration-[#cbb5f4]/60;
   }
 
   .nteract-prose.prose-invert li::marker {
