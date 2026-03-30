@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 
 import { BlogTagList } from "@/components/blog/tag-list";
 import { Prose } from "@/components/prose";
-import { Container } from "@/components/site-shell";
 import { formatPostDate, getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 
@@ -68,41 +67,79 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <Container className="py-12 sm:py-16">
-      <article className="mx-auto max-w-3xl">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-sm text-neutral-500 transition-colors hover:text-purple-400"
-        >
-          <span aria-hidden="true">←</span>
-          Back to blog
-        </Link>
-
-        <header className="mt-8 border-b border-white/10 pb-8">
-          <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-500">
-            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+    <div className="px-6 pb-24 pt-12 md:px-12">
+      <article className="mx-auto max-w-4xl">
+        {/* Article Header */}
+        <header className="mb-12">
+          <div className="mb-6 flex items-center gap-4">
+            <time
+              dateTime={post.date}
+              className="font-mono text-xs uppercase tracking-widest text-secondary"
+            >
+              {formatPostDate(post.date)}
+            </time>
+            <div className="h-px flex-grow bg-outline-variant/20" />
           </div>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+
+          <h1 className="mb-6 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface md:text-8xl">
             {post.title}
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-400">
-            {post.description}
-          </p>
-          <BlogTagList tags={post.tags} className="mt-6" />
+
+          {(() => {
+            const dot = post.description.indexOf(".");
+            if (dot === -1) {
+              return (
+                <p className="mb-6 max-w-2xl text-xl leading-snug text-on-surface/60">
+                  {post.description}
+                </p>
+              );
+            }
+            const lead = post.description.slice(0, dot + 1);
+            const rest = post.description.slice(dot + 1).trim();
+            return (
+              <div className="mb-6 max-w-2xl space-y-2">
+                <p className="font-headline text-2xl font-semibold tracking-tight text-on-surface/80 md:text-3xl">
+                  {lead}
+                </p>
+                {rest && (
+                  <p className="font-mono text-xs uppercase tracking-[0.25em] text-on-surface-variant">
+                    {rest}
+                  </p>
+                )}
+              </div>
+            );
+          })()}
+
+          <div className="flex flex-wrap items-center gap-6">
+            <BlogTagList tags={post.tags} />
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-outline-variant transition-colors hover:text-on-surface"
+            >
+              <span aria-hidden="true">←</span>
+              All posts
+            </Link>
+          </div>
         </header>
 
+        {/* Cover image */}
         {post.coverImage ? (
-          <img
-            alt={post.title}
-            className="mt-10 rounded-3xl border border-white/10"
-            src={post.coverImage}
-          />
+          <section className="mb-16">
+            <div className="aspect-video w-full overflow-hidden bg-surface-container-low">
+              <img
+                alt={post.title}
+                className="h-full w-full object-cover"
+                src={post.coverImage}
+              />
+            </div>
+          </section>
         ) : null}
 
-        <Prose className="mt-10 prose-invert">
+        {/* Body Prose */}
+        <Prose className="prose-invert mx-auto max-w-2xl">
           <Content />
         </Prose>
       </article>
-    </Container>
+    </div>
   );
 }

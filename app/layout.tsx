@@ -1,10 +1,32 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
+import { Space_Grotesk, Inter, JetBrains_Mono, Geist } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-headline",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -45,8 +67,10 @@ export default function RootLayout({
   children: ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen antialiased">
+    <html lang="en" className={cn("font-sans", geist.variable)}>
+      <body
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-screen font-body antialiased`}
+      >
         {children}
         <Analytics />
       </body>

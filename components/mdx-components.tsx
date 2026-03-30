@@ -3,6 +3,10 @@ import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 
+import { BlogCTA } from "@/components/blog/cta";
+import { EnvPicker } from "@/components/blog/env-picker";
+import { Kbd } from "@/components/kbd";
+import { Peekaboo } from "@/components/blog/peekaboo";
 import { cn } from "@/lib/utils";
 
 function MdxLink({
@@ -11,7 +15,7 @@ function MdxLink({
   ...props
 }: ComponentPropsWithoutRef<"a">) {
   const linkClassName = cn(
-    "font-medium text-gray-900 underline decoration-accent/60 underline-offset-4 transition-colors hover:text-accent",
+    "font-medium underline underline-offset-4 transition-colors",
     className
   );
 
@@ -44,7 +48,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h2: ({ className, ...props }) => (
       <h2
         className={cn(
-          "scroll-mt-24 text-3xl font-semibold tracking-tight text-gray-900",
+          "scroll-mt-24 font-headline text-3xl font-bold tracking-tight",
           className
         )}
         {...props}
@@ -53,7 +57,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h3: ({ className, ...props }) => (
       <h3
         className={cn(
-          "scroll-mt-24 text-2xl font-semibold tracking-tight text-gray-900",
+          "scroll-mt-24 font-headline text-2xl font-bold tracking-tight",
           className
         )}
         {...props}
@@ -62,7 +66,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: ({ className, ...props }) => (
       <h4
         className={cn(
-          "scroll-mt-24 text-xl font-semibold tracking-tight text-gray-900",
+          "scroll-mt-24 font-headline text-xl font-bold tracking-tight",
           className
         )}
         {...props}
@@ -71,10 +75,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     img: ({ alt = "", className, ...props }) => (
       <img
         alt={alt}
-        className={cn(
-          "my-10 rounded-2xl border border-black/5 shadow-sm",
-          className
-        )}
+        className={cn("my-10", className)}
         loading="lazy"
         {...props}
       />
@@ -86,7 +87,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
 
       return (
         <code
-          className="rounded-md bg-gray-100 px-1.5 py-0.5 text-[0.9em] font-medium text-gray-900"
+          className="px-1.5 py-0.5 text-[0.9em] font-medium font-mono"
           {...props}
         />
       );
@@ -95,17 +96,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <pre className={cn("overflow-x-auto", className)} {...props} />
     ),
     blockquote: ({ className, ...props }) => (
-      <blockquote
-        className={cn(
-          "border-l-2 border-accent/50 pl-5 text-gray-600",
-          className
-        )}
-        {...props}
-      />
+      <blockquote className={cn("pl-5", className)} {...props} />
     ),
     hr: ({ className, ...props }) => (
-      <hr className={cn("border-black/10", className)} {...props} />
+      <hr className={cn("border-outline-variant/20", className)} {...props} />
     ),
+    BlogCTA,
+    EnvPicker,
+    Kbd,
+    Peekaboo,
     ...components,
   };
 }
