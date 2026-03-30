@@ -3,6 +3,8 @@ import type { ComponentPropsWithoutRef } from "react";
 import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 
+import { BlogCTA } from "@/components/blog/cta";
+import { Kbd } from "@/components/kbd";
 import { cn } from "@/lib/utils";
 
 function MdxLink({
@@ -97,6 +99,8 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     hr: ({ className, ...props }) => (
       <hr className={cn("border-outline-variant/20", className)} {...props} />
     ),
+    BlogCTA,
+    Kbd,
     ...components,
   };
 }

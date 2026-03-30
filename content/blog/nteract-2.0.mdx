@@ -12,7 +12,7 @@ tags:
 
 <video src="https://pub-d6c6294d12e242e7acb5f8d1eaf78e06.r2.dev/tada.mp4" autoPlay muted loop playsInline />
 
-Today we're releasing nteract 2.0. It's a ground-up rebuild of the notebook app. New runtime, new architecture, new everything. Here's what we built and why.
+Today we're releasing nteract 2.0. It's a ground-up rebuild of the [much-loved notebook app](https://github.com/nteract/archived-desktop-app). New runtime, new architecture, new everything. Here's what we built and why.
 
 ## What is nteract?
 
@@ -41,10 +41,11 @@ Whether you're on `uv` or `conda`, we've got you covered. `uv` for straight PyPI
 
 ### AI agents as first-class peers
 
-We're shipping an MCP server and a CLI to interface with notebooks. Agents can join you in the document and join as a realtime collaborator. Humans and agents share a live workspace instead of a file. No more tab stomping.
+We're shipping an MCP server and a CLI to interface with notebooks. Agents can join you in the document and join as a realtime collaborator. Humans and agents share a live workspace instead of a file. No tab and file stomping.
 
-{/* The agent gets 27 tools: create cells, write code, execute, read outputs, manage dependencies, restart kernels. The human sees every change in real time. The agent sees every change the human makes. Same CRDT, same document, same truth.
+Agents can create and run cells, manage dependencies, manage runtime lifecycle. Humans can see changes in realtime. It's up to you if you want your agent to watch for changes themselves.
 
+Everyone gets the same realtime document.
 Multiple agents and multiple humans can all be in the same notebook simultaneously. Presence shows who's where — colored cursors, cell focus indicators, text attribution highlights with fade-out. */}
 
 
@@ -56,7 +57,7 @@ This means:
 - **Instant editing.** Keystrokes don't wait for a server.
 - **Multi-window.** Open the same notebook in two windows. They stay in sync.
 - **Crash recovery.** The daemon persists the Automerge doc. If the app crashes, your work is there when you reopen.
-- **Autosave.** The daemon writes `.ipynb` on a debounce. No manual save needed (though ⌘S still works).
+- **Autosave.** The daemon writes `.ipynb` on a debounce. No manual save needed (though <Kbd>mod+S</Kbd> still works).
 
 ### The daemon: `runtimed`
 
@@ -117,5 +118,7 @@ macOS DMG is signed and notarized. Linux has AppImage and .deb. Windows has an i
 ## What's next
 
 Widget state in the CRDT. More environment backends. Code signing on Windows. And whatever you build with it.
+
+<BlogCTA />
 
 [github.com/nteract/desktop](https://github.com/nteract/desktop)
