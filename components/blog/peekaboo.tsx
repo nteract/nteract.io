@@ -21,8 +21,7 @@ export function Peekaboo({
 
   return (
     <div
-      className="not-prose group my-10"
-      style={{ width: "calc(100% + 8.5rem)", marginLeft: "-4.25rem" }}
+      className="not-prose group my-10 w-full md:w-[calc(100%+8.5rem)] md:-ml-[4.25rem]"
     >
       <div
         className="relative cursor-pointer overflow-hidden transition-[max-height] duration-500 ease-out"

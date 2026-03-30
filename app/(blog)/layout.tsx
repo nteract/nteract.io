@@ -1,4 +1,9 @@
+import type { Metadata } from "next";
 import type { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  themeColor: "#0e0e0e",
+};
 
 export default function BlogLayout({ children }: { children: ReactNode }) {
   return (
