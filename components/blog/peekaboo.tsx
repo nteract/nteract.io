@@ -20,11 +20,19 @@ export function Peekaboo({
   const [open, setOpen] = useState(false);
 
   return (
-    <div
-      className="not-prose group my-10 w-full md:w-[calc(100%+8.5rem)] md:-ml-[4.25rem]"
-    >
+    <div className="not-prose group my-10 w-full md:w-[calc(100%+8.5rem)] md:-ml-[4.25rem]">
+      {/* Mobile: just show the full image */}
+      <div className="md:hidden">
+        <img
+          src={src}
+          alt={alt}
+          className="block w-full"
+        />
+      </div>
+
+      {/* Desktop: peek + hover reveal */}
       <div
-        className="relative cursor-pointer overflow-hidden transition-[max-height] duration-500 ease-out"
+        className="relative hidden cursor-pointer overflow-hidden transition-[max-height] duration-500 ease-out md:block"
         style={{ maxHeight: open ? revealHeight : peekHeight }}
         onMouseEnter={() => setOpen(true)}
         onMouseLeave={() => setOpen(false)}
