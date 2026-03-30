@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { siteConfig } from "@/lib/site";
 
 type Platform = "macOS" | "Windows" | "Linux";
 
@@ -28,9 +27,9 @@ export function BlogCTA() {
   const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(siteConfig.stableManifestUrl)
+    fetch("/api/stable-version")
       .then((r) => (r.ok ? r.json() : null))
-      .then((m) => setVersion(m?.version ?? null))
+      .then((d) => setVersion(d?.version ?? null))
       .catch(() => {});
   }, []);
 
@@ -38,7 +37,7 @@ export function BlogCTA() {
   const href =
     file && version
       ? getDownloadUrl(version, file)
-      : siteConfig.links.releases;
+      : "https://github.com/nteract/desktop/releases";
 
   const label =
     platform === "Windows"
@@ -50,8 +49,8 @@ export function BlogCTA() {
       <a
         href={href}
         {...(platform === "Windows" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="inline-flex items-center gap-2 bg-[#94ccff] px-8 py-4 font-headline font-bold transition-all hover:opacity-90 no-underline"
-        style={{ color: "#00446a" }}
+        className="inline-flex items-center gap-2 bg-[#2DD4BF] px-8 py-4 font-headline font-bold transition-all hover:opacity-90 no-underline"
+        style={{ color: "#fff" }}
       >
         {label}
       </a>

@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  --accent: 142 244 233; /* #8ef4e9 Teal / Tertiary */
+  --accent: 45 212 191; /* #2DD4BF Teal */
   --radius: 0rem;
 }
 
