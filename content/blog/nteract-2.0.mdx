@@ -65,7 +65,9 @@ On the right (or bottom, on mobile) would be the notebook being modified by the 
 
 */}
 
-We ship an MCP server and a CLI to interface with notebooks. Any agent can join you in the document as a realtime collaborator. Humans and agents share a live workspace instead of a file. Surgical edits with real cursors.
+We ship an MCP server and a CLI to interface with notebooks. Any agent can join you in the document as a realtime collaborator.
+
+> Humans and agents share a live workspace instead of a file. No more "this file has changed since you last read it." No stale reads, no clobbered edits. Just clean merges that weren't otherwise possible.
 
 Agents can create and run cells, manage dependencies, manage runtime lifecycle, and more. You can see changes in realtime.
 
@@ -90,7 +92,7 @@ Something a little more wild you start to get used to is ephemeral notebooks. If
 - Inline dependency management. Add packages without leaving the notebook
 - Cell drag-and-drop, global find
 - ipywidgets support
-- Full terminal emulation for stream output. Even interactive programs render correctly. You can't really interact with them, but wow do they render. Try `!vim`, go "ooh" and "ahh". Then be forced to interrupt the kernel.
+- Full terminal emulation for stream output — even interactive programs like `vim` render correctly (you'll need to interrupt the kernel to get out, but it looks great)
 - Dark mode, synced settings, auto-update
 - Cell visibility toggles built in. Hide source to show only outputs, like a dashboard view.
 
