@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
 import { siteConfig } from "@/lib/site";
@@ -19,7 +20,13 @@ export default async function Home() {
   const version = await getStableVersion();
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center px-4 py-16">
+    <main className="relative flex min-h-screen flex-col items-center justify-center px-4 py-16">
+      <Link
+        href="/blog"
+        className="absolute right-6 top-6 text-sm font-medium text-gray-500 transition-colors hover:text-gray-900"
+      >
+        Blog
+      </Link>
       <div className="max-w-2xl mx-auto text-center">
         <Logo className="w-40 h-40 mx-auto mb-8" />
 
