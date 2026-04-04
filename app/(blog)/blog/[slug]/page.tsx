@@ -112,13 +112,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="flex flex-wrap items-center gap-6">
             <BlogTagList tags={post.tags} />
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-outline-variant transition-colors hover:text-on-surface"
-            >
-              <span aria-hidden="true">←</span>
-              All posts
-            </Link>
           </div>
         </header>
 
@@ -139,6 +132,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         <Prose className="prose-invert mx-auto max-w-2xl">
           <Content />
         </Prose>
+
+        {/* Post footer */}
+        <div className="mx-auto mt-16 flex max-w-2xl items-center gap-4">
+          <Link
+            href="/blog"
+            className="font-mono text-[11px] uppercase tracking-widest text-[#a993d1] transition-colors hover:text-on-surface"
+          >
+            ← All posts
+          </Link>
+          <div className="h-px flex-grow bg-outline-variant/20" />
+        </div>
       </article>
     </div>
   );
