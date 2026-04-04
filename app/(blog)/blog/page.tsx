@@ -39,13 +39,20 @@ export default async function BlogPage() {
         {latest ? (
           <>
             <div className="mb-6 flex items-center gap-4">
+              <Link
+                href="/"
+                className="font-mono text-[11px] uppercase tracking-widest text-[#a993d1] transition-colors hover:text-on-surface"
+              >
+                ← Home
+              </Link>
+              <div className="h-px flex-grow bg-outline-variant/20" />
               <time
                 dateTime={latest.date}
                 className="font-mono text-xs uppercase tracking-widest text-secondary"
               >
                 {formatPostDate(latest.date)}
               </time>
-              <div className="h-px flex-grow bg-outline-variant/20" />
+              <div className="h-px w-4 bg-outline-variant/20" />
               <a
                 href={siteConfig.links.rss}
                 className="font-mono text-[11px] uppercase tracking-widest text-outline-variant transition-colors hover:text-on-surface"
