@@ -9,6 +9,9 @@ import { Kbd } from "@/components/kbd";
 import { PeerDiagram } from "@/components/blog/peer-diagram";
 import { LightboxImage } from "@/components/blog/lightbox-image";
 import { Peekaboo } from "@/components/blog/peekaboo";
+import { IframeIsolationDiagram } from "@/components/blog/iframe-isolation-diagram";
+import { SocketDiagram } from "@/components/blog/socket-diagram";
+import { TauriComparison } from "@/components/blog/tauri-comparison";
 import { cn } from "@/lib/utils";
 
 function MdxLink({
@@ -109,6 +112,9 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     LightboxImage,
     PeerDiagram,
     Peekaboo,
+    IframeIsolationDiagram,
+    SocketDiagram,
+    TauriComparison,
     ...components,
   };
 }
