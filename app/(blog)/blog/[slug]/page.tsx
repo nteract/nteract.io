@@ -15,7 +15,7 @@ type BlogPostPageProps = {
 
 const isDev = process.env.NODE_ENV === "development";
 
-export const dynamicParams = isDev;
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const slugs = await getAllSlugs({ includeUnpublished: isDev });
