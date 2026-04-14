@@ -12,6 +12,7 @@ export type BlogPostFrontmatter = {
   published: boolean;
   tags: string[];
   coverImage?: string;
+  coverVideo?: string;
   ogImage?: string;
 };
 
@@ -30,10 +31,12 @@ type BlogQueryOptions = {
 function assertString(
   value: unknown,
   field: keyof BlogPostFrontmatter,
-  fileName: string
+  fileName: string,
 ) {
   if (typeof value !== "string" || value.trim().length === 0) {
-    throw new Error(`Expected "${field}" to be a non-empty string in ${fileName}`);
+    throw new Error(
+      `Expected "${field}" to be a non-empty string in ${fileName}`,
+    );
   }
 
   return value.trim();
@@ -70,11 +73,16 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
   const title = assertString(data.title, "title", fileName);
   const description = assertString(data.description, "description", fileName);
   const date = normalizeDate(data.date, fileName);
-  const published = data.published === undefined ? true : Boolean(data.published);
+  const published =
+    data.published === undefined ? true : Boolean(data.published);
   const tags = normalizeTags(data.tags, fileName);
   const coverImage =
     typeof data.coverImage === "string" && data.coverImage.trim().length > 0
       ? data.coverImage.trim()
+      : undefined;
+  const coverVideo =
+    typeof data.coverVideo === "string" && data.coverVideo.trim().length > 0
+      ? data.coverVideo.trim()
       : undefined;
   const ogImage =
     typeof data.ogImage === "string" && data.ogImage.trim().length > 0
@@ -88,6 +96,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     published,
     tags,
     coverImage,
+    coverVideo,
     ogImage,
   } satisfies BlogPostFrontmatter;
 }
@@ -96,7 +105,10 @@ function toSlug(fileName: string) {
   return fileName.replace(/\.mdx?$/, "");
 }
 
-function compareByDateDescending(left: BlogPostSummary, right: BlogPostSummary) {
+function compareByDateDescending(
+  left: BlogPostSummary,
+  right: BlogPostSummary,
+) {
   return new Date(right.date).getTime() - new Date(left.date).getTime();
 }
 
@@ -116,7 +128,7 @@ function readAllPostsFromDisk(): Promise<BlogPost[]> {
         const { content, data } = matter(source);
         const frontmatter = parseFrontmatter(
           fileName,
-          data as Record<string, unknown>
+          data as Record<string, unknown>,
         );
 
         return {
@@ -124,7 +136,7 @@ function readAllPostsFromDisk(): Promise<BlogPost[]> {
           content,
           ...frontmatter,
         } satisfies BlogPost;
-      })
+      }),
     );
 
     return posts.sort(compareByDateDescending);
@@ -134,7 +146,7 @@ function readAllPostsFromDisk(): Promise<BlogPost[]> {
 }
 
 export async function getAllPosts(
-  options: BlogQueryOptions = {}
+  options: BlogQueryOptions = {},
 ): Promise<BlogPostSummary[]> {
   const posts = await readAllPostsFromDisk();
   const includeUnpublished = options.includeUnpublished ?? false;
@@ -151,7 +163,7 @@ export async function getAllSlugs(options: BlogQueryOptions = {}) {
 
 export async function getPostBySlug(
   slug: string,
-  options: BlogQueryOptions = {}
+  options: BlogQueryOptions = {},
 ) {
   const posts = await readAllPostsFromDisk();
   const includeUnpublished = options.includeUnpublished ?? false;
