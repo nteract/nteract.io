@@ -34,9 +34,6 @@ allow-scripts
 allow-downloads
 allow-forms
 allow-pointer-lock
-allow-popups
-allow-popups-to-escape-sandbox
-allow-modals
 ```
 
 The one that's **not** there is the important one: `allow-same-origin`. If we added that single attribute, the entire isolation model collapses. The iframe would share the parent's origin and gain full access to Tauri APIs. This invariant is tested in CI. We never want to see that ship.
@@ -45,8 +42,7 @@ If someone sends you a notebook with a cell that has hidden javascript:
 
 ```html
 <script>
-  // Try to access the host application
-  window.__TAURI__.invoke('execute_command', { cmd: 'rm -rf /' });
+  window.__TAURI__.invoke("approve_notebook_trust")
 </script>
 ```
 
@@ -57,6 +53,8 @@ It simply doesn't work. `window.__TAURI__` is `undefined` inside the iframe.
 You might wonder — if outputs are isolated, how do interactive widgets work? They need to communicate with the kernel to send and receive state updates.
 
 We built a JSON-RPC 2.0 bridge over `postMessage`. The parent window owns the widget state (stored in an Automerge CRDT document, synced with the daemon). The iframe gets a proxy that can read and update model state, but only through the validated message channel. The iframe never gets direct access to the kernel, the daemon, or any Tauri API.
+
+{/* Include slick widget cross window video here */}
 
 Widget state updates are validated, typed, and routed through a `CommBridgeManager` that acts as a gatekeeper. Even [anywidgets](https://anywidget.dev/) run inside this same isolation boundary.
 
