@@ -4,7 +4,6 @@ description: "Remote Code Execution is the Feature. Lock it down."
 date: 2026-04-07
 published: true
 tags:
-  - nteract
   - security
   - architecture
 ---
@@ -62,7 +61,11 @@ Widget state updates are validated, typed, and routed through a `CommBridgeManag
 
 The iframe also enforces a Content Security Policy. Scripts and stylesheets can load over HTTPS or from the GET-only local blob store (`127.0.0.1`). This keeps anywidgets functional. They can fetch ESM modules from the web over HTTPS or load assets served by the daemon locally, while blocking arbitrary HTTP origins.
 
-For organizations with stricter requirements I could see us locking down `connect-src`, restricting script sources to specific domains. These are levers we'd like to expose. If tighter output policies are something your team/organization needs, [we'd love to hear about it](https://github.com/nteract/desktop/issues).
+For organizations with stricter requirements I could see us locking down `connect-src`, restricting script sources to specific domains. These are levers we'd like to expose.
+
+<BlogInlineCTA href="https://github.com/nteract/desktop/issues" lead="Have stricter requirements?">
+  Tell us what your team needs
+</BlogInlineCTA>
 
 ## Trust before install
 
@@ -70,7 +73,7 @@ Store `pandas`, `polars`, `pydantic`, right in the notebook metadata. Send it to
 
 However, for your colleagues that's code they didn't write, asking to install packages they didn't choose, on their machine.
 
-nteract won't install anything without explicit approval. When you open a notebook with dependencies, the runtime doesn't start. You see the full package list. You click "Trust & Start." Only then does installation begin.
+nteract won't install those packages without explicit approval. When you open a notebook with dependencies, the runtime doesn't start. You see the full package list. You click "Trust & Start." Only then does installation begin.
 
 The trust signature is an HMAC-SHA256 over the dependency metadata, signed with a key that lives only on your machine (in your platform's config directory, permissions `0600`). If anyone — human or agent — modifies the dependencies after you've approved them, the signature invalidates and nteract asks again.
 
@@ -78,7 +81,7 @@ We also run typosquatting detection. If a notebook asks for `reqeusts` instead o
 
 {/* Provide a note about supply chain and package managers here */}
 
-## The daemon is local-only
+## nteract is local-only
 
 <SocketDiagram />
 
