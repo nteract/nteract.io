@@ -18,6 +18,8 @@ Notebooks were created for local exploratory data analysis by scientists and for
 
 As the years went on, it became harder as a maintainer to navigate secure on localhost, secure on cloud, and eminently usable. nteract gave us a chance to rethink these problems from scratch. Here's where we've landed.
 
+Your notebooks are your data. They live on your machine. Nothing runs that you didn't greenlight. The rest of this post is how we hold that line.
+
 ## Every output is isolated
 
 Most notebook apps don't do this. As far as I know, only Colab secures you from malicious outputs in a notebook attempting to break through. They keep your google identity isolated from rogue notebooks so you can share more easily.
@@ -81,29 +83,25 @@ We also run typosquatting detection. If a notebook asks for `reqeusts` instead o
 
 {/* Provide a note about supply chain and package managers here */}
 
-## nteract is local-only
+## Your data, your machine
 
 <SocketDiagram />
 
-The nteract daemon (`runtimed`) exposes two surfaces, both pinned to your machine.
+nteract is local-first. Your notebooks, your outputs, your environments live on your filesystem, not on someone else's server. No account required. Nothing leaves your machine unless you explicitly share it.
 
-Control runs over a Unix socket — `chmod 0600`, owner-only. The app and any MCP agents (Claude Code, Codex, Warp) connect here to run code, sync notebook state, and coordinate. There's no TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you.
+The Automerge documents that back your notebooks are stored locally by the daemon. The blob store that holds your images and data frames is a directory on your disk. When you close the app, everything is right where you left it.
+
+The daemon (`runtimed`) exposes two surfaces, both pinned to your machine. Control runs over a Unix socket — `chmod 0600`, owner-only. The app and any MCP agents (Claude Code, Codex, Warp) connect here to run code, sync notebook state, and coordinate. There's no TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you.
 
 The data surface is the blob store: a tiny HTTP server bound to `127.0.0.1` on an OS-assigned port that rotates every run. It serves exactly two routes — `GET /blob/{sha256}` and `GET /plugins/{name}` — and nothing else. No writes, no directory listing, no auth surface. Blobs are content-addressed, so the hash _is_ the capability. It exists because `blob:` iframes can't fetch cross-origin, and we need a way to hand them images, Arrow frames, and plugin assets without breaking isolation.
+
+Every cloud-hosted notebook service is a target — for attackers, subpoenas, data breaches. With nteract, there's no central server holding thousands of users' API keys, datasets, and credentials. Your data is yours. The attack surface is your machine, which you already control.
 
 ### What about agents?
 
 Any process with filesystem access to the Unix socket can connect to the daemon. That's by design. It's how MCP-based agents (Claude Code, Codex, Warp, etc.) join your notebooks as realtime collaborators.
 
 This is the same trust model as SSH: if you can access the socket file, you're authorized. Agents that run on your machine, as your user, get the same access you have. It's a deliberate trade-off. We're not trying to protect you from tools you chose to run. We're trying to protect you from untrusted content inside notebooks and cross origin attacks in browsers.
-
-## Your data stays on your machine
-
-nteract is local-first. Your notebooks, your outputs, your environments. They live on your filesystem, not on someone else's server. There's no account required. Nothing leaves your machine unless you explicitly choose otherwise.
-
-The Automerge documents that back your notebooks are stored locally by the daemon. The blob store that holds your images and data frames is a directory on your disk. When you close the app, everything is right where you left it. No one else has a copy unless you explicitly share one.
-
-Every cloud-hosted notebook service is a target. For attackers, for subpoenas, for data breaches. With nteract, there's no central server holding thousands of users' API keys, datasets, and credentials. Your data is yours. The attack surface is your machine, which you already control.
 
 ## Why Tauri
 
