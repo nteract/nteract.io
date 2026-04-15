@@ -85,9 +85,11 @@ We also run typosquatting detection. If a notebook asks for `reqeusts` instead o
 
 <SocketDiagram />
 
-The nteract daemon (`runtimed`) communicates over a Unix socket, not a TCP port. The socket has owner-only permissions (`0600`), so only your user account can connect.
+The nteract daemon (`runtimed`) exposes two surfaces, both pinned to your machine.
 
-The one web server that does run is the blob store. It's a read-only HTTP server bound to `localhost` that serves images, Arrow data, and other binary outputs. It's read-only and local-only. It exists because iframes need a way to fetch binary content, and `blob:` URLs can't do cross-origin requests.
+Control runs over a Unix socket — `chmod 0600`, owner-only. The app and any MCP agents (Claude Code, Codex, Warp) connect here to run code, sync notebook state, and coordinate. There's no TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you.
+
+The data surface is the blob store: a tiny HTTP server bound to `127.0.0.1` on an OS-assigned port that rotates every run. It serves exactly two routes — `GET /blob/{sha256}` and `GET /plugins/{name}` — and nothing else. No writes, no directory listing, no auth surface. Blobs are content-addressed, so the hash _is_ the capability. It exists because `blob:` iframes can't fetch cross-origin, and we need a way to hand them images, Arrow frames, and plugin assets without breaking isolation.
 
 ### What about agents?
 
@@ -107,11 +109,9 @@ Every cloud-hosted notebook service is a target. For attackers, for subpoenas, f
 
 <TauriComparison />
 
-The original nteract was Electron. Electron bundles Chromium with full Node.js access — every renderer process can `require('child_process')` and run shell commands unless you carefully restrict it. It was a lot of surface area to defend, with a single `nodeIntegration: true` away from disaster.
+The original nteract was Electron. Electron bundles Chromium with full Node.js access — every renderer is one `nodeIntegration: true` away from `require('child_process')`. A lot of surface to defend.
 
-[Tauri](https://tauri.app/) flips this. The frontend is a native webview with no Node.js. There's no `require`, no `child_process`, no `fs` available to JavaScript by default. The backend is Rust. Every native capability including filesystem access, shell commands, and HTTP requests must be explicitly granted through a [capability system](https://github.com/nteract/desktop/issues/908). If we don't allowlist it, the frontend can't do it.
-
-With notebooks the webview is where untrusted outputs render. In Electron, a sandbox escape in an output iframe could reach Node.js APIs. In Tauri, even if an iframe somehow escaped its sandbox, there's nothing on the other side — no runtime to hijack, no implicit native access. The webview is a dead end by design.
+[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities — filesystem, shell, HTTP — are granted from Rust through an explicit [allowlist](https://github.com/nteract/desktop/issues/908). If it isn't allowlisted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
 
 ## The philosophy
 
@@ -121,7 +121,7 @@ Our approach is defense in depth:
 
 1. **Outputs can't escape their iframe.** Even if a kernel produces malicious HTML, it can't touch the host app.
 2. **Dependencies require explicit trust.** No silent installs, no unsigned packages slipping through.
-3. **The daemon has no network surface.** Unix sockets with restricted permissions.
+3. **The daemon stays on your machine.** Control runs over an owner-only Unix socket; data over a read-only localhost HTTP server on a rotating port.
 4. **Your data stays local by default.** No account required, no code shipped to someone else's infrastructure.
 
 None of these are revolutionary ideas individually. But notebooks have operated without *any* of them for over a decade. 

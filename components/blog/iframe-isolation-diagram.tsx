@@ -78,7 +78,12 @@ export function IframeIsolationDiagram() {
         {/* What iframe CAN do */}
         <text x="430" y="210" className="iso-check">✓ render HTML/SVG</text>
         <text x="430" y="230" className="iso-check">✓ run scripts (sandboxed)</text>
-        <text x="430" y="250" className="iso-check">✓ widget proxy</text>
+        <text x="430" y="250" className="iso-check">✓ widget proxy (postMessage)</text>
+
+        {/* CSP allowlist footer */}
+        <line x1="414" y1="268" x2="666" y2="268" stroke="#484848" strokeWidth="1" strokeDasharray="2 3" opacity="0.6" />
+        <text x="430" y="284" className="iso-sublabel" style={{ fontSize: "8px" }}>csp allowlist</text>
+        <text x="430" y="297" style={{ fill: "#ababab", fontFamily: "'JetBrains Mono', monospace", fontSize: "9px" }}>https:  ·  127.0.0.1:&lt;random&gt;  (GET)</text>
       </svg>
     </div>
   );
