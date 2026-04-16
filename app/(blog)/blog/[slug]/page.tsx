@@ -74,13 +74,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Article Header */}
         <header className="mb-12">
           <div className="mb-6 flex items-center gap-4">
+            <Link
+              href="/blog"
+              className="font-mono text-[11px] uppercase tracking-widest text-[#a993d1] transition-colors hover:text-on-surface"
+            >
+              ← Blog
+            </Link>
+            <div className="h-px flex-grow bg-outline-variant/20" />
             <time
               dateTime={post.date}
               className="font-mono text-xs uppercase tracking-widest text-secondary"
             >
               {formatPostDate(post.date)}
             </time>
-            <div className="h-px flex-grow bg-outline-variant/20" />
           </div>
 
           <h1 className="mb-6 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface md:text-8xl">
