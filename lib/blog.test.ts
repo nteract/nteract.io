@@ -8,7 +8,7 @@ describe("blog content utilities", () => {
   it("returns published posts in reverse chronological order by default", async () => {
     const posts = await getAllPosts();
 
-    expect(posts.map((post) => post.slug)).toEqual(["nteract-2.0"]);
+    expect(posts.map((post) => post.slug)).toEqual(["security", "nteract-2.0"]);
     expect(posts.every((post) => post.published)).toBe(true);
   });
 

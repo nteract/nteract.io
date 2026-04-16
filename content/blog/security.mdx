@@ -22,7 +22,34 @@ Your notebooks are your data. They live on your machine. Nothing runs that you d
 
 ## Every output is isolated
 
-Most notebook apps don't do this. As far as I know, only Colab secures you from malicious outputs in a notebook attempting to break through. They keep your google identity isolated from rogue notebooks so you can share more easily.
+Drop the same `IPython.display.HTML` cell into both apps — a `<style>` block with `* { background-color: olive; }` and a single `<div>`. In nteract the olive stays in the output. In JupyterLab it paints the entire interface, menu bar and sidebar included, because the output shares the page's origin.
+
+<div className="not-prose my-10 grid gap-4 md:grid-cols-2">
+  <figure className="flex flex-col gap-2">
+    <LightboxImage
+      src="https://img.runt.run/2026/04/16/17700b5e1a72.png"
+      alt="nteract: a notebook cell injects `* { background-color: olive; }` — only the output iframe turns olive; the rest of the UI is untouched."
+      className="w-full rounded-md border border-outline-variant/20"
+    />
+    <figcaption className="font-mono text-[10px] uppercase tracking-[0.15em] text-outline-variant/80">
+      nteract — contained to the output
+    </figcaption>
+  </figure>
+  <figure className="flex flex-col gap-2">
+    <LightboxImage
+      src="https://img.runt.run/2026/04/16/c797f482e34c.png"
+      alt="JupyterLab: the same cell bleeds olive across the toolbar, sidebar, and cell chrome because outputs share the page's origin."
+      className="w-full rounded-md border border-outline-variant/20"
+    />
+    <figcaption className="font-mono text-[10px] uppercase tracking-[0.15em] text-outline-variant/80">
+      JupyterLab — escaped into the host app
+    </figcaption>
+  </figure>
+</div>
+
+Most notebook apps don't isolate outputs. As far as I know, only Colab secures you from malicious outputs trying to break out — they keep your Google identity walled off so notebooks can be shared more freely.
+
+### How it works
 
 <IframeIsolationDiagram />
 
@@ -55,7 +82,7 @@ You might wonder — if outputs are isolated, how do interactive widgets work? T
 
 We built a JSON-RPC 2.0 bridge over `postMessage`. The parent window owns the widget state (stored in an Automerge CRDT document, synced with the daemon). The iframe gets a proxy that can read and update model state, but only through the validated message channel. The iframe never gets direct access to the kernel, the daemon, or any Tauri API.
 
-{/* Include slick widget cross window video here */}
+<video src="https://img.runt.run/2026/04/16/513b6684eeb3.mp4" autoPlay muted loop playsInline />
 
 Widget state updates are validated, typed, and routed through a `CommBridgeManager` that acts as a gatekeeper. Even [anywidgets](https://anywidget.dev/) run inside this same isolation boundary.
 
