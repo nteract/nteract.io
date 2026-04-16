@@ -1,0 +1,153 @@
+---
+title: "Securing Notebooks"
+description: "Remote Code Execution is the Feature. Lock it down."
+date: 2026-04-07
+published: true
+tags:
+  - security
+  - architecture
+coverVideo: "https://img.runt.run/2026/04/16/5293f9762fb2.mp4"
+ogImage: "https://img.runt.run/2026/04/16/74c320e9336a.png"
+---
+
+There is a fundamental tension between what users want and what they need in order to be secure while computing. Notebooks, particularly, are dangerous. It's *that danger* that makes them useful.
+
+Notebooks are documents that execute code. You open a file and it can run arbitrary code. When hooked up in a web app, it means _javascript_ is sending execution. Security here is tricky.
+
+In 2014, I found a [cross-origin WebSocket hijacking vulnerability](https://www.lambdaops.com/posts/cross-origin-websocket-hijacking-of-ipython) in the IPython Notebook ([CVE-2014-3429](http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-3429)), the precursor to the Jupyter Notebook. A malicious site could connect to your local kernel and run code as your user. We (Jupyter) fixed it. The Jupyter team added origin verification, auth tokens, and tightened cross-origin websocket handling.
+
+Notebooks were created for local exploratory data analysis by scientists and for scientists. Turns out, lots of people liked having ways to explore data rapidly. Popularity exploded and we started finding out about people installing the notebook app openly on random EC2 instances.
+
+As the years went on, it became harder as a maintainer to navigate secure on localhost, secure on cloud, and eminently usable. nteract gave us a chance to rethink these problems from scratch. Here's where we've landed.
+
+Your notebooks are your data. They live on your machine. Nothing runs that you didn't greenlight. The rest of this post is how we hold that line.
+
+## Every output is isolated
+
+Drop the same `IPython.display.HTML` cell into both apps — a `<style>` block with `* { background-color: olive; }` and a single `<div>`. In nteract the olive stays in the output. In JupyterLab it paints the entire interface, menu bar and sidebar included, because the output shares the page's origin.
+
+<div className="not-prose my-10 grid gap-4 md:grid-cols-2">
+  <figure className="flex flex-col gap-2">
+    <LightboxImage
+      src="https://img.runt.run/2026/04/16/17700b5e1a72.png"
+      alt="nteract: a notebook cell injects `* { background-color: olive; }` — only the output iframe turns olive; the rest of the UI is untouched."
+      className="w-full rounded-md border border-outline-variant/20"
+    />
+    <figcaption className="font-mono text-[10px] uppercase tracking-[0.15em] text-outline-variant/80">
+      nteract — contained to the output
+    </figcaption>
+  </figure>
+  <figure className="flex flex-col gap-2">
+    <LightboxImage
+      src="https://img.runt.run/2026/04/16/c797f482e34c.png"
+      alt="JupyterLab: the same cell bleeds olive across the toolbar, sidebar, and cell chrome because outputs share the page's origin."
+      className="w-full rounded-md border border-outline-variant/20"
+    />
+    <figcaption className="font-mono text-[10px] uppercase tracking-[0.15em] text-outline-variant/80">
+      JupyterLab — escaped into the host app
+    </figcaption>
+  </figure>
+</div>
+
+Most notebook apps don't isolate outputs. As far as I know, only Colab secures you from malicious outputs trying to break out — they keep your Google identity walled off so notebooks can be shared more freely.
+
+### How it works
+
+<IframeIsolationDiagram />
+
+In nteract, outputs including interactive widgets, HTML, SVG and markdown render inside an iframe with an [opaque origin](https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque). The iframe gets a `blob:` URL, which means it has no origin relationship to the parent window. It can't see the parent DOM. It can't access `localStorage`. And critically, it can't reach `window.__TAURI__` — the bridge that would give it access to your filesystem, shell, and native APIs.
+
+The sandbox attributes are deliberately restrictive:
+
+```
+allow-scripts
+allow-downloads
+allow-forms
+allow-pointer-lock
+```
+
+The one that's **not** there is the important one: `allow-same-origin`. If we added that single attribute, the entire isolation model collapses. The iframe would share the parent's origin and gain full access to Tauri APIs. This invariant is tested in CI. We never want to see that ship.
+
+If someone sends you a notebook with a cell that has hidden javascript:
+
+```html
+<script>
+  window.__TAURI__.invoke("approve_notebook_trust")
+</script>
+```
+
+It simply doesn't work. `window.__TAURI__` is `undefined` inside the iframe. 
+
+#### Widgets work too
+
+You might wonder — if outputs are isolated, how do interactive widgets work? They need to communicate with the kernel to send and receive state updates.
+
+We built a JSON-RPC 2.0 bridge over `postMessage`. The parent window owns the widget state (stored in an Automerge CRDT document, synced with the daemon). The iframe gets a proxy that can read and update model state, but only through the validated message channel. The iframe never gets direct access to the kernel, the daemon, or any Tauri API.
+
+<video src="https://img.runt.run/2026/04/16/513b6684eeb3.mp4" autoPlay muted loop playsInline />
+
+Widget state updates are validated, typed, and routed through a `CommBridgeManager` that acts as a gatekeeper. Even [anywidgets](https://anywidget.dev/) run inside this same isolation boundary.
+
+### Content Security Policy
+
+The iframe also enforces a Content Security Policy. Scripts and stylesheets can load over HTTPS or from the GET-only local blob store (`127.0.0.1`). This keeps anywidgets functional. They can fetch ESM modules from the web over HTTPS or load assets served by the daemon locally, while blocking arbitrary HTTP origins. Inline scripts and `eval` are allowed inside the iframe — widget runtimes need them — but the opaque origin and sandbox attributes make that safe: there's nothing in the iframe worth stealing and nothing it can reach.
+
+For organizations with stricter requirements I could see us locking down `connect-src`, restricting script sources to specific domains. These are levers we'd like to expose.
+
+<BlogInlineCTA href="https://github.com/nteract/desktop/issues" lead="Have stricter requirements?">
+  Tell us what your team needs
+</BlogInlineCTA>
+
+## Trust before install
+
+Store `pandas`, `polars`, `pydantic`, right in the notebook metadata. Send it to a colleague and they can run it immediately.
+
+However, for your colleagues that's code they didn't write, asking to install packages they didn't choose, on their machine.
+
+nteract won't install those packages without explicit approval. When you open a notebook with dependencies, the runtime doesn't start. You see the full package list. You click "Trust & Start." Only then does installation begin. This is all handled with a trust signature that invalidates if anyone human or agent modifies the dependencies after you've approved them.
+
+We also run typosquatting detection. If a notebook asks for `reqeusts` instead of `requests`, you'll see a warning. It's not perfect, but it catches the obvious supply chain attacks that prey on typos.
+
+{/* Provide a note about supply chain and package managers here */}
+
+## Your data, your machine
+
+<SocketDiagram />
+
+nteract is local-first. Your notebooks, your outputs, your environments live on your filesystem, not on someone else's server. No account required. Nothing leaves your machine unless you explicitly share it.
+
+The runtime daemon (`runtimed`) reads and writes that state and exposes two surfaces, both pinned to your machine. Control runs over a Unix socket — `chmod 0600`, owner-only. No TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you. That's the same trust model as SSH, and it's deliberate: MCP agents (Claude Code, Codex, Warp) connect over the same socket and inherit the same access you have. We're not trying to protect you from tools you chose to run — we're protecting you from untrusted content inside notebooks and cross-origin attacks in browsers.
+
+The data surface is the blob store: a tiny HTTP server bound to `127.0.0.1` on an OS-assigned port, picked fresh each time the daemon starts. It serves exactly two routes — `GET /blob/{sha256}` and `GET /plugins/{name}` — and nothing else. No writes, no directory listing, no auth surface. Blobs are content-addressed, so the hash _is_ the capability. It exists because `blob:` iframes can't fetch cross-origin, and we need a way to hand them images, Parquet, Arrow, and output rendering assets without breaking isolation.
+
+Every cloud-hosted notebook service is a target — for attackers, subpoenas, data breaches. With nteract, there's no central server holding thousands of users' API keys, datasets, and credentials. Your data is yours. The attack surface is your machine, which you already control.
+
+## Why Tauri
+
+<TauriComparison />
+
+The original nteract was Electron. Electron bundles Chromium with full Node.js access — every renderer is one `nodeIntegration: true` away from `require('child_process')`. A lot of surface to defend.
+
+[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities — filesystem, shell, HTTP — are granted from Rust through an explicit [capabilities config](https://github.com/nteract/desktop/issues/908). If it isn't granted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
+
+## The philosophy
+
+Notebooks are collaboration documents. Humans edit them, agents edit them, kernels write outputs into them. The security model has to handle all three.
+
+Our approach is defense in depth:
+
+1. **Outputs can't escape their iframe.** Even if a kernel produces malicious HTML, it can't touch the host app.
+2. **Dependencies require explicit trust.** No silent installs, no unsigned packages slipping through.
+3. **The daemon stays on your machine.** Control runs over an owner-only Unix socket; data over a read-only localhost HTTP server on an ephemeral port.
+4. **Your data stays local by default.** No account required, no code shipped to someone else's infrastructure.
+
+None of these are revolutionary ideas individually. But notebooks have operated without *any* of them for over a decade. 
+
+## What's next
+
+* [Secret redaction](https://github.com/nteract/desktop/issues/1557): if your code accidentally prints an API key, nteract catches it at the runtime level and redacts it before any client whether the UI, agent, or blob store ever sees the value.
+* [Runtime sandboxing](https://github.com/nteract/desktop/issues/1307): OS-level process isolation for kernel subprocesses, so untrusted code runs with only the access it needs. Given how people expect notebooks to work, we'd expect opt-in at first, with the long-term goal of sandboxing agent-initiated sessions by default.
+* [Remote runtimes over SSH](https://github.com/nteract/desktop/issues/1334): run kernels on remote machines, tunneled through SSH. No new auth systems, no exposed ports.
+
+
+<BlogCTA />

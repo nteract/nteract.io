@@ -4,11 +4,15 @@ import Link from "next/link";
 import type { MDXComponents } from "mdx/types";
 
 import { BlogCTA } from "@/components/blog/cta";
+import { BlogInlineCTA } from "@/components/blog/inline-cta";
 import { EnvPicker } from "@/components/blog/env-picker";
 import { Kbd } from "@/components/kbd";
 import { PeerDiagram } from "@/components/blog/peer-diagram";
 import { LightboxImage } from "@/components/blog/lightbox-image";
 import { Peekaboo } from "@/components/blog/peekaboo";
+import { IframeIsolationDiagram } from "@/components/blog/iframe-isolation-diagram";
+import { SocketDiagram } from "@/components/blog/socket-diagram";
+import { TauriComparison } from "@/components/blog/tauri-comparison";
 import { cn } from "@/lib/utils";
 
 function MdxLink({
@@ -18,7 +22,7 @@ function MdxLink({
 }: ComponentPropsWithoutRef<"a">) {
   const linkClassName = cn(
     "font-medium underline underline-offset-4 transition-colors",
-    className
+    className,
   );
 
   if (href.startsWith("/")) {
@@ -51,7 +55,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h2
         className={cn(
           "scroll-mt-24 font-headline text-3xl font-bold tracking-tight",
-          className
+          className,
         )}
         {...props}
       />
@@ -60,7 +64,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h3
         className={cn(
           "scroll-mt-24 font-headline text-2xl font-bold tracking-tight",
-          className
+          className,
         )}
         {...props}
       />
@@ -69,7 +73,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <h4
         className={cn(
           "scroll-mt-24 font-headline text-xl font-bold tracking-tight",
-          className
+          className,
         )}
         {...props}
       />
@@ -104,11 +108,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <hr className={cn("border-outline-variant/20", className)} {...props} />
     ),
     BlogCTA,
+    BlogInlineCTA,
     EnvPicker,
     Kbd,
     LightboxImage,
     PeerDiagram,
     Peekaboo,
+    IframeIsolationDiagram,
+    SocketDiagram,
+    TauriComparison,
     ...components,
   };
 }
