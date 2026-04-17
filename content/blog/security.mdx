@@ -20,8 +20,6 @@ Notebooks were created for local exploratory data analysis by scientists and for
 
 As the years went on, it became harder as a maintainer to navigate secure on localhost, secure on cloud, and eminently usable. nteract gave us a chance to rethink these problems from scratch. Here's where we've landed.
 
-Your notebooks are your data. They live on your machine. Nothing runs that you didn't greenlight. The rest of this post is how we hold that line.
-
 ## Every output is isolated
 
 Drop the same `IPython.display.HTML` cell into both apps — a `<style>` block with `* { background-color: olive; }` and a single `<div>`. In nteract the olive stays in the output. In JupyterLab it paints the entire interface, menu bar and sidebar included, because the output shares the page's origin.
@@ -49,7 +47,7 @@ Drop the same `IPython.display.HTML` cell into both apps — a `<style>` block w
   </figure>
 </div>
 
-Most notebook apps don't isolate outputs. As far as I know, only Colab secures you from malicious outputs trying to break out — they keep your Google identity walled off so notebooks can be shared more freely.
+Most notebook apps don't isolate outputs. As far as I know, only Colab secures you from malicious outputs trying to break out. They keep your Google identity walled off so notebooks can be shared more freely.
 
 ### How it works
 
