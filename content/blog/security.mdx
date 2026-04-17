@@ -22,13 +22,13 @@ As the years went on, it became harder as a maintainer to navigate secure on loc
 
 ## Every output is isolated
 
-Drop the same `IPython.display.HTML` cell into both apps — a `<style>` block with `* { background-color: olive; }` and a single `<div>`. In nteract the olive stays in the output. In JupyterLab it paints the entire interface, menu bar and sidebar included, because the output shares the page's origin.
+Drop a `IPython.display.HTML` backed `<style>` block with `* { background-color: olive; }` and a single `<div>`. In nteract the olive stays in the output. In JupyterLab it paints the entire interface, menu bar and sidebar included, because the output shares the page's origin.
 
 <div className="not-prose my-10 grid gap-4 md:grid-cols-2">
   <figure className="flex flex-col gap-2">
     <LightboxImage
       src="https://img.runt.run/2026/04/16/17700b5e1a72.png"
-      alt="nteract: a notebook cell injects `* { background-color: olive; }` — only the output iframe turns olive; the rest of the UI is untouched."
+      alt="nteract: a notebook cell injects `* { background-color: olive; }`. Only the output iframe turns olive; the rest of the UI is untouched."
       className="w-full rounded-md border border-outline-variant/20"
     />
     <figcaption className="font-mono text-[10px] uppercase tracking-[0.15em] text-outline-variant/80">
@@ -53,7 +53,7 @@ Most notebook apps don't isolate outputs. As far as I know, only Colab secures y
 
 <IframeIsolationDiagram />
 
-In nteract, outputs including interactive widgets, HTML, SVG and markdown render inside an iframe with an [opaque origin](https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque). The iframe gets a `blob:` URL, which means it has no origin relationship to the parent window. It can't see the parent DOM. It can't access `localStorage`. And critically, it can't reach `window.__TAURI__` — the bridge that would give it access to your filesystem, shell, and native APIs.
+In nteract, outputs including interactive widgets, HTML, SVG and markdown render inside an iframe with an [opaque origin](https://html.spec.whatwg.org/multipage/browsers.html#concept-origin-opaque). The iframe gets a `blob:` URL, which means it has no origin relationship to the parent window. It can't see the parent DOM. It can't access `localStorage`. Critically, it can't reach `window.__TAURI__`, the bridge that would give it access to your filesystem, shell, and native APIs.
 
 The sandbox attributes are deliberately restrictive:
 
@@ -78,7 +78,7 @@ It simply doesn't work. `window.__TAURI__` is `undefined` inside the iframe.
 
 #### Widgets work too
 
-You might wonder — if outputs are isolated, how do interactive widgets work? They need to communicate with the kernel to send and receive state updates.
+You might wonder... if outputs are isolated, how do interactive widgets work? They need to communicate with the kernel to send and receive state updates.
 
 We built a JSON-RPC 2.0 bridge over `postMessage`. The parent window owns the widget state (stored in an Automerge CRDT document, synced with the daemon). The iframe gets a proxy that can read and update model state, but only through the validated message channel. The iframe never gets direct access to the kernel, the daemon, or any Tauri API.
 
@@ -88,7 +88,7 @@ Widget state updates are validated, typed, and routed through a `CommBridgeManag
 
 ### Content Security Policy
 
-The iframe also enforces a Content Security Policy. Scripts and stylesheets can load over HTTPS or from the GET-only local blob store (`127.0.0.1`). This keeps anywidgets functional. They can fetch ESM modules from the web over HTTPS or load assets served by the daemon locally, while blocking arbitrary HTTP origins. Inline scripts and `eval` are allowed inside the iframe — widget runtimes need them — but the opaque origin and sandbox attributes make that safe: there's nothing in the iframe worth stealing and nothing it can reach.
+The iframe also enforces a Content Security Policy. Scripts and stylesheets can load over HTTPS or from the GET-only local blob store (`127.0.0.1`). This keeps anywidgets functional. They can fetch ESM modules from the web over HTTPS or load assets served by the daemon locally, while blocking arbitrary HTTP origins. Inline scripts are allowed inside the iframe. Widgets and other interactives need that. The opaque origin and sandbox attributes keep that safer.
 
 For organizations with stricter requirements I could see us locking down `connect-src`, restricting script sources to specific domains. These are levers we'd like to expose.
 
@@ -114,19 +114,19 @@ We also run typosquatting detection. If a notebook asks for `reqeusts` instead o
 
 nteract is local-first. Your notebooks, your outputs, your environments live on your filesystem, not on someone else's server. No account required. Nothing leaves your machine unless you explicitly share it.
 
-The runtime daemon (`runtimed`) reads and writes that state and exposes two surfaces, both pinned to your machine. Control runs over a Unix socket — `chmod 0600`, owner-only. No TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you. That's the same trust model as SSH, and it's deliberate: MCP agents (Claude Code, Codex, Warp) connect over the same socket and inherit the same access you have. We're not trying to protect you from tools you chose to run — we're protecting you from untrusted content inside notebooks and cross-origin attacks in browsers.
+The runtime daemon (`runtimed`) reads and writes that state and exposes two surfaces, both pinned to your machine. Control runs over a Unix socket `chmod 0600`, owner-only. No TCP control plane, no auth token, no port to scan. If you can open the socket file, you're you. That's the same trust model as SSH, and it's deliberate: MCP agents (Claude Code, Codex, Warp) connect over the same socket and inherit the same access you have. We're not trying to protect you from tools you chose to run We're protecting you from untrusted content inside notebooks and cross-origin attacks in browsers.
 
-The data surface is the blob store: a tiny HTTP server bound to `127.0.0.1` on an OS-assigned port, picked fresh each time the daemon starts. It serves exactly two routes — `GET /blob/{sha256}` and `GET /plugins/{name}` — and nothing else. No writes, no directory listing, no auth surface. Blobs are content-addressed, so the hash _is_ the capability. It exists because `blob:` iframes can't fetch cross-origin, and we need a way to hand them images, Parquet, Arrow, and output rendering assets without breaking isolation.
+The data surface is the blob store: a tiny HTTP server bound to `127.0.0.1` on an OS-assigned port, picked fresh each time the daemon starts. It serves exactly two routes: `GET /blob/{sha256}` and `GET /plugins/{name}`. No writes, no directory listing, no auth surface. Blobs are content-addressed, so the hash _is_ the capability. It exists because `blob:` iframes can't fetch cross-origin, and we need a way to hand them images, Parquet, Arrow, and output rendering assets without breaking isolation.
 
-Every cloud-hosted notebook service is a target — for attackers, subpoenas, data breaches. With nteract, there's no central server holding thousands of users' API keys, datasets, and credentials. Your data is yours. The attack surface is your machine, which you already control.
+Every cloud-hosted notebook service is a target for attackers, subpoenas, and data breaches. With nteract, there's no central server holding thousands of users' API keys, datasets, and credentials. Your data is yours. The attack surface is your machine, which you already control.
 
 ## Why Tauri
 
 <TauriComparison />
 
-The original nteract was Electron. Electron bundles Chromium with full Node.js access — every renderer is one `nodeIntegration: true` away from `require('child_process')`. A lot of surface to defend.
+The original nteract was Electron backed. Electron bundles Chromium with full Node.js access. Every renderer is one `nodeIntegration: true` away from `require('child_process')`. It was a lot of surface to defend.
 
-[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities — filesystem, shell, HTTP — are granted from Rust through an explicit [capabilities config](https://github.com/nteract/desktop/issues/908). If it isn't granted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
+[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities like the filesystem, shell, and HTTP are granted from Rust through an explicit [capabilities config](https://github.com/nteract/desktop/issues/908). If it isn't granted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
 
 ## The philosophy
 
