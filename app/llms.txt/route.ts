@@ -1,15 +1,42 @@
 import { getAllPosts } from "@/lib/blog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
-export const dynamic = "force-static";
+export const revalidate = 300;
+
+async function getStableVersion(): Promise<string | null> {
+  try {
+    const res = await fetch(siteConfig.stableManifestUrl, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const manifest = await res.json();
+    return manifest.version ?? null;
+  } catch {
+    return null;
+  }
+}
 
 export async function GET() {
-  const posts = await getAllPosts();
+  const [posts, version] = await Promise.all([
+    getAllPosts(),
+    getStableVersion(),
+  ]);
+
+  const downloadsLine = version
+    ? `- [Latest releases](${siteConfig.links.releases}) for macOS, Windows, and Linux. Current stable: v${version}.`
+    : `- [Latest releases](${siteConfig.links.releases}) for macOS, Windows, and Linux.`;
 
   const lines = [
     `# ${siteConfig.name}`,
     "",
-    `> ${siteConfig.description}`,
+    "> Native interactive notebooks. Fast to launch, agent ready, humans welcome.",
+    "",
+    "nteract is a desktop notebook app for macOS, Windows, and Linux. Open a `.ipynb` file, a kernel starts, you're running code. No browser, no server to manage.",
+    "",
+    "## Downloads",
+    "",
+    downloadsLine,
+    `- [Source on GitHub](${siteConfig.links.github})`,
     "",
     "## Blog",
     "",
