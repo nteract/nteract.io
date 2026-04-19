@@ -15,7 +15,7 @@ export async function GET() {
     "",
     ...posts.map(
       (post) =>
-        `- [${post.title}](${absoluteUrl(`/blog/${post.slug}/index.md`)}): ${post.description}`,
+        `- [${post.title}](${absoluteUrl(`/blog/${post.slug}/raw.md`)}): ${post.description}`,
     ),
     "",
   ];
