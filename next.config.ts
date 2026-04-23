@@ -15,7 +15,7 @@ const withMDX = createMDX({
       [
         remarkLLMs,
         {
-          mdxAsPlaceholder: ["PingPreview"],
+          mdxAsPlaceholder: ["PingPreview", "Rights", "OptOut", "Receipt"],
         },
       ],
     ],
