@@ -115,6 +115,12 @@ export function SiteFooter() {
             <Link href="/blog" className="transition-colors hover:text-gray-900">
               Blog
             </Link>
+            <Link
+              href="/telemetry"
+              className="transition-colors hover:text-gray-900"
+            >
+              Telemetry
+            </Link>
             <a
               href={siteConfig.links.rss}
               className="transition-colors hover:text-gray-900"
