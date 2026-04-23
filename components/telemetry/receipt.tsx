@@ -1,3 +1,4 @@
+import { renderInlineCode } from "@/lib/inline-code";
 import {
   EMISSION_GATES,
   FIELDS,
@@ -54,7 +55,7 @@ export function Receipt() {
               <tr key={f.name} style={{ borderBottom: "1px solid var(--rule)" }}>
                 <td className="py-2 pr-3 font-mono">{f.name}</td>
                 <td className="py-2 pr-3 font-mono text-xs">{f.example}</td>
-                <td className="py-2">{f.description}</td>
+                <td className="py-2">{renderInlineCode(f.description)}</td>
               </tr>
             ))}
           </tbody>
@@ -64,7 +65,7 @@ export function Receipt() {
       <Section title="What is never sent or stored">
         <ul className="list-disc pl-5 space-y-2">
           {NEVER_SENT.map((line) => (
-            <li key={line}>{line}</li>
+            <li key={line}>{renderInlineCode(line)}</li>
           ))}
         </ul>
       </Section>
@@ -81,7 +82,7 @@ export function Receipt() {
             {EMISSION_GATES.map((g) => (
               <tr key={g.name} style={{ borderBottom: "1px solid var(--rule)" }}>
                 <td className="py-2 pr-3 font-medium">{g.name}</td>
-                <td className="py-2">{g.trigger}</td>
+                <td className="py-2">{renderInlineCode(g.trigger)}</td>
               </tr>
             ))}
           </tbody>

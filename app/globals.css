@@ -279,3 +279,12 @@ body {
 .cream-page ::selection {
   background: rgb(149 95 59 / 0.18);
 }
+
+.cream-page :not(pre) > code {
+  font-family: var(--font-mono), "JetBrains Mono", monospace;
+  font-size: 0.88em;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  background: rgb(149 95 59 / 0.08);
+  color: var(--ink);
+}
