@@ -2,6 +2,7 @@ import { PageShell } from "@/components/telemetry/page-shell";
 import { PingPreview } from "@/components/telemetry/ping-preview";
 import { Receipt } from "@/components/telemetry/receipt";
 import { Rights } from "@/components/telemetry/rights";
+import { renderInlineCode } from "@/lib/inline-code";
 import { OPT_OUT_PATHS } from "@/lib/telemetry-data";
 
 export default function TelemetryPage() {
@@ -60,12 +61,13 @@ export default function TelemetryPage() {
           <ul className="space-y-3 text-[16px] leading-7" style={{ color: "var(--ink)" }}>
             {OPT_OUT_PATHS.inApp.map((p) => (
               <li key={p.label}>
-                <strong>{p.label}.</strong> {p.description}
+                <strong>{p.label}.</strong> {renderInlineCode(p.description)}
               </li>
             ))}
           </ul>
           <p className="mt-4 text-[13px]" style={{ color: "var(--muted)" }}>
-            For locked-down deployments and CI images: {OPT_OUT_PATHS.envVar}
+            For locked-down deployments and CI images:{" "}
+            {renderInlineCode(OPT_OUT_PATHS.envVar)}
           </p>
         </section>
 
