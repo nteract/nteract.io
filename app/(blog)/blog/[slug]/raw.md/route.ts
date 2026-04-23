@@ -1,4 +1,7 @@
-import { formatPostAsMarkdown, getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { renderPlaceholder } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+
+import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { resolveBlogPlaceholders } from "@/lib/blog-md";
 
 export const dynamic = "force-static";
 export const dynamicParams = false;
@@ -22,7 +25,11 @@ export async function GET(_request: Request, { params }: RouteContext) {
     return new Response("Not found", { status: 404 });
   }
 
-  return new Response(formatPostAsMarkdown(post), {
+  const { _markdown } = await import(`@/content/blog/${slug}.mdx`);
+
+  const md = await renderPlaceholder(_markdown, resolveBlogPlaceholders);
+
+  return new Response(md, {
     headers: {
       "Content-Type": "text/markdown; charset=utf-8",
       "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",

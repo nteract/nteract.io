@@ -15,7 +15,36 @@ const withMDX = createMDX({
       [
         remarkLLMs,
         {
-          mdxAsPlaceholder: ["PingPreview", "Rights", "OptOut", "Receipt"],
+          mdxAsPlaceholder: [
+            "PingPreview",
+            "Rights",
+            "OptOut",
+            "Receipt",
+            "Kbd",
+            "BlogCTA",
+            "BlogInlineCTA",
+          ],
+          // Annotate non-placeholder nodes so the stringifier strips them cleanly.
+          // node.data._stringify is checked after this callback — { text: '' }
+          // suppresses the node, 'children-only' keeps children and drops the wrapper.
+          stringify(node: {
+            type: string;
+            name?: string;
+            children?: unknown[];
+            data?: Record<string, unknown>;
+          }) {
+            if (
+              node.type === "mdxJsxFlowElement" ||
+              node.type === "mdxJsxTextElement"
+            ) {
+              if (node.children && node.children.length > 0) {
+                node.data = { ...node.data, _stringify: "children-only" };
+              } else {
+                node.data = { ...node.data, _stringify: { text: "" } };
+              }
+              return;
+            }
+          },
         },
       ],
     ],
