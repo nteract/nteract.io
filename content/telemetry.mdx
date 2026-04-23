@@ -1,0 +1,84 @@
+# A light ping, and why we ask.
+
+nteract is maintained under [NumFOCUS](https://numfocus.org/), a non-profit. We don't sell your data. We never will.
+
+One anonymous daily heartbeat gives us insight into usage and helps us improve nteract.
+
+<PingPreview />
+
+If you'd rather not, flip it off. No penalty. No degraded features.
+
+## Your rights
+
+### Access
+
+Open **Settings → Privacy** to see your install ID, last ping times, and current setting.
+
+### Rectify
+
+There's nothing to rectify. The six fields are facts about your build, not profile data.
+
+### Erase
+
+Rotate your install ID from **Settings → Privacy**. Old rows become unlinkable and age out at 400 days. To delete them immediately, call the server-side erasure endpoint (`DELETE /v1/install/{install_id}`) or email [privacy@nteract.io](mailto:privacy@nteract.io) with your install ID.
+
+### Object / withdraw
+
+Flip the setting off, any time. No penalty, no features lost.
+
+## How to opt out
+
+- **Onboarding choice.** Press "Opt out of metrics, continue" on the final onboarding screen.
+- **Settings → Privacy.** Flip the telemetry switch off any time. Rotate your install ID or request erasure from here too.
+- **CLI.** Run `runt config telemetry disable`. Check status with `runt config telemetry status`.
+
+For locked-down deployments and CI images: set `NTERACT_TELEMETRY_DISABLE=1`.
+
+## Exactly what's sent
+
+| Field | Example | Description |
+|---|---|---|
+| install_id | `550e8400-e29b-41d4-a716-446655440000` | Opaque UUIDv4 generated on first run. Not derived from any identifying data. |
+| source | `app` | Which process sent the ping. One of `app`, `daemon`, or `mcp`. |
+| version | `2.2.1` | Release version of the build that sent the ping. |
+| channel | `nightly` | Release channel: `stable` or `nightly`. |
+| platform | `macos` | Operating system family: `macos`, `linux`, or `windows`. |
+| arch | `arm64` | CPU architecture: `arm64` or `x86_64`. |
+
+## What is never sent or stored
+
+- Hostname, username, home directory, or any filesystem path.
+- Notebook contents, cell outputs, kernel names, or environment details.
+- Dependency names or versions (Python, Node, R, system packages).
+- Hardware identifiers (MAC address, serial number, disk UUID).
+- Client IP address at rest. Cloudflare observes it briefly for rate limiting; the database does not store it.
+- User-Agent or any HTTP header beyond Content-Type.
+
+## When a ping is suppressed
+
+| Gate | Trigger |
+|---|---|
+| Dev mode | `RUNTIMED_DEV=1` or `RUNTIMED_WORKSPACE_PATH` is set |
+| CI | `CI` environment variable is set |
+| Kill switch | `NTERACT_TELEMETRY_DISABLE` environment variable is set |
+| Disabled | `telemetry_enabled = false` in settings |
+| Consent not recorded | `telemetry_consent_recorded = false` (user has not pressed either onboarding button) |
+| Not onboarded | `onboarding_completed = false` (fresh install before first-run screen) |
+| Unsupported host | Platform or architecture not in the server's enum |
+| Throttled | Last ping for this source was less than 20 hours ago |
+
+## Retention and schema evolution
+
+- **Raw pings**: kept for 400 days, then deleted by a nightly cleanup job.
+- **Daily aggregate counts**: kept indefinitely. No `install_id`; just counts grouped by `day`, `source`, `version`, `channel`, `platform`, `arch`.
+- New fields may be added over time (additive only). Any field removal is a breaking change that gets a new route version (`/v2/ping`).
+
+## Sponsored project note
+
+nteract is a [NumFOCUS](https://numfocus.org/) sponsored project. NumFOCUS's own [privacy policy](https://numfocus.org/privacy-policy) covers NumFOCUS services (its website, event registration, etc.), not sponsored projects. This page is how *nteract* handles your data.
+
+## Contact
+
+Privacy questions: [privacy@nteract.io](mailto:privacy@nteract.io).
+
+Source: [github.com/nteract/desktop](https://github.com/nteract/desktop).

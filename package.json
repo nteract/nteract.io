@@ -13,6 +13,7 @@
     "@vercel/analytics": "^1.6.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "fumadocs-core": "^16.8.2",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.7.0",
     "next": "15.5.15",
