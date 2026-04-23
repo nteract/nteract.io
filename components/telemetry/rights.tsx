@@ -1,3 +1,5 @@
+import { ERASE_ENDPOINT_SHAPE, RETENTION } from "@/lib/telemetry-data";
+
 type Right = {
   title: string;
   body: React.ReactNode;
@@ -27,9 +29,11 @@ const RIGHTS: Right[] = [
     body: (
       <>
         Rotate your install ID from <strong>Settings &rarr; Privacy</strong>. Old
-        rows become unlinkable and age out at 400 days. To delete them immediately,
-        email the address below with your install ID; we run a{" "}
-        <code>DELETE</code> against the raw pings table.
+        rows become unlinkable and age out at {RETENTION.rawPingDays} days. To delete
+        them immediately, call the server-side erasure endpoint (
+        <code>{ERASE_ENDPOINT_SHAPE}</code>) or email{" "}
+        <a href="mailto:privacy@nteract.io">privacy@nteract.io</a> with your install
+        ID.
       </>
     ),
   },
