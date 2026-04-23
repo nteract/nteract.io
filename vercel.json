@@ -11,6 +11,10 @@
     {
       "source": "/blog/:slug",
       "headers": [{ "key": "Vary", "value": "Accept" }]
+    },
+    {
+      "source": "/telemetry",
+      "headers": [{ "key": "Vary", "value": "Accept" }]
     }
   ]
 }
