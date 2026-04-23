@@ -13,7 +13,7 @@ import {
  * Resolve the remarkLLMs markdown export from telemetry.mdx,
  * replacing component placeholders with their static markdown form.
  *
- * Shared by /telemetry/raw.md and /telemetry/llms.txt routes.
+ * Used by the /telemetry/llms.txt route.
  */
 export function resolveTelemetryMarkdown(): Promise<string> {
   return renderPlaceholder(_markdown, {

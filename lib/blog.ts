@@ -192,25 +192,3 @@ const postDateFormatter = new Intl.DateTimeFormat("en", {
 export function formatPostDate(value: string) {
   return postDateFormatter.format(new Date(value));
 }
-
-export function formatPostAsMarkdown(post: BlogPost): string {
-  const meta =
-    post.tags.length > 0
-      ? `*Published ${formatPostDate(post.date)} \u00b7 tags: ${post.tags.join(", ")}*`
-      : `*Published ${formatPostDate(post.date)}*`;
-
-  return [
-    `# ${post.title}`,
-    "",
-    `> ${post.description}`,
-    "",
-    meta,
-    "",
-    `[Original post](${absoluteUrl(`/blog/${post.slug}`)})`,
-    "",
-    "---",
-    "",
-    post.content.trim(),
-    "",
-  ].join("\n");
-}
