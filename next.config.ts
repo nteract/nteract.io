@@ -4,11 +4,21 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
+import { remarkLLMs } from "fumadocs-core/mdx-plugins/remark-llms";
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    remarkPlugins: [
+      remarkFrontmatter,
+      remarkGfm,
+      [
+        remarkLLMs,
+        {
+          mdxAsPlaceholder: ["PingPreview"],
+        },
+      ],
+    ],
     rehypePlugins: [
       rehypeSlug,
       [
