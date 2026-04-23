@@ -29,24 +29,26 @@ export default function TelemetryPage() {
         >
           <p>
             nteract is maintained under{" "}
-            <a href="https://numfocus.org/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://numfocus.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               NumFOCUS
             </a>
             , a non-profit. We don&rsquo;t sell your data. We never will.
           </p>
           <p>
-            One anonymous daily heartbeat tells funders that real people are using
-            nteract. The ping is evidence of use, not funding.
+            One anonymous daily heartbeat gives us insight into usage and helps
+            us improve nteract.
           </p>
         </div>
 
         <PingPreview />
 
-        <p
-          className="text-[17px] leading-8"
-          style={{ color: "var(--ink)" }}
-        >
-          If you&rsquo;d rather not, flip it off. No penalty. No degraded features.
+        <p className="text-[17px] leading-8" style={{ color: "var(--ink)" }}>
+          If you&rsquo;d rather not, flip it off. No penalty. No degraded
+          features.
         </p>
 
         <Rights />
@@ -58,7 +60,10 @@ export default function TelemetryPage() {
           >
             How to opt out
           </h2>
-          <ul className="space-y-3 text-[16px] leading-7" style={{ color: "var(--ink)" }}>
+          <ul
+            className="space-y-3 text-[16px] leading-7"
+            style={{ color: "var(--ink)" }}
+          >
             {OPT_OUT_PATHS.inApp.map((p) => (
               <li key={p.label}>
                 <strong>{p.label}.</strong> {renderInlineCode(p.description)}
@@ -77,12 +82,19 @@ export default function TelemetryPage() {
           className="mt-16 pt-8 border-t text-[15px] leading-7"
           style={{ borderColor: "var(--rule)", color: "var(--ink)" }}
         >
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "var(--ink)" }}>
+          <h2
+            className="text-2xl font-semibold mb-4"
+            style={{ color: "var(--ink)" }}
+          >
             Sponsored project note
           </h2>
           <p>
             nteract is a{" "}
-            <a href="https://numfocus.org/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://numfocus.org/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               NumFOCUS
             </a>{" "}
             sponsored project. NumFOCUS&rsquo;s own{" "}
@@ -93,8 +105,9 @@ export default function TelemetryPage() {
             >
               privacy policy
             </a>{" "}
-            covers NumFOCUS services (its website, event registration, etc.), not
-            sponsored projects. This page is how <em>nteract</em> handles your data.
+            covers NumFOCUS services (its website, event registration, etc.),
+            not sponsored projects. This page is how <em>nteract</em> handles
+            your data.
           </p>
         </section>
 
@@ -102,7 +115,10 @@ export default function TelemetryPage() {
           className="mt-10 pt-8 border-t text-[15px] leading-7"
           style={{ borderColor: "var(--rule)", color: "var(--ink)" }}
         >
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "var(--ink)" }}>
+          <h2
+            className="text-2xl font-semibold mb-4"
+            style={{ color: "var(--ink)" }}
+          >
             Contact
           </h2>
           <p>
