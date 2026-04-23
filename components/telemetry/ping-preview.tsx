@@ -3,11 +3,15 @@ import { FIELDS } from "@/lib/telemetry-data";
 /**
  * Notebook-style inline preview of a single heartbeat.
  *
- * Reads as an `In[1]:` / `Out[1]:` pair with field comments placed above
- * each key so long values (like the install_id UUID) never get truncated
- * or squeezed by a trailing comment.
+ * Mirrors how IPython renders a dict-valued `Out[1]:`: the opening brace sits
+ * on its own line and the body indents to column 9 so it visually hangs under
+ * the 8-character `Out[1]: ` prompt. Field descriptions live in the Receipt
+ * accordion below; inline comments here just added noise.
  */
 export function PingPreview() {
+  const indent = "        "; // 8 spaces — width of "In [1]: " / "Out[1]: "
+  const keyPad = indent + "  ";
+
   return (
     <div
       className="my-8 rounded-lg border overflow-hidden"
@@ -26,16 +30,14 @@ export function PingPreview() {
         <span style={{ color: "var(--muted)" }}>In [1]: </span>
         <span>ping()</span>
         {"\n\n"}
-        <span style={{ color: "var(--muted)" }}>Out[1]: </span>
+        <span style={{ color: "var(--muted)" }}>Out[1]:</span>
+        {"\n"}
+        {indent}
         <span>{"{"}</span>
         {"\n"}
         {FIELDS.map((f, i) => (
           <span key={f.name}>
-            {"  "}
-            <span className="italic" style={{ color: "var(--muted)" }}>
-              {"// " + f.tag}
-            </span>
-            {"\n  "}
+            {keyPad}
             <span style={{ color: "var(--accent)" }}>&quot;{f.name}&quot;</span>
             <span>: </span>
             <span>&quot;{f.example}&quot;</span>
@@ -43,6 +45,7 @@ export function PingPreview() {
             {"\n"}
           </span>
         ))}
+        {indent}
         <span>{"}"}</span>
       </pre>
     </div>
