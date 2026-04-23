@@ -3,12 +3,15 @@ import { NextResponse, type NextRequest } from "next/server";
 import { prefersMarkdown } from "@/lib/accept";
 
 export const config = {
-  matcher: ["/", "/blog", "/blog/:slug"],
+  matcher: ["/", "/blog", "/blog/:slug", "/telemetry"],
 };
 
 function rewriteTarget(pathname: string): string | null {
   if (pathname === "/" || pathname === "/blog") {
     return "/llms.txt";
+  }
+  if (pathname === "/telemetry") {
+    return "/telemetry/raw.md";
   }
   if (pathname.startsWith("/blog/")) {
     return `/blog/${pathname.slice("/blog/".length)}/raw.md`;
