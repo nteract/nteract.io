@@ -3,7 +3,7 @@ import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runt
 /**
  * Placeholder renderers for blog MDX components.
  *
- * Used by the /blog/[slug]/raw.md route to resolve remarkLLMs
+ * Used by the /blog/[slug]/llms.txt route to resolve remarkLLMs
  * placeholders into plain markdown at build time.
  */
 export const resolveBlogPlaceholders: Record<

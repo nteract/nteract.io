@@ -11,22 +11,19 @@ function rewriteTarget(pathname: string): string | null {
     return "/llms.txt";
   }
   if (pathname === "/telemetry") {
-    return "/telemetry/raw.md";
+    return "/telemetry/llms.txt";
   }
   if (pathname.startsWith("/blog/")) {
-    return `/blog/${pathname.slice("/blog/".length)}/raw.md`;
+    return `/blog/${pathname.slice("/blog/".length)}/llms.txt`;
   }
   return null;
 }
 
 export function middleware(request: NextRequest) {
   const wantsMarkdown =
-    request.method === "GET" &&
-    prefersMarkdown(request.headers.get("accept"));
+    request.method === "GET" && prefersMarkdown(request.headers.get("accept"));
 
-  const target = wantsMarkdown
-    ? rewriteTarget(request.nextUrl.pathname)
-    : null;
+  const target = wantsMarkdown ? rewriteTarget(request.nextUrl.pathname) : null;
 
   let response: NextResponse;
   if (target) {
