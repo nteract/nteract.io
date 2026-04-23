@@ -13,7 +13,10 @@ import { Peekaboo } from "@/components/blog/peekaboo";
 import { IframeIsolationDiagram } from "@/components/blog/iframe-isolation-diagram";
 import { SocketDiagram } from "@/components/blog/socket-diagram";
 import { TauriComparison } from "@/components/blog/tauri-comparison";
+import { OptOut } from "@/components/telemetry/opt-out";
 import { PingPreview } from "@/components/telemetry/ping-preview";
+import { Receipt } from "@/components/telemetry/receipt";
+import { Rights } from "@/components/telemetry/rights";
 import { cn } from "@/lib/utils";
 
 function MdxLink({
@@ -118,7 +121,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     IframeIsolationDiagram,
     SocketDiagram,
     TauriComparison,
+    OptOut,
     PingPreview,
+    Receipt,
+    Rights,
     ...components,
   };
 }
