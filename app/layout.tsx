@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/react";
-import { Space_Grotesk, Inter, JetBrains_Mono, Geist } from "next/font/google";
+import { Space_Grotesk, Inter, JetBrains_Mono, Geist, Source_Serif_4 } from "next/font/google";
 import type { ReactNode } from "react";
 
 import { absoluteUrl, siteConfig } from "@/lib/site";
@@ -25,6 +25,12 @@ const inter = Inter({
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+});
+
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: "--font-page-serif",
   display: "swap",
 });
 
@@ -69,7 +75,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", geist.variable)}>
       <body
-        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} min-h-screen font-body antialiased`}
+        className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} ${sourceSerif.variable} min-h-screen font-body antialiased`}
       >
         {children}
         <Analytics />
