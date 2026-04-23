@@ -30,10 +30,17 @@ export default function Image() {
         >
           § Telemetry
         </div>
-        <div style={{ fontSize: 96, lineHeight: 1.05, fontWeight: 400 }}>
-          A light ping,
-          <br />
-          and why we ask.
+        <div
+          style={{
+            fontSize: 96,
+            lineHeight: 1.05,
+            fontWeight: 400,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <span>A light ping,</span>
+          <span>and why we ask.</span>
         </div>
         <div
           style={{ fontSize: 28, color: "#6b6356", display: "flex", gap: 24 }}
