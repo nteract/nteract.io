@@ -37,6 +37,7 @@ export async function GET() {
     "",
     downloadsLine,
     `- [Source on GitHub](${siteConfig.links.github})`,
+    `- [Telemetry policy](${siteConfig.url}/telemetry): what nteract sends, what it never sends, and how to opt out.`,
     "",
     "## Blog",
     "",
