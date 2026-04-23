@@ -29,10 +29,8 @@ export function PingPreview() {
       >
         <span style={{ color: "var(--muted)" }}>In [1]: </span>
         <span>ping()</span>
-        {"\n\n"}
-        <span style={{ color: "var(--muted)" }}>Out[1]:</span>
         {"\n"}
-        {indent}
+        <span style={{ color: "var(--muted)" }}>Out[1]: </span>
         <span>{"{"}</span>
         {"\n"}
         {FIELDS.map((f, i) => (
