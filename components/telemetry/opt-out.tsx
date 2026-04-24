@@ -1,3 +1,5 @@
+import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+
 import { renderInlineCode } from "@/lib/inline-code";
 import { OPT_OUT_PATHS } from "@/lib/telemetry-data";
 
@@ -27,3 +29,15 @@ export function OptOut() {
     </section>
   );
 }
+
+OptOut.toMarkdown = (_data: PlaceholderData): string => {
+  const lines = ["## How to opt out", ""];
+  for (const p of OPT_OUT_PATHS.inApp) {
+    lines.push(`- **${p.label}.** ${p.description}`);
+  }
+  lines.push(
+    "",
+    `For locked-down deployments and CI images: ${OPT_OUT_PATHS.envVar}`,
+  );
+  return lines.join("\n");
+};
