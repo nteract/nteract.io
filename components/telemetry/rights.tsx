@@ -27,14 +27,30 @@ const RIGHTS: Right[] = [
   {
     title: "Erase",
     body: (
-      <p>
-        Rotate your install ID from <strong>Settings &rarr; Privacy</strong>. Old
-        rows become unlinkable and age out at {RETENTION.rawPingDays} days. To
-        delete them immediately, call the server-side erasure endpoint (
-        <code>{ERASE_ENDPOINT_SHAPE}</code>) or email{" "}
-        <a href="mailto:privacy@nteract.io">privacy@nteract.io</a> with your install
-        ID.
-      </p>
+      <>
+        <p>
+          Rotate your install ID from <strong>Settings &rarr; Privacy</strong>. Old
+          rows become unlinkable and age out at {RETENTION.rawPingDays} days.
+        </p>
+        <p className="mt-3">
+          To delete them immediately, call the server-side erasure endpoint:
+        </p>
+        <pre
+          className="mt-2 overflow-x-auto rounded-lg border p-3 text-[13px] font-mono"
+          style={{
+            borderColor: "var(--rule)",
+            background: "var(--paper-elevated)",
+            color: "var(--ink)",
+            fontFamily: "var(--font-mono), monospace",
+          }}
+        >
+          <code>{ERASE_ENDPOINT_SHAPE}</code>
+        </pre>
+        <p className="mt-3">
+          Or email <a href="mailto:privacy@nteract.io">privacy@nteract.io</a> with
+          your install ID.
+        </p>
+      </>
     ),
   },
   {
