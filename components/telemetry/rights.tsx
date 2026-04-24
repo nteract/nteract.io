@@ -1,11 +1,14 @@
+import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+
 import { ERASE_ENDPOINT_SHAPE, RETENTION } from "@/lib/telemetry-data";
 
-type Right = {
+type RightEntry = {
   title: string;
   body: React.ReactNode;
+  bodyMarkdown: string;
 };
 
-const RIGHTS: Right[] = [
+const RIGHTS: RightEntry[] = [
   {
     title: "Access",
     body: (
@@ -14,6 +17,8 @@ const RIGHTS: Right[] = [
         ping times, and current setting.
       </p>
     ),
+    bodyMarkdown:
+      "Open **Settings → Privacy** to see your install ID, last ping times, and current setting.",
   },
   {
     title: "Rectify",
@@ -23,6 +28,8 @@ const RIGHTS: Right[] = [
         not profile data.
       </p>
     ),
+    bodyMarkdown:
+      "There's nothing to rectify. The six fields are facts about your build, not profile data.",
   },
   {
     title: "Erase",
@@ -52,16 +59,32 @@ const RIGHTS: Right[] = [
         </p>
       </>
     ),
+    bodyMarkdown: [
+      `Rotate your install ID from **Settings → Privacy**. Old rows become unlinkable and age out at ${RETENTION.rawPingDays} days.`,
+      "",
+      "To delete them immediately, call the server-side erasure endpoint:",
+      "",
+      "```",
+      ERASE_ENDPOINT_SHAPE,
+      "```",
+      "",
+      "Or email [privacy@nteract.io](mailto:privacy@nteract.io) with your install ID.",
+    ].join("\n"),
   },
   {
     title: "Object / withdraw",
-    body: (
-      <p>Flip the setting off, any time. No penalty, no features lost.</p>
-    ),
+    body: <p>Flip the setting off, any time. No penalty, no features lost.</p>,
+    bodyMarkdown: "Flip the setting off, any time. No penalty, no features lost.",
   },
 ];
 
-function RightSection({ title, children }: { title: string; children: React.ReactNode }) {
+function RightSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <details className="group border-t py-4" style={{ borderColor: "var(--rule)" }}>
       <summary
@@ -100,3 +123,11 @@ export function Rights() {
     </section>
   );
 }
+
+Rights.toMarkdown = (_data: PlaceholderData): string => {
+  const lines = ["## Your rights", ""];
+  for (const r of RIGHTS) {
+    lines.push(`### ${r.title}`, "", r.bodyMarkdown, "");
+  }
+  return lines.join("\n").trimEnd();
+};

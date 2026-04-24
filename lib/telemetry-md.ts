@@ -1,8 +1,8 @@
 import { _markdown } from "@/content/telemetry.mdx";
 import { renderPlaceholder } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+import { Rights } from "@/components/telemetry/rights";
 import {
   EMISSION_GATES,
-  ERASE_ENDPOINT_SHAPE,
   FIELDS,
   NEVER_SENT,
   OPT_OUT_PATHS,
@@ -26,36 +26,7 @@ export function resolveTelemetryMarkdown(): Promise<string> {
       return lines.join("\n");
     },
 
-    Rights() {
-      const lines = [
-        "## Your rights",
-        "",
-        "### Access",
-        "",
-        "Open **Settings → Privacy** to see your install ID, last ping times, and current setting.",
-        "",
-        "### Rectify",
-        "",
-        "There's nothing to rectify. The six fields are facts about your build, not profile data.",
-        "",
-        "### Erase",
-        "",
-        `Rotate your install ID from **Settings → Privacy**. Old rows become unlinkable and age out at ${RETENTION.rawPingDays} days.`,
-        "",
-        "To delete them immediately, call the server-side erasure endpoint:",
-        "",
-        "```",
-        ERASE_ENDPOINT_SHAPE,
-        "```",
-        "",
-        "Or email [privacy@nteract.io](mailto:privacy@nteract.io) with your install ID.",
-        "",
-        "### Object / withdraw",
-        "",
-        "Flip the setting off, any time. No penalty, no features lost.",
-      ];
-      return lines.join("\n");
-    },
+    Rights: Rights.toMarkdown,
 
     OptOut() {
       const lines = [
