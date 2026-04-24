@@ -1,3 +1,4 @@
+import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
 import type { ReactNode } from "react";
 
 type BlogInlineCTAProps = {
@@ -32,3 +33,10 @@ export function BlogInlineCTA({ href, children, lead }: BlogInlineCTAProps) {
     </div>
   );
 }
+
+BlogInlineCTA.toMarkdown = (data: PlaceholderData): string => {
+  const href = (data.attributes.href as string) ?? "";
+  const lead = (data.attributes.lead as string) ?? "";
+  const prefix = lead ? `${lead} ` : "";
+  return `${prefix}[${data.children}](${href})`;
+};
