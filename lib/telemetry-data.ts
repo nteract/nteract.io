@@ -143,5 +143,5 @@ export const OPT_OUT_PATHS: {
 };
 
 export const ENDPOINT = "https://telemetry.runtimed.com/v1/ping";
-export const ERASE_ENDPOINT_SHAPE = "DELETE /v1/install/{install_id}";
+export const ERASE_ENDPOINT_SHAPE = "DELETE https://telemetry.runtimed.com/v1/install/{install_id}";
 export const RATE_LIMIT = "60 req/min per client IP at the Cloudflare edge";
