@@ -1,3 +1,5 @@
+import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+
 import { renderInlineCode } from "@/lib/inline-code";
 import {
   EMISSION_GATES,
@@ -114,3 +116,35 @@ export function Receipt() {
     </div>
   );
 }
+
+Receipt.toMarkdown = (_data: PlaceholderData): string => {
+  const lines: string[] = [];
+
+  lines.push("## Exactly what's sent", "");
+  lines.push("| Field | Example | Description |", "|---|---|---|");
+  for (const f of FIELDS) {
+    lines.push(`| ${f.name} | \`${f.example}\` | ${f.description} |`);
+  }
+
+  lines.push("", "## What is never sent or stored", "");
+  for (const n of NEVER_SENT) lines.push(`- ${n}`);
+
+  lines.push("", "## When a ping is suppressed", "");
+  lines.push("| Gate | Trigger |", "|---|---|");
+  for (const g of EMISSION_GATES) {
+    lines.push(`| ${g.name} | ${g.trigger} |`);
+  }
+
+  lines.push("", "## Retention and schema evolution", "");
+  lines.push(
+    `- **Raw pings**: kept for ${RETENTION.rawPingDays} days, then deleted by a nightly cleanup job.`,
+  );
+  lines.push(
+    `- **Daily aggregate counts**: kept ${RETENTION.aggregatesKept}. No \`install_id\`; just counts grouped by ${RETENTION.rollupKeys.map((k) => "`" + k + "`").join(", ")}.`,
+  );
+  lines.push(
+    "- New fields may be added over time (additive only). Any field removal is a breaking change that gets a new route version (`/v2/ping`).",
+  );
+
+  return lines.join("\n");
+};

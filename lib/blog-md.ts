@@ -1,31 +1,31 @@
 import type { PlaceholderData } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
 
+import { blogCtaToMarkdown } from "@/components/blog/cta.md";
+import { BlogInlineCTA } from "@/components/blog/inline-cta";
+import { kbdToMarkdown } from "@/components/kbd.md";
+
 /**
- * Placeholder renderers for blog MDX components.
+ * Placeholder renderers for /blog/[slug]/llms.txt.
  *
- * Used by the /blog/[slug]/llms.txt route to resolve remarkLLMs
- * placeholders into plain markdown at build time.
+ * Convention for components referenced from blog MDX files:
+ *
+ *   Server component (default): attach `Component.toMarkdown` in the
+ *     same .tsx file. Resolver entry: `<Name>: <Name>.toMarkdown`.
+ *
+ *   "use client" component: define `<name>ToMarkdown` in a sibling
+ *     `<component>.md.ts` file. Static methods on a client component
+ *     are unreachable from server code (the import becomes a client
+ *     reference), so the markdown form must live in a non-client
+ *     module. Resolver entry: `<Name>: <name>ToMarkdown`.
+ *
+ * Both renderers MUST read from the same data; never duplicate content
+ * between the JSX view and the markdown view.
  */
 export const resolveBlogPlaceholders: Record<
   string,
   (data: PlaceholderData) => string
 > = {
-  Kbd({ children }) {
-    return `\`${children}\``;
-  },
-
-  BlogCTA() {
-    return [
-      "---",
-      "",
-      "[Download nteract](https://github.com/nteract/desktop/releases) · [Star on GitHub](https://github.com/nteract/desktop)",
-    ].join("\n");
-  },
-
-  BlogInlineCTA({ attributes, children }) {
-    const href = (attributes.href as string) ?? "";
-    const lead = (attributes.lead as string) ?? "";
-    const prefix = lead ? `${lead} ` : "";
-    return `${prefix}[${children}](${href})`;
-  },
+  Kbd: kbdToMarkdown,
+  BlogCTA: blogCtaToMarkdown,
+  BlogInlineCTA: BlogInlineCTA.toMarkdown,
 };
