@@ -3,10 +3,27 @@ import { NextResponse, type NextRequest } from "next/server";
 import { prefersMarkdown } from "@/lib/accept";
 
 export const config = {
-  matcher: ["/", "/blog", "/blog/:slug", "/telemetry"],
+  matcher: ["/((?!_next/|api/).*)"],
 };
 
-function rewriteTarget(pathname: string): string | null {
+const SCANNER_PATTERNS: readonly RegExp[] = [
+  /^\/impressum/i,
+  /^\/imprint/i,
+  /^\/wp-/i,
+  /^\/wordpress/i,
+  /^\/phpmyadmin/i,
+  /^\/pma\//i,
+  /^\/xmlrpc\.php/i,
+  /^\/cgi-bin/i,
+  /^\/\.env/i,
+  /^\/\.git/i,
+];
+
+function isScannerProbe(pathname: string): boolean {
+  return SCANNER_PATTERNS.some((re) => re.test(pathname));
+}
+
+function llmsRewriteTarget(pathname: string): string | null {
   if (pathname === "/" || pathname === "/blog") {
     return "/llms.txt";
   }
@@ -19,11 +36,33 @@ function rewriteTarget(pathname: string): string | null {
   return null;
 }
 
+function isLlmsCandidate(pathname: string): boolean {
+  return (
+    pathname === "/" ||
+    pathname === "/blog" ||
+    pathname === "/telemetry" ||
+    pathname.startsWith("/blog/")
+  );
+}
+
 export function middleware(request: NextRequest) {
+  const pathname = request.nextUrl.pathname;
+
+  if (isScannerProbe(pathname)) {
+    return new NextResponse(null, {
+      status: 404,
+      headers: { "X-Robots-Tag": "noindex" },
+    });
+  }
+
+  if (!isLlmsCandidate(pathname)) {
+    return NextResponse.next();
+  }
+
   const wantsMarkdown =
     request.method === "GET" && prefersMarkdown(request.headers.get("accept"));
 
-  const target = wantsMarkdown ? rewriteTarget(request.nextUrl.pathname) : null;
+  const target = wantsMarkdown ? llmsRewriteTarget(pathname) : null;
 
   let response: NextResponse;
   if (target) {
