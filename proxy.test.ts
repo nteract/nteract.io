@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
 import { describe, expect, it } from "vitest";
 
-import { middleware } from "@/middleware";
+import { proxy } from "@/proxy";
 
 function request(
   path: string,
@@ -15,7 +15,7 @@ function request(
   });
 }
 
-describe("middleware scanner short-circuit", () => {
+describe("proxy scanner short-circuit", () => {
   const scannerPaths = [
     "/impressum",
     "/Impressum",
@@ -42,32 +42,32 @@ describe("middleware scanner short-circuit", () => {
 
   for (const path of scannerPaths) {
     it(`returns a bare 404 with X-Robots-Tag: noindex for ${path}`, () => {
-      const response = middleware(request(path));
+      const response = proxy(request(path));
       expect(response.status).toBe(404);
       expect(response.headers.get("x-robots-tag")).toBe("noindex");
     });
   }
 });
 
-describe("middleware passthrough for real routes", () => {
+describe("proxy passthrough for real routes", () => {
   const realPaths = ["/", "/blog", "/blog/nteract-2.0", "/telemetry", "/nightly"];
 
   for (const path of realPaths) {
     it(`does not return a synthetic 404 for ${path}`, () => {
-      const response = middleware(request(path));
+      const response = proxy(request(path));
       expect(response.headers.get("x-robots-tag")).toBeNull();
     });
   }
 
   it("does not short-circuit a typo path (lets Next.js render the 404 page)", () => {
-    const response = middleware(request("/typo-page"));
+    const response = proxy(request("/typo-page"));
     expect(response.headers.get("x-robots-tag")).toBeNull();
   });
 });
 
-describe("middleware llms.txt rewrite (preserved)", () => {
+describe("proxy llms.txt rewrite (preserved)", () => {
   it("rewrites / to /llms.txt when markdown is preferred", () => {
-    const response = middleware(
+    const response = proxy(
       request("/", { accept: "text/markdown, text/html, */*" }),
     );
     const rewrite = response.headers.get("x-middleware-rewrite");
@@ -75,7 +75,7 @@ describe("middleware llms.txt rewrite (preserved)", () => {
   });
 
   it("rewrites /blog/foo to /blog/foo/llms.txt when markdown is preferred", () => {
-    const response = middleware(
+    const response = proxy(
       request("/blog/nteract-2.0", { accept: "text/markdown" }),
     );
     const rewrite = response.headers.get("x-middleware-rewrite");
@@ -83,7 +83,7 @@ describe("middleware llms.txt rewrite (preserved)", () => {
   });
 
   it("rewrites /telemetry to /telemetry/llms.txt when markdown is preferred", () => {
-    const response = middleware(
+    const response = proxy(
       request("/telemetry", { accept: "text/markdown" }),
     );
     const rewrite = response.headers.get("x-middleware-rewrite");
@@ -91,19 +91,19 @@ describe("middleware llms.txt rewrite (preserved)", () => {
   });
 
   it("sets Vary: Accept on llms.txt-eligible routes", () => {
-    const response = middleware(request("/blog"));
+    const response = proxy(request("/blog"));
     expect(response.headers.get("vary")).toBe("Accept");
   });
 
   it("does not rewrite when the client prefers html", () => {
-    const response = middleware(
+    const response = proxy(
       request("/blog", { accept: "text/html,application/xhtml+xml,*/*;q=0.9" }),
     );
     expect(response.headers.get("x-middleware-rewrite")).toBeNull();
   });
 
   it("does not rewrite on a HEAD request", () => {
-    const response = middleware(
+    const response = proxy(
       request("/blog", { method: "HEAD", accept: "text/markdown" }),
     );
     expect(response.headers.get("x-middleware-rewrite")).toBeNull();

@@ -6,12 +6,15 @@ import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import { remarkLLMs } from "fumadocs-core/mdx-plugins/remark-llms";
 
+import remarkAnnotateMdx from "./lib/remark-annotate-mdx";
+
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [
       remarkFrontmatter,
       remarkGfm,
+      remarkAnnotateMdx,
       [
         remarkLLMs,
         {
@@ -24,27 +27,6 @@ const withMDX = createMDX({
             "BlogCTA",
             "BlogInlineCTA",
           ],
-          // Annotate non-placeholder nodes so the stringifier strips them cleanly.
-          // node.data._stringify is checked after this callback — { text: '' }
-          // suppresses the node, 'children-only' keeps children and drops the wrapper.
-          stringify(node: {
-            type: string;
-            name?: string;
-            children?: unknown[];
-            data?: Record<string, unknown>;
-          }) {
-            if (
-              node.type === "mdxJsxFlowElement" ||
-              node.type === "mdxJsxTextElement"
-            ) {
-              if (node.children && node.children.length > 0) {
-                node.data = { ...node.data, _stringify: "children-only" };
-              } else {
-                node.data = { ...node.data, _stringify: { text: "" } };
-              }
-              return;
-            }
-          },
         },
       ],
     ],
