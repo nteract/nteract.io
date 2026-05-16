@@ -1,22 +1,24 @@
+import path from "node:path";
+
 import createMDX from "@next/mdx";
 import type { NextConfig } from "next";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import { remarkLLMs } from "fumadocs-core/mdx-plugins/remark-llms";
 
-import remarkAnnotateMdx from "./lib/remark-annotate-mdx";
+// MDX plugins are passed as resolvable module specifiers (not imported values)
+// so Turbopack can serialize the loader rule. @next/mdx resolves these via
+// Node's require.resolve relative to each MDX file's directory, so local
+// plugins need absolute paths.
+const projectRoot = import.meta.dirname;
+const localPlugin = (relativePath: string) => path.join(projectRoot, relativePath);
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [
-      remarkFrontmatter,
-      remarkGfm,
-      remarkAnnotateMdx,
+      "remark-frontmatter",
+      "remark-gfm",
+      localPlugin("lib/remark-annotate-mdx.mjs"),
       [
-        remarkLLMs,
+        localPlugin("lib/remark-llms.mjs"),
         {
           mdxAsPlaceholder: [
             "PingPreview",
@@ -31,9 +33,9 @@ const withMDX = createMDX({
       ],
     ],
     rehypePlugins: [
-      rehypeSlug,
+      "rehype-slug",
       [
-        rehypePrettyCode,
+        "rehype-pretty-code",
         {
           theme: "github-dark",
           keepBackground: false,

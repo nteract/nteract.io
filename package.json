@@ -10,7 +10,7 @@
     "@base-ui/react": "^1.4.1",
     "@mdx-js/loader": "^3.1.1",
     "@next/mdx": "^16.2.6",
-    "@vercel/analytics": "^1.6.1",
+    "@vercel/analytics": "^2.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "fumadocs-core": "^16.8.11",
@@ -28,18 +28,19 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.0",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@types/mdx": "^2.0.13",
-    "@types/node": "^20.11.5",
+    "@types/node": "^24.12.4",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.2",
     "autoprefixer": "^10.4.17",
     "jsdom": "^29.1.1",
     "postcss": "^8.5.14",
-    "tailwindcss": "^3.4.19",
-    "typescript": "^5.3.3",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3",
     "vitest": "^4.1.6"
   },
   "homepage": "https://github.com/nteract/nteract.io#readme",
@@ -49,8 +50,8 @@
     "url": "git+https://github.com/nteract/nteract.io.git"
   },
   "scripts": {
-    "build": "next build --webpack",
-    "dev": "next dev --webpack",
+    "build": "next build",
+    "dev": "next dev",
     "start": "next start",
     "test": "vitest run",
     "test:watch": "vitest"
