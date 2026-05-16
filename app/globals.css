@@ -1,7 +1,6 @@
+@import "tailwindcss";
 @import "tw-animate-css";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../tailwind.config.js";
 
 :root {
     --accent: 45 212 191; /* #2DD4BF Teal */
