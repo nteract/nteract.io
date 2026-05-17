@@ -3,7 +3,7 @@ import { NightlyDownloads } from "./downloads";
 import { Fireflies } from "./fireflies";
 
 const MANIFEST_URL =
-  "https://github.com/nteract/desktop/releases/download/nightly-latest/latest.json";
+  "https://github.com/nteract/nteract/releases/download/nightly-latest/latest.json";
 
 interface NightlyManifest {
   version: string;
@@ -73,7 +73,7 @@ function Sparkle({ size, opacity }: { size: number; opacity: number }) {
 // Construct direct download URLs from the version
 // The manifest URLs point to .tar.gz (for auto-update), but we want .dmg for direct download
 function getDownloadUrl(version: string, platform: "macos" | "windows" | "linux"): string {
-  const base = `https://github.com/nteract/desktop/releases/download/v${version}`;
+  const base = `https://github.com/nteract/nteract/releases/download/v${version}`;
   switch (platform) {
     case "macos":
       return `${base}/nteract-nightly-darwin-arm64.dmg`;
@@ -216,7 +216,7 @@ export default async function NightlyPage() {
           <p className="text-white/70">
             Unable to fetch nightly releases. Check{" "}
             <a
-              href="https://github.com/nteract/desktop/releases"
+              href="https://github.com/nteract/nteract/releases"
               className="underline hover:text-white"
             >
               GitHub Releases
@@ -231,13 +231,13 @@ export default async function NightlyPage() {
             Stable Release
           </a>
           <a
-            href="https://github.com/nteract/desktop"
+            href="https://github.com/nteract/nteract"
             className="hover:text-white transition-colors"
           >
             GitHub
           </a>
           <a
-            href="https://github.com/nteract/desktop/releases"
+            href="https://github.com/nteract/nteract/releases"
             className="hover:text-white transition-colors"
           >
             All Releases

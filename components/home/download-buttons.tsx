@@ -16,7 +16,7 @@ type PlatformMeta = {
 };
 
 const LINUX_INSTALL_CMD = "curl -fsSL https://sh.nteract.io | bash";
-const FALLBACK_RELEASES_URL = "https://github.com/nteract/desktop/releases";
+const FALLBACK_RELEASES_URL = "https://github.com/nteract/nteract/releases";
 
 const AppleIcon = () => (
   <svg className="h-5 w-5" viewBox="0 0 24 24" fill="currentColor">
@@ -107,7 +107,7 @@ type UADataLike = {
 };
 
 function getDownloadUrl(version: string, file: string): string {
-  return `https://github.com/nteract/desktop/releases/download/v${version}/${file}`;
+  return `https://github.com/nteract/nteract/releases/download/v${version}/${file}`;
 }
 
 export function DownloadButtons({ version }: { version: string | null }) {

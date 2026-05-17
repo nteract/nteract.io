@@ -19,7 +19,7 @@ const platformFiles: Record<Platform, string | null> = {
 };
 
 function getDownloadUrl(version: string, file: string): string {
-  return `https://github.com/nteract/desktop/releases/download/v${version}/${file}`;
+  return `https://github.com/nteract/nteract/releases/download/v${version}/${file}`;
 }
 
 export function BlogCTA() {
@@ -37,7 +37,7 @@ export function BlogCTA() {
   const href =
     file && version
       ? getDownloadUrl(version, file)
-      : "https://github.com/nteract/desktop/releases";
+      : "https://github.com/nteract/nteract/releases";
 
   const label =
     platform === "Windows"
@@ -55,7 +55,7 @@ export function BlogCTA() {
         {label}
       </a>
       <a
-        href="https://github.com/nteract/desktop"
+        href="https://github.com/nteract/nteract"
         target="_blank"
         rel="noopener noreferrer"
         className="inline-flex items-center gap-2 border border-[#484848] px-8 py-4 font-headline font-bold transition-colors hover:bg-[#131313] no-underline"
