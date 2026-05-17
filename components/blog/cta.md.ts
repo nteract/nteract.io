@@ -10,5 +10,5 @@ export const blogCtaToMarkdown = (_data: PlaceholderData): string =>
   [
     "---",
     "",
-    "[Download nteract](https://github.com/nteract/desktop/releases) · [Star on GitHub](https://github.com/nteract/desktop)",
+    "[Download nteract](https://github.com/nteract/nteract/releases) · [Star on GitHub](https://github.com/nteract/nteract)",
   ].join("\n");

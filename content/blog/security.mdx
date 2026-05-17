@@ -92,7 +92,7 @@ The iframe also enforces a Content Security Policy. Scripts and stylesheets can 
 
 For organizations with stricter requirements I could see us locking down `connect-src`, restricting script sources to specific domains. These are levers we'd like to expose.
 
-<BlogInlineCTA href="https://github.com/nteract/desktop/issues" lead="Have stricter requirements?">
+<BlogInlineCTA href="https://github.com/nteract/nteract/issues" lead="Have stricter requirements?">
   Tell us what your team needs
 </BlogInlineCTA>
 
@@ -126,7 +126,7 @@ Every cloud-hosted notebook service is a target for attackers, subpoenas, and da
 
 The original nteract was Electron backed. Electron bundles Chromium with full Node.js access. Every renderer is one `nodeIntegration: true` away from `require('child_process')`. It was a lot of surface to defend.
 
-[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities like the filesystem, shell, and HTTP are granted from Rust through an explicit [capabilities config](https://github.com/nteract/desktop/issues/908). If it isn't granted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
+[Tauri](https://tauri.app/) flips it. The frontend is a native webview with no Node.js. Native capabilities like the filesystem, shell, and HTTP are granted from Rust through an explicit [capabilities config](https://github.com/nteract/nteract/issues/908). If it isn't granted, the frontend can't do it. Even if an output iframe somehow escaped its sandbox, there's nothing to hijack on the other side. The webview is a dead end by design.
 
 ## The philosophy
 
@@ -143,9 +143,9 @@ None of these are revolutionary ideas individually. But notebooks have operated 
 
 ## What's next
 
-* [Secret redaction](https://github.com/nteract/desktop/issues/1557): if your code accidentally prints an API key, nteract catches it at the runtime level and redacts it before any client whether the UI, agent, or blob store ever sees the value.
-* [Runtime sandboxing](https://github.com/nteract/desktop/issues/1307): OS-level process isolation for kernel subprocesses, so untrusted code runs with only the access it needs. Given how people expect notebooks to work, we'd expect opt-in at first, with the long-term goal of sandboxing agent-initiated sessions by default.
-* [Remote runtimes over SSH](https://github.com/nteract/desktop/issues/1334): run kernels on remote machines, tunneled through SSH. No new auth systems, no exposed ports.
+* [Secret redaction](https://github.com/nteract/nteract/issues/1557): if your code accidentally prints an API key, nteract catches it at the runtime level and redacts it before any client whether the UI, agent, or blob store ever sees the value.
+* [Runtime sandboxing](https://github.com/nteract/nteract/issues/1307): OS-level process isolation for kernel subprocesses, so untrusted code runs with only the access it needs. Given how people expect notebooks to work, we'd expect opt-in at first, with the long-term goal of sandboxing agent-initiated sessions by default.
+* [Remote runtimes over SSH](https://github.com/nteract/nteract/issues/1334): run kernels on remote machines, tunneled through SSH. No new auth systems, no exposed ports.
 
 
 <BlogCTA />

@@ -6,10 +6,10 @@ export const siteConfig = {
   blogDescription:
     "Product notes, technical writing, and release stories from the nteract team.",
   stableManifestUrl:
-    "https://github.com/nteract/desktop/releases/download/stable-latest/latest.json",
+    "https://github.com/nteract/nteract/releases/download/stable-latest/latest.json",
   links: {
-    github: "https://github.com/nteract/desktop",
-    releases: "https://github.com/nteract/desktop/releases",
+    github: "https://github.com/nteract/nteract",
+    releases: "https://github.com/nteract/nteract/releases",
     rss: "/feed.xml",
   },
   quote: {

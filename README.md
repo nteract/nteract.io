@@ -1,6 +1,6 @@
 # nteract.io
 
-Landing page for [nteract desktop](https://github.com/nteract/desktop) — native interactive notebooks.
+Landing page for [nteract desktop](https://github.com/nteract/nteract) — native interactive notebooks.
 
 ## Development
 
