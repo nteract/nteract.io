@@ -18,6 +18,7 @@ export function Container({ className, ...props }: ContainerProps) {
 }
 
 const navLinks = [
+  { href: "/agents", label: "Agents" },
   { href: "/blog", label: "Blog" },
   { href: siteConfig.links.github, label: "GitHub", external: true },
   { href: siteConfig.links.releases, label: "Releases", external: true },
@@ -112,6 +113,9 @@ export function SiteFooter() {
 
         <div className="space-y-2 sm:text-right">
           <div className="flex flex-wrap gap-4 sm:justify-end">
+            <Link href="/agents" className="transition-colors hover:text-gray-900">
+              Agents
+            </Link>
             <Link href="/blog" className="transition-colors hover:text-gray-900">
               Blog
             </Link>
