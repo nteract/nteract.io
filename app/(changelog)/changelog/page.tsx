@@ -11,7 +11,9 @@ import { absoluteUrl, siteConfig } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 const description =
-  "Every nteract stable release, in human terms. What changed, why it matters, and what to try next.";
+  "Local-first notebooks, built from the ground up for mingling with agents. Realtime collab with a colorful, jazzy streak. Here's how it gets better, release by release.";
+
+const ogImage = "https://img.runt.run/2026/06/08/a633578f00f5.png";
 
 export const metadata: Metadata = {
   title: "Changelog",
@@ -27,12 +29,13 @@ export const metadata: Metadata = {
     description,
     url: absoluteUrl("/changelog"),
     type: "website",
-    images: [absoluteUrl("/opengraph-image")],
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: `Changelog | ${siteConfig.name}`,
     description,
+    images: [ogImage],
   },
 };
 
@@ -80,9 +83,9 @@ export default async function ChangelogPage() {
         <h1 className="text-[var(--ink)]">Changelog</h1>
 
         <p className="mb-16 max-w-2xl text-xl leading-snug text-[var(--muted)]">
-          A local AI-native notebook workspace where humans and agents
-          collaborate through the same live document and runtime. Here is how it
-          gets better, release by release.
+          Local-first notebooks, built from the ground up for mingling with
+          agents. Realtime collab with a colorful, jazzy streak. Here&apos;s how
+          it gets better, release by release.
         </p>
 
         {rendered.length > 0 ? (

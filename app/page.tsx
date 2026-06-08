@@ -23,6 +23,21 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-4 py-16">
       <div className="max-w-2xl mx-auto text-center">
+        <Link
+          href="/changelog"
+          className="group mb-10 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white py-1 pl-1.5 pr-4 text-sm shadow-sm transition hover:border-gray-300 hover:shadow"
+        >
+          <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-semibold text-white">
+            New
+          </span>
+          <span className="font-medium text-gray-700 transition-colors group-hover:text-gray-900">
+            nteract 2.5 is out
+          </span>
+          <span className="text-gray-400 transition-transform group-hover:translate-x-0.5">
+            →
+          </span>
+        </Link>
+
         <Logo className="w-40 h-40 mx-auto mb-8" />
 
         <p className="text-sm uppercase tracking-widest text-gray-400 mb-2">
@@ -37,26 +52,17 @@ export default async function Home() {
 
         <DownloadButtons version={version} />
 
-        <div className="mt-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Link
-            href="/blog/nteract-2.0"
-            className="group inline-flex items-center gap-3 text-sm text-gray-500 transition-colors hover:text-gray-900"
-          >
-            <span className="text-base">🎉</span>
-            <span>
-              <span className="font-medium text-gray-700 group-hover:text-gray-900">nteract 2.0 is here</span>
-              {" "}— read the launch post
-            </span>
-            <span className="transition-transform group-hover:translate-x-0.5">→</span>
-          </Link>
+        <div className="mt-12">
           <Link
             href="/agents"
-            className="group inline-flex items-center gap-3 text-sm text-gray-500 transition-colors hover:text-gray-900"
+            className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-900"
           >
             <span className="text-base">🤖</span>
             <span>
-              <span className="font-medium text-gray-700 group-hover:text-gray-900">Using agents?</span>
-              {" "}install the plugins
+              <span className="font-medium text-gray-700 group-hover:text-gray-900">
+                Using agents?
+              </span>{" "}
+              Install the plugins
             </span>
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
