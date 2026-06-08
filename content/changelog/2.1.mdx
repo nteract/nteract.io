@@ -1,0 +1,279 @@
+---
+version: "2.1"
+date: "2026-04-09T01:28:07Z"
+coversVersions:
+  - "2.1.0"
+  - "2.1.1"
+  - "2.1.2"
+  - "2.1.3"
+dateLabel: "April 6, 2026"
+title: "Outputs for Agents, Outputs for Humans"
+summary: "This is the first cut of repr-llm. Plotly, Vega, Leaflet, and more are supported for both humans and agent views. Native rendering for humans, text/plain+llm for agents."
+highlights:
+  - "Rich outputs synthesize a text/llm+plain summary for agents to read"
+  - "An agent looking at a Plotly chart or GeoJSON map gets a description"
+  - "Plotly, Vega, Leaflet, LaTeX, audio, video, and PDF all render natively"
+  - "Preliminary Pixi support begins alongside uv and conda"
+tags:
+  - "Outputs"
+  - "Agents"
+  - "Environments"
+githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.1.3-stable.202604090105"
+published: true
+heroImage: "https://img.runt.run/2026/06/08/0987c3c4f01a.png"
+# heroVideo: "https://…"   # TODO: a short demo clip (autoplays muted/looped)
+---
+
+2.1 is where outputs start reading back to agents.
+
+This release brings rich outputs for people and agents alike. Now with early Pixi support!
+
+## Outputs for Humans
+
+<LightboxImage src="https://img.runt.run/2026/06/08/eb05369c2aeb.png" alt="Rich outputs in nteract: Plotly, Vega, Leaflet, and LaTeX rendering natively" />
+
+Just like the OG Electron app, nteract supports Plotly, Vega, Vega-Lite, and GeoJSON. These are native JSON formats with rich renderings, allowing your notebooks to be compact while you get full interactivity.
+
+## Outputs for Agents
+
+Until now, rich outputs were a dead end for agents. They either had to sift through large Plotly HTML, get no visibility of widgets, or receive massive base64-encoded gunk. 2.1 marks the start of the repr-llm crate. Alongside the visual representation, every rich output also synthesizes a `text/llm+plain` summary. When an agent connects via the nteract-mcp, they see a text-readable description of what the output shows. If an output has no readable representation at all, the agent at least sees a note that something visual was produced.
+
+## Preliminary Pixi support
+
+Pixi starts joining uv and conda as a Python environment option in 2.1. The foundations are here: `pixi run` kernel launch, pool warming against managed `pixi.toml` envs, `[tool.pixi]` detection, drift checks, and a dependency panel in the header that shows what's declared. The fully project-driven environment story lands later, when notebooks can discover project files around them and let the project drive the kernel.
+
+-------------
+
+No matter which environment you choose, your agent should be in your corner using your package manager of choice! Give them the context and they will prevail.
+
+## Full technical changelog
+
+<details>
+<summary>All 178 changes in 2.1</summary>
+
+### 2.1.3 - April 9, 2026
+
+#### Features
+
+- replace vanilla DOM renderer with React + renderer plugins (#1615) *(mcp-app)*([1324f23](https://github.com/nteract/desktop/commit/1324f23a593e0b89874d601eed08792f1ff91c94))
+- add async-rust-lsp plugin for tokio mutex diagnostics (#1620) *(plugins)*([4476318](https://github.com/nteract/desktop/commit/4476318d754b4d1ae0c7625dacc1a869e1fa2ce7))
+- reuse pool envs for inline deps instead of rebuilding (#1622) *(runtimed)*([d1c60d6](https://github.com/nteract/desktop/commit/d1c60d6c5c13e44477f738717e8b6ea7eecb56e1))
+- daemon-served renderer plugins for plotly, vega, leaflet (#1619) *(mcp-app)*([ccda0c2](https://github.com/nteract/desktop/commit/ccda0c25e3792932d148e54b086af1eb9407b467))
+- move markdown+KaTeX to daemon-served plugin (#1625) *(mcp-app)*([d69ec66](https://github.com/nteract/desktop/commit/d69ec664a57e919e30c6a5c776c933fba3480acc))
+- ship resilient mcpb-runt binary in MCPB bundle (#1629) *(mcp)*([956c988](https://github.com/nteract/desktop/commit/956c98811b693199e52fe4e4cdca481a3f932d0c))
+- project-aware dependency management — pixi add / uv add (#1650) *(runtimed)*([f913da1](https://github.com/nteract/desktop/commit/f913da1f26d605977bc8c04bd8b4a1402090397c))
+- show pixi.toml dependency names in header (#1653) *(frontend)*([924d6cb](https://github.com/nteract/desktop/commit/924d6cb542984ea8d566cf3eab530b696bb54011))
+
+#### Bug Fixes
+
+- avoid holding notebook_rooms lock across .await points (#1614) *(runtimed)*([b958197](https://github.com/nteract/desktop/commit/b9581979f7bfc64641c5a43361f23b26ad4f98f8))
+- address code review — rehypeRaw, blob fetch fallbacks (#1617) *(mcp-app)*([c2872da](https://github.com/nteract/desktop/commit/c2872dacaa8c0bcfd40c106c2924a066442de3f6))
+- parse JSON arrays in `config set` instead of blind comma-split (#1621) *(runt)*([1dd70b4](https://github.com/nteract/desktop/commit/1dd70b419041cba1c3e4af1e63fd302d2c70238f))
+- classify pool errors, show contextual banner messages (#1623) *(runtimed)*([e741e3a](https://github.com/nteract/desktop/commit/e741e3a428a86ea99fa5be9415c73fc0118e8604))
+- add lfs: true to release Python wheel builds, bump v2.1.3 (#1627) *(ci)*([57f77f4](https://github.com/nteract/desktop/commit/57f77f4c25f4f13549abf8fd9d1eda1d8efb99f3))
+- add connectDomains and tile CDN to MCP App CSP (#1632) *(mcp-app)*([ba22d88](https://github.com/nteract/desktop/commit/ba22d8827873eb49dd7407fd6f115bb12e90d78a))
+- respect default_python_env in create_notebook (#1634) *(mcp)*([f43d825](https://github.com/nteract/desktop/commit/f43d825cb09e9056cb43b8ca1dd584a4374cc5a7))
+- add mcpb-runt sidecar to all CI workflow build steps (#1635) *(ci)*([65a57f8](https://github.com/nteract/desktop/commit/65a57f85fb8496b4237c109cf4aa90a490496582))
+- avoid holding notebook_rooms lock across .await in eviction handler (#1637) *(runtimed)*([3d69c9a](https://github.com/nteract/desktop/commit/3d69c9a46bb325a3e9eb9e30510e33a716459a86))
+- prevent stale asset resolution in materialization pipeline (#1639) *(notebook)*([c8d3a0a](https://github.com/nteract/desktop/commit/c8d3a0ab9e995921810bbbec9e738c35020ae1ad))
+- fix cross-lock ordering and expand tokio mutex lint to all sources (#1638) *(runtimed)*([1e6ba53](https://github.com/nteract/desktop/commit/1e6ba534da1bc51027d67cfe6685f499ca55f1d0))
+- burn down mutex-across-await violations (58 → 19) (#1642) *(runtimed)*([f24875a](https://github.com/nteract/desktop/commit/f24875a7bcfb687cbb075ca4cd2f2f0b0116ff8e))
+- fall back to room.working_dir in LaunchKernel handler (#1648) *(runtimed)*([215aeb4](https://github.com/nteract/desktop/commit/215aeb4843afd185094103b3b7c95ca08ff8b9c5))
+- zero mutex-across-await violations, gate all files in CI (#1649) *(runtimed)*([44934fe](https://github.com/nteract/desktop/commit/44934fed5f0ecd53555c96635360ef9426aadbc5))
+- persist trust for untitled notebooks across daemon restarts (#1654) *(runtimed)*([2a90133](https://github.com/nteract/desktop/commit/2a90133ecefd197bb58d23c4fc56561df02e45ed))
+- mark in-flight executions as failed on kernel restart/death (#1652) (#1655) *(runtimed)*([bb4b3ea](https://github.com/nteract/desktop/commit/bb4b3ea70197929a61ef995df81654651eefb769))
+
+#### Performance
+
+- shrink widget bundle from 1.5 MB to 539 KB (#1628) *(mcp-app)*([50f8de5](https://github.com/nteract/desktop/commit/50f8de50fef3e7d775b0628f4eb1220784f11fad))
+
+### 2.1.2 - April 7, 2026
+
+#### Features
+
+- add config subcommand + fix stale sole-writer comment (#1600) *(runt)*([23d795c](https://github.com/nteract/desktop/commit/23d795ceb2c5c68996197cfeffae29f2fc176bec))
+- replace inline warmup scripts with embedded prewarm package (#1608) *(prewarm)*([4d81e72](https://github.com/nteract/desktop/commit/4d81e72abcc3cb8d829de70ec70e121e928c7daf))
+- add known package-to-import-name mapping (#1610) *(prewarm)*([8d9f3c4](https://github.com/nteract/desktop/commit/8d9f3c46293c9fe9c8eed0a754ce8acb72480d09))
+
+#### Bug Fixes
+
+- replace_match context matching + create_notebook dep sync (#1589) *(runt-mcp)*([f8b2571](https://github.com/nteract/desktop/commit/f8b25714bd773289f514243e1a02b3bfcd57b788))
+- Plotly 6 bdata decoding, GeoJSON text parsing, structured viz synthesis (#1595) *(repr-llm)*([b70b0a1](https://github.com/nteract/desktop/commit/b70b0a1ea1b215aa1c3511631952ba1afbe29a85))
+- create_notebook(package_manager='pixi') now persists correctly (#1599) *(runt-mcp)*([3f8669b](https://github.com/nteract/desktop/commit/3f8669bc4f9a7849eff8a4eb96629ef3f95373ad))
+- show 'awaiting approval' instead of 'initializing' when blocked on trust (#1601) (#1603) *(runtimed)*([c084dd6](https://github.com/nteract/desktop/commit/c084dd60b09b390a8bbafd09ff417a3fa4c019b1))
+- show trust banner and handle execution for awaiting_trust status (#1604) *(frontend)*([27c7cef](https://github.com/nteract/desktop/commit/27c7cef8307b4f87230e0bb6014959fa3c129488))
+- route conda/pixi notebooks to correct kernel pool (#1605) (#1606) *(runt-mcp)*([f3c4860](https://github.com/nteract/desktop/commit/f3c486080fb851c5a61ce29d3b03b3e9ea0ba77a))
+- critical imports must fail the script, normalize dep specs (#1609) *(prewarm)*([e0ba355](https://github.com/nteract/desktop/commit/e0ba3556f392308befdc35a4a8e9cbec35d5d8f9))
+
+#### Documentation
+
+- fix stale references and missing entries across documentation (#1590)([273fe68](https://github.com/nteract/desktop/commit/273fe68756122995dc5faa1a9e0349d9ab65c039))
+
+### 2.1.1 - April 7, 2026
+
+#### Features
+
+- add mcp-inspector command for MCP Apps testing (#1575) *(xtask)*([eebead4](https://github.com/nteract/desktop/commit/eebead42f0e03dd582e3ca04410373d7a82a6b3d))
+- ContentRef resolution + direct CRDT→WidgetStore projection (#1576) *(widgets)*([119dbc2](https://github.com/nteract/desktop/commit/119dbc2f8de899450af2ae1b69563dd35ae20b6b))
+- debounced CRDT writes + jslink echo suppression (#1580) *(widgets)*([4da6411](https://github.com/nteract/desktop/commit/4da6411611cbcb13cc1ce73bbc7064f6f0a6cef0))
+
+#### Bug Fixes
+
+- wait for pool warming on cold start instead of failing immediately (#1579) *(runtimed)*([4edfb95](https://github.com/nteract/desktop/commit/4edfb9546359276df81e5649a4c16f33c6d6118a))
+- don't restart child on transient errors, auto-rejoin sessions (#1578) *(mcp-supervisor)*([3910028](https://github.com/nteract/desktop/commit/3910028c2febeeaf798064bf0f7d96246310e2a9))
+- retain warm bases and prewarm user defaults (#1581) *(runtimed)*([4d550fb](https://github.com/nteract/desktop/commit/4d550fb640d66929b409ce6b92ac0cd37c7ddb94))
+- eliminate double-bootout race during nightly upgrade (#1582) *(runtimed)*([8927f96](https://github.com/nteract/desktop/commit/8927f96a90ed07ef77cc6169c65d7e9efe7390c1))
+- harden prewarm import generation (#1584) *(runtimed)*([fc8a30d](https://github.com/nteract/desktop/commit/fc8a30d7cc70e8d24a03af36febfdf8cdbd34b98))
+- update RuntimeStateDoc on interrupt to clear CRDT queue (#1585) *(runtimed)*([3c17e7a](https://github.com/nteract/desktop/commit/3c17e7ad9e4d997fcf0ef12a891afdeec1f20aa5))
+
+### 2.1.0 - April 6, 2026
+
+#### Features
+
+- move cell outputs to RuntimeStateDoc keyed by execution_id (#1343) *(sync)*([363f32d](https://github.com/nteract/desktop/commit/363f32dfc5db2996e8cf80802d3a1eb24f157a0a))
+- support plotly's application/vnd.plotly.v1+json MIME type (#1352) *(outputs)*([9c26c47](https://github.com/nteract/desktop/commit/9c26c471d59f5caa6b000ee2e78f01b951e6687b))
+- dual-write comm state to RuntimeStateDoc (#761 Phase A) (#1356) *(sync)*([1025c66](https://github.com/nteract/desktop/commit/1025c661e12f4b980b27d51055e2173ffb5e80df))
+- support Vega and Vega-Lite MIME types (#1358) *(outputs)*([d66e3f0](https://github.com/nteract/desktop/commit/d66e3f0454e779d07617c10439ff9bb17a932062))
+- #761 Phase B — drive WidgetStore from RuntimeStateDoc comms (#1362) *(sync)*([68abbd9](https://github.com/nteract/desktop/commit/68abbd949b526474b9ad309cd8a7dc5654f8cd67))
+- #761 Phase D — native CRDT widget state (#1368) *(sync)*([3a4a557](https://github.com/nteract/desktop/commit/3a4a5573cbc2de16c58cc63fbed0a91616a1f07f))
+- widget binary buffers via blob store (#1371) *(sync)*([338468e](https://github.com/nteract/desktop/commit/338468e3b40fac0ca22cb593db60a50b33ed7859))
+- surface prewarmed packages in RuntimeStateDoc and MCP tools (#1373) *(env)*([606db7b](https://github.com/nteract/desktop/commit/606db7bb3122bd8f52d8448c46d0e558dfa27283))
+- Output widget captures to CRDT + broadcast cleanup (#1372) (#1379) *(sync)*([e766301](https://github.com/nteract/desktop/commit/e7663016ec712f0bdaa4069dc9f83ba1bd27f3d7))
+- add GeoJSON renderer with Leaflet (#1386) *(output)*([a6f504e](https://github.com/nteract/desktop/commit/a6f504e670699d56696e53a8c5c637749b5bb39b))
+- add text/latex MIME type renderer with KaTeX (#1392) *(output)*([23d2e0e](https://github.com/nteract/desktop/commit/23d2e0e6d616225fad4d7f654be1befcf46ccada))
+- support bulk clear_outputs with optional cell_ids (#1402) *(mcp)*([90ccd86](https://github.com/nteract/desktop/commit/90ccd86e334bd422dd590ff05ad96654b15b715c))
+- add runtime agent wire types (#1333) (#1404) *(protocol)*([06b02ac](https://github.com/nteract/desktop/commit/06b02ac653fb685e16982a899e37c794ff7cb98c))
+- allow show_notebook on untitled/ephemeral notebooks (#1414) *(mcp)*([2c58430](https://github.com/nteract/desktop/commit/2c58430ac671948710e87e26fb9ce664848ea991))
+- runtime agent module — sync-only subprocess main loop (#1411) *(runtimed)*([105f2a9](https://github.com/nteract/desktop/commit/105f2a9ec12506cb666a9c8ca2bd84daf97c9275))
+- add audio, video, PDF, JS renderers and invert isolation model (#1417) *(outputs)*([e870ade](https://github.com/nteract/desktop/commit/e870adedb7912e4eb95cb1a634363fd8b57c272f))
+- process-isolated runtime agents (#1333) *(runtimed)*([c15c4a9](https://github.com/nteract/desktop/commit/c15c4a95c0ccd2d3ad93f067e5833b2cbf6d08ba))
+- persist agent_mode in settings doc — survives daemon restarts (#1423)([10bebde](https://github.com/nteract/desktop/commit/10bebde3f9ba3cf561221edbc9635ee609f71480))
+- add --socket flag to `runt mcp` for explicit daemon socket path (#1427) *(runt)*([862659f](https://github.com/nteract/desktop/commit/862659f2d8ba376e271e561f669cba0ca972f65e))
+- add collapsible Feature Flags section with agent mode toggle (#1429) *(settings)*([9f55f75](https://github.com/nteract/desktop/commit/9f55f754eb6eeeac64c8fa3edf303eabec97ddc8))
+- serve cached tools optimistically on startup (#1430) *(mcp-supervisor)*([7568261](https://github.com/nteract/desktop/commit/756826104ac8b2e069b40d17d5a48b4ed560935a))
+- agent as Unix socket peer with CRDT-driven execution (#1431) *(runtimed)*([fb2e470](https://github.com/nteract/desktop/commit/fb2e470bb59f59b002ace56b7993930e835615fe))
+- make agent mode unconditional (#1433) *(runtimed)*([5daf58d](https://github.com/nteract/desktop/commit/5daf58df0d5ffd9b844cc1862ed7270b10d16e53))
+- focus cell on iframe click and broadcast focus presence (#1444) *(notebook)*([5d4e9e9](https://github.com/nteract/desktop/commit/5d4e9e91e7f13e77a1bc1a97691dd2bbbe710111))
+- agent-internal kernel restart + provenance (#1436 Phase B) (#1449) *(runtimed)*([e623bf5](https://github.com/nteract/desktop/commit/e623bf54d012912e31959cb3f9c2ada98b5e1421))
+- pre-install nbformat in all Python runtimes (#1458) *(kernel-env)*([802ceb7](https://github.com/nteract/desktop/commit/802ceb7250ec1d0fa851bb35afe238c144486322))
+- synthesize text/llm+plain for viz outputs (#1461) *(repr-llm)*([6560b3c](https://github.com/nteract/desktop/commit/6560b3cd33bf3713803f6b04a84d52ea07c49ee3))
+- first-class pixi kernel support via pixi run (#1462) (#1465) *(runtimed)*([29bb485](https://github.com/nteract/desktop/commit/29bb485447169163d74b83c7ba5eaaab2d9f4175))
+- synthesize text/llm+plain for SVG, HTML, and large JSON (#1466) *(repr-llm)*([2ebd37b](https://github.com/nteract/desktop/commit/2ebd37be2c1a4f6e1bfa103e7af3ff9b693892ae))
+- dedicated dependency panel, ipykernel pre-check, fix routing (#1469) *(pixi)*([8d15121](https://github.com/nteract/desktop/commit/8d15121c58764662d6e3b7696929b36e1d8abb4c))
+- pixi as available default Python environment (#1474) *(pixi)*([e46d326](https://github.com/nteract/desktop/commit/e46d326d2cb02d81189d5c6c7376a81469b8b03f))
+- finish sweep — [tool.pixi] detection, drift, inline deps UI (#1477) *(pixi)*([9f34a55](https://github.com/nteract/desktop/commit/9f34a558608c2f4fb6e302b035e81ac303a2cddc))
+- pixi JSON APIs — shell-hook launch, pinned version, pixi info (#1470, #1471) (#1479) *(pixi)*([4423ac9](https://github.com/nteract/desktop/commit/4423ac97b844b840145c4a0d51a01b9174f6112b))
+- route built-in widget updates through CRDT instead of SendComm (#1480) *(widgets)*([22e5a01](https://github.com/nteract/desktop/commit/22e5a01f24a24865497f0c8016dfe8e11f13ad60))
+- synthesize text/llm+plain for widget outputs (#1482) *(output-resolver)*([ba9de73](https://github.com/nteract/desktop/commit/ba9de73f77161288493f228e1059d2c22142bebb))
+- PEP 723 support, default packages in settings, version pin fix (#1483) *(pixi)*([15c1ffa](https://github.com/nteract/desktop/commit/15c1ffaaa17b372967b595ea880025816326b3e7))
+- highlight Restart+Run All button when deps are out of sync (#1487) *(frontend)*([240d6fb](https://github.com/nteract/desktop/commit/240d6fb519ab8081c0680180608f26c866d456bd))
+- real pixi pool warming with managed pixi.toml envs (#1486) *(pixi)*([bba3c3c](https://github.com/nteract/desktop/commit/bba3c3cb98c9acf90c209cf60356956cfcdc0979))
+- library-based pixi pool warming with rattler (#1509) *(daemon)*([7848d60](https://github.com/nteract/desktop/commit/7848d601d3a6db7146933595737b46335e8272b7))
+- add version info to pool Pong and check on connect (#1515) *(protocol)*([0aade7e](https://github.com/nteract/desktop/commit/0aade7e3628b55e595662d236835d6fc458871f0))
+- add symlink currency check on app launch (#1514) *(cli)*([2783f56](https://github.com/nteract/desktop/commit/2783f5699c594361318c250cedde2a48a49f89c3))
+- migrate daemon registration to SMAppService on macOS 13+ (#1516) *(service)*([2213aae](https://github.com/nteract/desktop/commit/2213aae0eb800322ad57f0fa131253e06953783a))
+- add system-wide CLI installation via menu (#1513) *(cli)*([545d151](https://github.com/nteract/desktop/commit/545d151d0273bd238e3d512e010346400b49c3da))
+- extract markdown into on-demand renderer plugin (#1519) *(isolated-renderer)*([24e2a46](https://github.com/nteract/desktop/commit/24e2a46f8146e42559eac00d015769a6424ee1a3))
+- migrate vega to renderer plugin API (#1521) *(isolated-renderer)*([5d91761](https://github.com/nteract/desktop/commit/5d917615d218cc898b44bd0e1b6b5acffbc699f9))
+- migrate plotly to renderer plugin API (#1534) *(isolated-renderer)*([fd59aaf](https://github.com/nteract/desktop/commit/fd59aafff9622565b759358bd6ec6ed89c8e1cb7))
+- migrate leaflet to plugin API, document system (#1537) *(isolated-renderer)*([45ae032](https://github.com/nteract/desktop/commit/45ae0328bfa39ada1df60c3016f2f95db7336757))
+- support ~ and relative paths in save_notebook, open_notebook, create_notebook (#1540) *(mcp)*([02969ca](https://github.com/nteract/desktop/commit/02969ca4330c9d0c3b92e7d91dcbffa7a5cd7494))
+- pre-compute renderer plugins at materialization, fix output widgets (#1539)([f86e672](https://github.com/nteract/desktop/commit/f86e67241080c7475f26f39b9a3680157a7b06e5))
+- add per-session file logging for runt mcp (#1554) *(mcp)*([727fe4c](https://github.com/nteract/desktop/commit/727fe4cfb7115b87c414e1545a2d8370846fa122))
+- add GeoJSON summarizer for text/llm+plain synthesis (#1555) *(repr-llm)*([d56f5b6](https://github.com/nteract/desktop/commit/d56f5b6f413512d23bf31251f93f7e38ff7c8e7f))
+- selective manifest resolution — only fetch what the LLM needs (#1561) *(mcp)*([48581e5](https://github.com/nteract/desktop/commit/48581e58481c973314f1bf69bb64978cc9776aae))
+- selective MIME resolution via priority list (#1562) *(wasm)*([3d61f31](https://github.com/nteract/desktop/commit/3d61f313ee274e5318815d4b8a0b3871047b0bb4))
+- resolve ContentRefs to Inline/Url/Blob variants (#1564) *(wasm)*([9be5ecf](https://github.com/nteract/desktop/commit/9be5ecf853e0717e09e865bc997fa7943104fc4b))
+- text/latex renderer via iframe plugin (#1566) *(frontend)*([ca719cf](https://github.com/nteract/desktop/commit/ca719cf5167a61370eefe1cd415558fe8d0d7f39))
+- synthesis before priority walk for richer LLM output (#1570) *(mcp)*([ec736df](https://github.com/nteract/desktop/commit/ec736df122af6893ed6a86c5b4ef27c6b1df769b))
+
+#### Bug Fixes
+
+- clarify replace_regex tool description semantics (#1348) *(runt-mcp)*([6655945](https://github.com/nteract/desktop/commit/66559451588f4ea37c2cc0565013782d214444fa))
+- wrap cell-ui-state store setters in useLayoutEffect (#1351) *(notebook)*([42026b5](https://github.com/nteract/desktop/commit/42026b5fe514f580cf857d4e1069574425e2045f))
+- disable incremental compilation with sccache and bump cache size (#1355) *(xtask)*([7e83201](https://github.com/nteract/desktop/commit/7e8320154c9d49f9d0f898521cc6ddd4d98c8642))
+- fix output disappearing on structural changes and WASM diff snapshot (#1357) *(sync)*([edc17c6](https://github.com/nteract/desktop/commit/edc17c607aeed7d07613cf07eb0cbbd97de24718))
+- poll RuntimeStateDoc for execution completion, remove --legacy (#1359) *(runt-mcp)*([e19b750](https://github.com/nteract/desktop/commit/e19b750fa854aad40996c4fe1b60d6ff1f19fa68))
+- fire-and-forget for SendComm widget state updates (#1366) *(sync)*([4fde22a](https://github.com/nteract/desktop/commit/4fde22abb2d476f3b48664a9ffe9fce36db81fe9))
+- remove flaky bloom filter assertion in Bug #1067 test (#1367) *(wasm-tests)*([dc7378a](https://github.com/nteract/desktop/commit/dc7378a7f8cf4e7e8399bbe6e9425e9bb917f4ed))
+- configure ty extra-paths for src-layout workspace members (#1370) *(ci)*([74338f2](https://github.com/nteract/desktop/commit/74338f25d9a0dae407f1eae5028df77db57cfd4b))
+- rebuild stale WASM bindings and stabilize flaky tests (#1374) *(ci)*([3e06398](https://github.com/nteract/desktop/commit/3e06398829c04e34ccac660a2243059edd55c2eb))
+- mark flaky uv inline dep tests as xfail (#1375) *(ci)*([c5a7202](https://github.com/nteract/desktop/commit/c5a7202c5b3af68f14cf2bcc14d9bb1e5ed6c54d))
+- make cell-ui-state store StrictMode-safe (#1380) *(notebook)*([9ee7e7a](https://github.com/nteract/desktop/commit/9ee7e7a298e1cbebdb5d1cb9494e711b014b10b5))
+- add build.rs stub for runt-mcp _output.html in fresh worktrees (#1387) *(build)*([99b6366](https://github.com/nteract/desktop/commit/99b63666490911b2f01bb05186a9f7922599f892))
+- refuse placeholder _output.html in release builds (#1388) *(build)*([297eb99](https://github.com/nteract/desktop/commit/297eb992610cc03ab018fb357aa4d51f13044b18))
+- graceful room migration on re-key collision (#1396) *(sync)*([8a66de9](https://github.com/nteract/desktop/commit/8a66de9ba27b26e3a2958a2733badc5b22042864))
+- address codex review — drop unsafe kernel migration, signal merged doc (#1398) *(sync)*([d37b865](https://github.com/nteract/desktop/commit/d37b865e341eb52852fdb54ade817028ca032082))
+- stamp runtimed version and re-install CLI on upgrade (#1395) *(release)*([f4c9a60](https://github.com/nteract/desktop/commit/f4c9a60921e4ba59f961e92bb3bc1cde8eba1c2b))
+- expand known packages list to prevent false typosquat warnings (#1397) *(trust)*([6e3c1ea](https://github.com/nteract/desktop/commit/6e3c1ea789a8211cc518cf095854857c75ee74ac))
+- drain stale response frames after relay timeout (#1399) *(sync)*([5511665](https://github.com/nteract/desktop/commit/5511665ccf88fc9e489a64f80aae3f7f94dffff9))
+- run pnpm install in cmd_build before frontend build (#1410) *(xtask)*([3d5b3a1](https://github.com/nteract/desktop/commit/3d5b3a1de7ee7e847e45a881aaebf5b4a52d624e))
+- render Output widget captured outputs via CRDT state (#1412) *(widgets)*([2b36f94](https://github.com/nteract/desktop/commit/2b36f9428743268c267632035c7e7c8b466bc7d6))
+- ensure RuntimeStateDoc sync before reading cell outputs (#1415) *(mcp)*([3c8009e](https://github.com/nteract/desktop/commit/3c8009e44063bf30440f453e82acac7afa5f4229))
+- use ReplaySubject so initial sync retry timer always arms (#1421) *(sync)*([50d42c1](https://github.com/nteract/desktop/commit/50d42c169a6011eadd1a55de5a9265d0857d003b))
+- buffer relay frames until frontend signals readiness (#1422) *(sync)*([8c0f17a](https://github.com/nteract/desktop/commit/8c0f17af61bc06c877dfe4207d64b31c70def96b))
+- use .write().await instead of .blocking_write() in SetAgentMode handler (#1425)([42ce039](https://github.com/nteract/desktop/commit/42ce039182a8401dc4b803421e4f102f57e0cfaf))
+- drop redundant broadcasts at peer relay point (#1424) *(sync)*([081d000](https://github.com/nteract/desktop/commit/081d0008a1c160f73d3d2b20405898f421111d94))
+- add agent_mode to SyncedSettings in notebook crate — fixes nightly build (#1426)([472a0fc](https://github.com/nteract/desktop/commit/472a0fcaa3163808568bf452fb86770255934d20))
+- install CLI to ~/.local/bin instead of /usr/local/bin (#1437) *(notebook)*([8584ac7](https://github.com/nteract/desktop/commit/8584ac7483a38bed4d4991066c434fed58c01611))
+- clear text selection when focus leaves iframe (#1446) *(iframe)*([685e3d3](https://github.com/nteract/desktop/commit/685e3d368446de18ab22e2ffa87d56c869541b6f))
+- update all outputs matching display_id (#1447) *(runtimed)*([bde5231](https://github.com/nteract/desktop/commit/bde523118bab2d0441c2922a1795d93decfdfcbc))
+- consolidate cell scroll into focusCell, remove fragile ref (#1448) *(notebook)*([97342ca](https://github.com/nteract/desktop/commit/97342ca9cdb2ff915cbe73e3d16aac764954b3c0))
+- add retry for flaky wasm-integration tests (#1450) *(test)*([9a224e3](https://github.com/nteract/desktop/commit/9a224e3de680bdc6f0d1eac5b3655b4e4eead559))
+- use named pipe path for Windows integration tests (#1455) *(test)*([a82e66d](https://github.com/nteract/desktop/commit/a82e66d1f2809f519ddfa5d3ad6a12a6a47bec04))
+- add content hashes to Vite output filenames (#1456) *(notebook)*([1c01eca](https://github.com/nteract/desktop/commit/1c01ecaee7550c3aafb80ef15561dd66383ba2d7))
+- restore env sync for agent mode (#1452) (#1459) *(runtimed)*([f63f6ad](https://github.com/nteract/desktop/commit/f63f6ad96cad186ebcb4ec49f54e6af0d55b897e))
+- strip sourcemap comments from raw library imports (#1468) *(iframe)*([afbf611](https://github.com/nteract/desktop/commit/afbf61150f4bc5253f556a3722f04eadde4c0c27))
+- prevent scroll jump during widget slider interaction (#1485) *(frontend)*([c384ae9](https://github.com/nteract/desktop/commit/c384ae9cca7fe84257d0764b151cfb7d2271090e))
+- reduce output size for audio, viz, and large MIME types (#1488) *(mcp)*([48961e2](https://github.com/nteract/desktop/commit/48961e264b674d35e2fcf06d3d279290bdc0ddb7))
+- force CodeMirror repaint on window reactivation (#1490) *(frontend)*([bb710c8](https://github.com/nteract/desktop/commit/bb710c8704cc34a92e5f7bce3133f5875b0ca463))
+- add error handling and switch to canvas renderer (#1491) *(vega)*([b398dc6](https://github.com/nteract/desktop/commit/b398dc6904aea706413ab622a574295673bfee6a))
+- report execution status and non-text outputs to agents (#1495) *(mcp)*([18fdd6f](https://github.com/nteract/desktop/commit/18fdd6ff3d37f00fa850dff286cc3eebe1f8251f))
+- allow HTTPS stylesheets in output iframe CSP (#1496) *(security)*([2db0626](https://github.com/nteract/desktop/commit/2db06260544d632f2e76a9cdc759ab6e09020df7))
+- generate proper changelog for stable releases (#1499) *(ci)*([a28e439](https://github.com/nteract/desktop/commit/a28e439e1b80398ad36fc4eb51ad88e8c858f76b))
+- group stable changelog entries by ignoring nightly tags (#1500) *(ci)*([a5d399c](https://github.com/nteract/desktop/commit/a5d399cb657382865b0128c9e0833ad5e69d6df6))
+- resolve widget loading race on notebook open (#1501) *(frontend)*([7dfcb9f](https://github.com/nteract/desktop/commit/7dfcb9fb44a4b9ff3fb3afedd4afc00a7f3620e8))
+- prevent bootstrap skeleton from shadowing daemon metadata (#1498) *(crdt)*([542141f](https://github.com/nteract/desktop/commit/542141f65596c651233014bb112a57a3f46857ad))
+- mark execution error in agent CellError handler (#1502) *(runtimed)*([2d47be0](https://github.com/nteract/desktop/commit/2d47be0b76e91772a1c9ee2f3a9bb4fb98dee581))
+- read execution_count from RuntimeStateDoc instead of stale NotebookDoc (#1503) *(mcp)*([dcf0e49](https://github.com/nteract/desktop/commit/dcf0e49ec3e3a190479799c362cc9f584ef2f4b6))
+- resolve execution_count from RuntimeState instead of stale NotebookDoc (#1511) *(frontend)*([61fd9c4](https://github.com/nteract/desktop/commit/61fd9c403da12ebb4b9332a39d4292a7ea515e5b))
+- replace animate-pulse with squish-breathe on stop indicator (#1512) *(frontend)*([6d1687d](https://github.com/nteract/desktop/commit/6d1687ddfb1d3269dfd403c0be26f27a54297ba6))
+- remove "Isolated output frame" tooltip from output iframes (#1532) *(ui)*([4ac8d6b](https://github.com/nteract/desktop/commit/4ac8d6b6f20c371e48b816f679c1c81eea5686fe))
+- stabilize flaky queue dedup and output sync tests (#1520) *(sync)*([d574206](https://github.com/nteract/desktop/commit/d574206b2d259826324b319c5e467c6393d3af87))
+- pass requested runtime to auto_launch_kernel for CreateNotebook (#1535) *(daemon)*([429d54a](https://github.com/nteract/desktop/commit/429d54a2827549ec05ee7b06d9b21afebdb65678))
+- show Pixi pool in daemon status output (#1536) *(cli)*([69db083](https://github.com/nteract/desktop/commit/69db083691e482c68b70287f161360fe1280b71e))
+- fix dependency pipeline for all env types (uv, conda, pixi) (#1538) *(mcp)*([d1f4451](https://github.com/nteract/desktop/commit/d1f4451cac147395f49ebddd270e0578e80ca0d3))
+- use scoped auto-detect with full pixi support on restart (#1541) *(mcp,daemon)*([e6c6e36](https://github.com/nteract/desktop/commit/e6c6e36bd6fd718d29ea9ab825631dbfc1a70b8e))
+- run_all_cells waits for completion with timeout (#1546) *(mcp)*([4693113](https://github.com/nteract/desktop/commit/4693113dfaed96e2f1721e6acc580e80f9b93b1d))
+- avoid unnecessary reconnect loop on daemon PID change (#1545) *(mcp)*([8565667](https://github.com/nteract/desktop/commit/85656673b135319be8ec5fee9e191ccd6e6b6e49))
+- include cell tags in get_cell and get_all_cells rich responses (#1548) *(mcp)*([d1c646d](https://github.com/nteract/desktop/commit/d1c646db72c3e78755661789ff90d2993997d35e))
+- prevent spurious ANSI reset after emoji in stream output (#1549) *(daemon)*([a6d8801](https://github.com/nteract/desktop/commit/a6d8801612e0ced1b5c64780b5664ceb3e6f5710))
+- process RuntimeStateSync frames during request/response wait (#1553) *(sync)*([abf6405](https://github.com/nteract/desktop/commit/abf6405265748291fd9e48f9b1da07bccbd89952))
+- resolve blob port before reading cells, add binary MIME fallback (#1565)([a7af987](https://github.com/nteract/desktop/commit/a7af98781eea2334c733a5aa005f373e2f7148bc))
+- invalidate all plugin virtual modules on HMR rebuild (#1567) *(frontend)*([ac719da](https://github.com/nteract/desktop/commit/ac719da8e89adb5386996201457f09322579cb83))
+- blob-store large comm state values to prevent 58s CRDT writes (#1571) *(daemon)*([4771625](https://github.com/nteract/desktop/commit/4771625fd31f75b7395f2fd4fb58767a55a26766))
+- anywidget ESM rendering — correct MIME types and iframe CSP (#1572)([333395d](https://github.com/nteract/desktop/commit/333395d4c8fd26988ddf92a47e8943a63868b5b5))
+
+#### Performance
+
+- decouple output-widget from iframe-libraries (-69% IIFE size) (#1389) *(build)*([421ebcd](https://github.com/nteract/desktop/commit/421ebcd233415141c288dc8910f5309801a01a72))
+- skip unchanged MCP widget rebuild and parallelize pnpm install (#1432) *(xtask)*([33a688d](https://github.com/nteract/desktop/commit/33a688de0943716ba0f9f51b9c939932e26f2459))
+- smooth widget rendering with batch updates and image preloading (#1478) *(iframe)*([3567e5e](https://github.com/nteract/desktop/commit/3567e5e1e49b4cf2415d38ec8425afefe12edac9))
+- always minify renderer plugin builds (#1543) *(isolated-renderer)*([35505eb](https://github.com/nteract/desktop/commit/35505eb3753f2a8b8918ed3963846716c679e469))
+
+#### Documentation
+
+- simplify env -i commands to use absolute paths instead of PATH (#1400)([e533b77](https://github.com/nteract/desktop/commit/e533b772e1460fd52389bbbdb1b98f6737c6b31a))
+- use tar -O instead of extracting to /tmp (#1403) *(diagnostics)*([88d52ef](https://github.com/nteract/desktop/commit/88d52ef2726175b61d8bcb0defccd154a98cfd3f))
+- update architecture docs for agent subprocess execution (#1440)([8ba988e](https://github.com/nteract/desktop/commit/8ba988e72dc554368be68de97281feef9180ba0a))
+- sync AGENTS.md and README.md with current workspace structure (#1476)([7517d41](https://github.com/nteract/desktop/commit/7517d412c36fcb14ba3f87412c08e629f732a3fd))
+- guide agents to use MCP tools for notebook dependencies (#1506)([f78c0b9](https://github.com/nteract/desktop/commit/f78c0b961867ed00d4e039a3629fcadc4b580bed))
+- clarify single-session scoping in tool descriptions (#1544) *(mcp)*([1d97189](https://github.com/nteract/desktop/commit/1d97189721fe8acd967bb61369f54fe2611ec826))
+- update agent and contributing docs for recent architecture changes (#1573)([f678732](https://github.com/nteract/desktop/commit/f678732360bec51debaac34dd6133728dd226000))
+- document iframe Content Security Policy (#1574)([5412964](https://github.com/nteract/desktop/commit/541296441759e9f99f216ce7d1b74299d70fd690))
+
+#### .github/workflows
+
+- Migrate workflows to Blacksmith runners (#1353)([4a04920](https://github.com/nteract/desktop/commit/4a04920a852881c1b02b17e074ad0e6e3cd39b72))
+
+</details>

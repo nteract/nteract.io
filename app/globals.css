@@ -336,3 +336,151 @@ body {
 .cream-page tbody td:first-child {
     font-family: var(--font-mono), "JetBrains Mono", monospace;
 }
+
+/* ──────────────────────────────────────
+   Changelog print view (/changelog/print).
+   Ink on paper for editing copy by hand:
+   black serif, one release per page, the
+   auto-generated technical changelog hidden,
+   loose line spacing to write between lines.
+   ────────────────────────────────────── */
+.changelog-print {
+    background: #fff;
+    color: #111;
+    font-family: var(--font-page-serif), Georgia, serif;
+    max-width: 7.5in;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.changelog-print .print-hint {
+    font-family: var(--font-mono), monospace;
+    font-size: 12px;
+    line-height: 1.6;
+    color: #555;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.changelog-print .print-hint a {
+    color: #111;
+    text-decoration: underline;
+}
+
+/* Entries flow continuously, separated by a rule (no forced page breaks). */
+.changelog-print .print-entry + .print-entry {
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid #ccc;
+}
+
+.changelog-print .print-entry__eyebrow {
+    font-family: var(--font-mono), monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.changelog-print .print-entry h1 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0 0 0.75rem;
+}
+
+.changelog-print .print-entry__summary {
+    font-size: 16px;
+    font-style: italic;
+    color: #333;
+    margin: 0 0 1.25rem;
+}
+
+.changelog-print .print-entry__highlights {
+    margin: 0 0 1.75rem 1.25rem;
+    padding: 0;
+}
+
+.changelog-print .print-entry__highlights li {
+    margin-bottom: 0.4rem;
+}
+
+.changelog-print .cl-print-body {
+    font-size: 13.5px;
+    line-height: 2;
+}
+
+.changelog-print .cl-print-body > * + * {
+    margin-top: 0.9rem;
+}
+
+.changelog-print .cl-print-body h2 {
+    font-family: var(--font-page-serif), Georgia, serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 1.75rem;
+}
+
+.changelog-print .cl-print-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 1.25rem;
+}
+
+.changelog-print .cl-print-body ul,
+.changelog-print .cl-print-body ol {
+    margin-left: 1.25rem;
+}
+
+.changelog-print .cl-print-body li {
+    margin: 0.3rem 0;
+}
+
+.changelog-print .cl-print-body a {
+    color: #111;
+    text-decoration: underline;
+}
+
+.changelog-print .cl-print-body code {
+    font-family: var(--font-mono), monospace;
+    font-size: 0.85em;
+}
+
+.changelog-print .cl-print-body img {
+    max-width: 100%;
+    max-height: 3in;
+    height: auto;
+}
+
+/* The technical changelog is generated, not edited - keep it off the sheet. */
+.changelog-print .cl-print-body details,
+.changelog-print .cl-print-body #full-technical-changelog {
+    display: none;
+}
+
+@media print {
+    .cream-page {
+        background: #fff !important;
+    }
+    .changelog-print {
+        max-width: none;
+        padding: 0;
+    }
+    .changelog-print .print-hint {
+        display: none !important;
+    }
+    /* Keep a title and its opening with the content that follows it. */
+    .changelog-print .print-entry__eyebrow,
+    .changelog-print .print-entry h1,
+    .changelog-print .print-entry__summary,
+    .changelog-print .cl-print-body h2 {
+        break-after: avoid;
+    }
+    @page {
+        margin: 1in;
+    }
+}

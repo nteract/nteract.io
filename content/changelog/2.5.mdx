@@ -1,0 +1,307 @@
+---
+version: "2.5"
+date: "2026-05-26T19:55:28Z"
+coversVersions:
+  - "2.5.0"
+  - "2.5.1"
+dateLabel: "May 26, 2026"
+title: "[redacted] Secrets, Explorable DataFrames, Navigable Tracebacks"
+summary: "The nteract 2.5 release invites you to stop leaking credentials in notebooks, emit Arrow for rich data exploration, and jump from tracebacks to the cell that raised."
+highlights:
+  - "Python errors render as navigable, structured tracebacks"
+  - "Explorable DataFrames with interactive crossfiltering"
+  - "Outputs scrub secret-looking environment values to [redacted env]"
+tags:
+  - "arrow"
+  - "pretext"
+  - "polars"
+  - "pandas"
+githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.5.1-stable.202605261941"
+published: true
+heroImage: "https://img.runt.run/2026/06/08/2d83a12fc8c7.png"
+# heroVideo: "https://…"   # TODO: a short demo clip (autoplays muted/looped)
+---
+
+2.5 brings rich context tracebacks, less leaky env vars, and a crossfiltering data explorer built on [pretext](https://chenglou.me/pretext/) and [Apache Arrow](https://arrow.apache.org/) to every dataframe in Python: `pandas`, `polars`, `datasets`, `narwhals`, `duckdb`; wherever `__arrow_c_stream__` can be found.
+
+I've always wanted an Arrow-native notebook for data work. Here it is.
+
+## Navigable tracebacks
+
+<video src="https://img.runt.run/2026/06/08/09ee0d5a7d45.mp4" autoPlay muted loop playsInline />
+
+Python errors now render as structured, navigable tracebacks. Click the cell target and get warped to the offending cell.
+
+## Explorable DataFrames
+
+<video src="https://img.runt.run/2026/06/08/786c12fa36dd.mp4" autoPlay muted loop playsInline />
+
+Return (or `display`!) a DataFrame and it renders in _Sift_, an interactive data explorer. The sparklines and category bars in the column headings allow you to brush filter across columns with smooth interactions thanks to Arrow IPC and WASM.
+
+## Secrets stay out of outputs
+
+<LightboxImage src="https://img.runt.run/2026/06/08/432504a56bd9.png" alt="Notebook output with a secret environment value scrubbed to [redacted env]" />
+
+Ever leak an environment variable that had a secret inside a notebook? Now that agents are reading outputs into chat logs, that problem can compound.
+
+nteract 2.5 brings your login shell env into kernels. You get your `PATH` and API keys and those values are scrubbed from outputs before they hit disk or an agent's context window. Your shell's secrets are available to your code, but they don't leak into a shared notebook or agent's view.
+
+Note: this feature can be disabled in settings.
+
+## Full technical changelog
+
+<details>
+<summary>All 232 changes across 2.5.0 and 2.5.1</summary>
+
+### 2.5.1 - May 26, 2026
+
+#### Bug Fixes
+
+- avoid framed output shell (#3013) *(mcp-app)*([261953e](https://github.com/nteract/nteract/commit/261953ec0c6739810872f73630eba61426ade9f4))
+
+### 2.5.0 - May 26, 2026
+
+#### Features
+
+- redact environment values from outputs (#2610) *(runtime)*([c7bf704](https://github.com/nteract/nteract/commit/c7bf704352a8e1b3f0623a181f1cd38412e6d052))
+- import login-shell env into kernels via per-launch env_vars (#2767) *(runtimed)*([e73be9d](https://github.com/nteract/nteract/commit/e73be9df47f29ac3cea507499a6fda63ac4f3fc4))
+- make runtime state execution id only (#2773) *(runtime)*([811dbcf](https://github.com/nteract/nteract/commit/811dbcfdca0f183f304e60cd750090af40389beb))
+- materialize execution view in wasm (#2774) *(runtime)*([c53819c](https://github.com/nteract/nteract/commit/c53819ca220a416c4c78a46eeff535eb848046e9))
+- route interaction_state over JSON-RPC (#2783) *(isolated)*([792b683](https://github.com/nteract/nteract/commit/792b6836eccf47660b639a16f221eddce1e68dfb))
+- expose execution view snapshots (#2782) *(runtimed-node)*([6536a19](https://github.com/nteract/nteract/commit/6536a1991a50c3cb94219bb1e1d2129fb2b9043f))
+- add embed host context bridge (#2790) *(isolated)*([798ea01](https://github.com/nteract/nteract/commit/798ea01975ceecfb996c4b96c7171c9fe177da24))
+- add embeddable output surface (#2796) *(isolated)*([a30a18d](https://github.com/nteract/nteract/commit/a30a18d11a29febb903cd0ada391e15e9a6347c9))
+- add output embed deck harness (#2797) *(slidev)*([7288868](https://github.com/nteract/nteract/commit/7288868f54b45f8593df0d7fb02a18c10b4d98b6))
+- add nteract identity crate (#2803) *(identity)*([f953446](https://github.com/nteract/nteract/commit/f95344678b1480d9c4170b4072afdc0aba811c5e))
+- expose frame size limits (#2805) *(runtimed)*([c6f91a7](https://github.com/nteract/nteract/commit/c6f91a7a871839e9a8f71d444f1fd0cb6f46a617))
+- share blob resolvers (#2807) *(runtimed)*([1c04419](https://github.com/nteract/nteract/commit/1c044190ccf951fed56a15f259b8e13b2cded83d))
+- expose presence cbor helpers (#2806) *(wasm)*([87728d1](https://github.com/nteract/nteract/commit/87728d1561842e655375130e6c8cc4edfcde0b4e))
+- load notebook snapshot pairs (#2808) *(wasm)*([25e14bf](https://github.com/nteract/nteract/commit/25e14bf38fd16dd9ec3b237d87f67bd54d1baea5))
+- materialize hosted snapshot pairs (#2809) *(notebook-cloud)*([0cd8f19](https://github.com/nteract/nteract/commit/0cd8f1914bf630b261136295134b125195a1fccf))
+- render published outputs through shared iframe (#2810) *(notebook-cloud)*([11f2e3b](https://github.com/nteract/nteract/commit/11f2e3bdbbc3b428d516ce714dfac56602660672))
+- configure plugin asset base (#2812) *(renderer)*([0440483](https://github.com/nteract/nteract/commit/0440483e87ce6cf330a0496d1286c4fa8018714b))
+- use shared notebook viewer surface (#2815) *(notebook-cloud)*([fbdf74b](https://github.com/nteract/nteract/commit/fbdf74b9c671d83e780b207215be0d53d3d1e21b))
+- default nteract launcher (#2821) *(settings)*([d8d6130](https://github.com/nteract/nteract/commit/d8d6130de29dbe83322012a8cb08e64537bd60a6))
+- use read-only CodeMirror source (#2824) *(notebook-cloud)*([521a9f9](https://github.com/nteract/nteract/commit/521a9f9cd0ffdcc765204f7e092c7dee07d1d87f))
+- stream blob HTTP reads from disk [stack 6/6] (#2823) *(runtimed)*([c346ca2](https://github.com/nteract/nteract/commit/c346ca23e2ab3d1d424764936a86ba5fb77949b7))
+- publish live snapshot pairs (#2825) *(notebook-cloud)*([5bc09ca](https://github.com/nteract/nteract/commit/5bc09ca186893e8d45f1c8d724cc081d5cc8c799))
+- split renderer asset origin (#2827) *(notebook-cloud)*([656837f](https://github.com/nteract/nteract/commit/656837f2ce774b5096e09ef507b24e70bcd5ae6b))
+- share read-only notebook cells (#2833) *(notebook-cloud)*([7389efa](https://github.com/nteract/nteract/commit/7389efa124a60fdd8ce04124a7403879bb636bee))
+- share read-only notebook view (#2840) *(notebook-cloud)*([eddab85](https://github.com/nteract/nteract/commit/eddab8523990037244c901a102105dc306a65dd3))
+- attach cell provenance to rich errors *(tracebacks)*([b3bc84b](https://github.com/nteract/nteract/commit/b3bc84b3fa8a203b4b7e533b3c43c7d7ea5c58a3))
+- attach execution provenance to rich errors (#2843) *(tracebacks)*([7f42d6b](https://github.com/nteract/nteract/commit/7f42d6b832f92817e586b735fa1c81afa86dc2b7))
+- add report viewer mode (#2844) *(notebook-cloud)*([80609cb](https://github.com/nteract/nteract/commit/80609cb0e89152f083eb5cf6492234f92bf15a54))
+- show viewer presence status (#2848) *(notebook-cloud)*([0c31f09](https://github.com/nteract/nteract/commit/0c31f09d37f32c2973c54b51d9aa7ad3f1acdae1))
+- link frames to notebook cells (#2847) *(traceback)*([54e6e2b](https://github.com/nteract/nteract/commit/54e6e2b79fee6afd1b0d51a56f5a02ad9918f86b))
+- segment mixed output rendering (#2853) *(traceback)*([f2e8119](https://github.com/nteract/nteract/commit/f2e811907d263a1fe7f46ccd009412e4654af1c5))
+- gate rooms with ACL authorization (#2867) *(notebook-cloud)*([bda65c5](https://github.com/nteract/nteract/commit/bda65c5ec26008ee65d55a1f9b34682edec0930d))
+- materialize room sync in durable objects (#2868) *(notebook-cloud)*([abf3972](https://github.com/nteract/nteract/commit/abf39726465d585456bd5e60ef88f3fe992e11a3))
+- authenticate Cloudflare Access JWTs (#2869) *(notebook-cloud)*([bc36013](https://github.com/nteract/nteract/commit/bc36013b01ab62d567d890fe285062d6f54c4127))
+- limit editor room edits to markdown (#2870) *(notebook-cloud)*([a62e52b](https://github.com/nteract/nteract/commit/a62e52b526ed79468d2ea86d426a801c2914f2f1))
+- add runtime peer ingress handle (#2871) *(notebook-cloud)*([c60bbe7](https://github.com/nteract/nteract/commit/c60bbe7c4904b775765be294de030a1c27394073))
+- wire live markdown collaboration (#2873) *(notebook-cloud)*([9d214fb](https://github.com/nteract/nteract/commit/9d214fbb70664ca087daf5c7882539b0c52dce6d))
+- add owner ACL management routes (#2872) *(notebook-cloud)*([52cc059](https://github.com/nteract/nteract/commit/52cc059330e9f76618406ed61bb6be15fd9e4845))
+- expose hosted session metadata (#2891) *(notebook-cloud)*([28b3ef5](https://github.com/nteract/nteract/commit/28b3ef5c9f97c4c0ac4529a31b69d6957aa2df0a))
+- add Access demo ops runbook (#2890) *(notebook-cloud)*([c98bf5b](https://github.com/nteract/nteract/commit/c98bf5bc04ed5760b97f611a38269c6c0e0f3c32))
+- replace table data in place (#2903) *(sift)*([b75ed0e](https://github.com/nteract/nteract/commit/b75ed0ec0fa7c941ded9652153b7144d5a5ce2f2))
+- add sharing invite storage (#2939) *(notebook-cloud)*([b9676f8](https://github.com/nteract/nteract/commit/b9676f884031b4ebfe65ee687b9899c15774e641))
+- support hosted output document URLs (#2942) *(notebook-cloud)*([a65d124](https://github.com/nteract/nteract/commit/a65d12446adae56e979e29bea93381213052a795))
+- resolve Access invites on login (#2944) *(notebook-cloud)*([bdd5cd7](https://github.com/nteract/nteract/commit/bdd5cd7d755e3f6925f87651226e7709f749afcf))
+- add owner invite routes (#2945) *(notebook-cloud)*([0b6532c](https://github.com/nteract/nteract/commit/0b6532c2db091c61fc012269859f246ca5233483))
+- adapt structured output for shared renderer (#2958) *(mcp-app)*([7424ffd](https://github.com/nteract/nteract/commit/7424ffd5ba76f7b2576e1dd7fba216d271a049ed))
+- isolate output document origin (#2959) *(notebook-cloud)*([384ca6f](https://github.com/nteract/nteract/commit/384ca6f096c60f29f3d53c0b5228e18400010fb1))
+- render through shared output frame (#2960) *(mcp-app)*([ed73a13](https://github.com/nteract/nteract/commit/ed73a133153b4976041d5728473feecd8a1db8bd))
+- expose notebook cell resources *(mcp)*([929caa0](https://github.com/nteract/nteract/commit/929caa00755a0af18de34f5408f18fe94eb64146))
+- annotate notebook resources (#2972) *(mcp)*([c9e9483](https://github.com/nteract/nteract/commit/c9e9483a4dbbf3783aa08063026a3602c3574e5f))
+
+#### Bug Fixes
+
+- source shell startup env for kernels (#2770) *(runtime)*([124dae7](https://github.com/nteract/nteract/commit/124dae7ffee59cf30d029c43812337433f4472bb))
+- surface notebook execution and output summaries (#2769) *(runt-mcp)*([daaf0b0](https://github.com/nteract/nteract/commit/daaf0b0851b8ebebbbbcdc3abc0887d0dfa4e1fc))
+- append source cells by default (#2772) *(runtimed-node)*([4182e89](https://github.com/nteract/nteract/commit/4182e897ff91563a87a7de73f724a85df6f34709))
+- support inline uv python override (#2777) *(notebook)*([692093f](https://github.com/nteract/nteract/commit/692093fce1f5bb55aa4cd32d5bcc7eede38115db))
+- avoid false execution pointer clears (#2778) *(runtime)*([205a3a2](https://github.com/nteract/nteract/commit/205a3a22f93019a39376df86c4bb37d9963c6af1))
+- restore rich iframe rendering (#2784) *(isolated)*([975126c](https://github.com/nteract/nteract/commit/975126c0535cbe7c8eb95fc9486a9f1d8f96f875))
+- deliver renderer bundle after iframe bootstrap (#2788) *(isolated)*([7d87ade](https://github.com/nteract/nteract/commit/7d87ade272a22abc0c71f30d5357f3db23139605))
+- harden iframe renderer diagnostics (#2789) *(isolated)*([bd293b1](https://github.com/nteract/nteract/commit/bd293b1a00a2ba273ace242c25461932dd0f4371))
+- tighten host context cleanup (#2791) *(isolated)*([d1ec68d](https://github.com/nteract/nteract/commit/d1ec68d15c25b94cc95560215c143608f4e37941))
+- coordinate relay bootstrap readiness (#2795) *(notebook)*([af877c7](https://github.com/nteract/nteract/commit/af877c7d83f49eba955793b97ee3d79bfa42bdc5))
+- align presence cap to 4 KiB [stack 2/6] (#2817) *(notebook-wire)*([bb1ae56](https://github.com/nteract/nteract/commit/bb1ae56fcab993bec7ab73ded12d867f93dd68ac))
+- derive execution counts from outputs *(notebook-cloud)*([ee29406](https://github.com/nteract/nteract/commit/ee29406abc82a2a4849b7f36946c771ef05559d1))
+- reject renders with missing blobs (#2829) *(notebook-cloud)*([1f58df8](https://github.com/nteract/nteract/commit/1f58df894112ab2a5b6df7d1a05541346649561b))
+- validate snapshot publishes (#2830) *(notebook-cloud)*([4022daf](https://github.com/nteract/nteract/commit/4022daf096c3e58edaba0f77d667073df89ad0b2))
+- restrict output count fallback *(notebook-cloud)*([3a9ac54](https://github.com/nteract/nteract/commit/3a9ac54e9dd9b44ebae255e7ebacd3d721e6fbde))
+- derive counts from runtime outputs (#2826) *(notebook-cloud)*([a64e4dd](https://github.com/nteract/nteract/commit/a64e4dd34b8d2f5dd3bf1d04895719bba26f4e80))
+- guard renderer asset paths *(notebook-cloud)*([f320fc1](https://github.com/nteract/nteract/commit/f320fc1c46ba781a31432588eebfb8b686dfdc06))
+- bound render blob validation *(notebook-cloud)*([694d3dc](https://github.com/nteract/nteract/commit/694d3dce49ef10d49021395ec315f1d013344419))
+- align read-only markdown source *(notebook-cloud)*([c45abd6](https://github.com/nteract/nteract/commit/c45abd6ca58c6b00d4c11775338a5a26a9aad63e))
+- keep execution state notebook agnostic *(tracebacks)*([7e165c3](https://github.com/nteract/nteract/commit/7e165c3a7625050bfe2716d67d304b0b376fbfcf))
+- normalize notebook execution sources *(tracebacks)*([0253962](https://github.com/nteract/nteract/commit/0253962d64375085f5e8e4283ecfac8e4149721f))
+- sanitize notebook traceback text *(tracebacks)*([6464470](https://github.com/nteract/nteract/commit/64644702506f57ec70590ce7fa7d2862374b12e4))
+- align standalone vite dev port (#2845) *(xtask)*([47142c2](https://github.com/nteract/nteract/commit/47142c20ee7816a343ed76dc453dc6092562a5ac))
+- gate room events to owners *(notebook-cloud)*([6a1dc4b](https://github.com/nteract/nteract/commit/6a1dc4b6549716824ef1bdb6bd81d7993fcf9eac))
+- remove prototype room events api (#2846) *(notebook-cloud)*([6caa6d0](https://github.com/nteract/nteract/commit/6caa6d02773fc652393053d8e82f13264205f691))
+- harden hosted viewer shell (#2851) *(notebook-cloud)*([f68501f](https://github.com/nteract/nteract/commit/f68501f37cd224939b5be841b9dc50b489ee6ca5))
+- send host-facing renderer logs (#2852) *(mcp-app)*([08935e9](https://github.com/nteract/nteract/commit/08935e9e154f7a8d0c9666ee4f968c1b3e8bf752))
+- keep dev auth tokens out of deployed URLs (#2854) *(notebook-cloud)*([2e9688c](https://github.com/nteract/nteract/commit/2e9688ceb9c729fe691bc7a09fa3498c07d6fc99))
+- resolve dataframe blobs through host URLs (#2855) *(outputs)*([03d624c](https://github.com/nteract/nteract/commit/03d624cc6e85316828d2f60d25cb12f75b60e284))
+- verify runtime blob uploads (#2859) *(notebook-cloud)*([53f5468](https://github.com/nteract/nteract/commit/53f5468044907b0431ee372955bf51bca9c35aaf))
+- derive render caches from snapshots (#2860) *(notebook-cloud)*([e1fc042](https://github.com/nteract/nteract/commit/e1fc042b6821052933dfde7719bdb08fb48ad732))
+- harden hosted asset routes (#2862) *(notebook-cloud)*([a244ca5](https://github.com/nteract/nteract/commit/a244ca56c556d87ea20d137994dfa0f39ec1cc47))
+- require loopback for untokened dev auth (#2863) *(notebook-cloud)*([7bfb23b](https://github.com/nteract/nteract/commit/7bfb23bd16ccd6fda138e8d6a1c01bb79148507b))
+- resolve OutputWidget images as blobs (#2861) *(outputs)*([46932ae](https://github.com/nteract/nteract/commit/46932ae51e1734fcc512e090e1c3c4acef0d973b))
+- link traceback cells in cloud viewer (#2865) *(notebook-cloud)*([e56ad55](https://github.com/nteract/nteract/commit/e56ad5524d85c47d5f51cef22c347264c4f50f26))
+- keep cell targets identity-only *(traceback)*([8c75ce9](https://github.com/nteract/nteract/commit/8c75ce9ddbb3f36615e25205d582e40bbda165ca))
+- keep mixed isolated renders unsplit (#2864) *(outputs)*([971b9b9](https://github.com/nteract/nteract/commit/971b9b9257773a13b5d2ebd220635ad9471588cb))
+- harden Access auth fallback and key rotation *(notebook-cloud)*([3a8bc2c](https://github.com/nteract/nteract/commit/3a8bc2cdc18cc8404fa19469ba44aa887db8882b))
+- load runtime wasm from asset origin *(notebook-cloud)*([9f1fa0c](https://github.com/nteract/nteract/commit/9f1fa0c8c7dfc1104ddaefb6de357972308cb3e6))
+- clean up failed live sync init *(notebook-cloud)*([201d8c6](https://github.com/nteract/nteract/commit/201d8c6fd4fff7b665e0e41d597864e4c4796bfc))
+- bound live sync startup *(notebook-cloud)*([c7a225c](https://github.com/nteract/nteract/commit/c7a225c53ca73f83f444df4a79e80757b81136b4))
+- preserve ACL owners atomically *(notebook-cloud)*([2631448](https://github.com/nteract/nteract/commit/2631448cc5e7b37ba53087a80321d7127d9082c5))
+- report guarded ACL delete conflicts *(notebook-cloud)*([65f1907](https://github.com/nteract/nteract/commit/65f1907188682560906b9cd39587b262dc13dd1a))
+- abbreviate traceback package paths with ellipsis (#2874) *(notebook)*([2bcf568](https://github.com/nteract/nteract/commit/2bcf568a00d530bf09ae4dbf305073c88073fd06))
+- fit sift output within iframe cap (#2876) *(notebook-cloud)*([54a084d](https://github.com/nteract/nteract/commit/54a084d88a284561063e407254c7e12193b7bffc))
+- bootstrap live markdown sync (#2875) *(notebook-cloud)*([e64de8b](https://github.com/nteract/nteract/commit/e64de8bf30e82101064fe5d617ddcad84e9f2786))
+- stream live updates to viewers *(notebook-cloud)*([9b1fc09](https://github.com/nteract/nteract/commit/9b1fc09579034f3141a1cd2df89b23b5fbfdeeee))
+- add collaboration observability *(notebook-cloud)*([cf68dcf](https://github.com/nteract/nteract/commit/cf68dcffc081fde196a0c55760d1f9c34623f743))
+- disable cloud pool sync *(notebook-cloud)*([497d0ce](https://github.com/nteract/nteract/commit/497d0cecb9056b00a659f5c0796c6b5335e53311))
+- add collaborator auth diagnostics (#2878) *(notebook-cloud)*([8a0ff75](https://github.com/nteract/nteract/commit/8a0ff759ba2372bd76d7afb9aead402c8b5075e1))
+- support local browser collab smoke *(notebook-cloud)*([7e73b9a](https://github.com/nteract/nteract/commit/7e73b9a2ee9db57af9916c5614410ec313bfd7d1))
+- recover cloud editor sync *(notebook-cloud)*([30000cb](https://github.com/nteract/nteract/commit/30000cbc8dbe0b47ba57ed7f1611d9cb7d36e0a2))
+- reconnect on send-side socket failure (#2881) *(notebook-cloud)*([0c3dd03](https://github.com/nteract/nteract/commit/0c3dd0371c1a217b403a83ff9ae4e0ec1b8b23a1))
+- support chunked arrow streams in dx *(outputs)*([f82474d](https://github.com/nteract/nteract/commit/f82474dd8621e7e839edc1c0f1a0fce9fdd46e76))
+- use crdt bridge for live markdown (#2883) *(notebook-cloud)*([bd74c90](https://github.com/nteract/nteract/commit/bd74c90076e8bd3924efbfc0de13277241ee4eee))
+- apply remote text attribution patches *(notebook-cloud)*([b649cf0](https://github.com/nteract/nteract/commit/b649cf03e29e59bfc75e636119d3b08a755a1e93))
+- surface collaborator auth diagnostics (#2884) *(notebook-cloud)*([ab27ffc](https://github.com/nteract/nteract/commit/ab27ffc57d6810d4e5ffe1ffc78fb682a7411dfa))
+- skip storing read-only sync no-ops (#2885) *(notebook-cloud)*([1c8e37e](https://github.com/nteract/nteract/commit/1c8e37e3b881abfbc60120cd28bec3ba8092a01e))
+- harden credential transport (#2889) *(notebook-cloud)*([eeaa4c8](https://github.com/nteract/nteract/commit/eeaa4c8ae75b09eaf3a244e6b5f59f49803f1b7a))
+- seed ACL-backed smoke rooms (#2893) *(notebook-cloud)*([da98c05](https://github.com/nteract/nteract/commit/da98c05b08dc82974ab7fb56861fc2152e8c451a))
+- harden Access smoke credentials *(notebook-cloud)*([ec61624](https://github.com/nteract/nteract/commit/ec616245d2886811dba12b78749e90808e12731c))
+- accept Access token headers (#2894) *(notebook-cloud)*([32b0909](https://github.com/nteract/nteract/commit/32b090953347ac59f9cec115aab7490696efc6ce))
+- harden Access auth edges (#2898) *(notebook-cloud)*([033b670](https://github.com/nteract/nteract/commit/033b6707b1df2cc587a41c7258b3caac2b903e84))
+- settle terminal stream outputs (#2899) *(notebook-sync)*([72d1c98](https://github.com/nteract/nteract/commit/72d1c98a49874f97f16c54de0d84d3f79897a508))
+- redact output text before send (#2896) *(kernel-launcher)*([0afcfed](https://github.com/nteract/nteract/commit/0afcfed8870bd8c8cce4fb6cd11b4e9e59b221e5))
+- vendor output redaction modules *(kernel-launcher)*([e5aecbb](https://github.com/nteract/nteract/commit/e5aecbb0723e5a1cab7feaa1bc14887ce838d2a9))
+- harden opencode runner *(pr-reviewer)*([02adb1b](https://github.com/nteract/nteract/commit/02adb1b2d437fc98cd4966b6a651d43dfef13c55))
+- preserve malformed reviewer output *(pr-reviewer)*([000f56d](https://github.com/nteract/nteract/commit/000f56d9b53a689070a677f3838e93ab657c4c93))
+- parse final opencode review json *(pr-reviewer)*([535759c](https://github.com/nteract/nteract/commit/535759c30d7becdab8e5d914746fbead351565e6))
+- bound opencode review runs *(pr-reviewer)*([401c266](https://github.com/nteract/nteract/commit/401c266b2bf3f67ba8d7a110e78a1c6ecb4977a9))
+- enforce inline opencode permissions *(pr-reviewer)*([a3bcb80](https://github.com/nteract/nteract/commit/a3bcb806382f4a79e96c8e13d0dff9f511b615f0))
+- dispose wasm table data (#2901) *(sift)*([4b33a3b](https://github.com/nteract/nteract/commit/4b33a3b426799e26e703e7ab05c5838459455386))
+- reuse plotly display updates (#2911) *(renderer)*([9372ffd](https://github.com/nteract/nteract/commit/9372ffd2e583782d9094bba458e071fb96904ea9))
+- allow Access token preflights (#2912) *(notebook-cloud)*([a45afbc](https://github.com/nteract/nteract/commit/a45afbc9a139b1c49c96814bde072193704d3543))
+- gate editor runtime state writes (#2916) *(notebook-cloud)*([6cded37](https://github.com/nteract/nteract/commit/6cded373c659ba65972381498295a700cc3af96e))
+- reuse vega display updates (#2913) *(renderer)*([145f722](https://github.com/nteract/nteract/commit/145f722eb603d6dc2c8dd54f58b4ce8610a4f0e2))
+- reuse leaflet display updates (#2918) *(renderer)*([9ead10a](https://github.com/nteract/nteract/commit/9ead10a64285e565cde476e8ce038c8dfa8db03b))
+- gate artifact mutations by origin (#2921) *(notebook-cloud)*([2d869cf](https://github.com/nteract/nteract/commit/2d869cf6d657ff3047cb6326b1fbfe999f10364b))
+- require explicit output identity (#2922) *(renderer)*([186c65c](https://github.com/nteract/nteract/commit/186c65c92933e5427f2dfc169f63fa400ccf0308))
+- prefer Access assertions at origin (#2924) *(notebook-cloud)*([3747692](https://github.com/nteract/nteract/commit/3747692545c97016d85ea68ade063e58398f1d31))
+- restrict blob uploads to runtime scopes (#2925) *(notebook-cloud)*([6c1e279](https://github.com/nteract/nteract/commit/6c1e2799104da86197c3fea836f81667fc3df728))
+- require Origin for Access assertions (#2931) *(notebook-cloud)*([f292d18](https://github.com/nteract/nteract/commit/f292d18a9a5fdbd90f8cdc62b1a268e4ee14be5e))
+- fail closed on live sync decode errors (#2932) *(notebook-cloud)*([09ab5ea](https://github.com/nteract/nteract/commit/09ab5ea81a6d6f6a3c1372d6fb236fb59a9fe94c))
+- preserve polars object date columns (#2935) *(kernel-launcher)*([94741b4](https://github.com/nteract/nteract/commit/94741b41fc995fccc1ac7271cc9791b40cd818e1))
+- avoid eager polars imports *(kernel-launcher)*([4f4504a](https://github.com/nteract/nteract/commit/4f4504aab3edea8f47f753e91fdc895f2416c624))
+- refine polars date normalization *(kernel-launcher)*([e5cb7c3](https://github.com/nteract/nteract/commit/e5cb7c3563e2e6667ea790cbae75f4337090ffc7))
+- tighten invite resolution storage *(notebook-cloud)*([827fcda](https://github.com/nteract/nteract/commit/827fcda79254dd29436468650d0a8d1718ca6d26))
+- stabilize sharing invite storage *(notebook-cloud)*([aa9f96e](https://github.com/nteract/nteract/commit/aa9f96e32cf08bef3569d87d13a19cae3b19f848))
+- recover duplicate invite races *(notebook-cloud)*([530a2f4](https://github.com/nteract/nteract/commit/530a2f4b15343729a041de5408f4a2eff3578a9f))
+- gate invite acl grants on accepted rows *(notebook-cloud)*([4cbab1c](https://github.com/nteract/nteract/commit/4cbab1c304a3633b4f72c9b673fe8869d2541fe5))
+- isolate stale invite parents *(notebook-cloud)*([3e524f5](https://github.com/nteract/nteract/commit/3e524f5fab912306e3a93a5ec96ad0b51e0b4747))
+- narrow duplicate invite constraint handling *(notebook-cloud)*([4d9fd4c](https://github.com/nteract/nteract/commit/4d9fd4cc3353f4cd4908b44ff912e2735668854c))
+- skip invite writes when none are pending *(notebook-cloud)*([0d95b8a](https://github.com/nteract/nteract/commit/0d95b8a0f6557e067800369f4e5381ae4f0a0fd5))
+- narrow invite list rows *(notebook-cloud)*([f9de405](https://github.com/nteract/nteract/commit/f9de4055b9965e91baec6f59d49f3d63ab09efd1))
+- validate invite inputs before storage *(notebook-cloud)*([b5c4532](https://github.com/nteract/nteract/commit/b5c453206e171e0c575c754ba64108ec87a529b5))
+- harden invite route edge cases *(notebook-cloud)*([eba8da1](https://github.com/nteract/nteract/commit/eba8da11bfb902d45250ec85e64a8afeca710010))
+- fill raster image outputs (#2950) *(mcp-app)*([7e6c195](https://github.com/nteract/nteract/commit/7e6c1956c1715d9e9e7702a17cdf165cb268e5b6))
+- autosize HTML outputs (#2952) *(mcp-app)*([098ff66](https://github.com/nteract/nteract/commit/098ff66824ba6f5ad2cf110d8928360fe1a8afab))
+- harden Access edge cases (#2951) *(notebook-cloud)*([997116f](https://github.com/nteract/nteract/commit/997116fdb0393a8ad648aad849c28b98049fddc0))
+- keep report iframes scrollable (#2953) *(notebook-cloud)*([a48d075](https://github.com/nteract/nteract/commit/a48d075a4bb7015f1582b3b8bec42dc9556b18d9))
+- prefer Vega outputs over HTML fallbacks (#2954) *(mcp-app)*([a7f503c](https://github.com/nteract/nteract/commit/a7f503c1291d0380baa9e1218c461ae56bab9dc9))
+- log host container dimensions (#2955) *(mcp-app)*([6f36a5b](https://github.com/nteract/nteract/commit/6f36a5beecc515fa4916bcef100a7bb1d00ed858))
+- reduce host log noise (#2956) *(mcp-app)*([373b835](https://github.com/nteract/nteract/commit/373b835bc5a62e0542cefa454597cdaf2401aa85))
+- dedupe shared renderer plugin installs (#2961) *(mcp-app)*([2b5c5f0](https://github.com/nteract/nteract/commit/2b5c5f096af5576be8b8f17de4555e71cfd51074))
+- expose output resource ui metadata (#2962) *(mcp-app)*([0ed3b78](https://github.com/nteract/nteract/commit/0ed3b78311001b9fd2abd0cac80128e72ea06674))
+- align shared output frame sizing (#2963) *(mcp-app)*([b3e3958](https://github.com/nteract/nteract/commit/b3e3958b93e6e5e6b107e5030ab4a8606e38fb82))
+- queue cells while kernel launch resolves (#2965) *(runtimed)*([e396bdd](https://github.com/nteract/nteract/commit/e396bddf1bdc9dde87a3689fc19c7ae8ab8b7282))
+- attribute queued executions to submitter (#2969) *(runtimed)*([802dbe9](https://github.com/nteract/nteract/commit/802dbe937bf75d84cd5eedb43821d73c9b58a0aa))
+- align rich output expansion with renderer (#2976) *(mcp-app)*([3f196d9](https://github.com/nteract/nteract/commit/3f196d96e99d59111f6553392c09b5e13af87bcb))
+- sync viewer output themes (#2983) *(notebook-cloud)*([06533fd](https://github.com/nteract/nteract/commit/06533fde402cd729efd1d7aa0ad5e6538e4da79a))
+- avoid formatting large binary cells (#2986) *(sift)*([a38f725](https://github.com/nteract/nteract/commit/a38f725052ce064e2db33e83cbddec219018965f))
+- anchor cell moves by cell id (#2990) *(mcp)*([7698a6d](https://github.com/nteract/nteract/commit/7698a6de1bbc2fbc939bbaa535abb4b845bd0534))
+- remove cell positions from summaries (#2991) *(mcp)*([c7e41d9](https://github.com/nteract/nteract/commit/c7e41d9599c5bb509f8415ca2ae7411161abd6da))
+- route isolated diagnostics through host logging (#2992) *(renderer)*([d8c98ae](https://github.com/nteract/nteract/commit/d8c98aee7817f45f1d10782ed4ac85c3ae135032))
+- use object init for bindgen modules (#2993) *(wasm)*([438a126](https://github.com/nteract/nteract/commit/438a126d850d831d9a68b706cc56ab9b9ea88472))
+- use shared full-height output sizing (#2985) *(mcp-app)*([90a02b2](https://github.com/nteract/nteract/commit/90a02b2a635ec4c99c8e840f622f55efca53dfd2))
+- include cell ids in notebook frames (#2995) *(traceback)*([abb0ee8](https://github.com/nteract/nteract/commit/abb0ee8fa9af8a9d882c7e72cbe799f0b5e6ca35))
+- align hosted viewer theming (#2996) *(notebook-cloud)*([583f33a](https://github.com/nteract/nteract/commit/583f33a5125716aa62f5a6e78f8ef499dd07cc27))
+- suppress KaTeX newline warnings (#2997) *(renderer)*([481836b](https://github.com/nteract/nteract/commit/481836bb3fbea30efa8219613930d1a2845920ed))
+- declare display capabilities (#3003) *(mcp-app)*([d62ce68](https://github.com/nteract/nteract/commit/d62ce68416ead0b39a7d9b522cbd0aaf843efc46))
+- preview blob output summaries (#2998) *(mcp-app)*([c844ee9](https://github.com/nteract/nteract/commit/c844ee943ecc111f6dba3257f5c33ed4a5c74148))
+- preserve MCP size dimensions (#3000) *(renderer)*([3f83276](https://github.com/nteract/nteract/commit/3f83276b476dc9a9fa6277dcf0108dfa3675f156))
+- segment mixed output frames (#3001) *(renderer)*([6276bb2](https://github.com/nteract/nteract/commit/6276bb2831004e7d07439fefea8d47d21b53b8e5))
+- clarify output summary reads (#3002) *(mcp)*([06a2547](https://github.com/nteract/nteract/commit/06a2547640be5f68dbe93b1f14bd1a4e1a662354))
+- restore synced pool targets on startup (#3009) *(runtimed)*([a44cb21](https://github.com/nteract/nteract/commit/a44cb21a548de727652d1788ccf4923ed22780d1))
+- seed viewer theme before stylesheet (#3007) *(notebook-cloud)*([faf5fd2](https://github.com/nteract/nteract/commit/faf5fd25b6ef66a15a24afd033c6f36531230ac4))
+- apply host container dimensions (#3008) *(mcp-app)*([c8084db](https://github.com/nteract/nteract/commit/c8084db2e72ba0c7ddf1236a3f1cdc3f89af92bb))
+- keep LLM previews out of MIME selection (#3011) *(renderer)*([5b85903](https://github.com/nteract/nteract/commit/5b85903851a39a9f0e93f99c62f81e274f50de34))
+- respect host frame CSP (#3012) *(mcp-app)*([e47811e](https://github.com/nteract/nteract/commit/e47811e19ae422537cec01cdadadcd197445e0b7))
+
+#### Performance
+
+- defer optional renderer imports (#2887) *(kernel-launcher)*([6c2090e](https://github.com/nteract/nteract/commit/6c2090e7343e7ef4261aa4bd69e797359c89b456))
+- optimize output redaction matching *(runtime)*([54020a4](https://github.com/nteract/nteract/commit/54020a41fd91d600c6f041949832f6a41283a0ba))
+- cache output redaction candidates *(kernel-launcher)*([f037695](https://github.com/nteract/nteract/commit/f0376956005a37b5de5f109906855e6d09cacede))
+- cache output widget replay resolution *(runtimed)*([c2299c6](https://github.com/nteract/nteract/commit/c2299c6ced904843e6f74ef3733d42715530f37f))
+- type inbound comm messages *(protocol)*([054fd06](https://github.com/nteract/nteract/commit/054fd069048eaeda451c3e70303530d00a999075))
+- externalize inbound comm buffers *(protocol)*([c453b56](https://github.com/nteract/nteract/commit/c453b561af13aeeebce6d5dfca6624c9d2c31ec1))
+- queue ordinary output commits *(runtimed)*([ba89ba3](https://github.com/nteract/nteract/commit/ba89ba30c8a2d33e3d2c839772ba8722a027da75))
+- batch display output commits *(runtimed)*([b816c43](https://github.com/nteract/nteract/commit/b816c43033b99bf6bb49c801c41fda6e80134229))
+- optimize display update output lookup *(runtime)*([a2bfef0](https://github.com/nteract/nteract/commit/a2bfef02caa45407e34dfce73a9930ac6fb8d558))
+- cache output order metadata (#2967) *(runtime-doc)*([7f3503a](https://github.com/nteract/nteract/commit/7f3503a4862e52d5e2743e6385f0f461c9a02a29))
+- avoid full state reads in agent sync (#2973) *(runtime)*([614ec94](https://github.com/nteract/nteract/commit/614ec9469fcae95316aa1d7c6665dcb96c3d1cd7))
+- remove dormant display update overlay (#2980) *(notebook)*([3c18ce8](https://github.com/nteract/nteract/commit/3c18ce8f75ff94aa13b959659686d6d7202fdd0e))
+- update output id diff snapshot in place (#2979) *(wasm)*([038caec](https://github.com/nteract/nteract/commit/038caec285047077419d6f34cbea58a5a3b6831c))
+- split structural output updates (#2984) *(notebook)*([64247dd](https://github.com/nteract/nteract/commit/64247dd828eccce59805ae5ed2f8576794d537ef))
+- reduce streaming table rerenders (#2988) *(frontend)*([730b522](https://github.com/nteract/nteract/commit/730b5220c8866e7033a92543b3b31d3f645aa09d))
+
+#### Documentation
+
+- explain why daemon.json fallback stays (#2775) *(runtimed-client)*([ea708db](https://github.com/nteract/nteract/commit/ea708db8b42ed5da2085e46eb190838f87bd82f1))
+- update execution-id runtime-state plan (#2800) *(runtime)*([6435f32](https://github.com/nteract/nteract/commit/6435f32b12cd9a6ab357ae1ad3c1e6d038086e4b))
+- identity and trust for notebook rooms (#2801) *(architecture)*([b2cf3c8](https://github.com/nteract/nteract/commit/b2cf3c828f5750361c787637acd92da095e18ced))
+- refine automerge fork patch plan (#2802) *(architecture)*([b948a25](https://github.com/nteract/nteract/commit/b948a25b1950e8379024008056ca8083a70e2064))
+- four desktop ADRs + cleanup punchlist (#2813) *(architecture)*([4c99876](https://github.com/nteract/nteract/commit/4c998766a8d788e42e75a43de7133bbcc9a812a1))
+- inline cleanup pass [stack 1/6] (#2816) *(architecture)*([2b38fea](https://github.com/nteract/nteract/commit/2b38feaa83f3051aff760db42c0a7e7127764056))
+- four desktop ADRs + execution-liveness memo [stack 4/6] (#2819) *(architecture)*([aaca969](https://github.com/nteract/nteract/commit/aaca969cd49f7fd6fc7c91ba09d914bc49827954))
+- punchlist WP-12 — replace hand-mirrored TS table with Rust source of truth *(architecture)*([14d6f2a](https://github.com/nteract/nteract/commit/14d6f2a6c16b5ab95db78a13b6c2c9cdbd06e504))
+- punchlist WP-12 — single-source the TS frame-size table (#2841) *(architecture)*([a213859](https://github.com/nteract/nteract/commit/a2138598b1a3112d43a307d4c095c53558b47419))
+- define hosted room authorization (#2866) *(notebook-cloud)*([c8a95d8](https://github.com/nteract/nteract/commit/c8a95d854b1b263076e593026cd618ec8baccb61))
+- add hosted credential transport ADR (#2886) *(auth)*([5f98689](https://github.com/nteract/nteract/commit/5f98689a62060e2c16dbf8adbcb91c84b2fb7f23))
+- address hosted credential review *(auth)*([a7d800a](https://github.com/nteract/nteract/commit/a7d800ad3134b4bbb7e4a5e83bc7b908287bea62))
+- clarify websocket credential risks *(auth)*([2b8d18b](https://github.com/nteract/nteract/commit/2b8d18b35fbfa5310f50aafd41ae18008bfddcd1))
+- tighten ticket and subprotocol guidance *(auth)*([6cb0c64](https://github.com/nteract/nteract/commit/6cb0c647325e0b23c11483bd828427fb74f93586))
+- require single credential source *(auth)*([a1110b1](https://github.com/nteract/nteract/commit/a1110b130c0e3824c46cd7bed318f285d7d3ac82))
+- add output protocol ADRs (#2892) *(protocol)*([225d709](https://github.com/nteract/nteract/commit/225d709ab8e2fc2f7f6791fd73d8c88c98ddeb1f))
+- tighten output ADR wording (#2895) *(protocol)*([71fbb15](https://github.com/nteract/nteract/commit/71fbb1588ff96294ede6b320b574a7ea216d83bf))
+- align Access trial runbook (#2900) *(notebook-cloud)*([a4425e3](https://github.com/nteract/nteract/commit/a4425e30a58795c4954942f1327fa3d85ad32c81))
+- list Access trial blockers *(notebook-cloud)*([dfcf636](https://github.com/nteract/nteract/commit/dfcf6366db3b7ea8fbba84c62ecfccec74479e97))
+- define hosted deployment topology (#2904) *(architecture)*([22f2fbf](https://github.com/nteract/nteract/commit/22f2fbf3d2f9c693e11955ca52c9a37156ad0b4a))
+- address topology review *(architecture)*([99e89ea](https://github.com/nteract/nteract/commit/99e89eaf3440bc26571c1670dca0ca2d069a2c99))
+- clarify runtime topology *(architecture)*([1ebd732](https://github.com/nteract/nteract/commit/1ebd7328693640bd879479237a0b37641cb88357))
+- design runtime redaction refresh *(runtime)*([3669348](https://github.com/nteract/nteract/commit/3669348f2a747e1790ef21936058599aa1c6e24f))
+- clarify redaction refresh model *(runtime)*([e527ff3](https://github.com/nteract/nteract/commit/e527ff355e4625a7090c91b11f59d1a69ff57b69))
+- audit runtime peer and blob authority (#2909) *(architecture)*([3e78d42](https://github.com/nteract/nteract/commit/3e78d42bdcb730daa465bf663e85df0114b4a5fb))
+- update redaction boundary ADR *(architecture)*([64bf25a](https://github.com/nteract/nteract/commit/64bf25acfc68970c37b59c3508e3e6b3c456672f))
+- clarify python redaction scope *(architecture)*([0e7cb07](https://github.com/nteract/nteract/commit/0e7cb0777106d085f75dd6e00fd419c44273dbde))
+- clarify room authority boundaries (#2915) *(architecture)*([7d613d0](https://github.com/nteract/nteract/commit/7d613d03d21f9aac779917d9e380a542b2ae1e09))
+- define captured env lifecycle *(architecture)*([ad359ba](https://github.com/nteract/nteract/commit/ad359bafca7f61e6caeadf2588fa6f63217d6732))
+- clarify conda captured env hash inputs *(architecture)*([29ba8be](https://github.com/nteract/nteract/commit/29ba8be702e043e020f1fdbaa2dd310dacf55a8a))
+- clarify captured env fallback tradeoffs *(architecture)*([1f41a47](https://github.com/nteract/nteract/commit/1f41a479167dad223d7d18e7c634e65f08ee3763))
+- define captured environment lifecycle (#2914) *(architecture)*([dc1d8d4](https://github.com/nteract/nteract/commit/dc1d8d4757ee63a47cf4df9a8bdef17a5b0f7ce9))
+- define hosted output origin isolation (#2941) *(notebook-cloud)*([356efcb](https://github.com/nteract/nteract/commit/356efcbe5e5860fd813d5e3cc3b41db601e00606))
+- clarify output isolation prior art *(notebook-cloud)*([837fa1b](https://github.com/nteract/nteract/commit/837fa1bdec370284e0218c13e3f7a45063c6a191))
+- address hosted output review notes *(notebook-cloud)*([035abf6](https://github.com/nteract/nteract/commit/035abf689e3afd0c977273e96d539dadc2018ae4))
+- clarify Access workers.dev setup (#2947) *(notebook-cloud)*([1c96ffe](https://github.com/nteract/nteract/commit/1c96ffe50222097332e6471e2f5964d292bd6813))
+- define resource addressing *(mcp)*([b03ff83](https://github.com/nteract/nteract/commit/b03ff833f71b6a7053753b335f82796b400aee29))
+
+</details>
