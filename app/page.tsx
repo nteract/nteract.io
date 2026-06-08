@@ -39,13 +39,13 @@ export default async function Home() {
 
         <div className="mt-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
           <Link
-            href="/blog/nteract-2.0"
+            href="/changelog"
             className="group inline-flex items-center gap-3 text-sm text-gray-500 transition-colors hover:text-gray-900"
           >
-            <span className="text-base">🎉</span>
+            <span className="text-base">📰</span>
             <span>
-              <span className="font-medium text-gray-700 group-hover:text-gray-900">nteract 2.0 is here</span>
-              {" "}— read the launch post
+              <span className="font-medium text-gray-700 group-hover:text-gray-900">nteract 2.5 is out</span>
+              {". "}Read the changelog
             </span>
             <span className="transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
