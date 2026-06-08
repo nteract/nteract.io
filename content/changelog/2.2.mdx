@@ -1,0 +1,148 @@
+---
+version: "2.2"
+date: "2026-04-15T20:01:05Z"
+coversVersions:
+  - "2.2.0"
+dateLabel: "April 15, 2026"
+title: "Throwaway Runtimes, Conda Without the Restart"
+summary: "Agents spin up ephemeral runtimes that close when they finish, conda kernels pick up new packages without a restart, and the whole app gets a warm cream theme."
+highlights:
+  - "Ephemeral notebooks let agents grab a runtime on demand and throw it away when done"
+  - "Conda kernels hot-sync new dependencies without a restart"
+  - "Whole-app Cream theme"
+tags:
+  - "Agents"
+  - "Environments"
+  - "Notebook editing"
+  - "Desktop"
+githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.2.0-stable.202604151939"
+published: true
+heroImage: "https://img.runt.run/2026/06/08/00d0aa699ba1.png"
+# heroVideo: "https://…"   # TODO: a short demo clip (autoplays muted/looped)
+---
+
+2.2 is about runtimes you don't have to manage and restarts you don't have to take.
+
+## Ephemeral notebooks for agents
+
+Watching agents treat notebooks like their own throwaway sandboxes, nteract introduced ephemeral notebooks. An agent can spin one up on demand, run against it, and it all gets cleaned up when the agent disconnects. If they need to save it, it gets upgraded. No loose Untitled229.ipynb. The notebook lives only in memory, with no file on disk and no leftover state to sweep up. An agent or automated job can grab a runtime, get some work done. It's more like a regular REPL than a document you have to think about saving. Which, well, if you want to keep something you can always `save_notebook` and it's no longer ephemeral. Just a quick little upgrade.
+
+## Conda kernels hot-sync new dependencies
+
+Inline dependency hot-sync now works for conda environments, not just `uv`. Add a package to a running conda kernel and the environment syncs in place, no restart, no lost variables. Environment resolution itself went offline-first this release, so a flaky network at launch time is far less likely to block you.
+
+## A whole-app Cream theme
+
+In service to our super-secret data explorer we've added a new warm color theme that covers the entire app. New CodeMirror themes and swapped Prism for Lezer so all our static highlighting uses the same CodeMirror setup. Find it in settings to try out the dark and light modes.
+
+-----------------
+
+The less ceremony there is in getting to experimentation, the more you can experiment.
+
+## Full technical changelog
+
+<details>
+<summary>All 89 changes in 2.2</summary>
+
+### Features
+
+- enable conda hot-sync for inline dependencies (#1661) *(runtimed)*([0627c33](https://github.com/nteract/desktop/commit/0627c33b2e46ff7720d20ba9b70bf955d910f31b))
+- return per-cell outputs from run_all_cells (#1662) *(runt-mcp)*([e1eb16c](https://github.com/nteract/desktop/commit/e1eb16cc2c53d28c74a3aaf37f9f8592bca943ec))
+- content-aware multi-cell renderer with dev preview (#1665) *(mcp-app)*([7221be4](https://github.com/nteract/desktop/commit/7221be4eb20e3c6e3b524a0141c4eaa7df8dd212))
+- add 'kernel' alias for 'runtime' in create_notebook (#1670) *(runt-mcp)*([99d8797](https://github.com/nteract/desktop/commit/99d87979fa55699c337a02df157f5c011978f8f9))
+- ephemeral notebooks for MCP agents (#1669) *(runtimed)*([7ab1efb](https://github.com/nteract/desktop/commit/7ab1efb1d731e709ed7493398d52aea84f44f7e3))
+- blob store GC for orphaned blobs (#1672) *(runtimed)*([8391471](https://github.com/nteract/desktop/commit/83914719d16758a03a735231f4aeb5eb1a9770d7))
+- add nteract Codex and Claude plugin configs (#1666) *(plugins)*([521d0fc](https://github.com/nteract/desktop/commit/521d0fc6799af95e49be4339f5e4e0108b51f79c))
+- dynamic pool size configuration via settings doc (#1694) *(runtimed)*([b7732f5](https://github.com/nteract/desktop/commit/b7732f5dfed6c5e01b5c0d5495d194b9eab679f6))
+- offline-first environment resolution (#1699) *(kernel-env)*([15d0394](https://github.com/nteract/desktop/commit/15d0394c58673b44a4478da6327b413143084a3a))
+- pool warming with network failure detection (#1703) *(runtimed)*([c214d48](https://github.com/nteract/desktop/commit/c214d48cf5e95cfd9939140d56c84473b81f435d))
+- persist conda/pixi lock files for offline re-creation (#1705) *(kernel-env)*([908f3c5](https://github.com/nteract/desktop/commit/908f3c5c9dec88cfdd5279ec4c2eed409cc8d00a))
+- add @nteract/sift as packages/sift in monorepo (#1709) *(sift)*([703f7f6](https://github.com/nteract/desktop/commit/703f7f663ecb0e31eef5b0eb207bafe509a1d91f))
+- standalone renderer plugin test app (#1718) *(renderer-test)*([d89d2f7](https://github.com/nteract/desktop/commit/d89d2f75a7b2d837c702a9e6e405f67bd8bc47a0))
+- add parquet support to SiftTable url prop (#1720) *(sift)*([62cc46d](https://github.com/nteract/desktop/commit/62cc46d5cbfb3030dfcfab57168025b741907712))
+- add theme picker with Classic and Cream themes (#1725) *(sift)*([0cba8b3](https://github.com/nteract/desktop/commit/0cba8b36e6e6d369f111c6fdcaad89e6a616da3e))
+- parquet renderer plugin, WASM blob server, color theme settings (#1730) *(sift)*([1436329](https://github.com/nteract/desktop/commit/14363293abc84014414215fd86d053281771f9ec))
+- whole-app cream theme with CodeMirror support (#1739)([140fabe](https://github.com/nteract/desktop/commit/140fabeefa6f4c993ca0a8d9c0816ce00774d40f))
+- warm accent colors for cream theme (#1740) *(theme)*([813c488](https://github.com/nteract/desktop/commit/813c4888ec4c1bc8547b217303230ef13532af2e))
+- own CodeMirror themes, replace Prism with Lezer static highlighting (#1742) *(editor)*([4b44adb](https://github.com/nteract/desktop/commit/4b44adb8bf0aacd66f5b043e94083cbdd7793246))
+- parquet summaries for LLM + nteract-predicate/sift-wasm crate split (#1759) *(mcp)*([8188bcb](https://github.com/nteract/desktop/commit/8188bcb853b57e632ffe379d95b2ad84caf3819a))
+- nteract/dx — data-experience library for Python kernels (#1762) *(dx)*([5c2e5fd](https://github.com/nteract/desktop/commit/5c2e5fdc1a192b4de777bd2edf19fe2a22a33607))
+- use project's real conda env for conda:env_yml notebooks (#1766) *(conda)*([cc0706f](https://github.com/nteract/desktop/commit/cc0706fa2dd9942457494e2762ff574027ac3365))
+- save ipynb with blob refs instead of base64 (spec 2) (#1769) *(runtimed)*([2350ff3](https://github.com/nteract/desktop/commit/2350ff3b872923078babf8f692a3794136ce3e6b))
+- blob GC correctness (spec 1) (#1770) *(runtimed)*([e8b4953](https://github.com/nteract/desktop/commit/e8b49535ff3ae54bc9d9ecd82623b7fa6bc53454))
+- expose reconnect tool on the standalone MCP proxy (#1776) *(mcpb)*([00492df](https://github.com/nteract/desktop/commit/00492df4d6429692be48cf77f3c6b5bda159a90b))
+- consolidate tool surface — up, down, status, logs (#1777) *(supervisor)*([5724c04](https://github.com/nteract/desktop/commit/5724c04c90044354ddf9656408f32731178197a5))
+- register ipython_display_formatter handler for DataFrames (#1780) *(dx)*([22001e7](https://github.com/nteract/desktop/commit/22001e733afce429b5ac37007ece8de49904d4dc))
+- register formatters for narwhals DataFrame wrappers (#1782) *(dx)*([df439c7](https://github.com/nteract/desktop/commit/df439c7e330d30cfb7c4577047789626b0bf6569))
+- add GetDaemonInfo request as replacement for daemon.json (#1803) *(protocol)*([f35c3c0](https://github.com/nteract/desktop/commit/f35c3c0e187ff2c9f0f9f0e3ff2c20ee48470654))
+- query_daemon_info helper prefers socket (#1804) *(runtimed-client)*([9b8d988](https://github.com/nteract/desktop/commit/9b8d9882535a98ae9357c27bb775938f59dc198d))
+- cap Presence frames at 1 MiB in recv_typed_frame (#1806) *(protocol)*([ab5c0bd](https://github.com/nteract/desktop/commit/ab5c0bdc1d756a387de00c4a7810b1c796599859))
+- richer per-column stats + Dataset handler in text/llm+plain (#1809) *(dx)*([a43b2a8](https://github.com/nteract/desktop/commit/a43b2a8ab5b4d2b2f300e0abc79506210fc2eb74))
+- DaemonConnection — long-lived daemon session (Phases 1–3) (#1823) *(runtimed-client)*([10c3434](https://github.com/nteract/desktop/commit/10c34349c6a56805a9ec0310ab231de76a99e698))
+
+### Bug Fixes
+
+- show daemon error message in pool error banner (#1658) *(frontend)*([e04085a](https://github.com/nteract/desktop/commit/e04085aa980088baf4c1bf779853e98bfd5dc518))
+- ephemeral notebook review cleanups (#1671) *(runtimed)*([3359216](https://github.com/nteract/desktop/commit/335921643f72a739b665b08b80b88442b2673f1f))
+- auto-reset circuit breaker after cooldown (#1674) *(runt-mcp-proxy)*([321adb8](https://github.com/nteract/desktop/commit/321adb873bd8dd67ea580ddb9aabf2b6de0c1334))
+- re-resolve child binary on every restart (#1677) *(runt-mcp-proxy)*([a812587](https://github.com/nteract/desktop/commit/a8125874e47480c77e5a745d4822c362540d81d5))
+- coerce string booleans in MCP tool params (claude-code#32524) (#1678) *(runt-mcp)*([edb5d31](https://github.com/nteract/desktop/commit/edb5d31e92fee74c055c216e443c7bcfa900cc28))
+- respect SKIP_MATURIN during file-change handling (#1679) *(mcp-supervisor)*([1ed4371](https://github.com/nteract/desktop/commit/1ed437146a496d4369f954fc4465884c61c80bf7))
+- coerce string arrays in MCP tool params (claude-code#32524) (#1680) *(runt-mcp)*([b562604](https://github.com/nteract/desktop/commit/b562604bfc3426abbb776dc25b11ba8f61e719cb))
+- auto-create directories on save + block ephemeral UUID saves (#1683) *(runtimed)*([c79d0e0](https://github.com/nteract/desktop/commit/c79d0e0a2fea1b0a23535d097d95fd3b2a116df9))
+- defensive sweep for orphaned executions on kernel restart (#1690) *(runtimed)*([bab5fd1](https://github.com/nteract/desktop/commit/bab5fd152af6ac2ea5be69f25835f83c8b82d39e))
+- graceful fallback for launch_app in headless environments (#1693) *(runt-mcp)*([53d2ffe](https://github.com/nteract/desktop/commit/53d2ffea0ea5ae006e5358b47c7ec8fb578339a0))
+- parse UV checksum as hash+filename format (#1695) *(kernel-launch)*([f644f8b](https://github.com/nteract/desktop/commit/f644f8b0dffc88c0628a18419e5d45223da2f054))
+- graceful kernel shutdown with signal escalation (#1696) *(runtimed)*([8bdffb5](https://github.com/nteract/desktop/commit/8bdffb5970fc905035552c20251b07ca6f9ebf3a))
+- clean up ZeroMQ sockets when kernel dies (#1697) *(runtimed)*([ee2c48f](https://github.com/nteract/desktop/commit/ee2c48fcb111320f29daa4c6d958bd1b9c96bc9e))
+- clone state objects in AFM model proxy to prevent readonly errors (#1698) *(widgets)*([92e6ed3](https://github.com/nteract/desktop/commit/92e6ed39a35c0571c84fcde4600ee8b4326bdb9c))
+- add child process monitoring for transparent restarts (#1701) *(runt-mcp-proxy)*([48d24db](https://github.com/nteract/desktop/commit/48d24db27723cf84918f08ec275f4e9923b4a568))
+- honor pool_size settings from settings.json (#1702) *(runtimed)*([967c7b1](https://github.com/nteract/desktop/commit/967c7b1aa7d9a9ce679142cdf888cf9dca6ce9ae))
+- socket-aware daemon stop with signal escalation (#1704) *(runt)*([3005326](https://github.com/nteract/desktop/commit/3005326aa807a301be87f2813d46805518a3b2c5))
+- runtime agent process groups for clean orphan reaping (#1717) *(runtimed)*([49f6df1](https://github.com/nteract/desktop/commit/49f6df1f01a85f93e762c96e877b7276291e88a8))
+- check child transport state before skipping restart (#1722) *(mcp-proxy)*([1bd20da](https://github.com/nteract/desktop/commit/1bd20dac2d2ce65261909896d2d67afe48e13d78))
+- eliminate triple compilation of shared crates (#1724) *(build)*([01b584e](https://github.com/nteract/desktop/commit/01b584eb0920e201cc5197aef548aab034210ef7))
+- update Tailwind arbitrary value CSS vars to --sift-* names (#1726) *(sift)*([7ffa849](https://github.com/nteract/desktop/commit/7ffa849183c72761aa9a1d2c2e87311e3e3009b9))
+- stop watching .git files in build scripts (#1727) *(build)*([258bc82](https://github.com/nteract/desktop/commit/258bc82e1810b87d4af7dcfea31ffaffa3bd5d86))
+- env cleanup on room eviction and GC improvements (#1723) *(runtimed)*([b526496](https://github.com/nteract/desktop/commit/b52649636459cb928e81948afe9a33ca95829e70))
+- wait for Automerge doc sync before mutating in integration tests (#1729) *(test)*([2213e65](https://github.com/nteract/desktop/commit/2213e65df7bd65b51bb817712d3873e999be9687))
+- stop promote_inline_deps_to_project from removing project deps (#1733) *(runtimed)*([66c12e8](https://github.com/nteract/desktop/commit/66c12e88e92ead13360c4b2631922b55f71428eb))
+- set current_runtime_agent_id in LaunchKernel request path (#1735) *(runtimed)*([ab12f14](https://github.com/nteract/desktop/commit/ab12f14d015173b3ca25ce5246e086bfafd7380c))
+- skip stale Python rebuilds in warm builds (#1737) *(xtask)*([99c9cdd](https://github.com/nteract/desktop/commit/99c9cdd5be0a752f0eea8d07394eede84efcc400))
+- gate shell_escape with #[cfg(unix)] to fix Windows warning (#1738) *(build)*([dd3986a](https://github.com/nteract/desktop/commit/dd3986aba94321644f1deae32b23c8cfa29de078))
+- match output area width to CodeMirror editor (#1741) *(cell)*([248655f](https://github.com/nteract/desktop/commit/248655f2148d6d5d17019eb519dbaf10dafcfb23))
+- replace shared watch`<bool>` with per-agent oneshot channel (#1743) *(runtimed)*([3154e2d](https://github.com/nteract/desktop/commit/3154e2dac8b79390e38f05b582e46e497457e30d))
+- propagate colorTheme to iframe document element (#1745) *(iframe)*([6586cd5](https://github.com/nteract/desktop/commit/6586cd5fb48324a7e1d60feca19d9f5364af4174))
+- default create_notebook working_dir to CWD for project detection (#1750) *(mcp)*([bb958d2](https://github.com/nteract/desktop/commit/bb958d21d6eb689f091e81ef19afdf3106bcd8f5))
+- prevent GC from deleting pool envs mid-warmup (#1752) *(runtimed)*([87f0043](https://github.com/nteract/desktop/commit/87f0043a6ce7b4ef975ff01451f2a0ac4ea5dd2a))
+- restore Classic Light syntax colors (#1753) *(editor)*([fdf31a8](https://github.com/nteract/desktop/commit/fdf31a819c3c68cb45aba1dfc340fdb641b4cc87))
+- cell adder Tailwind classes + cream-aware iframe CSS vars (#1755) *(theme)*([acf6664](https://github.com/nteract/desktop/commit/acf66646f35a219056d8a6d28253480be9e5414f))
+- use webkit-prefixed Fullscreen API for WKWebView compatibility (#1756) *(sift)*([f371577](https://github.com/nteract/desktop/commit/f371577547fa1de0b13545df416852367233fae3))
+- enable Fullscreen API for output iframes (#1758) *(iframe)*([efe8cc7](https://github.com/nteract/desktop/commit/efe8cc76ad75872b03df9550c2df9ba8c230a1c9))
+- handle LargeUtf8 string columns (pandas parquet default) (#1763) *(predicate)*([b84a9e1](https://github.com/nteract/desktop/commit/b84a9e1fae898bd77974096dc0e218435037bbca))
+- increase virtualization overscan to prevent blank rows on fast scroll (#1764) *(sift)*([51a3d16](https://github.com/nteract/desktop/commit/51a3d16e787678f87048321bf54f0ccba1bfa11b))
+- emit Ready after additive pool delta install (#1765) *(env-progress)*([bcc89a1](https://github.com/nteract/desktop/commit/bcc89a1759319fff45d3f406e00de568a60105b8))
+- dx-dist artifact path — uv workspace writes to repo-root dist/ (#1775) *(ci)*([be10507](https://github.com/nteract/desktop/commit/be10507b5a4f1da1870229b0e2168cb9503fad7b))
+- health-probe vite and reinstall on lockfile drift (#1778) *(supervisor)*([9188026](https://github.com/nteract/desktop/commit/91880266e38c43e7482fa8169f7d0d57096e96c6))
+- render parquet via sift when pandas also emits HTML (#1779) *(mime-priority)*([53557d3](https://github.com/nteract/desktop/commit/53557d36f7fb5d5bae7ea7accf260fc1abbee6fe))
+- fail the release when a PyPI publish step errors (#1781) *(ci)*([b34af2f](https://github.com/nteract/desktop/commit/b34af2fdfce5e89af948c07d8a19a9e699beb797))
+- pin ruff to 0.15.10 and reformat dx integration tests (#1802) *(ci)*([c2c5642](https://github.com/nteract/desktop/commit/c2c56422de634951ebf187bc4523edf5ea835949))
+- reconnect on sync-socket framing errors (#1805) *(runtime-agent)*([4537498](https://github.com/nteract/desktop/commit/45374982f58f1a12e88476061c5d79d133a541f0))
+- author text/llm+plain wins over synth (#1808) *(output-resolver)*([51eddfe](https://github.com/nteract/desktop/commit/51eddfe0536bca6c07b3f2c0c967fb58c9262930))
+- check env sync drift after kernel restart (#1810) *(runtimed)*([71ae91c](https://github.com/nteract/desktop/commit/71ae91c60a7cee4c6dc8c5c071c096484f272028))
+- serve cached tools optimistically and bake in build channel (#1827) *(mcpb-runt)*([4fc2940](https://github.com/nteract/desktop/commit/4fc2940f11558e857636f890e7c6a28f2571da8b))
+
+### Performance
+
+- trim tool descriptions to reduce context cost (#1688) *(runt-mcp)*([0d7061f](https://github.com/nteract/desktop/commit/0d7061f23987811bdfca65981d3ed91f6f151c98))
+
+### Documentation
+
+- document daemon isolation setup and add supervisor failsafe (#1700)([8370da0](https://github.com/nteract/desktop/commit/8370da0fad47b372dd9139c5b7607e6df480f830))
+- update agent-facing docs to the up/down/status supervisor surface (#1784)([c95b64d](https://github.com/nteract/desktop/commit/c95b64d19a85c4996f616a2b72376d65234bb7ec))
+- extend _format_install module docstring to cover ipython_display path (#1785) *(dx)*([354c217](https://github.com/nteract/desktop/commit/354c217faff53657f12753adabc9fc90fb1456a4))
+- refresh stale RoomKernel/kernel_manager.rs references (#1791)([4a83eea](https://github.com/nteract/desktop/commit/4a83eea7dc6cd7d619b5875015eb28f7fd2477d2))
+- add test_dx_integration.py setup + run instructions (#1792) *(testing)*([2cfb081](https://github.com/nteract/desktop/commit/2cfb0816984709b310ce680a3122925bb0f517bf))
+- rewrite README for PyPI display (#1821) *(dx)*([58cff24](https://github.com/nteract/desktop/commit/58cff246e0bfef0ba659c30287b9bb0fce304ea3))
+
+</details>
