@@ -4,10 +4,10 @@ date: "2026-06-10T00:00:00Z"
 coversVersions:
   - "2.6.0"
 dateLabel: "Draft - June 10, 2026"
-title: "Outline Rail, Package Management, Widget State"
-summary: "The nteract 2.6 draft focuses the notebook workspace: a left rail with outline and packages, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
+title: "Table of Contents, Package Management, Widget State"
+summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
 highlights:
-  - "The left rail now carries the notebook outline and package management"
+  - "Long notebooks now get an outline / table of contents"
   - "Widget state is saved and restored more reliably across notebook sessions"
   - "Markdown rendering is backed by the Rust engine and now handles bare TeX environments"
 tags:
@@ -41,13 +41,13 @@ Before publishing 2.6, refresh the clone, replace the head commit with the final
 
 This is a notebook ergonomics release.
 
-## The rail has a job now
+## Table of Contents
 
 {/* TODO: add a screenshot or short clip of the left rail switching between outline and package panels. */}
 
-The left rail now carries the notebook outline.
+Long notebooks now get an outline in the left rail.
 
-That sounds small until you are in a long notebook and every heading has become a landmark. Instead of scrolling by vibes, you can skim the document structure, jump between sections, and keep the notebook body focused on the cells themselves.
+That sounds small until every heading has become a landmark. Instead of scrolling by vibes, you can skim the document structure, jump between sections, and keep the notebook body focused on the cells themselves.
 
 The rail also gives package management a better home. Package state belongs near the notebook, but it does not need to live in the notebook body. Moving package management into the rail makes the environment feel attached to the work without turning dependency management into another cell-shaped distraction.
 
