@@ -1,0 +1,162 @@
+---
+version: "2.6"
+date: "2026-06-10T00:00:00Z"
+coversVersions:
+  - "2.6.0"
+dateLabel: "Draft - June 10, 2026"
+title: "Table of Contents, Notebook Design, Widget State"
+summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, a more polished notebook shell, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
+highlights:
+  - "Long notebooks now get an outline / table of contents"
+  - "The notebook shell has new affordances, cleaner cell states, and more intentional motion"
+  - "Widget state is saved and restored more reliably across notebook sessions"
+  - "Markdown rendering is backed by the Rust engine and now handles bare TeX environments"
+tags:
+  - "notebook"
+  - "design"
+  - "packages"
+  - "widgets"
+  - "markdown"
+published: false
+# githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.6.0-stable.TODO"
+# heroImage: "https://img.runt.run/TODO/2.6-hero.png"
+# heroVideo: "https://img.runt.run/TODO/2.6-demo.mp4"
+---
+
+{/* 
+Release prep range, generated from /Users/kylekelley/code/src/github.com/nteract/nteract on 2026-06-10:
+
+Base: v2.5.1-stable.202605261941
+Base commit: 4867b005ac89d1ce28775c27a33f379da0d0f50e
+Head: origin/main
+Head commit: f6fba37ee12c414937859760b7fb59b2a4db7469
+Range: 4867b005ac89d1ce28775c27a33f379da0d0f50e..f6fba37ee12c414937859760b7fb59b2a4db7469
+First-parent commits at draft time: 441
+All commits at draft time: 666
+
+Before publishing 2.6, refresh the clone, replace the head commit with the final stable tag commit, regenerate the technical changelog, and update coversVersions/githubReleaseUrl/media.
+*/}
+
+2.6 is the release where the notebook gets more shape around the work you are already doing.
+
+2.5 made outputs feel richer: navigable tracebacks, explorable DataFrames, and secrets that stay out of notebook output. 2.6 is quieter, but it is the kind of quiet that matters after a few hours in the same notebook. Navigation moves closer. Packages stop competing with the page. Cell states get clearer. The shell has more intentional affordances and motion. Widgets remember more. Markdown behaves more like a document.
+
+This is a notebook ergonomics release.
+
+## Table of Contents
+
+{/* TODO: add a screenshot or short clip of the left rail switching between outline and package panels. */}
+
+Long notebooks now get an outline in the left rail.
+
+That sounds small until every heading has become a landmark. Instead of scrolling by vibes, you can skim the document structure, jump between sections, and keep the notebook body focused on the cells themselves.
+
+The rail also gives package management a better home. Package state belongs near the notebook, but it does not need to live in the notebook body. Moving package management into the rail makes the environment feel attached to the work without turning dependency management into another cell-shaped distraction.
+
+I like this direction because it makes nteract feel less like an editor with a notebook inside it and more like a notebook with the right surrounding instruments.
+
+## Package management moved out of the way
+
+{/* TODO: add a focused media capture of package management in the rail. */}
+
+Managing packages is part of notebook work. It is also not the notebook itself.
+
+The 2.6 rail work makes package panels and summaries feel like part of the workspace chrome instead of a one-off interruption. You can keep track of the environment, see what the notebook depends on, and get back to the cells faster.
+
+This is the same philosophy behind the rest of the rail: outline, packages, runtime, search, and other notebook-adjacent tools should be available without taking over the notebook.
+
+## Widgets remember more
+
+{/* TODO: add a before/after widget state demo if we have a good one. */}
+
+Widget state is the sleeper feature in this release.
+
+Some of the pressure for this came from work on hosted notebooks, but the feature matters on the desktop too. Once a widget becomes part of how you explore a notebook, it is not enough to replay the code and hope the UI lands in the same place. Sliders, progress, controls, and comm-backed state need to survive more of the notebook's real life.
+
+2.6 saves live widget state metadata more reliably and moves widget comm state into a clearer document path. The user-facing version is simple: widgets should feel less temporary.
+
+## Bare TeX works
+
+Markdown got more serious in 2.6.
+
+Bare TeX environments now project as math instead of sitting there like slightly suspicious plain text. If you write a notebook as a document, not just as a pile of code cells, that matters. Equations should read as equations.
+
+The Markdown path is also moving through the Rust/WASM markdown engine. Users probably do not need to care about the engine by name, but they should care about what it unlocks: steadier parsing, shared behavior, better anchors for outlines, and a Markdown cell that can carry more of the document experience without special cases.
+
+## A better notebook shell
+
+{/* TODO: add a short clip that shows the new cell affordances and animations in motion. */}
+
+There is a lot of new design work in 2.6, and I do not want it to disappear under the word "polish."
+
+The notebook shell has better affordances for what you can do, what state a cell is in, and where the next action lives. Hidden cells have clearer language. Completed cells quiet down. Structure edits gate themselves on host support. The rail can carry more responsibility. The notebook body gets to stay the notebook body.
+
+There is new motion here too: not animation for decoration, but animation that helps the notebook explain itself. Execution, reveal, focus, and shell transitions can feel less abrupt when the interface has a little choreography.
+
+That may sound like vibes until you spend a day in the notebook. Then it becomes the difference between an app that constantly asks you to re-orient and an app that keeps you in the work.
+
+## Things to finish before publishing
+
+- Replace the draft date with the final release date.
+- Replace `coversVersions` with the actual 2.6 stable and patch versions.
+- Add the final `githubReleaseUrl`.
+- Add the 2.6 hero image and any demo videos.
+- Refresh the commit range comment against the final stable tag.
+- Regenerate or paste the final technical changelog.
+- Trim any sections that still read too implementation-heavy after the release shape is final.
+
+## Working technical changelog
+
+<details>
+<summary>Current draft range summary</summary>
+
+This section is a prep scaffold, not the final generated changelog.
+
+Current source range:
+
+```text
+4867b005ac89d1ce28775c27a33f379da0d0f50e..f6fba37ee12c414937859760b7fb59b2a4db7469
+```
+
+The range currently contains 441 first-parent commits and 666 total commits since `v2.5.1-stable.202605261941`.
+
+### Rail, outline, and packages
+
+- add contextual outline tree ([db4b61a](https://github.com/nteract/nteract/commit/db4b61ac))
+- add left rail panels ([f07b528](https://github.com/nteract/nteract/commit/f07b5286))
+- add shared notebook rail shell ([5b365b8](https://github.com/nteract/nteract/commit/5b365b8b))
+- polish notebook rail outline and packages ([c350f5c](https://github.com/nteract/nteract/commit/c350f5cf))
+- split package manager panels ([aaa65fd](https://github.com/nteract/nteract/commit/aaa65fd2))
+- share package summary surfaces ([b41296c](https://github.com/nteract/nteract/commit/b41296c0))
+- document package manager surfaces ([163f447](https://github.com/nteract/nteract/commit/163f447c))
+
+### Widget state
+
+- save live widget state metadata ([644933e](https://github.com/nteract/nteract/commit/644933e8))
+- split widget comm state into `CommsDoc` ([13a5fe2](https://github.com/nteract/nteract/commit/13a5fe23))
+- project `CommsDoc` widget state to Python ([54339c1](https://github.com/nteract/nteract/commit/54339c12))
+- hydrate widget progress views ([f640db7](https://github.com/nteract/nteract/commit/f640db7c))
+- resolve widget comm blobs ([d50887c](https://github.com/nteract/nteract/commit/d50887ca))
+- show stale widget snapshots ([a9bbc54](https://github.com/nteract/nteract/commit/a9bbc54e))
+
+### Markdown and TeX
+
+- project Markdown through Rust WASM ([5d4682e](https://github.com/nteract/nteract/commit/5d4682e1))
+- project bare TeX environments as math ([70d1006](https://github.com/nteract/nteract/commit/70d10061))
+- restore preview double-click editing ([5d337e7](https://github.com/nteract/nteract/commit/5d337e77))
+- keep document frames selectable ([449315f](https://github.com/nteract/nteract/commit/449315fd))
+- use markdown engine anchors for notebook outline ([9344e01](https://github.com/nteract/nteract/commit/9344e010))
+- refine document typography ([e113ccb](https://github.com/nteract/nteract/commit/e113ccb2))
+
+### Notebook shell and ergonomics
+
+- add capability-scoped document header ([fdf13aa](https://github.com/nteract/nteract/commit/fdf13aae))
+- drive `NotebookView` from shell capabilities ([8af8135](https://github.com/nteract/nteract/commit/8af81352))
+- gate run controls on host-neutral runtime availability ([4cb2b76](https://github.com/nteract/nteract/commit/4cb2b766))
+- stage execution signal animation ([fdac721](https://github.com/nteract/nteract/commit/fdac721d))
+- refine hidden and output surfaces ([5b5fda8](https://github.com/nteract/nteract/commit/5b5fda8f))
+- soften hidden cell reveal rows ([5477469](https://github.com/nteract/nteract/commit/54774693))
+- quiet completed cell status ([335f0ab](https://github.com/nteract/nteract/commit/335f0ab9))
+- keep hidden cell keyboard navigation moving ([f2555da](https://github.com/nteract/nteract/commit/f2555da2))
+
+</details>
