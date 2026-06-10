@@ -4,14 +4,16 @@ date: "2026-06-10T00:00:00Z"
 coversVersions:
   - "2.6.0"
 dateLabel: "Draft - June 10, 2026"
-title: "Table of Contents, Package Management, Widget State"
-summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
+title: "Table of Contents, Notebook Design, Widget State"
+summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, a more polished notebook shell, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
 highlights:
   - "Long notebooks now get an outline / table of contents"
+  - "The notebook shell has new affordances, cleaner cell states, and more intentional motion"
   - "Widget state is saved and restored more reliably across notebook sessions"
   - "Markdown rendering is backed by the Rust engine and now handles bare TeX environments"
 tags:
   - "notebook"
+  - "design"
   - "packages"
   - "widgets"
   - "markdown"
@@ -37,7 +39,7 @@ Before publishing 2.6, refresh the clone, replace the head commit with the final
 
 2.6 is the release where the notebook gets more shape around the work you are already doing.
 
-2.5 made outputs feel richer: navigable tracebacks, explorable DataFrames, and secrets that stay out of notebook output. 2.6 is quieter, but it is the kind of quiet that matters after a few hours in the same notebook. Navigation moves closer. Packages stop competing with the page. Widgets remember more. Markdown behaves more like a document.
+2.5 made outputs feel richer: navigable tracebacks, explorable DataFrames, and secrets that stay out of notebook output. 2.6 is quieter, but it is the kind of quiet that matters after a few hours in the same notebook. Navigation moves closer. Packages stop competing with the page. Cell states get clearer. The shell has more intentional affordances and motion. Widgets remember more. Markdown behaves more like a document.
 
 This is a notebook ergonomics release.
 
@@ -83,9 +85,15 @@ The Markdown path is also moving through the Rust/WASM markdown engine. Users pr
 
 ## A better notebook shell
 
-A lot of the 2.6 work sits just below the surface: shared rail pieces, shell capabilities, quieter execution affordances, better hidden-cell language, shared package summaries, and a more consistent NotebookView.
+{/* TODO: add a short clip that shows the new cell affordances and animations in motion. */}
 
-That may sound like internal plumbing, but it shows up in the app as fewer weird edges. Read-only markdown still navigates. Structure edits gate themselves on host support. The rail can carry more responsibility. The notebook body gets to stay the notebook body.
+There is a lot of new design work in 2.6, and I do not want it to disappear under the word "polish."
+
+The notebook shell has better affordances for what you can do, what state a cell is in, and where the next action lives. Hidden cells have clearer language. Completed cells quiet down. Structure edits gate themselves on host support. The rail can carry more responsibility. The notebook body gets to stay the notebook body.
+
+There is new motion here too: not animation for decoration, but animation that helps the notebook explain itself. Execution, reveal, focus, and shell transitions can feel less abrupt when the interface has a little choreography.
+
+That may sound like vibes until you spend a day in the notebook. Then it becomes the difference between an app that constantly asks you to re-orient and an app that keeps you in the work.
 
 ## Things to finish before publishing
 
@@ -145,6 +153,7 @@ The range currently contains 441 first-parent commits and 666 total commits sinc
 - add capability-scoped document header ([fdf13aa](https://github.com/nteract/nteract/commit/fdf13aae))
 - drive `NotebookView` from shell capabilities ([8af8135](https://github.com/nteract/nteract/commit/8af81352))
 - gate run controls on host-neutral runtime availability ([4cb2b76](https://github.com/nteract/nteract/commit/4cb2b766))
+- stage execution signal animation ([fdac721](https://github.com/nteract/nteract/commit/fdac721d))
 - refine hidden and output surfaces ([5b5fda8](https://github.com/nteract/nteract/commit/5b5fda8f))
 - soften hidden cell reveal rows ([5477469](https://github.com/nteract/nteract/commit/54774693))
 - quiet completed cell status ([335f0ab](https://github.com/nteract/nteract/commit/335f0ab9))
