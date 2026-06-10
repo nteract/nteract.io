@@ -4,17 +4,17 @@ date: "2026-06-10T00:00:00Z"
 coversVersions:
   - "2.6.0"
 dateLabel: "Draft - June 10, 2026"
-title: "Hosted Notebooks, Workstations, and One Notebook Shell"
-summary: "The nteract 2.6 draft brings hosted notebooks closer to the desktop app: shared NotebookView surfaces, owner-run cloud execution, workstation compute, faster hosted outputs, and cleaner MCP resources."
+title: "Outline Rail, Package Management, Widget State"
+summary: "The nteract 2.6 draft focuses the notebook workspace: a left rail with outline and packages, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
 highlights:
-  - "Hosted notebooks can be shared, edited, and executed through owner-controlled runtime peers"
-  - "Desktop and cloud notebooks now converge on the same NotebookView shell, rail, capabilities, and actor model"
-  - "Publishing, widgets, output frames, Sift, and MCP resources got faster and harder to break"
+  - "The left rail now carries the notebook outline and package management"
+  - "Widget state is saved and restored more reliably across notebook sessions"
+  - "Markdown rendering is backed by the Rust engine and now handles bare TeX environments"
 tags:
-  - "cloud"
-  - "workstations"
   - "notebook"
-  - "mcp"
+  - "packages"
+  - "widgets"
+  - "markdown"
 published: false
 # githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.6.0-stable.TODO"
 # heroImage: "https://img.runt.run/TODO/2.6-hero.png"
@@ -35,79 +35,57 @@ All commits at draft time: 666
 Before publishing 2.6, refresh the clone, replace the head commit with the final stable tag commit, regenerate the technical changelog, and update coversVersions/githubReleaseUrl/media.
 */}
 
-2.6 is the release where the browser notebook stops feeling like a read-only postcard from the desktop app.
+2.6 is the release where the notebook gets more shape around the work you are already doing.
 
-This one is about making the same notebook surface show up in more places: local files, hosted rooms, shared links, runtime peers, workstation compute, and the agents that want to read or drive the notebook without inventing a second copy of it.
+2.5 made outputs feel richer: navigable tracebacks, explorable DataFrames, and secrets that stay out of notebook output. 2.6 is quieter, but it is the kind of quiet that matters after a few hours in the same notebook. Navigation moves closer. Packages stop competing with the page. Widgets remember more. Markdown behaves more like a document.
 
-I've wanted nteract cloud notebooks to feel less like "publish a snapshot" and more like "keep working in the same room." This release is the big step in that direction.
+This is a notebook ergonomics release.
 
-## Hosted notebooks you can work in
+## The rail has a job now
 
-{/* TODO: add a short video showing a hosted notebook moving between viewer/editor modes, sharing controls, and live output updates. */}
+{/* TODO: add a screenshot or short clip of the left rail switching between outline and package panels. */}
 
-Hosted notebooks now have real room mechanics behind them. Owners can share notebooks, grant edit access, accept authenticated viewers, and keep browser sessions attached without turning every link into a one-off artifact.
+The left rail now carries the notebook outline.
 
-The cloud app learned about app sessions, owner-gated sharing controls, edit access requests, invite storage, friendlier presence labels, and hosted widget state that survives more of the weird browser edges. The point is boring in the best way: a hosted notebook should feel like a notebook you can keep using.
+That sounds small until you are in a long notebook and every heading has become a landmark. Instead of scrolling by vibes, you can skim the document structure, jump between sections, and keep the notebook body focused on the cells themselves.
 
-## Run it from the cloud, keep the runtime yours
+The rail also gives package management a better home. Package state belongs near the notebook, but it does not need to live in the notebook body. Moving package management into the rail makes the environment feel attached to the work without turning dependency management into another cell-shaped distraction.
 
-{/* TODO: add a demo clip of starting workstation compute from the hosted toolbar. */}
+I like this direction because it makes nteract feel less like an editor with a notebook inside it and more like a notebook with the right surrounding instruments.
 
-2.6 starts connecting hosted notebooks to real compute instead of pretending the viewer is the runtime.
+## Package management moved out of the way
 
-Runtime peers can attach to hosted rooms, accept execution intent, reconnect, re-auth, and publish their state back to the room. Workstations show up in the document rail and can be started from the hosted toolbar. There is a one-liner workstation install path in the current range, plus Anaconda API key support for the hosted side of the flow.
+{/* TODO: add a focused media capture of package management in the rail. */}
 
-This is the shape I want for cloud notebooks: the browser owns the collaboration and sharing surface, but the runtime stays explicit. You can see when compute is offline, when a peer is attached, and when a room is waiting on a runtime instead of guessing.
+Managing packages is part of notebook work. It is also not the notebook itself.
 
-## One NotebookView
+The 2.6 rail work makes package panels and summaries feel like part of the workspace chrome instead of a one-off interruption. You can keep track of the environment, see what the notebook depends on, and get back to the cells faster.
 
-The desktop app and hosted cloud used to look related, but too much of the notebook chrome was duplicated. 2.6 cuts that down.
+This is the same philosophy behind the rest of the rail: outline, packages, runtime, search, and other notebook-adjacent tools should be available without taking over the notebook.
 
-The notebook view now shares more of its shell: the rail, capability model, headers, host notices, package summaries, search, environment panels, hidden-cell affordances, output focus, and execution language. That sounds internal, but it changes how the app feels. The cloud notebook and the desktop notebook are now arguing less about what a notebook is.
+## Widgets remember more
 
-You can see it in smaller things too: read-only markdown still navigates, editor controls gate themselves on host capabilities, execution status takes up less visual noise, and the left rail finally has enough structure to carry outline, packages, runtime, workstation, and search surfaces without becoming a junk drawer.
+{/* TODO: add a before/after widget state demo if we have a good one. */}
 
-## Markdown grew up
+Widget state is the sleeper feature in this release.
 
-Markdown is no longer just a React-side preview bolted to cells.
+Some of the pressure for this came from work on hosted notebooks, but the feature matters on the desktop too. Once a widget becomes part of how you explore a notebook, it is not enough to replay the code and hope the UI lands in the same place. Sliders, progress, controls, and comm-backed state need to survive more of the notebook's real life.
 
-This range moves markdown through the Rust/WASM markdown engine, adds richer document typography, fixes bare TeX environments, restores double-click editing, keeps document frames selectable, and uses markdown engine anchors for notebook outlines.
+2.6 saves live widget state metadata more reliably and moves widget comm state into a clearer document path. The user-facing version is simple: widgets should feel less temporary.
 
-That matters for hosted notebooks because markdown is the bridge between "notebook as code scratchpad" and "notebook as report." If the cloud view is going to be a real shared document, markdown has to be stable, navigable, and pleasant to read.
+## Bare TeX works
 
-## Outputs and widgets got more durable
+Markdown got more serious in 2.6.
 
-2.5 made outputs more explorable. 2.6 keeps pushing on the part where outputs must survive being published, framed, shared, cached, replayed, and read by tools.
+Bare TeX environments now project as math instead of sitting there like slightly suspicious plain text. If you write a notebook as a document, not just as a pile of code cells, that matters. Equations should read as equations.
 
-Widgets now save more live metadata. Progress widgets hydrate correctly in hosted views. Sift picked up image thumbnails and image navigation. Engaged Sift frames behave better with scroll boundaries. Output frames respect host frame domains, hosted viewers preload the sidecars they need, and blob metadata is harder to corrupt when the same output shows up twice.
+The Markdown path is also moving through the Rust/WASM markdown engine. Users probably do not need to care about the engine by name, but they should care about what it unlocks: steadier parsing, shared behavior, better anchors for outlines, and a Markdown cell that can carry more of the document experience without special cases.
 
-There is also a lot of unglamorous repair here: nested Arrow blobs, widget comm blobs, published output refs, first-paint theme seeding, direct output document transforms, and cached renderer assets. That is the work that makes a notebook output feel boringly present when it leaves your machine.
+## A better notebook shell
 
-## Hosted publishing is getting faster
+A lot of the 2.6 work sits just below the surface: shared rail pieces, shell capabilities, quieter execution affordances, better hidden-cell language, shared package summaries, and a more consistent NotebookView.
 
-{/* TODO: add a before/after clip or timing capture for hosted output hydration. */}
-
-The viewer path got a serious round of performance work.
-
-Hosted notebooks now defer and stage more of the expensive output work: lazy output frame mounting, progressive output hydration, runtime WASM preloads, Sift WASM preloads, sidecar renderer assets, hosted output blob caching, viewer CSS splitting, and incremental live runtime projections.
-
-The user-facing version is simple: shared notebooks should load the notebook first, then get richer as the expensive pieces arrive. No one should wait for every widget, frame, stylesheet, and blob before reading the first cell.
-
-## MCP reads the notebook, not a shadow notebook
-
-MCP and agent surfaces are quieter and more notebook-native in 2.6.
-
-Cell reads prefer resources. Client display names are canonicalized. Generated icons are advertised. Proxy recovery messages are more install-aware. The notebook tool bridge is exposed from `runt`, and the hosted/browser runtime work gives agents a clearer route into the same notebook state a human sees.
-
-That is the part I care about most: tools should not need a parallel notebook model. They should read cells, outputs, identities, and runtime state from the same documents the app is already using.
-
-## Under the floorboards
-
-There is a lot of floorboard work in this range.
-
-Runtime state documents now carry identity. Widget comm state is split into `CommsDoc`. Autosave is more careful about stale rooms and empty-room overwrites. Fresh notebook seeding is daemon-owned. Connection status is observable. Local-first persistence gets a `notebookDocChanged$` signal. Runtimed has a test kernel and a clearer kernel dispatch enum. Sync peer egress lanes are split and classified.
-
-That is not a flashy list, but it is the kind of foundation this app needs before the same notebook can move between local editing, hosted viewing, shared execution, and agent tooling without losing the plot.
+That may sound like internal plumbing, but it shows up in the app as fewer weird edges. Read-only markdown still navigates. Structure edits gate themselves on host support. The rail can carry more responsibility. The notebook body gets to stay the notebook body.
 
 ## Things to finish before publishing
 
@@ -117,7 +95,7 @@ That is not a flashy list, but it is the kind of foundation this app needs befor
 - Add the 2.6 hero image and any demo videos.
 - Refresh the commit range comment against the final stable tag.
 - Regenerate or paste the final technical changelog.
-- Trim any sections that are too implementation-heavy after the final release shape is clear.
+- Trim any sections that still read too implementation-heavy after the release shape is final.
 
 ## Working technical changelog
 
@@ -134,80 +112,42 @@ Current source range:
 
 The range currently contains 441 first-parent commits and 666 total commits since `v2.5.1-stable.202605261941`.
 
-### Hosted notebooks and sharing
+### Rail, outline, and packages
 
-- add hosted sharing controls ([cbe800f](https://github.com/nteract/nteract/commit/cbe800f4))
-- add hosted edit access requests ([67d0fcd](https://github.com/nteract/nteract/commit/67d0fcda))
-- grant editors full cell editing in hosted rooms ([956cce9](https://github.com/nteract/nteract/commit/956cce97))
-- render hosted notebooks through `NotebookView` ([2723268](https://github.com/nteract/nteract/commit/27232684))
-- bootstrap notebook home with app sessions ([5162237](https://github.com/nteract/nteract/commit/51622379))
-- polish notebook home and workstation panel ([5cb944c](https://github.com/nteract/nteract/commit/5cb944c1))
-- gate sharing controls to owners ([790b759](https://github.com/nteract/nteract/commit/790b7591))
-
-### Runtime peers and workstations
-
-- add `runt publish` helper ([39c7acc](https://github.com/nteract/nteract/commit/39c7acc5))
-- accept Anaconda API keys ([61ccd18](https://github.com/nteract/nteract/commit/61ccd186))
-- add preview OIDC login ([4444f9f](https://github.com/nteract/nteract/commit/4444f9fc))
-- add cloud runtime lifecycle ([809cf01](https://github.com/nteract/nteract/commit/809cf01e))
-- add transport-agnostic `runtime_agent` and cloud WebSocket transport ([9c87bd0](https://github.com/nteract/nteract/commit/9c87bd01))
-- add daemon workstation endpoint ([8660705](https://github.com/nteract/nteract/commit/86607050))
-- register hosted workstations ([b3b10f5](https://github.com/nteract/nteract/commit/b3b10f59))
-- project workstation launch contract ([c100d41](https://github.com/nteract/nteract/commit/c100d414))
-- start workstation compute from the toolbar ([ddbaa4e](https://github.com/nteract/nteract/commit/ddbaa4e7))
-
-### Notebook shell convergence
-
-- add shared notebook rail shell ([5b365b8](https://github.com/nteract/nteract/commit/5b365b8b))
 - add contextual outline tree ([db4b61a](https://github.com/nteract/nteract/commit/db4b61ac))
 - add left rail panels ([f07b528](https://github.com/nteract/nteract/commit/f07b5286))
-- add capability-scoped document header ([fdf13aa](https://github.com/nteract/nteract/commit/fdf13aae))
-- drive `NotebookView` from shell capabilities ([8af8135](https://github.com/nteract/nteract/commit/8af81352))
-- refine hidden and output surfaces ([5b5fda8](https://github.com/nteract/nteract/commit/5b5fda8f))
-- share runtime command projection ([90cdb05](https://github.com/nteract/nteract/commit/90cdb057))
-- add connection status and local-first persistence signals ([50187ab](https://github.com/nteract/nteract/commit/50187ab2))
+- add shared notebook rail shell ([5b365b8](https://github.com/nteract/nteract/commit/5b365b8b))
+- polish notebook rail outline and packages ([c350f5c](https://github.com/nteract/nteract/commit/c350f5cf))
+- split package manager panels ([aaa65fd](https://github.com/nteract/nteract/commit/aaa65fd2))
+- share package summary surfaces ([b41296c](https://github.com/nteract/nteract/commit/b41296c0))
+- document package manager surfaces ([163f447](https://github.com/nteract/nteract/commit/163f447c))
 
-### Markdown, outputs, and widgets
+### Widget state
 
-- add traceback frame navigation ([b96f758](https://github.com/nteract/nteract/commit/b96f7584))
-- add Sift image thumbnail viewer ([f8a308e](https://github.com/nteract/nteract/commit/f8a308ed))
-- add Sift image viewer navigation ([3fd5852](https://github.com/nteract/nteract/commit/3fd5852f))
-- project markdown through Rust WASM ([5d4682e](https://github.com/nteract/nteract/commit/5d4682e1))
-- refine document typography ([e113ccb](https://github.com/nteract/nteract/commit/e113ccb2))
-- keep document frames selectable ([449315f](https://github.com/nteract/nteract/commit/449315fd))
+- save live widget state metadata ([644933e](https://github.com/nteract/nteract/commit/644933e8))
 - split widget comm state into `CommsDoc` ([13a5fe2](https://github.com/nteract/nteract/commit/13a5fe23))
 - project `CommsDoc` widget state to Python ([54339c1](https://github.com/nteract/nteract/commit/54339c12))
-- save live widget state metadata ([644933e](https://github.com/nteract/nteract/commit/644933e8))
+- hydrate widget progress views ([f640db7](https://github.com/nteract/nteract/commit/f640db7c))
+- resolve widget comm blobs ([d50887c](https://github.com/nteract/nteract/commit/d50887ca))
+- show stale widget snapshots ([a9bbc54](https://github.com/nteract/nteract/commit/a9bbc54e))
 
-### Performance and hosted viewer loading
+### Markdown and TeX
 
-- preload Sift WASM for live views ([cf8172a](https://github.com/nteract/nteract/commit/cf8172a3))
-- hydrate hosted outputs progressively ([d16326e](https://github.com/nteract/nteract/commit/d16326e1))
-- load renderer from sidecar assets ([98663df](https://github.com/nteract/nteract/commit/98663df4))
-- defer supplemental viewer CSS ([a6e94b2](https://github.com/nteract/nteract/commit/a6e94b2e))
-- stage async output resolution ([8f32259](https://github.com/nteract/nteract/commit/8f322592))
-- lazy mount output frames ([91f3977](https://github.com/nteract/nteract/commit/91f3977d))
-- cache hosted output blobs ([5499951](https://github.com/nteract/nteract/commit/5499951d))
-- project live runtime updates incrementally ([679c6ae](https://github.com/nteract/nteract/commit/679c6ae2))
-- coalesce concurrent text-blob fetches ([f908f43](https://github.com/nteract/nteract/commit/f908f431))
+- project Markdown through Rust WASM ([5d4682e](https://github.com/nteract/nteract/commit/5d4682e1))
+- project bare TeX environments as math ([70d1006](https://github.com/nteract/nteract/commit/70d10061))
+- restore preview double-click editing ([5d337e7](https://github.com/nteract/nteract/commit/5d337e77))
+- keep document frames selectable ([449315f](https://github.com/nteract/nteract/commit/449315fd))
+- use markdown engine anchors for notebook outline ([9344e01](https://github.com/nteract/nteract/commit/9344e010))
+- refine document typography ([e113ccb](https://github.com/nteract/nteract/commit/e113ccb2))
 
-### MCP, agents, and tooling
+### Notebook shell and ergonomics
 
-- canonicalize MCP client display names ([c9f24ae](https://github.com/nteract/nteract/commit/c9f24ae3))
-- advertise generated MCP icons ([b6b6db7](https://github.com/nteract/nteract/commit/b6b6db78))
-- prefer resources for cell reads ([689034e](https://github.com/nteract/nteract/commit/689034e9))
-- expose notebook tool bridge ([497a3fa](https://github.com/nteract/nteract/commit/497a3fa7))
-- make proxy recovery messages install-aware ([c84481d](https://github.com/nteract/nteract/commit/c84481d6))
-- make Codex notebook MCP installs distinct ([1823167](https://github.com/nteract/nteract/commit/18231676))
-
-### Safety and foundations
-
-- add runtime state document identity ([e385d80](https://github.com/nteract/nteract/commit/e385d806))
-- seed runtime state document identity in rooms ([2cdcd22](https://github.com/nteract/nteract/commit/2cdcd225))
-- gate hosted runtime state writes ([3573305](https://github.com/nteract/nteract/commit/35733050))
-- do not autosave an empty room over a non-empty notebook file ([7c2a255](https://github.com/nteract/nteract/commit/7c2a255b))
-- make fresh notebook seeding daemon-owned ([2d1da4a](https://github.com/nteract/nteract/commit/2d1da4a3))
-- refuse stale autosaves and write `.ipynb` atomically ([7c36d0f](https://github.com/nteract/nteract/commit/7c36d0fc))
-- add `TestKernel` and kernel dispatch enum ([dc77f16](https://github.com/nteract/nteract/commit/dc77f16b))
+- add capability-scoped document header ([fdf13aa](https://github.com/nteract/nteract/commit/fdf13aae))
+- drive `NotebookView` from shell capabilities ([8af8135](https://github.com/nteract/nteract/commit/8af81352))
+- gate run controls on host-neutral runtime availability ([4cb2b76](https://github.com/nteract/nteract/commit/4cb2b766))
+- refine hidden and output surfaces ([5b5fda8](https://github.com/nteract/nteract/commit/5b5fda8f))
+- soften hidden cell reveal rows ([5477469](https://github.com/nteract/nteract/commit/54774693))
+- quiet completed cell status ([335f0ab](https://github.com/nteract/nteract/commit/335f0ab9))
+- keep hidden cell keyboard navigation moving ([f2555da](https://github.com/nteract/nteract/commit/f2555da2))
 
 </details>
