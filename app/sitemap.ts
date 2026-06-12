@@ -14,6 +14,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 1,
     },
     {
+      url: absoluteUrl("/install"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: absoluteUrl("/agents"),
       changeFrequency: "monthly",
       priority: 0.7,

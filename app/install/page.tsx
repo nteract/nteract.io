@@ -1,0 +1,174 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import type { ReactNode } from "react";
+
+import { DownloadButtons } from "@/components/home/download-buttons";
+import { Container, SiteFooter, SiteHeader } from "@/components/site-shell";
+import { siteConfig } from "@/lib/site";
+
+export const metadata: Metadata = {
+  title: "Install nteract",
+  description:
+    "Get the nteract desktop app for macOS, Windows, and Linux — or install the CLI and daemon on any Linux or macOS machine with one command, including headless workstations for hosted notebooks.",
+};
+
+async function getStableVersion(): Promise<string | null> {
+  try {
+    const res = await fetch(siteConfig.stableManifestUrl, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const manifest = (await res.json()) as { version?: string };
+    return manifest.version ?? null;
+  } catch {
+    return null;
+  }
+}
+
+const INSTALL_CMD = ["curl -fsSL https://sh.nteract.io | bash"];
+const HEADLESS_CMD = ["curl -fsSL https://sh.nteract.io | bash -s -- --headless"];
+const WORKSTATION_CMDS = [
+  "runt workstation connect https://app.runt.run --code XXXX-XXXX-XXXX",
+  "runt workstation run",
+];
+
+function CommandBlock({ commands }: { commands: string[] }) {
+  return (
+    <pre className="overflow-x-auto rounded-2xl border border-black/10 bg-slate-950 px-5 py-4 text-sm leading-7 text-slate-100 shadow-sm">
+      <code>{commands.join("\n")}</code>
+    </pre>
+  );
+}
+
+function StepCard({
+  eyebrow,
+  title,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  children: ReactNode;
+}) {
+  return (
+    <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-teal-600">
+        {eyebrow}
+      </p>
+      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-950">
+        {title}
+      </h2>
+      <div className="space-y-4 text-[16px] leading-7 text-gray-700">{children}</div>
+    </section>
+  );
+}
+
+function InlineCode({ children }: { children: ReactNode }) {
+  return <code className="rounded bg-gray-100 px-1 py-0.5">{children}</code>;
+}
+
+export default async function InstallPage() {
+  const version = await getStableVersion();
+
+  return (
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <SiteHeader />
+
+      <main>
+        <Container className="py-16 sm:py-24">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">
+              Install
+            </p>
+            <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl">
+              Install nteract
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+              The desktop app for the machine in front of you. One command for
+              every other machine you own — including headless workstations
+              that run compute for hosted notebooks.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-12 grid max-w-4xl gap-6">
+            <StepCard eyebrow="01" title="Desktop app">
+              <p>
+                macOS (Apple silicon or Intel), Windows, and Linux. The app
+                bundles everything: the notebook, the <InlineCode>runt</InlineCode>{" "}
+                CLI, and the <InlineCode>runtimed</InlineCode> daemon, kept up to
+                date automatically.
+              </p>
+              <DownloadButtons version={version} />
+            </StepCard>
+
+            <StepCard eyebrow="02" title="One command — Linux & macOS">
+              <CommandBlock commands={INSTALL_CMD} />
+              <p>
+                Installs the app plus <InlineCode>runt</InlineCode>,{" "}
+                <InlineCode>runtimed</InlineCode>, and{" "}
+                <InlineCode>nteract-mcp</InlineCode>, links the commands into{" "}
+                <InlineCode>~/.local/bin</InlineCode>, and sets up the per-user
+                daemon service (systemd on Linux, launchd on macOS). Everything
+                is per-user — no root, no system package manager. Re-run the
+                same command to upgrade.
+              </p>
+            </StepCard>
+
+            <StepCard eyebrow="03" title="Headless servers & remote workstations">
+              <p>
+                For machines that only run compute — an Outerbounds workstation,
+                a JupyterHub single-user server, a beefy box under your desk —
+                skip the desktop app:
+              </p>
+              <CommandBlock commands={HEADLESS_CMD} />
+              <p>
+                To offer that machine&rsquo;s compute to a hosted notebook, open
+                the notebook&rsquo;s workstation panel, choose{" "}
+                <strong className="text-gray-950">Add workstation</strong> to
+                mint a pairing code, and run the two commands it shows you:
+              </p>
+              <CommandBlock commands={WORKSTATION_CMDS} />
+              <p>
+                The machine appears in the panel by name and serves execution
+                over an outbound connection — no inbound ports, no reverse
+                proxy. Workstation pairing ships with the next stable release
+                and is available on{" "}
+                <Link
+                  href="/nightly"
+                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
+                >
+                  nightly
+                </Link>{" "}
+                today.
+              </p>
+            </StepCard>
+
+            <StepCard eyebrow="04" title="Channels">
+              <p>
+                Stable is the default everywhere above. The{" "}
+                <Link
+                  href="/nightly"
+                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
+                >
+                  nightly channel
+                </Link>{" "}
+                installs side-by-side with channel-suffixed commands
+                (<InlineCode>runt-nightly</InlineCode>,{" "}
+                <InlineCode>nteract-nightly</InlineCode>), so you can run both.
+                Agents have their own setup — see{" "}
+                <Link
+                  href="/agents"
+                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
+                >
+                  nteract for agents
+                </Link>
+                .
+              </p>
+            </StepCard>
+          </div>
+        </Container>
+      </main>
+
+      <SiteFooter />
+    </div>
+  );
+}
