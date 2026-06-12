@@ -103,13 +103,14 @@ export default async function InstallPage() {
             <StepCard eyebrow="02" title="One command — Linux & macOS">
               <CommandBlock commands={INSTALL_CMD} />
               <p>
-                Installs the app plus <InlineCode>runt</InlineCode>,{" "}
-                <InlineCode>runtimed</InlineCode>, and{" "}
-                <InlineCode>nteract-mcp</InlineCode>, links the commands into{" "}
-                <InlineCode>~/.local/bin</InlineCode>, and sets up the per-user
-                daemon service (systemd on Linux, launchd on macOS). Everything
-                is per-user — no root, no system package manager. Re-run the
-                same command to upgrade.
+                Installs the app (the AppImage on Linux; the signed bundle in{" "}
+                <InlineCode>~/Applications</InlineCode> on macOS) plus{" "}
+                <InlineCode>runt</InlineCode>, <InlineCode>runtimed</InlineCode>,
+                and <InlineCode>nteract-mcp</InlineCode>, links the commands
+                into <InlineCode>~/.local/bin</InlineCode>, and sets up the
+                per-user daemon service (systemd on Linux, launchd on macOS).
+                Everything is per-user — no root, no system package manager.
+                Re-run the same command to upgrade.
               </p>
             </StepCard>
 
@@ -130,15 +131,15 @@ export default async function InstallPage() {
               <p>
                 The machine appears in the panel by name and serves execution
                 over an outbound connection — no inbound ports, no reverse
-                proxy. Workstation pairing ships with the next stable release
-                and is available on{" "}
+                proxy. Workstation pairing ships with the next stable release;
+                the{" "}
                 <Link
                   href="/nightly"
                   className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
                 >
-                  nightly
+                  nightly channel
                 </Link>{" "}
-                today.
+                has it first.
               </p>
             </StepCard>
 
