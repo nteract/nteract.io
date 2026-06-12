@@ -18,6 +18,7 @@ export function Container({ className, ...props }: ContainerProps) {
 }
 
 const navLinks = [
+  { href: "/install", label: "Install" },
   { href: "/agents", label: "Agents" },
   { href: "/changelog", label: "Changelog" },
   { href: "/blog", label: "Blog" },
