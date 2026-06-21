@@ -1,0 +1,147 @@
+---
+version: "cloud-unreleased"
+date: "2026-06-10T00:00:01Z"
+coversVersions:
+  - "cloud-unreleased"
+dateLabel: "Deferred holding draft"
+title: "Hosted Notebooks, Workstations, and Runtime Peers"
+summary: "A holding draft for the hosted notebook and workstation-compute story: shared rooms, owner-run execution, runtime peers, faster hosted outputs, and MCP resources."
+highlights:
+  - "Hosted notebooks can become shared rooms with owner-controlled editing and execution"
+  - "Runtime peers and workstations attach real compute to browser-hosted notebooks"
+  - "Hosted outputs, widgets, publishing, and MCP resources are moving toward the same notebook state"
+tags:
+  - "cloud"
+  - "workstations"
+  - "sharing"
+  - "mcp"
+published: false
+# githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.7.0-stable.TODO"
+# heroImage: "https://img.runt.run/TODO/2.7-hero.png"
+# heroVideo: "https://img.runt.run/TODO/2.7-demo.mp4"
+---
+
+{/* 
+Deferred holding draft. The leading underscore in the filename keeps this file
+out of the changelog loader (see lib/changelog.ts: it skips files starting with
+"_"), so it never renders and its frontmatter version is a placeholder, not a
+real release slot.
+
+Do not publish until the cloud offering is public and stable enough to market.
+As of 2026-06 this work is hosted on preview.runt.run but not release-ready, and
+it now sits behind both the 2.6 ergonomics release and the 2.7 commenting
+release. When cloud is ready, copy this back to a numbered NN.mdx, refresh the
+range against the final tag, and remove anything that shipped earlier.
+
+Source material moved out of the first 2.6 prep draft after the release positioning changed.
+
+Release prep range, generated from /Users/kylekelley/code/src/github.com/nteract/nteract on 2026-06-10:
+
+Base: v2.5.1-stable.202605261941
+Base commit: 4867b005ac89d1ce28775c27a33f379da0d0f50e
+Head: origin/main
+Head commit: f6fba37ee12c414937859760b7fb59b2a4db7469
+Range: 4867b005ac89d1ce28775c27a33f379da0d0f50e..f6fba37ee12c414937859760b7fb59b2a4db7469
+
+Before publishing, refresh this against the final release tag and remove anything that shipped in 2.6.
+*/}
+
+This is the release story for hosted notebooks once the cloud offering is ready to talk about publicly.
+
+The premise is still right: the browser notebook should stop feeling like a read-only postcard from the desktop app. Hosted notebooks should become rooms you can share, edit, execute, publish, and hand to tools without inventing a second notebook model.
+
+It is just not the 2.6 story.
+
+## Hosted notebooks you can keep using
+
+{/* TODO: add a short video showing a hosted notebook moving between viewer/editor modes, sharing controls, and live output updates. */}
+
+Hosted notebooks are gaining real room mechanics behind them. Owners can share notebooks, grant edit access, accept authenticated viewers, and keep browser sessions attached without turning every link into a one-off artifact.
+
+The cloud app has learned about app sessions, owner-gated sharing controls, edit access requests, invite storage, friendlier presence labels, and hosted widget state that survives more of the weird browser edges.
+
+The target is boring in the best way: a hosted notebook should feel like a notebook you can keep using.
+
+## Run it from the cloud, keep the runtime yours
+
+{/* TODO: add a demo clip of starting workstation compute from the hosted toolbar. */}
+
+The cloud work starts connecting hosted notebooks to real compute instead of pretending the viewer is the runtime.
+
+Runtime peers can attach to hosted rooms, accept execution intent, reconnect, re-auth, and publish their state back to the room. Workstations show up in the document rail and can be started from the hosted toolbar. There is a one-liner workstation install path in the current range, plus Anaconda API key support for the hosted side of the flow.
+
+This is the shape I want for cloud notebooks: the browser owns the collaboration and sharing surface, but the runtime stays explicit. You can see when compute is offline, when a peer is attached, and when a room is waiting on a runtime instead of guessing.
+
+## One notebook state
+
+The desktop app and hosted cloud used to look related, but too much of the notebook chrome and state flow was duplicated. The cloud work cuts that down.
+
+The notebook view now shares more of its shell: the rail, capability model, headers, host notices, package summaries, search, environment panels, hidden-cell affordances, output focus, and execution language. That sounds internal, but it changes how the app feels. The cloud notebook and the desktop notebook are now arguing less about what a notebook is.
+
+## Hosted publishing gets faster
+
+{/* TODO: add a before/after clip or timing capture for hosted output hydration. */}
+
+The viewer path has picked up a serious round of performance work.
+
+Hosted notebooks defer and stage more of the expensive output work: lazy output frame mounting, progressive output hydration, runtime WASM preloads, Sift WASM preloads, sidecar renderer assets, hosted output blob caching, viewer CSS splitting, and incremental live runtime projections.
+
+The user-facing version is simple: shared notebooks should load the notebook first, then get richer as the expensive pieces arrive. No one should wait for every widget, frame, stylesheet, and blob before reading the first cell.
+
+## MCP reads the notebook, not a shadow notebook
+
+MCP and agent surfaces are becoming more notebook-native.
+
+Cell reads prefer resources. Client display names are canonicalized. Generated icons are advertised. Proxy recovery messages are more install-aware. The notebook tool bridge is exposed from `runt`, and the hosted/browser runtime work gives agents a clearer route into the same notebook state a human sees.
+
+That is the part I care about most: tools should not need a parallel notebook model. They should read cells, outputs, identities, and runtime state from the same documents the app is already using.
+
+## Working technical changelog
+
+<details>
+<summary>Current cloud/workstation draft notes</summary>
+
+This section is a prep scaffold, not the final generated changelog.
+
+### Hosted notebooks and sharing
+
+- add hosted sharing controls ([cbe800f](https://github.com/nteract/nteract/commit/cbe800f4))
+- add hosted edit access requests ([67d0fcd](https://github.com/nteract/nteract/commit/67d0fcda))
+- grant editors full cell editing in hosted rooms ([956cce9](https://github.com/nteract/nteract/commit/956cce97))
+- render hosted notebooks through `NotebookView` ([2723268](https://github.com/nteract/nteract/commit/27232684))
+- bootstrap notebook home with app sessions ([5162237](https://github.com/nteract/nteract/commit/51622379))
+- polish notebook home and workstation panel ([5cb944c](https://github.com/nteract/nteract/commit/5cb944c1))
+- gate sharing controls to owners ([790b759](https://github.com/nteract/nteract/commit/790b7591))
+
+### Runtime peers and workstations
+
+- add `runt publish` helper ([39c7acc](https://github.com/nteract/nteract/commit/39c7acc5))
+- accept Anaconda API keys ([61ccd18](https://github.com/nteract/nteract/commit/61ccd186))
+- add preview OIDC login ([4444f9f](https://github.com/nteract/nteract/commit/4444f9fc))
+- add cloud runtime lifecycle ([809cf01](https://github.com/nteract/nteract/commit/809cf01e))
+- add transport-agnostic `runtime_agent` and cloud WebSocket transport ([9c87bd0](https://github.com/nteract/nteract/commit/9c87bd01))
+- add daemon workstation endpoint ([8660705](https://github.com/nteract/nteract/commit/86607050))
+- register hosted workstations ([b3b10f5](https://github.com/nteract/nteract/commit/b3b10f59))
+- project workstation launch contract ([c100d41](https://github.com/nteract/nteract/commit/c100d414))
+- start workstation compute from the toolbar ([ddbaa4e](https://github.com/nteract/nteract/commit/ddbaa4e7))
+
+### Hosted viewer and output loading
+
+- preload Sift WASM for live views ([cf8172a](https://github.com/nteract/nteract/commit/cf8172a3))
+- hydrate hosted outputs progressively ([d16326e](https://github.com/nteract/nteract/commit/d16326e1))
+- load renderer from sidecar assets ([98663df](https://github.com/nteract/nteract/commit/98663df4))
+- defer supplemental viewer CSS ([a6e94b2](https://github.com/nteract/nteract/commit/a6e94b2e))
+- stage async output resolution ([8f32259](https://github.com/nteract/nteract/commit/8f322592))
+- lazy mount output frames ([91f3977](https://github.com/nteract/nteract/commit/91f3977d))
+- cache hosted output blobs ([5499951](https://github.com/nteract/nteract/commit/5499951d))
+- project live runtime updates incrementally ([679c6ae](https://github.com/nteract/nteract/commit/679c6ae2))
+
+### MCP, agents, and tooling
+
+- canonicalize MCP client display names ([c9f24ae](https://github.com/nteract/nteract/commit/c9f24ae3))
+- advertise generated MCP icons ([b6b6db7](https://github.com/nteract/nteract/commit/b6b6db78))
+- prefer resources for cell reads ([689034e](https://github.com/nteract/nteract/commit/689034e9))
+- expose notebook tool bridge ([497a3fa](https://github.com/nteract/nteract/commit/497a3fa7))
+- make proxy recovery messages install-aware ([c84481d](https://github.com/nteract/nteract/commit/c84481d6))
+
+</details>

@@ -5,15 +5,17 @@ coversVersions:
   - "2.6.0"
 dateLabel: "Draft - June 10, 2026"
 title: "Table of Contents, Notebook Design, Widget State"
-summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, a more polished notebook shell, widget state that survives more of your work, and Markdown improvements including bare TeX rendering."
+summary: "The nteract 2.6 draft focuses the notebook workspace: a table of contents for long notebooks, package management in the rail, a more polished notebook shell, widget state that survives more of your work, Markdown including bare TeX, plus two from user feedback: switching a cell between code and Markdown from the menus, and an opt-out for automatic code formatting."
 highlights:
+  - "Switch a cell between code and Markdown from the context and main menus"
+  - "Turn off automatic code reformatting when you want your code left as written"
   - "Long notebooks now get an outline / table of contents"
   - "The notebook shell has new affordances, cleaner cell states, and more intentional motion"
   - "Widget state is saved and restored more reliably across notebook sessions"
-  - "Markdown rendering is backed by the Rust engine and now handles bare TeX environments"
 tags:
   - "notebook"
   - "design"
+  - "editing"
   - "packages"
   - "widgets"
   - "markdown"
@@ -95,8 +97,26 @@ There is new motion here too: not animation for decoration, but animation that h
 
 That may sound like vibes until you spend a day in the notebook. Then it becomes the difference between an app that constantly asks you to re-orient and an app that keeps you in the work.
 
+## Switch a cell between code and Markdown
+
+{/* TODO: capture the cell context menu showing the change-type entry. */}
+
+A cell should not be stuck as the type you first made it.
+
+2.6 makes switching a cell between code and Markdown a first-class move. Right-click a cell, or use the main menu, and change its type. Mostly that is the everyday loop of writing a notebook that is half prose and half computation: drop into Markdown to explain, back to code to compute, without deleting and recreating cells.
+
+The switch is an edit on the cell itself, so its place in the notebook and anything anchored to it come along for the ride. This one came straight from user feedback, and it is the kind of small thing you stop noticing precisely because it stopped getting in your way.
+
+## Formatting on your terms
+
+nteract can tidy code on its way in: `ruff` for Python, `deno fmt` for the rest. Some people love it. Some people want their code left exactly as written.
+
+2.6 adds a setting to turn automatic reformatting off. When it is off, the notebook stops rewriting code you did not ask it to touch. Auto-format stays the default for the people who like it, but it is no longer something the editor insists on. This closes a long-standing request ([#3795](https://github.com/nteract/nteract/issues/3795)).
+
 ## Things to finish before publishing
 
+- Land the two user-feedback add-ons (cell type switching, auto-format opt-out) and add their commits to the technical changelog.
+- Confirm the commenting UI is gated off for the 2.6 release channel (it launches publicly in 2.7).
 - Replace the draft date with the final release date.
 - Replace `coversVersions` with the actual 2.6 stable and patch versions.
 - Add the final `githubReleaseUrl`.
