@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
 
+import { CommandBlock, InlineCode, PageHero, StepCard } from "@/components/product/page-primitives";
 import { Container, SiteFooter, SiteHeader } from "@/components/site-shell";
 
 export const metadata: Metadata = {
@@ -21,36 +21,6 @@ const codexCommands = [
   "# Then run /plugin in Codex and enable nteract or nightly",
 ];
 
-function CommandBlock({ commands }: { commands: string[] }) {
-  return (
-    <pre className="overflow-x-auto rounded-2xl border border-black/10 bg-slate-950 px-5 py-4 text-sm leading-7 text-slate-100 shadow-sm">
-      <code>{commands.join("\n")}</code>
-    </pre>
-  );
-}
-
-function StepCard({
-  eyebrow,
-  title,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-teal-600">
-        {eyebrow}
-      </p>
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-950">
-        {title}
-      </h2>
-      <div className="space-y-4 text-[16px] leading-7 text-gray-700">{children}</div>
-    </section>
-  );
-}
-
 export default function AgentsPage() {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
@@ -58,20 +28,18 @@ export default function AgentsPage() {
 
       <main>
         <Container className="py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">
-              Agents
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl">
-              Use nteract as your agent notebook
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-              nteract plugins let Claude Code and Codex run exploratory Python in
-              a live notebook instead of hiding work in one-off shell commands.
-              The notebook keeps state, captures rich outputs, and stays available
-              for humans to inspect, edit, and save.
-            </p>
-          </div>
+          <PageHero
+            eyebrow="Agents"
+            title="Use nteract as your agent notebook"
+            subtitle={
+              <>
+                nteract plugins let Claude Code and Codex run exploratory Python in
+                a live notebook instead of hiding work in one-off shell commands.
+                The notebook keeps state, captures rich outputs, and stays available
+                for humans to inspect, edit, and save.
+              </>
+            }
+          />
 
           <div className="mx-auto mt-12 grid max-w-4xl gap-6">
             <StepCard eyebrow="01" title="Choose the stable or nightly plugin">
@@ -104,7 +72,7 @@ export default function AgentsPage() {
               <CommandBlock commands={claudeCommands} />
               <p>
                 Claude Code pins plugins at install time. To install a known
-                release, add <code className="rounded bg-gray-100 px-1 py-0.5">--ref vX.Y.Z</code>{" "}
+                release, add <InlineCode>--ref vX.Y.Z</InlineCode>{" "}
                 to the install command.
               </p>
             </StepCard>
@@ -113,7 +81,7 @@ export default function AgentsPage() {
               <CommandBlock commands={codexCommands} />
               <p>
                 After registering the marketplace, start or restart Codex, run{" "}
-                <code className="rounded bg-gray-100 px-1 py-0.5">/plugin</code>,
+                <InlineCode>/plugin</InlineCode>,
                 pick the nteract marketplace, and enable the stable or nightly
                 plugin. Codex resolves the platform-specific sidecar bundled with
                 the plugin.
@@ -146,8 +114,8 @@ export default function AgentsPage() {
                 </li>
                 <li>
                   If the agent reports runtime issues, open nteract locally and run{" "}
-                  <code className="rounded bg-gray-100 px-1 py-0.5">runt doctor</code>{" "}
-                  or <code className="rounded bg-gray-100 px-1 py-0.5">runt-nightly doctor</code>.
+                  <InlineCode>runt doctor</InlineCode>{" "}
+                  or <InlineCode>runt-nightly doctor</InlineCode>.
                 </li>
               </ul>
             </StepCard>
