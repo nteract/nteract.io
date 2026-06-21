@@ -6,7 +6,7 @@ import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 type ContainerProps = HTMLAttributes<HTMLDivElement>;
-type HeaderVariant = "light" | "dark";
+type HeaderVariant = "light" | "dark" | "floating";
 
 export function Container({ className, ...props }: ContainerProps) {
   return (
@@ -71,6 +71,30 @@ interface SiteHeaderProps {
 
 export function SiteHeader({ variant = "light" }: SiteHeaderProps) {
   const isDark = variant === "dark";
+  const isFloating = variant === "floating";
+
+  if (isFloating) {
+    return (
+      <header className="sticky top-0 z-50 px-4 pt-4 sm:pt-6">
+        <div className="mx-auto flex max-w-3xl items-center justify-between gap-4 rounded-full border border-black/5 bg-white/80 px-4 py-2.5 shadow-sm backdrop-blur-md sm:px-6">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2.5 transition-opacity hover:opacity-80"
+          >
+            <Logo className="h-7 w-7" />
+            <span className="text-sm font-semibold tracking-tight text-gray-900">
+              {siteConfig.name}
+            </span>
+          </Link>
+          <nav className="flex items-center gap-3 sm:gap-5">
+            {navLinks.map((link) => (
+              <SiteNavLink key={link.href} {...link} />
+            ))}
+          </nav>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header

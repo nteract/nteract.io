@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { ReactNode } from "react";
 
 import { DownloadButtons } from "@/components/home/download-buttons";
+import { CommandBlock, InlineCode, PageHero, StepCard } from "@/components/product/page-primitives";
 import { Container, SiteFooter, SiteHeader } from "@/components/site-shell";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Install nteract",
   description:
-    "Get the nteract desktop app for macOS, Windows, and Linux — or install the CLI and daemon on any Linux or macOS machine with one command, including headless workstations for hosted notebooks.",
+    "Get the nteract desktop app for macOS, Windows, and Linux — or install the CLI and daemon on any Linux or macOS machine with one command.",
 };
 
 async function getStableVersion(): Promise<string | null> {
@@ -26,45 +26,6 @@ async function getStableVersion(): Promise<string | null> {
 }
 
 const INSTALL_CMD = ["curl -fsSL https://sh.nteract.io | bash"];
-const HEADLESS_CMD = ["curl -fsSL https://sh.nteract.io | bash -s -- --headless"];
-const WORKSTATION_CMDS = [
-  "runt workstation connect https://app.runt.run --code XXXX-XXXX-XXXX",
-  "runt workstation run",
-];
-
-function CommandBlock({ commands }: { commands: string[] }) {
-  return (
-    <pre className="overflow-x-auto rounded-2xl border border-black/10 bg-slate-950 px-5 py-4 text-sm leading-7 text-slate-100 shadow-sm">
-      <code>{commands.join("\n")}</code>
-    </pre>
-  );
-}
-
-function StepCard({
-  eyebrow,
-  title,
-  children,
-}: {
-  eyebrow: string;
-  title: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-teal-600">
-        {eyebrow}
-      </p>
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-950">
-        {title}
-      </h2>
-      <div className="space-y-4 text-[16px] leading-7 text-gray-700">{children}</div>
-    </section>
-  );
-}
-
-function InlineCode({ children }: { children: ReactNode }) {
-  return <code className="rounded bg-gray-100 px-1 py-0.5">{children}</code>;
-}
 
 export default async function InstallPage() {
   const version = await getStableVersion();
@@ -75,19 +36,16 @@ export default async function InstallPage() {
 
       <main>
         <Container className="py-16 sm:py-24">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-teal-600">
-              Install
-            </p>
-            <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl">
-              Install nteract
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
-              The desktop app for the machine in front of you. One command for
-              every other machine you own — including headless workstations
-              that run compute for hosted notebooks.
-            </p>
-          </div>
+          <PageHero
+            eyebrow="Install"
+            title="Install nteract"
+            subtitle={
+              <>
+                The desktop app for the machine in front of you. One command for
+                every other machine you own.
+              </>
+            }
+          />
 
           <div className="mx-auto mt-12 grid max-w-4xl gap-6">
             <StepCard eyebrow="01" title="Desktop app">
@@ -114,36 +72,7 @@ export default async function InstallPage() {
               </p>
             </StepCard>
 
-            <StepCard eyebrow="03" title="Headless servers & remote workstations">
-              <p>
-                For machines that only run compute — an Outerbounds workstation,
-                a JupyterHub single-user server, a beefy box under your desk —
-                skip the desktop app:
-              </p>
-              <CommandBlock commands={HEADLESS_CMD} />
-              <p>
-                To offer that machine&rsquo;s compute to a hosted notebook, open
-                the notebook&rsquo;s workstation panel, choose{" "}
-                <strong className="text-gray-950">Add workstation</strong> to
-                mint a pairing code, and run the two commands it shows you:
-              </p>
-              <CommandBlock commands={WORKSTATION_CMDS} />
-              <p>
-                The machine appears in the panel by name and serves execution
-                over an outbound connection — no inbound ports, no reverse
-                proxy. Workstation pairing ships with the next stable release;
-                the{" "}
-                <Link
-                  href="/nightly"
-                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
-                >
-                  nightly channel
-                </Link>{" "}
-                has it first.
-              </p>
-            </StepCard>
-
-            <StepCard eyebrow="04" title="Channels">
+            <StepCard eyebrow="03" title="Channels">
               <p>
                 Stable is the default everywhere above. The{" "}
                 <Link
