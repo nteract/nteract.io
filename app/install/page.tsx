@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Install nteract",
   description:
-    "Get the nteract desktop app for macOS, Windows, and Linux — or install the CLI and daemon on any Linux or macOS machine with one command, including headless workstations for hosted notebooks.",
+    "Get the nteract desktop app for macOS, Windows, and Linux — or install the CLI and daemon on any Linux or macOS machine with one command.",
 };
 
 async function getStableVersion(): Promise<string | null> {
@@ -26,11 +26,6 @@ async function getStableVersion(): Promise<string | null> {
 }
 
 const INSTALL_CMD = ["curl -fsSL https://sh.nteract.io | bash"];
-const HEADLESS_CMD = ["curl -fsSL https://sh.nteract.io | bash -s -- --headless"];
-const WORKSTATION_CMDS = [
-  "runt workstation connect https://app.runt.run --code XXXX-XXXX-XXXX",
-  "runt workstation run",
-];
 
 export default async function InstallPage() {
   const version = await getStableVersion();
@@ -47,8 +42,7 @@ export default async function InstallPage() {
             subtitle={
               <>
                 The desktop app for the machine in front of you. One command for
-                every other machine you own — including headless workstations
-                that run compute for hosted notebooks.
+                every other machine you own.
               </>
             }
           />
@@ -78,36 +72,7 @@ export default async function InstallPage() {
               </p>
             </StepCard>
 
-            <StepCard eyebrow="03" title="Headless servers & remote workstations">
-              <p>
-                For machines that only run compute — an Outerbounds workstation,
-                a JupyterHub single-user server, a beefy box under your desk —
-                skip the desktop app:
-              </p>
-              <CommandBlock commands={HEADLESS_CMD} />
-              <p>
-                To offer that machine&rsquo;s compute to a hosted notebook, open
-                the notebook&rsquo;s workstation panel, choose{" "}
-                <strong className="text-gray-950">Add workstation</strong> to
-                mint a pairing code, and run the two commands it shows you:
-              </p>
-              <CommandBlock commands={WORKSTATION_CMDS} />
-              <p>
-                The machine appears in the panel by name and serves execution
-                over an outbound connection — no inbound ports, no reverse
-                proxy. Workstation pairing ships with the next stable release;
-                the{" "}
-                <Link
-                  href="/nightly"
-                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
-                >
-                  nightly channel
-                </Link>{" "}
-                has it first.
-              </p>
-            </StepCard>
-
-            <StepCard eyebrow="04" title="Channels">
+            <StepCard eyebrow="03" title="Channels">
               <p>
                 Stable is the default everywhere above. The{" "}
                 <Link

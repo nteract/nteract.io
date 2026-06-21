@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
+      <SiteHeader variant="floating" />
       <main className="flex flex-1 flex-col items-center justify-center px-4 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <Link
