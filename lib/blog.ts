@@ -3,7 +3,7 @@ import path from "node:path";
 
 import matter from "gray-matter";
 
-import { absoluteUrl } from "@/lib/site";
+import { resolveBlogAuthors, type BlogAuthor } from "@/lib/authors";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "content/blog");
 
@@ -16,6 +16,7 @@ export type BlogPostFrontmatter = {
   coverImage?: string;
   coverVideo?: string;
   ogImage?: string;
+  authors: BlogAuthor[];
 };
 
 export type BlogPostSummary = BlogPostFrontmatter & {
@@ -32,7 +33,7 @@ type BlogQueryOptions = {
 
 function assertString(
   value: unknown,
-  field: keyof BlogPostFrontmatter,
+  field: string,
   fileName: string,
 ) {
   if (typeof value !== "string" || value.trim().length === 0) {
@@ -53,22 +54,47 @@ function normalizeDate(value: unknown, fileName: string) {
 }
 
 function normalizeTags(value: unknown, fileName: string) {
+  return normalizeStringList(value, "tags", fileName, { splitComma: true });
+}
+
+function normalizeStringList(
+  value: unknown,
+  field: string,
+  fileName: string,
+  options: { splitComma?: boolean } = {},
+) {
   if (value == null) {
     return [];
   }
 
   if (Array.isArray(value)) {
-    return value.map((entry) => assertString(entry, "tags", fileName));
+    return value.map((entry) => assertString(entry, field, fileName));
   }
 
   if (typeof value === "string") {
+    if (!options.splitComma) {
+      return [assertString(value, field, fileName)];
+    }
+
     return value
       .split(",")
       .map((tag) => tag.trim())
       .filter(Boolean);
   }
 
-  throw new Error(`Expected "tags" to be a string or string[] in ${fileName}`);
+  throw new Error(
+    `Expected "${field}" to be a string or string[] in ${fileName}`,
+  );
+}
+
+function normalizeAuthors(data: Record<string, unknown>, fileName: string) {
+  const authorIds = normalizeStringList(
+    data.authors ?? data.author,
+    "authors",
+    fileName,
+  );
+
+  return resolveBlogAuthors(authorIds, fileName);
 }
 
 function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
@@ -78,6 +104,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
   const published =
     data.published === undefined ? true : Boolean(data.published);
   const tags = normalizeTags(data.tags, fileName);
+  const authors = normalizeAuthors(data, fileName);
   const coverImage =
     typeof data.coverImage === "string" && data.coverImage.trim().length > 0
       ? data.coverImage.trim()
@@ -100,6 +127,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     coverImage,
     coverVideo,
     ogImage,
+    authors,
   } satisfies BlogPostFrontmatter;
 }
 

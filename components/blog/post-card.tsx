@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BlogAuthorByline } from "@/components/blog/author-byline";
 import { BlogTagList } from "@/components/blog/tag-list";
 import { formatPostDate, type BlogPostSummary } from "@/lib/blog";
 
@@ -20,6 +21,15 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         >
           {formatPostDate(post.date)}
         </time>
+        {post.authors.length > 0 ? (
+          <>
+            <span className="h-1 w-1 bg-outline-variant" aria-hidden="true" />
+            <BlogAuthorByline
+              authors={post.authors}
+              className="font-mono text-[11px] text-secondary"
+            />
+          </>
+        ) : null}
         {post.tags.length > 0 ? (
           <span
             className="h-1 w-1 bg-outline-variant"

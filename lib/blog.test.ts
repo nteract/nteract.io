@@ -25,4 +25,16 @@ describe("blog content utilities", () => {
     expect(post).not.toBeNull();
     expect(post?.published).toBe(true);
   });
+
+  it("resolves post authors", async () => {
+    const security = await getPostBySlug("security");
+    const release = await getPostBySlug("nteract-2.0");
+
+    expect(security?.authors.map((author) => author.name)).toEqual([
+      "Kyle Kelley",
+    ]);
+    expect(release?.authors.map((author) => author.name)).toEqual([
+      "Kyle Kelley",
+    ]);
+  });
 });
