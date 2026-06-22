@@ -1,7 +1,24 @@
-import { getAllPosts } from "@/lib/blog";
+import { formatAuthorNames, formatNameList } from "@/lib/authors";
+import { getAllPosts, type BlogPostSummary } from "@/lib/blog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const revalidate = 300;
+
+function attributionForPost(post: BlogPostSummary) {
+  const parts = [];
+  const authorNames = formatAuthorNames(post.authors);
+  const editorNames = formatNameList(post.editors);
+
+  if (authorNames) {
+    parts.push(`Author: ${authorNames}`);
+  }
+
+  if (editorNames) {
+    parts.push(`Edited with ${editorNames}`);
+  }
+
+  return parts.length > 0 ? ` ${parts.join(". ")}.` : "";
+}
 
 async function getStableVersion(): Promise<string | null> {
   try {
@@ -43,7 +60,7 @@ export async function GET() {
     "",
     ...posts.map(
       (post) =>
-        `- [${post.title}](${absoluteUrl(`/blog/${post.slug}/llms.txt`)}): ${post.description}`,
+        `- [${post.title}](${absoluteUrl(`/blog/${post.slug}/llms.txt`)}): ${post.description}${attributionForPost(post)}`,
     ),
     "",
   ];

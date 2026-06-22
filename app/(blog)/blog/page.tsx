@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { BlogAuthorByline } from "@/components/blog/author-byline";
 import { BlogPostCard } from "@/components/blog/post-card";
 import { BlogTagList } from "@/components/blog/tag-list";
 import { formatPostDate, getAllPosts } from "@/lib/blog";
@@ -52,6 +53,12 @@ export default async function BlogPage() {
               >
                 {formatPostDate(latest.date)}
               </time>
+              {latest.authors.length > 0 ? (
+                <>
+                  <div className="h-px w-4 bg-outline-variant/20" />
+                  <BlogAuthorByline authors={latest.authors} />
+                </>
+              ) : null}
               <div className="h-px w-4 bg-outline-variant/20" />
               <a
                 href={siteConfig.links.rss}

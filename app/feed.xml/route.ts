@@ -16,20 +16,35 @@ export async function GET() {
   const posts = await getAllPosts();
 
   const items = posts
-    .map(
-      (post) => `
+    .map((post) => {
+      const creators = post.authors
+        .map(
+          (author) => `
+          <dc:creator>${escapeXml(author.name)}</dc:creator>`,
+        )
+        .join("");
+      const contributors = post.editors
+        .map(
+          (editor) => `
+          <dc:contributor>${escapeXml(editor)}</dc:contributor>`,
+        )
+        .join("");
+
+      return `
         <item>
           <title>${escapeXml(post.title)}</title>
           <description>${escapeXml(post.description)}</description>
           <link>${absoluteUrl(`/blog/${post.slug}`)}</link>
           <guid>${absoluteUrl(`/blog/${post.slug}`)}</guid>
           <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-        </item>`
-    )
+          ${creators}
+          ${contributors}
+        </item>`;
+    })
     .join("");
 
   const rss = `<?xml version="1.0" encoding="UTF-8"?>
-    <rss version="2.0">
+    <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">
       <channel>
         <title>${escapeXml(`${siteConfig.name} Blog`)}</title>
         <description>${escapeXml(siteConfig.blogDescription)}</description>

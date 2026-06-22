@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+import { BlogAuthorByline } from "@/components/blog/author-byline";
 import { BlogTagList } from "@/components/blog/tag-list";
 import { Prose } from "@/components/prose";
+import { formatAuthorNames, formatNameList } from "@/lib/authors";
 import { formatPostDate, getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 
@@ -33,10 +35,17 @@ export async function generateMetadata({
   }
 
   const canonical = absoluteUrl(`/blog/${post.slug}`);
+  const authorNames = formatAuthorNames(post.authors);
+  const authors = post.authors.map((author) => ({
+    name: author.name,
+    url: author.url,
+  }));
 
   return {
     title: post.title,
     description: post.description,
+    authors: authors.length > 0 ? authors : undefined,
+    creator: authorNames || undefined,
     alternates: {
       canonical,
     },
@@ -46,6 +55,9 @@ export async function generateMetadata({
       url: canonical,
       type: "article",
       publishedTime: post.date,
+      authors: authorNames
+        ? post.authors.map((author) => author.name)
+        : undefined,
       tags: post.tags,
       images: [post.ogImage ?? absoluteUrl("/opengraph-image")],
     },
@@ -67,6 +79,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
+  const editorNames = formatNameList(post.editors);
 
   return (
     <div className="px-6 pb-24 pt-12 md:px-12">
@@ -87,6 +100,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             >
               {formatPostDate(post.date)}
             </time>
+            {post.authors.length > 0 ? (
+              <>
+                <div className="h-px w-4 bg-outline-variant/20" />
+                <BlogAuthorByline authors={post.authors} />
+              </>
+            ) : null}
           </div>
 
           <h1 className="mb-6 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface md:text-8xl">
@@ -120,6 +139,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="flex flex-wrap items-center gap-6">
             <BlogTagList tags={post.tags} />
+            {editorNames ? (
+              <span className="text-sm text-on-surface-variant">
+                Edited with {editorNames}
+              </span>
+            ) : null}
           </div>
         </header>
 

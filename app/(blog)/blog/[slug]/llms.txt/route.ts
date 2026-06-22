@@ -1,5 +1,7 @@
 import { renderPlaceholder } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
+import matter from "gray-matter";
 
+import { formatAuthorNames, formatNameList } from "@/lib/authors";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { resolveBlogPlaceholders } from "@/lib/blog-md";
 
@@ -26,10 +28,24 @@ export async function GET(_request: Request, { params }: RouteContext) {
   }
 
   const { _markdown } = await import(`@/content/blog/${slug}.mdx`);
+  const { content } = matter(_markdown);
 
-  const md = await renderPlaceholder(_markdown, resolveBlogPlaceholders);
+  const md = await renderPlaceholder(content, resolveBlogPlaceholders);
+  const header = [
+    `# ${post.title}`,
+    "",
+    `Description: ${post.description}`,
+    `Date: ${post.date}`,
+    ...(post.authors.length > 0
+      ? [`Author: ${formatAuthorNames(post.authors)}`]
+      : []),
+    ...(post.editors.length > 0
+      ? [`Edited with ${formatNameList(post.editors)}`]
+      : []),
+    "",
+  ].join("\n");
 
-  return new Response(md, {
+  return new Response(`${header}\n${md.trimStart()}`, {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, s-maxage=3600, stale-while-revalidate=86400",
