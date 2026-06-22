@@ -36,6 +36,8 @@ Range: 4867b005ac89d1ce28775c27a33f379da0d0f50e..f6fba37ee12c414937859760b7fb59b
 First-parent commits at draft time: 441
 All commits at draft time: 666
 
+Updated 2026-06-21: the two 2.6 add-ons merged after this snapshot (cell-type switching #3803 = 191aa48, auto-format opt-out #3802 = 1f3d922), so main has advanced past f6fba37. The counts above are the 2026-06-10 snapshot.
+
 Before publishing 2.6, refresh the clone, replace the head commit with the final stable tag commit, regenerate the technical changelog, and update coversVersions/githubReleaseUrl/media.
 */}
 
@@ -109,13 +111,14 @@ The switch is an edit on the cell itself, so its place in the notebook and anyth
 
 ## Formatting on your terms
 
+{/* TODO: capture the settings toggle for automatic formatting. */}
+
 nteract can tidy code on its way in: `ruff` for Python, `deno fmt` for the rest. Some people love it. Some people want their code left exactly as written.
 
 2.6 adds a setting to turn automatic reformatting off. When it is off, the notebook stops rewriting code you did not ask it to touch. Auto-format stays the default for the people who like it, but it is no longer something the editor insists on. This closes a long-standing request ([#3795](https://github.com/nteract/nteract/issues/3795)).
 
 ## Things to finish before publishing
 
-- Land the two user-feedback add-ons (cell type switching, auto-format opt-out) and add their commits to the technical changelog.
 - Confirm the commenting UI is gated off for the 2.6 release channel (it launches publicly in 2.7).
 - Replace the draft date with the final release date.
 - Replace `coversVersions` with the actual 2.6 stable and patch versions.
@@ -178,5 +181,10 @@ The range currently contains 441 first-parent commits and 666 total commits sinc
 - soften hidden cell reveal rows ([5477469](https://github.com/nteract/nteract/commit/54774693))
 - quiet completed cell status ([335f0ab](https://github.com/nteract/nteract/commit/335f0ab9))
 - keep hidden cell keyboard navigation moving ([f2555da](https://github.com/nteract/nteract/commit/f2555da2))
+
+### Cell editing and formatting
+
+- switch cell type between code and Markdown from the menus ([191aa48](https://github.com/nteract/nteract/commit/191aa484c))
+- add a setting to opt out of automatic ruff / deno fmt ([1f3d922](https://github.com/nteract/nteract/commit/1f3d92222))
 
 </details>
