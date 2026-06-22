@@ -25,7 +25,6 @@ describe("BlogPage", () => {
         published: true,
         tags: ["MDX"],
         authors: [],
-        editors: [],
       },
     ]);
 

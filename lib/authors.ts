@@ -33,7 +33,7 @@ export function resolveBlogAuthors(
   });
 }
 
-export function formatNameList(names: string[]) {
+function formatNameList(names: string[]) {
   if (names.length === 0) {
     return "";
   }

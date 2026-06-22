@@ -1,23 +1,13 @@
-import { formatAuthorNames, formatNameList } from "@/lib/authors";
+import { formatAuthorNames } from "@/lib/authors";
 import { getAllPosts, type BlogPostSummary } from "@/lib/blog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export const revalidate = 300;
 
 function attributionForPost(post: BlogPostSummary) {
-  const parts = [];
   const authorNames = formatAuthorNames(post.authors);
-  const editorNames = formatNameList(post.editors);
 
-  if (authorNames) {
-    parts.push(`Author: ${authorNames}`);
-  }
-
-  if (editorNames) {
-    parts.push(`Edited with ${editorNames}`);
-  }
-
-  return parts.length > 0 ? ` ${parts.join(". ")}.` : "";
+  return authorNames ? ` Author: ${authorNames}.` : "";
 }
 
 async function getStableVersion(): Promise<string | null> {

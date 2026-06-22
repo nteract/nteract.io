@@ -17,7 +17,6 @@ export type BlogPostFrontmatter = {
   coverVideo?: string;
   ogImage?: string;
   authors: BlogAuthor[];
-  editors: string[];
 };
 
 export type BlogPostSummary = BlogPostFrontmatter & {
@@ -106,7 +105,6 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     data.published === undefined ? true : Boolean(data.published);
   const tags = normalizeTags(data.tags, fileName);
   const authors = normalizeAuthors(data, fileName);
-  const editors = normalizeStringList(data.editors, "editors", fileName);
   const coverImage =
     typeof data.coverImage === "string" && data.coverImage.trim().length > 0
       ? data.coverImage.trim()
@@ -130,7 +128,6 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     coverVideo,
     ogImage,
     authors,
-    editors,
   } satisfies BlogPostFrontmatter;
 }
 

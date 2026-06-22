@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { BlogAuthorByline } from "@/components/blog/author-byline";
 import { BlogTagList } from "@/components/blog/tag-list";
 import { Prose } from "@/components/prose";
-import { formatAuthorNames, formatNameList } from "@/lib/authors";
+import { formatAuthorNames } from "@/lib/authors";
 import { formatPostDate, getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 
@@ -79,7 +79,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   }
 
   const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
-  const editorNames = formatNameList(post.editors);
 
   return (
     <div className="px-6 pb-24 pt-12 md:px-12">
@@ -139,11 +138,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
           <div className="flex flex-wrap items-center gap-6">
             <BlogTagList tags={post.tags} />
-            {editorNames ? (
-              <span className="text-sm text-on-surface-variant">
-                Edited with {editorNames}
-              </span>
-            ) : null}
           </div>
         </header>
 

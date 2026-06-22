@@ -1,7 +1,7 @@
 import { renderPlaceholder } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
 import matter from "gray-matter";
 
-import { formatAuthorNames, formatNameList } from "@/lib/authors";
+import { formatAuthorNames } from "@/lib/authors";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { resolveBlogPlaceholders } from "@/lib/blog-md";
 
@@ -38,9 +38,6 @@ export async function GET(_request: Request, { params }: RouteContext) {
     `Date: ${post.date}`,
     ...(post.authors.length > 0
       ? [`Author: ${formatAuthorNames(post.authors)}`]
-      : []),
-    ...(post.editors.length > 0
-      ? [`Edited with ${formatNameList(post.editors)}`]
       : []),
     "",
   ].join("\n");

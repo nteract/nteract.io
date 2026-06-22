@@ -26,7 +26,7 @@ describe("blog content utilities", () => {
     expect(post?.published).toBe(true);
   });
 
-  it("resolves post authors and editor acknowledgments", async () => {
+  it("resolves post authors", async () => {
     const security = await getPostBySlug("security");
     const release = await getPostBySlug("nteract-2.0");
 
@@ -35,11 +35,6 @@ describe("blog content utilities", () => {
     ]);
     expect(release?.authors.map((author) => author.name)).toEqual([
       "Kyle Kelley",
-    ]);
-    expect(release?.editors).toEqual([
-      "Safia Abdalla",
-      "Anil Kulkarni",
-      "Krish Pandya",
     ]);
   });
 });

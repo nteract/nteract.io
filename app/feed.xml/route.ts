@@ -23,12 +23,6 @@ export async function GET() {
           <dc:creator>${escapeXml(author.name)}</dc:creator>`,
         )
         .join("");
-      const contributors = post.editors
-        .map(
-          (editor) => `
-          <dc:contributor>${escapeXml(editor)}</dc:contributor>`,
-        )
-        .join("");
 
       return `
         <item>
@@ -38,7 +32,6 @@ export async function GET() {
           <guid>${absoluteUrl(`/blog/${post.slug}`)}</guid>
           <pubDate>${new Date(post.date).toUTCString()}</pubDate>
           ${creators}
-          ${contributors}
         </item>`;
     })
     .join("");
