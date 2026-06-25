@@ -66,7 +66,7 @@ This matters most as agents start working in the same document as people. When a
 
 ## You can turn it off
 
-Comments ship behind a single switch. Deployments that do not want the commenting UI can disable it in one place, and the surface, the rail, the gutter affordance, the context-menu entries, the composer, goes away cleanly, without unwiring the underlying sync. The launch default is on; the off switch is there for environments that need it.
+Comments ship behind a single switch. The 2.6 preview is opt-in, and deployments that do not want the commenting UI can keep the surface out of the way in one place: the rail, gutter affordance, context-menu entries, and composer all disappear cleanly without unwiring the underlying sync. The intended 2.7 launch default is on; the switch remains there for environments that need it.
 
 ## Working technical changelog
 
@@ -90,6 +90,6 @@ will be regenerated against the 2.7 stable tag before publishing.
 ### Accessibility and gating
 
 - a11y batch: keyboard-reachable output comments, composer focus restore, rail Escape, end-exclusive hit-test ([#3799](https://github.com/nteract/nteract/pull/3799))
-- `disable_comments` feature flag gating the comments UI from one place ([#3800](https://github.com/nteract/nteract/pull/3800))
+- comments UI gating from one place, now exposed as the opt-in `enable_comments` preview flag ([#3800](https://github.com/nteract/nteract/pull/3800), [#3804](https://github.com/nteract/nteract/pull/3804))
 
 </details>
