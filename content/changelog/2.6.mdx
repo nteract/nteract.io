@@ -9,9 +9,8 @@ summary: "nteract 2.6 polishes design with a left rail, outlines, packaging sele
 highlights:
   - "Navigate long notebooks from a left-rail outline"
   - "Manage packages from the rail without turning dependencies into notebook cells"
-  - "Switch cells between code and Markdown from the context and main menus"
+  - "Switch cells between code and markdown from the context and main menus"
   - "Disable automatic code formatting when exact source layout matters"
-  - "Keep widget state and rich output renders steadier across sessions"
 tags:
   - "design"
   - "rail"
@@ -20,73 +19,77 @@ published: true
 githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.6.0-stable.202606251403"
 ---
 
-2.6 is a notebook ergonomics release.
+This release makes me very proud. I redesigned the cell chrome, created a markdown pipeline, and brought back everyone's favorite ToC. The focus in 2.5 was around outputs: navigable tracebacks, explorable DataFrames, and keeping secrets out of the outputs. In the 2.6 release we're turning back to document operations. Long notebooks get more structure with a dedicated table of contents/outline, tooling like package selection moves into a dedicated rail with room for more, and additional editing controls.
 
-2.5 made outputs richer: navigable tracebacks, explorable DataFrames, and secrets that stay out of notebook output. 2.6 turns back to the day-to-day notebook surface. It gives long notebooks more structure, moves supporting tools into the rail, makes widget state less temporary, and adds the small editing controls people asked for after living in the app.
-
-The theme is simple: the notebook should stay centered, and the workspace around it should help without taking over.
 
 ## Find your place in long notebooks
 
-Long notebooks now get an outline in the left rail.
+{/* Show a nifty outline GIF here */}
 
-Headings become landmarks. You can skim the document structure, jump between sections, and keep the cell body focused on the work itself. The outline also keeps improving as Markdown rendering moves through the shared Rust/WASM path, so anchors and headings are not a separate, fragile interpretation of the document.
+Click the outline view in the rail to hop between markdown segments and image outputs within your notebooks.
 
-This is the clearest new shape in 2.6: the notebook body is for cells, and the rail is for the surrounding instruments that help you move through them.
+{/* Show another outline that changes as you edit markdown headings */}
+
+The outline shows your heading hierarchy and updates live as you edit.
 
 ## Packages belong beside the notebook
 
-Managing packages is part of notebook work. It is also not the notebook itself.
+Can we all agree that this is not how we should install dependencies in a notebook?
 
-2.6 moves package management into the same rail model as the outline. Package state stays attached to the notebook, but dependency management no longer needs to compete with prose, code, and output for space in the main document. You can see what the notebook depends on, adjust it, and get back to the cells faster.
+```bash
+! [ -e /content ] && pip install -Uqq fastbook
+```
 
-This is one of those changes that matters most after repetition: the environment is still visible, but it stops feeling like another cell-shaped interruption.
+Not everyone realized you could click this button to install deps into an nteract notebook:
 
-## Widgets remember more
+{/* Python button screenshot */}
 
-Widget state is the sleeper feature in this release.
+Or that a notebook in a project space would just use that project's env. 
 
-Once a widget becomes part of how you explore a notebook, replaying code and hoping the UI lands in the same place is not enough. Sliders, controls, progress views, and comm-backed state need to survive more of a notebook's real life: opening, saving, reloading, and reconnecting.
+{/* Project info screenshot */}
 
-2.6 saves live widget state metadata more reliably and moves comm state into a clearer document path. The user-facing version is simple: widgets should feel less disposable.
+Packaging moves into the new rail, so you can manage dependencies directly.
+
+{/* GIF of adding packages */}
+
+Hopefully now you'll be able to know the environment you have without needing a cell-shaped interruption in your notebook.
+
 
 ## Markdown reads more like a document
 
 Markdown got more serious in 2.6.
 
-Bare TeX environments now project as math instead of plain text. If you write a notebook as a document, not just as a pile of code cells, equations should read as equations.
+Bare TeX environments now project as math instead of plain text, completing compatibility with Jupyter notebooks. Write notebooks as they were intended, as a computational narrative that allows you to collaborate with others. Not just a pile of code cells.
 
-The Markdown path is also moving through the Rust/WASM markdown engine. Users do not need to care about the engine by name, but they should care about what it enables: steadier parsing, shared behavior, better outline anchors, and Markdown cells that can carry more of the document experience without special cases.
+As part of this release, there's a new Rust/WASM markdown engine. Users don't have to know about it, but it creates steadier parsing, better outline anchors, and very fast rendering. I'm hoping the document experience can go further from here.
 
-## The notebook shell settles down
+## Grand gestures of simplicity
 
-There is a lot of design work in 2.6, and it should not disappear under the word "polish."
+After landing the rail work, it was clear there was opportunity to create clearer affordances for what you can do, what state a cell is in, and where the next action lives. Here's a tour of the small things we polished:
 
-The notebook shell has clearer affordances for what you can do, what state a cell is in, and where the next action lives. Hidden cells use clearer language. Completed cells get quieter. Structure edits gate themselves on host support. The rail can carry more responsibility, so the notebook body can stay focused on cells and output.
+### Hidden cells use clearer language
 
-There is new motion here too: not animation for decoration, but animation that helps the notebook explain itself. Execution, reveal, focus, and shell transitions feel less abrupt when the interface has a little choreography.
+{/* Hidden cell screenshots */}
 
-The result is an app that asks you to re-orient less often.
+### Motion on execution
 
-## Change the cell you already have
+{/* Animation of the new execution, reveal, focus, and transitions */}
 
-A cell should not be stuck as the type you first made it.
+### Changing cell type
 
-2.6 makes switching a cell between code and Markdown a first-class move. Right-click a cell, or use the main menu, and change its type in place. That covers the everyday notebook loop: write a thought in Markdown, turn a scratch cell back into code, or correct the type without deleting and recreating anything.
+{/* GIF of changing cell type */}
 
-The switch is an edit on the cell itself, so its place in the notebook and anything anchored to it come along for the ride. This came straight from user feedback, and it is the kind of small thing you stop noticing precisely because it stopped getting in your way.
+Right click a cell or use the menu to change its type in place.
 
-## Formatting becomes a choice
+## Feature Flag Preview: Comments
 
-nteract can tidy code on its way through the notebook: `ruff` for Python and `deno fmt` for the rest. Some people love that. Some people want their source left exactly as written.
+This release has a still-in-development feature of commenting. If you want to try it out, turn on **Enable Comments UI** in Settings under Feature Flags. Select any code, rendered markdown, or outputs then leave a note. Leave replies in the discussion rail. This feature makes more sense when collaborating with users, which is why it's gated until hosted documents are available. _However_, you can start letting agents comment on your documents too.
 
-2.6 adds **Disable automatic formatting** in Settings. Auto-formatting stays on by default for the people who want it, but the editor no longer insists on rewriting code when exact layout matters. This closes a long-standing request ([#3795](https://github.com/nteract/nteract/issues/3795)).
+## What's next
 
-## A quiet comments preview
+Under the hood we've laid the foundations to extend the local realtime model to a real multiuser collaborative experience on the web, complete with attribution and identity backed by any OIDC provider.
 
-There is one more thing in 2.6, and it is intentionally quiet. Turn on **Enable Comments UI** in Settings, under Feature Flags, and you can try the new notebook commenting surface: select code or rendered Markdown, leave a note, and reply in the discussion rail.
-
-The preview ships off by default. 2.6 gives early testers a way to try the surface before the public 2.7 commenting release, where anchoring, authorship, and the full discussion model get their own introduction.
+More on this soon. Reach out on [~~Twitter~~ X](https://x.com/KyleRayKelley), [LinkedIn](https://www.linkedin.com/in/kyleraykelley/), or [post a GitHub issue](https://github.com/nteract/nteract/issues/new).
 
 ## Technical changelog
 
