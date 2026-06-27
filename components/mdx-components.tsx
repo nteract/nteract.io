@@ -13,6 +13,7 @@ import { Peekaboo } from "@/components/blog/peekaboo";
 import { IframeIsolationDiagram } from "@/components/blog/iframe-isolation-diagram";
 import { SocketDiagram } from "@/components/blog/socket-diagram";
 import { TauriComparison } from "@/components/blog/tauri-comparison";
+import { Video } from "@/components/video";
 import { OptOut } from "@/components/telemetry/opt-out";
 import { PingPreview } from "@/components/telemetry/ping-preview";
 import { Receipt } from "@/components/telemetry/receipt";
@@ -121,6 +122,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     IframeIsolationDiagram,
     SocketDiagram,
     TauriComparison,
+    Video,
     OptOut,
     PingPreview,
     Receipt,
