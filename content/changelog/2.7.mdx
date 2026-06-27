@@ -1,0 +1,95 @@
+---
+version: "2.7"
+date: "2026-07-01T00:00:00Z"
+coversVersions:
+  - "2.7.0"
+dateLabel: "Unreleased draft"
+title: "Comments on the Notebook"
+summary: "2.7 makes the notebook something you can talk about in place: comments anchored to exact source and rendered Markdown, run-derived quotes that survive edits, a discussion rail, and clear authorship for the people and agents working in the same document."
+highlights:
+  - "Comment on an exact selection, in both the source editor and rendered Markdown"
+  - "Quotes are derived from what you selected and re-anchor by content, dangling honestly when they can't"
+  - "A lighter discussion rail with on-demand replies and a single-field composer"
+  - "Every comment carries its author's identity, so you can tell a teammate from an agent at a glance"
+tags:
+  - "notebook"
+  - "comments"
+  - "collaboration"
+  - "review"
+published: false
+# githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.7.0-stable.TODO"
+# heroImage: "https://img.runt.run/TODO/2.7-hero.png"
+# heroVideo: "https://img.runt.run/TODO/2.7-demo.mp4"
+---
+
+{/*
+Unreleased draft for the public commenting release.
+
+The commenting layer is merged to main (PRs #3791, #3792, #3794, #3796, #3797,
+#3799, #3800) but is held for a public 2.7 launch. Before publishing: confirm the
+comments UI is enabled for the release channel, refresh the commit range against
+the final tag, and capture hero media of a real comment thread.
+
+Cloud / hosted-notebook material lives in content/changelog/_cloud-holding.mdx,
+deferred behind this release.
+*/}
+
+2.7 is the release where you can talk about a notebook inside the notebook.
+
+Notebooks have always been collaborative in spirit and lonely in practice. You could share the file, but the conversation happened somewhere else: a thread, a call, a review tool that knew nothing about cells. 2.7 brings the conversation into the document and anchors it to the thing you are actually pointing at.
+
+This is the commenting layer. It is built to feel like commenting on a document, but it understands that the document is a live notebook.
+
+## Comment on what you mean
+
+Select a phrase, a variable, a line of a traceback, a sentence of Markdown prose, and comment on exactly that. Highlights are character-granular, not whole-cell. The selection you made is the selection the comment remembers.
+
+It works in both planes. In the source editor you can highlight inside code or raw Markdown. In rendered Markdown you can highlight the prose as it reads, and the comment maps back to the underlying source. A notebook that is half writing and half computation gets one commenting model across both.
+
+## Quotes that follow the edits
+
+A comment stores the text you selected, and that quote is how it finds its place again. Edit the cell, move things around, and the comment re-anchors to its quote rather than to a brittle line-and-column.
+
+When the text genuinely changed and there is no confident place to land, the comment dangles instead of guessing. A wrong anchor is worse than an honest "this moved." Comments only re-attach when the surrounding context actually disambiguates where they belong.
+
+## A discussion rail, not a sidebar dump
+
+The discussion rail is deliberately quiet. Threads read as a flowing list rather than a stack of bordered boxes. Replies are on-demand: a thread shows its conversation, and the composer appears when you decide to add to it.
+
+The composer is a single field with the send control inside it, tinted with your author color. The quote header doubles as the way back to the highlight in the document. Cmd+Enter sends. It is meant to get out of the way of the actual notebook.
+
+## Who is talking
+
+Every comment carries its author's identity as a color, with readable contrast computed for whatever that color is. That sounds cosmetic until a notebook has more than one voice in it.
+
+This matters most as agents start working in the same document as people. When a tool acts on your behalf, its comments should be legible as its comments, distinct from yours, not laundered into an anonymous gray. nteract is built for humans, kernels, and agents on the same live notebook; the commenting layer treats agent authorship as a first-class identity rather than an afterthought.
+
+## You can turn it off
+
+Comments ship behind a single switch. The 2.6 preview is opt-in, and deployments that do not want the commenting UI can keep the surface out of the way in one place: the rail, gutter affordance, context-menu entries, and composer all disappear cleanly without unwiring the underlying sync. The intended 2.7 launch default is on; the switch remains there for environments that need it.
+
+## Working technical changelog
+
+<details>
+<summary>Commenting layer (merged to main, held for 2.7)</summary>
+
+This section is a prep scaffold, not the final generated changelog. The range
+will be regenerated against the 2.7 stable tag before publishing.
+
+### Anchoring and quotes
+
+- character-granular rendered highlight + run-derived display quote ([#3791](https://github.com/nteract/nteract/pull/3791))
+- multiple comment highlights per run + compose selection preview ([#3796](https://github.com/nteract/nteract/pull/3796))
+- ambiguous re-anchor refuses to guess (dangle instead) ([#3797](https://github.com/nteract/nteract/pull/3797))
+
+### Rail, composer, and identity
+
+- rendered highlights activate their thread; author identity color + contrast ([#3792](https://github.com/nteract/nteract/pull/3792))
+- lighter, Discord-style discussion rail and single-field composer ([#3794](https://github.com/nteract/nteract/pull/3794))
+
+### Accessibility and gating
+
+- a11y batch: keyboard-reachable output comments, composer focus restore, rail Escape, end-exclusive hit-test ([#3799](https://github.com/nteract/nteract/pull/3799))
+- comments UI gating from one place, now exposed as the opt-in `enable_comments` preview flag ([#3800](https://github.com/nteract/nteract/pull/3800), [#3804](https://github.com/nteract/nteract/pull/3804))
+
+</details>

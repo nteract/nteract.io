@@ -74,6 +74,7 @@ export function ChangelogFeedEntry({ entry, children }: ChangelogFeedEntryProps)
             <div className="mb-6 overflow-hidden border border-[var(--rule)]">
               <video
                 src={entry.heroVideo}
+                poster={entry.heroVideoPoster}
                 autoPlay
                 muted
                 loop

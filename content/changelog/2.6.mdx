@@ -1,0 +1,195 @@
+---
+version: "2.6"
+date: "2026-06-25T00:00:00Z"
+coversVersions:
+  - "2.6.0"
+  - "2.6.1"
+dateLabel: "June 25, 2026"
+title: "Outlines of the Railway"
+summary: "nteract 2.6 polishes design with a left rail, outlines, packaging selection, and improved markdown + TeX rendering."
+highlights:
+  - "Navigate long notebooks from a left-rail outline"
+  - "Manage packages from the rail without turning dependencies into notebook cells"
+  - "Switch cells between code and markdown from the context and main menus"
+  - "Disable automatic code formatting when exact source layout matters"
+tags:
+  - "design"
+  - "rail"
+  - "markdown"
+published: true
+githubReleaseUrl: "https://github.com/nteract/nteract/releases/tag/v2.6.0-stable.202606251403"
+heroVideo: "https://img.runt.run/2026/06/2.6-outline-editing-cursor.mp4"
+heroVideoPoster: "https://img.runt.run/2026/06/2.6-hero-poster-cursor.png"
+heroImage: "https://img.runt.run/2026/06/2.6-og.png"
+---
+
+This release makes me very proud. I redesigned the cell chrome, created a markdown pipeline, and brought back everyone's favorite ToC. The focus in 2.5 was around outputs: navigable tracebacks, explorable DataFrames, and keeping secrets out of the outputs. In the 2.6 release we're turning back to document operations. Long notebooks get more structure with a dedicated table of contents/outline, tooling like package selection moves into a dedicated rail with room for more, and additional editing controls.
+
+
+## Find your place in long notebooks
+
+<Video
+  src="https://img.runt.run/2026/06/2.6-outline-v3.mp4"
+  poster="https://img.runt.run/2026/06/2.6-outline-v3.png"
+  caption="The outline rail jumping between sections of a long notebook"
+/>
+
+Click the outline view in the rail to hop between markdown segments and image outputs within your notebooks.
+
+The outline shows your heading hierarchy and updates live as you edit.
+
+## Packages belong beside the notebook
+
+Can we all agree that this is not how we should install dependencies in a notebook?
+
+```bash
+! [ -e /content ] && pip install -Uqq fastbook
+```
+
+Not everyone realized you could click <RuntimeBadge runtime="python" manager="uv" /> to install deps into an nteract notebook. To make this more clear, packaging has been moved into the new rail. You can manage dependencies directly.
+
+<Video
+  src="https://img.runt.run/2026/06/2.6-packaging-v3.mp4"
+  poster="https://img.runt.run/2026/06/2.6-packaging-v3.png"
+  caption="Adding a package from the rail, no notebook cell required"
+/>
+
+The big key with nteract though is to lean into your project's environment. Don't manage within the notebook itself, use the same dependencies you'll be using in production with your pyproject.toml, environment.yaml, or pixi.toml.
+
+Hopefully now you'll be able to know the environment you have without needing a cell-shaped interruption in your notebook.
+
+
+## Markdown reads more like a document
+
+Markdown got more serious in 2.6.
+
+<LightboxImage
+  src="https://img.runt.run/2026/06/2.6-markdown-tex.png"
+  alt="A notebook rendering bare TeX as math: a list with inline math, equation-numbered align blocks, and display equations"
+  className="my-10 w-full"
+/>
+
+Bare TeX environments now project as math instead of plain text, completing compatibility with Jupyter notebooks. Write notebooks as they were intended, as a computational narrative that allows you to collaborate with others. Not just a pile of code cells.
+
+As part of this release, there's a new Rust/WASM markdown engine. Users don't have to know about it, but it creates steadier parsing, better outline anchors, and very fast rendering. I'm hoping the document experience can go further from here.
+
+## Grand gestures of simplicity
+
+After landing the rail work, it was clear there was opportunity to create clearer affordances for what you can do, what state a cell is in, and where the next action lives. Here's a tour of the small things we polished:
+
+### Hidden cells use clearer language
+
+<LightboxImage
+  src="https://img.runt.run/2026/06/2.6-hidden-cells.png"
+  alt="Hidden cells with clearer reveal language"
+  className="my-10 w-full"
+/>
+
+### Motion on execution
+
+<Video
+  src="https://img.runt.run/2026/06/2.6-cell-motion-v3.mp4"
+  poster="https://img.runt.run/2026/06/2.6-cell-motion-v3.png"
+  caption="Execution, reveal, and focus transitions in the redesigned shell"
+/>
+
+### Changing cell type
+
+<Video
+  src="https://img.runt.run/2026/06/2.6-change-cell-type-v3.mp4"
+  poster="https://img.runt.run/2026/06/2.6-change-cell-type-v3.png"
+  caption="Switching a cell between code and Markdown in place"
+/>
+
+Right click a cell or use the menu to change its type in place.
+
+## Feature Flag Preview: Comments
+
+This release has a still-in-development feature of commenting. If you want to try it out, turn on **Enable Comments UI** in Settings under Feature Flags. Select any code, rendered markdown, or outputs then leave a note. Leave replies in the discussion rail. This feature makes more sense when collaborating with users, which is why it's gated until hosted documents are available. _However_, you can start letting agents comment on your documents too.
+
+## What's next
+
+Under the hood we've laid the foundations to extend the local realtime model to a real multiuser collaborative experience on the web, complete with attribution and identity backed by any OIDC provider.
+
+More on this soon. Reach out on [~~Twitter~~ X](https://x.com/KyleRayKelley), [LinkedIn](https://www.linkedin.com/in/kyleraykelley/), or [post a GitHub issue](https://github.com/nteract/nteract/issues/new).
+
+## Technical changelog
+
+<details>
+<summary>Selected commits since 2.5.1</summary>
+
+Highlights from the `v2.5.1-stable.202605261941` → `v2.6.0-stable.202606251403` range. Not exhaustive; see the [release notes](https://github.com/nteract/nteract/releases/tag/v2.6.0-stable.202606251403) for the full list.
+
+### Rail, outline, and packages
+
+- add contextual outline tree ([db4b61a](https://github.com/nteract/nteract/commit/db4b61ac))
+- add left rail panels ([f07b528](https://github.com/nteract/nteract/commit/f07b5286))
+- add shared notebook rail shell ([5b365b8](https://github.com/nteract/nteract/commit/5b365b8b))
+- polish notebook rail outline and packages ([c350f5c](https://github.com/nteract/nteract/commit/c350f5cf))
+- split package manager panels ([aaa65fd](https://github.com/nteract/nteract/commit/aaa65fd2))
+- share package summary surfaces ([b41296c](https://github.com/nteract/nteract/commit/b41296c0))
+- document package manager surfaces ([163f447](https://github.com/nteract/nteract/commit/163f447c))
+
+### Widget state
+
+- save live widget state metadata ([644933e](https://github.com/nteract/nteract/commit/644933e8))
+- split widget comm state into `CommsDoc` ([13a5fe2](https://github.com/nteract/nteract/commit/13a5fe23))
+- project `CommsDoc` widget state to Python ([54339c1](https://github.com/nteract/nteract/commit/54339c12))
+- batch initial widget comm writes ([e3054ec](https://github.com/nteract/nteract/commit/e3054ec8))
+- hydrate widget progress views ([f640db7](https://github.com/nteract/nteract/commit/f640db7c))
+- resolve widget comm blobs ([d50887c](https://github.com/nteract/nteract/commit/d50887ca))
+- show stale widget snapshots ([a9bbc54](https://github.com/nteract/nteract/commit/a9bbc54e))
+
+### Markdown, TeX, and document structure
+
+- project Markdown through Rust WASM ([5d4682e](https://github.com/nteract/nteract/commit/5d4682e1))
+- project bare TeX environments as math ([70d1006](https://github.com/nteract/nteract/commit/70d10061))
+- restore preview double-click editing ([5d337e7](https://github.com/nteract/nteract/commit/5d337e77))
+- keep document frames selectable ([449315f](https://github.com/nteract/nteract/commit/449315fd))
+- use markdown engine anchors for notebook outline ([9344e01](https://github.com/nteract/nteract/commit/9344e010))
+- keep markdown outline live after edits ([a0816b5](https://github.com/nteract/nteract/commit/a0816b54))
+- enable markdown spellcheck ([b30db7b](https://github.com/nteract/nteract/commit/b30db7b8))
+- refine document typography ([e113ccb](https://github.com/nteract/nteract/commit/e113ccb2))
+
+### Notebook shell and ergonomics
+
+- add capability-scoped document header ([fdf13aa](https://github.com/nteract/nteract/commit/fdf13aae))
+- drive `NotebookView` from shell capabilities ([8af8135](https://github.com/nteract/nteract/commit/8af81352))
+- gate run controls on host-neutral runtime availability ([4cb2b76](https://github.com/nteract/nteract/commit/4cb2b766))
+- stage execution signal animation ([fdac721](https://github.com/nteract/nteract/commit/fdac721d))
+- refine hidden and output surfaces ([5b5fda8](https://github.com/nteract/nteract/commit/5b5fda8f))
+- soften hidden cell reveal rows ([5477469](https://github.com/nteract/nteract/commit/54774693))
+- quiet completed cell status ([335f0ab](https://github.com/nteract/nteract/commit/335f0ab9))
+- keep hidden cell keyboard navigation moving ([f2555da](https://github.com/nteract/nteract/commit/f2555da2))
+- preserve title editor caret order ([e918a2e](https://github.com/nteract/nteract/commit/e918a2ec))
+- preserve state across open and save-as ([f62d91e](https://github.com/nteract/nteract/commit/f62d91e6))
+
+### Cell editing, settings, and formatting
+
+- switch cell type between code and Markdown from the menus ([191aa48](https://github.com/nteract/nteract/commit/191aa484))
+- add a setting to opt out of automatic ruff / deno fmt ([1f3d922](https://github.com/nteract/nteract/commit/1f3d9222))
+- route synced settings through notebook host ([e236938](https://github.com/nteract/nteract/commit/e2369380))
+- ignore stale synced settings callbacks ([a16db4e](https://github.com/nteract/nteract/commit/a16db4ed))
+
+### Outputs and runtime resilience
+
+- render Bokeh notebook MIME bundles ([a4b86f9](https://github.com/nteract/nteract/commit/a4b86f9d))
+- embed Bokeh renderer asset ([43b4fc4](https://github.com/nteract/nteract/commit/43b4fc40))
+- keep Bokeh renders stable across payload refreshes ([4fbdbd6](https://github.com/nteract/nteract/commit/4fbdbd65))
+- render Panel notebook bundles ([5171ccb](https://github.com/nteract/nteract/commit/5171ccb1))
+- copy image from a context menu on raster outputs ([b34b7fe](https://github.com/nteract/nteract/commit/b34b7fe6))
+- keep copy image inside the user gesture ([00e1ef7](https://github.com/nteract/nteract/commit/00e1ef74))
+- survive a daemon restart during initial materialize ([be922a8](https://github.com/nteract/nteract/commit/be922a86))
+- bound pool warmup timeouts ([08b4fe4](https://github.com/nteract/nteract/commit/08b4fe4f))
+
+### Comments preview
+
+- gate comments UI behind opt-in `enable_comments` ([a57b960](https://github.com/nteract/nteract/commit/a57b9609))
+- character-granular rendered highlight and run-derived display quote ([#3791](https://github.com/nteract/nteract/pull/3791))
+- rendered highlights activate their thread; author identity color and contrast ([#3792](https://github.com/nteract/nteract/pull/3792))
+- lighter discussion rail and single-field composer ([#3794](https://github.com/nteract/nteract/pull/3794))
+- multiple comment highlights per run and compose selection preview ([#3796](https://github.com/nteract/nteract/pull/3796))
+- ambiguous re-anchor refuses to guess ([#3797](https://github.com/nteract/nteract/pull/3797))
+- comments accessibility batch ([#3799](https://github.com/nteract/nteract/pull/3799))
+
+</details>

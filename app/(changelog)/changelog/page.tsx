@@ -13,6 +13,8 @@ export const dynamic = "force-dynamic";
 const description =
   "Local-first notebooks, built from the ground up for mingling with agents. Realtime collab with a colorful, jazzy streak. Here's how it gets better, release by release.";
 
+// Handcrafted generic changelog card. Intentionally not a per-release image:
+// the index represents the whole changelog, so it keeps its own card.
 const ogImage = "https://img.runt.run/2026/06/08/a633578f00f5.png";
 
 export const metadata: Metadata = {
