@@ -129,6 +129,7 @@ export default async function ChangelogVersionPage({
             <div className="overflow-hidden border border-[var(--rule)]">
               <video
                 src={entry.heroVideo}
+                poster={entry.heroVideoPoster}
                 autoPlay
                 muted
                 loop

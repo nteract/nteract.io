@@ -23,6 +23,8 @@ export type ChangelogFrontmatter = {
   dateLabel?: string;
   heroImage?: string;
   heroVideo?: string;
+  /** Poster still shown while heroVideo loads. */
+  heroVideoPoster?: string;
   /** Canonical GitHub release this entry points at. */
   githubReleaseUrl?: string;
   published: boolean;
@@ -114,6 +116,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
   const dateLabel = optionalString(data.dateLabel);
   const heroImage = optionalString(data.heroImage);
   const heroVideo = optionalString(data.heroVideo);
+  const heroVideoPoster = optionalString(data.heroVideoPoster);
   const githubReleaseUrl = optionalString(data.githubReleaseUrl);
   const published =
     data.published === undefined ? true : Boolean(data.published);
@@ -129,6 +132,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     dateLabel,
     heroImage,
     heroVideo,
+    heroVideoPoster,
     githubReleaseUrl,
     published,
   } satisfies ChangelogFrontmatter;
