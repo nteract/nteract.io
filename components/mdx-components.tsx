@@ -14,6 +14,7 @@ import { IframeIsolationDiagram } from "@/components/blog/iframe-isolation-diagr
 import { SocketDiagram } from "@/components/blog/socket-diagram";
 import { TauriComparison } from "@/components/blog/tauri-comparison";
 import { Video } from "@/components/video";
+import { RuntimeBadge } from "@/components/runtime-badge";
 import { OptOut } from "@/components/telemetry/opt-out";
 import { PingPreview } from "@/components/telemetry/ping-preview";
 import { Receipt } from "@/components/telemetry/receipt";
@@ -123,6 +124,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     SocketDiagram,
     TauriComparison,
     Video,
+    RuntimeBadge,
     OptOut,
     PingPreview,
     Receipt,

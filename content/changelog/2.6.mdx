@@ -44,21 +44,15 @@ Can we all agree that this is not how we should install dependencies in a notebo
 ! [ -e /content ] && pip install -Uqq fastbook
 ```
 
-Not everyone realized you could click this button to install deps into an nteract notebook:
-
-{/* Python button screenshot */}
-
-Or that a notebook in a project space would just use that project's env. 
-
-{/* Project info screenshot */}
-
-Packaging moves into the new rail, so you can manage dependencies directly.
+Not everyone realized you could click <RuntimeBadge runtime="python" manager="uv" /> to install deps into an nteract notebook. To make this more clear, packaging has been moved into the new rail. You can manage dependencies directly.
 
 <Video
   src="https://img.runt.run/2026/06/2.6-packaging.mp4"
   poster="https://img.runt.run/2026/06/2.6-packaging.png"
   caption="Adding a package from the rail, no notebook cell required"
 />
+
+The big key with nteract though is to lean into your project's environment. Don't manage within the notebook itself, use the same dependencies you'll be using in production with your pyproject.toml, environment.yaml, or pixi.toml.
 
 Hopefully now you'll be able to know the environment you have without needing a cell-shaped interruption in your notebook.
 

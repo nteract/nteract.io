@@ -151,6 +151,16 @@ body {
         @apply rounded bg-accent/15;
     }
 
+    /* Dual-theme tokens: light palette on the light changelog blocks,
+       dark palette under prose-invert (the blog's black code blocks). */
+    .nteract-prose [data-rehype-pretty-code-figure] code span {
+        color: var(--shiki-light);
+    }
+
+    .nteract-prose.prose-invert [data-rehype-pretty-code-figure] code span {
+        color: var(--shiki-dark);
+    }
+
     /* ──────────────────────────────────────
      Dark mode / prose-invert — Monolith
      ────────────────────────────────────── */
