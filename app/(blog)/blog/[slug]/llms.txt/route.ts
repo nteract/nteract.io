@@ -1,8 +1,8 @@
 import { renderPlaceholder } from "fumadocs-core/mdx-plugins/remark-llms.runtime";
-import matter from "gray-matter";
 
 import { formatAuthorNames } from "@/lib/authors";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { matter } from "@/lib/frontmatter";
 import { resolveBlogPlaceholders } from "@/lib/blog-md";
 
 export const dynamic = "force-static";
