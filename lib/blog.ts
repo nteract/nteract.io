@@ -1,9 +1,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
-
 import { resolveBlogAuthors, type BlogAuthor } from "@/lib/authors";
+import { matter } from "@/lib/frontmatter";
 
 const BLOG_DIRECTORY = path.join(process.cwd(), "content/blog");
 

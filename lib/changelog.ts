@@ -1,7 +1,7 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
 
-import matter from "gray-matter";
+import { matter } from "./frontmatter";
 
 const CHANGELOG_DIRECTORY = path.join(process.cwd(), "content/changelog");
 
