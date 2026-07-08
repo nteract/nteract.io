@@ -2,14 +2,64 @@
 @import "tw-animate-css";
 @config "../tailwind.config.js";
 
+/* ──────────────────────────────────────
+   nteract Elements tokens. One neutral
+   grayscale system for the whole site;
+   chromatic color is reserved for meaning
+   (cell types, runtime state). Dark pages
+   opt in with a .dark wrapper.
+   ────────────────────────────────────── */
 :root {
-    --accent: 45 212 191; /* #2DD4BF Teal */
-    --radius: 0rem;
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --border: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --radius: 0.625rem;
+
+    /* Teal selection accent (RGB triple for rgb(var(--accent) / a)). */
+    --accent: 45 212 191;
+
+    /* Meaningful color: cell types + runtime state (from the app's
+       dashboard atoms). */
+    --ct-code: #38bdf8;
+    --ct-markdown: #34d399;
+    --ct-raw: #fb7185;
+    --live: #22c55e;
+    --k-exec: #f59e0b;
+    --k-ready: #22c55e;
+    --k-start: #3b82f6;
+    --k-stale: #9ca3af;
+    --k-error: #dc2626;
+}
+
+.dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --border: oklch(1 0 0 / 10%);
+    --ring: oklch(0.556 0 0);
+
+    --ct-code: #7dd3fc;
+    --ct-markdown: #6ee7b7;
+    --ct-raw: #fda4af;
+    --live: #4ade80;
+    --k-stale: #6b7280;
 }
 
 body {
     font-family:
-        var(--font-body),
+        var(--font-sans),
         system-ui,
         -apple-system,
         BlinkMacSystemFont,
@@ -29,8 +79,109 @@ body {
 }
 
 @layer components {
+    /* ──────────────────────────────────────
+       Elements atoms: notebook composition
+       ticks and the runtime status dot,
+       ported from the app's dashboard atoms.
+       ────────────────────────────────────── */
+    .nb-fp-wrap {
+        display: flex;
+        min-width: 0;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .nb-fp {
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        max-width: 340px;
+        height: 7px;
+        overflow: hidden;
+        border-radius: 3px;
+        opacity: 0.62;
+    }
+
+    .nb-fp-seg {
+        height: 100%;
+    }
+
+    .nb-fp-seg[data-ct="code"] {
+        background: var(--ct-code);
+    }
+
+    .nb-fp-seg[data-ct="markdown"] {
+        background: var(--ct-markdown);
+    }
+
+    .nb-fp-seg[data-ct="raw"] {
+        background: var(--ct-raw);
+    }
+
+    .nb-kernel {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--muted-foreground);
+        font-family: var(--font-mono), "JetBrains Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+    }
+
+    .nb-kdot {
+        width: 8px;
+        height: 8px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--k-stale);
+    }
+
+    .nb-kernel[data-k="executing"] {
+        color: color-mix(in srgb, var(--k-exec) 72%, var(--foreground));
+    }
+
+    .nb-kernel[data-k="executing"] .nb-kdot {
+        background: var(--k-exec);
+    }
+
+    .nb-kernel[data-k="ready"] {
+        color: color-mix(in srgb, var(--k-ready) 60%, var(--foreground));
+    }
+
+    .nb-kernel[data-k="ready"] .nb-kdot {
+        background: var(--k-ready);
+    }
+
+    .nb-kernel[data-k="starting"] .nb-kdot {
+        background: var(--k-start);
+    }
+
+    .nb-kernel[data-k="error"] {
+        color: var(--k-error);
+    }
+
+    .nb-kernel[data-k="error"] .nb-kdot {
+        background: var(--k-error);
+    }
+
+    .nb-kernel[data-k="none"] .nb-kdot {
+        border: 1.5px solid
+            color-mix(in srgb, var(--muted-foreground) 55%, transparent);
+        background: transparent;
+    }
+
+    /* ──────────────────────────────────────
+       Prose on Elements tokens. Works on the
+       light blog surface and the Ink dark
+       changelog alike — everything routes
+       through the theme variables.
+       ────────────────────────────────────── */
     .nteract-prose {
-        @apply text-[17px] leading-8 text-gray-700;
+        font-size: 16.5px;
+        line-height: 1.7;
+        color: var(--foreground);
     }
 
     .nteract-prose > :first-child {
@@ -52,25 +203,18 @@ body {
     }
 
     .nteract-prose h2 {
-        @apply mt-12 mb-4 text-3xl font-bold tracking-tight text-gray-900;
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
+        @apply mt-12 mb-4 text-2xl font-bold tracking-[-0.02em];
+        color: var(--foreground);
     }
 
     .nteract-prose h3 {
-        @apply mt-10 mb-4 text-2xl font-bold tracking-tight text-gray-900;
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
+        @apply mt-10 mb-4 text-xl font-bold tracking-[-0.015em];
+        color: var(--foreground);
     }
 
     .nteract-prose h4 {
-        @apply mt-8 mb-3 text-xl font-bold tracking-tight text-gray-900;
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
-    }
-
-    .nteract-prose p {
-        @apply text-gray-700;
+        @apply mt-8 mb-3 text-lg font-semibold tracking-[-0.01em];
+        color: var(--foreground);
     }
 
     .nteract-prose ul,
@@ -90,12 +234,39 @@ body {
         @apply mt-2;
     }
 
+    .nteract-prose li::marker {
+        color: var(--muted-foreground);
+    }
+
     .nteract-prose strong {
-        @apply font-semibold text-gray-900;
+        @apply font-semibold;
+        color: var(--foreground);
+    }
+
+    .nteract-prose blockquote {
+        border-left: 2px solid var(--border);
+        @apply pl-5;
     }
 
     .nteract-prose blockquote p {
-        @apply text-lg text-gray-600;
+        @apply text-lg;
+        color: var(--muted-foreground);
+    }
+
+    .nteract-prose a {
+        color: var(--foreground);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--foreground) 30%,
+            transparent
+        );
+        transition: text-decoration-color 150ms ease;
+    }
+
+    .nteract-prose a:hover {
+        text-decoration-color: var(--foreground);
     }
 
     .nteract-prose table {
@@ -103,11 +274,13 @@ body {
     }
 
     .nteract-prose thead {
-        @apply border-b border-black/10 text-gray-900;
+        border-bottom: 1px solid var(--border);
+        color: var(--foreground);
     }
 
     .nteract-prose tbody tr {
-        @apply border-b border-black/5;
+        border-bottom: 1px solid
+            color-mix(in srgb, var(--border) 60%, transparent);
     }
 
     .nteract-prose th,
@@ -115,21 +288,59 @@ body {
         @apply px-3 py-2;
     }
 
+    .nteract-prose img {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+    }
+
+    .nteract-prose figcaption {
+        font-family: var(--font-mono), "JetBrains Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted-foreground);
+        margin-top: 0.75rem;
+    }
+
+    /* Inline code */
+    .nteract-prose code:not([data-rehype-pretty-code-figure] code) {
+        background: var(--muted);
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-size: 0.88em;
+        font-family: var(--font-mono), "JetBrains Mono", monospace;
+        color: var(--foreground);
+    }
+
+    /* Code blocks: bordered card with a mono title row */
     .nteract-prose [data-rehype-pretty-code-figure] {
-        @apply overflow-hidden border border-black/10 bg-slate-50 shadow-sm;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: var(--muted);
     }
 
     .nteract-prose [data-rehype-pretty-code-title] {
-        @apply border-b border-black/10 bg-white/70 px-4 py-2 text-xs font-medium uppercase tracking-[0.3em] text-gray-500;
+        border-bottom: 1px solid var(--border);
+        padding: 8px 16px;
+        font-size: 10px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted-foreground);
         font-family: var(--font-mono), "JetBrains Mono", monospace;
     }
 
     .nteract-prose [data-rehype-pretty-code-figure] pre {
-        @apply my-0 overflow-x-auto bg-transparent px-0 py-0 text-[14px] leading-7;
+        @apply my-0 overflow-x-auto bg-transparent;
+        padding: 16px 0;
+        font-size: 13px;
+        line-height: 1.7;
     }
 
     .nteract-prose [data-rehype-pretty-code-figure] code {
-        @apply grid min-w-full bg-transparent px-0 py-4 font-medium text-gray-800;
+        @apply grid min-w-full bg-transparent;
+        color: var(--foreground);
+        font-family: var(--font-mono), "JetBrains Mono", monospace;
         counter-reset: line;
     }
 
@@ -141,132 +352,25 @@ body {
         [data-rehype-pretty-code-figure]
         code
         [data-highlighted-line] {
-        @apply border-accent/80 bg-accent/10;
+        border-left-color: var(--ring);
+        background: color-mix(in srgb, var(--foreground) 6%, transparent);
     }
 
     .nteract-prose
         [data-rehype-pretty-code-figure]
         code
         [data-highlighted-chars] {
-        @apply rounded bg-accent/15;
+        border-radius: 4px;
+        background: color-mix(in srgb, var(--foreground) 10%, transparent);
     }
 
-    /* Dual-theme tokens: light palette on the light changelog blocks,
-       dark palette under prose-invert (the blog's black code blocks). */
+    /* Shiki dual themes keyed by surface. */
     .nteract-prose [data-rehype-pretty-code-figure] code span {
         color: var(--shiki-light);
     }
 
-    .nteract-prose.prose-invert [data-rehype-pretty-code-figure] code span {
+    .dark .nteract-prose [data-rehype-pretty-code-figure] code span {
         color: var(--shiki-dark);
-    }
-
-    /* ──────────────────────────────────────
-     Dark mode / prose-invert — Monolith
-     ────────────────────────────────────── */
-    .nteract-prose.prose-invert {
-        @apply text-[#e5e5e5]/90 leading-relaxed;
-    }
-
-    .nteract-prose.prose-invert > p:first-of-type {
-        @apply first-letter:float-left first-letter:mr-3 first-letter:text-5xl first-letter:font-bold first-letter:text-[#a993d1];
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
-    }
-
-    .nteract-prose.prose-invert h2 {
-        @apply pt-8 text-3xl font-bold text-[#e5e5e5];
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
-    }
-
-    .nteract-prose.prose-invert h3 {
-        @apply pt-6 text-2xl font-bold text-[#e5e5e5];
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
-    }
-
-    .nteract-prose.prose-invert h4 {
-        @apply pt-4 text-xl font-bold text-[#e5e5e5];
-        font-family:
-            var(--font-headline), "Space Grotesk", system-ui, sans-serif;
-    }
-
-    .nteract-prose.prose-invert p {
-        @apply text-[#e5e5e5]/90;
-    }
-
-    .nteract-prose.prose-invert strong {
-        @apply text-[#e5e5e5];
-    }
-
-    .nteract-prose.prose-invert blockquote {
-        @apply border-l-2 border-[#a993d1]/50 pl-5;
-    }
-
-    .nteract-prose.prose-invert blockquote p {
-        @apply text-[#ababab];
-    }
-
-    .nteract-prose.prose-invert thead {
-        @apply border-[#484848]/20 text-[#e5e5e5];
-    }
-
-    .nteract-prose.prose-invert tbody tr {
-        @apply border-[#484848]/10;
-    }
-
-    /* Code blocks — Monolith style: black bg, teal left rail */
-    .nteract-prose.prose-invert [data-rehype-pretty-code-figure] {
-        @apply relative -mx-6 overflow-hidden border-0 bg-[#000000] shadow-none md:-mx-24;
-    }
-
-    .nteract-prose.prose-invert [data-rehype-pretty-code-figure]::before {
-        content: "";
-        @apply absolute bottom-0 left-0 top-0 w-1 bg-[#a993d1];
-    }
-
-    .nteract-prose.prose-invert [data-rehype-pretty-code-title] {
-        @apply border-b border-[#484848]/20 bg-transparent px-8 py-3 text-[10px] uppercase tracking-widest text-[#ababab];
-        font-family: var(--font-mono), "JetBrains Mono", monospace;
-    }
-
-    .nteract-prose.prose-invert [data-rehype-pretty-code-figure] pre {
-        @apply px-8 py-6;
-    }
-
-    .nteract-prose.prose-invert [data-rehype-pretty-code-figure] code {
-        @apply text-[#e5e5e5]/90;
-        font-family: var(--font-mono), "JetBrains Mono", monospace;
-    }
-
-    .nteract-prose.prose-invert
-        [data-rehype-pretty-code-figure]
-        code
-        [data-line] {
-        @apply border-l-0 px-0;
-    }
-
-    /* Inline code */
-    .nteract-prose.prose-invert
-        code:not([data-rehype-pretty-code-figure] code) {
-        @apply bg-[#1f1f1f] px-1.5 py-0.5 text-[0.9em] text-[#a993d1];
-        font-family: var(--font-mono), "JetBrains Mono", monospace;
-    }
-
-    /* Links — secondary purple with underline */
-    .nteract-prose.prose-invert a {
-        @apply text-[#a993d1] underline decoration-[#a993d1]/30 underline-offset-4 transition-colors hover:text-[#cbb5f4] hover:decoration-[#cbb5f4]/60;
-    }
-
-    .nteract-prose.prose-invert li::marker {
-        @apply text-[#484848];
-    }
-
-    /* Images — full bleed, no rounding */
-    .nteract-prose.prose-invert > img,
-    .nteract-prose.prose-invert > p img {
-        @apply -mx-6 w-[calc(100%+3rem)] max-w-none md:-mx-24 md:w-[calc(100%+12rem)];
     }
 }
 

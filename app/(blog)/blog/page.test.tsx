@@ -25,6 +25,7 @@ describe("BlogPage", () => {
         published: true,
         tags: ["MDX"],
         authors: [],
+        composition: { code: 3, markdown: 12, raw: 0 },
       },
     ]);
 
@@ -36,8 +37,7 @@ describe("BlogPage", () => {
     expect(
       screen.getByRole("link", { name: /Shipping a local-first blog/ })
     ).toHaveAttribute("href", "/blog/shipping-a-local-first-blog");
-    expect(screen.getByText("RSS")).toBeInTheDocument();
-    expect(screen.getByText("Read the post →")).toBeInTheDocument();
+    expect(screen.getByText("Read the post")).toBeInTheDocument();
   });
 
   it("shows the empty state when no posts are published", async () => {

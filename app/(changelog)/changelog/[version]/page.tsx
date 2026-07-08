@@ -1,16 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { ChangelogTagList } from "@/components/changelog/tag-list";
+import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { Prose } from "@/components/prose";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import {
   formatEntryDate,
   resolveVersionParam,
   shouldShowDrafts,
 } from "@/lib/changelog";
 import { absoluteUrl } from "@/lib/site";
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+};
 
 type ChangelogVersionPageProps = {
   params: Promise<{
@@ -88,115 +94,125 @@ export default async function ChangelogVersionPage({
   );
 
   return (
-    <div className="px-6 pb-24 pt-12 md:px-12">
-      <article className="mx-auto max-w-4xl">
-        {/* Header */}
-        <header className="mb-12">
-          <div className="mb-6 flex items-center gap-4">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader active="changelog" />
+
+      <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
+        <article>
+          {/* Header */}
+          <header className="mb-10">
+            <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+              <Link
+                href="/changelog"
+                className="text-foreground transition-colors hover:text-muted-foreground"
+              >
+                ← Changelog
+              </Link>
+              <div className="h-px flex-grow bg-border" />
+              <time dateTime={entry.date}>{formatEntryDate(entry)}</time>
+            </div>
+
+            <div className="mb-4 flex items-center gap-4">
+              <span className="font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground">
+                {entry.version}
+              </span>
+              <RuntimeStatusDot
+                status={entry.published ? "ready" : "executing"}
+                showLabel
+                label={entry.published ? "shipped" : "in progress"}
+              />
+            </div>
+
+            <h1 className="mb-3 text-[32px] font-bold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[40px]">
+              {entry.title}
+            </h1>
+
+            <p className="mb-6 max-w-[560px] text-lg leading-normal text-muted-foreground">
+              {entry.summary}
+            </p>
+
+            <ChangelogTagList tags={entry.tags} />
+          </header>
+
+          {/* Hero */}
+          {entry.heroVideo ? (
+            <section className="mb-12">
+              <div className="overflow-hidden rounded-lg border border-border">
+                <video
+                  src={entry.heroVideo}
+                  poster={entry.heroVideoPoster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="block w-full"
+                />
+              </div>
+            </section>
+          ) : entry.heroImage ? (
+            <section className="mb-12">
+              <div className="aspect-video w-full overflow-hidden rounded-lg border border-border bg-card">
+                <img
+                  alt={entry.title}
+                  className="h-full w-full object-cover"
+                  src={entry.heroImage}
+                />
+              </div>
+            </section>
+          ) : null}
+
+          {/* Highlights */}
+          {entry.highlights.length > 0 ? (
+            <section className="mb-12">
+              <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
+                Highlights
+              </h2>
+              <ul className="flex flex-col gap-2.5">
+                {entry.highlights.map((highlight) => (
+                  <li
+                    key={highlight}
+                    className="flex gap-2.5 text-[15.5px] leading-normal"
+                  >
+                    <span
+                      aria-hidden="true"
+                      className="mt-2 h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
+                    />
+                    <span>{highlight}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ) : null}
+
+          {/* Body — narrative + full technical changelog */}
+          <Prose>
+            <Content />
+          </Prose>
+
+          {/* Footer */}
+          <div className="mt-14 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
             <Link
               href="/changelog"
-              className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)] transition-colors hover:text-[var(--ink)]"
+              className="text-foreground transition-colors hover:text-muted-foreground"
             >
-              ← Changelog
+              ← All releases
             </Link>
-            <div className="h-px flex-grow bg-[var(--rule)]" />
-            <time
-              dateTime={entry.date}
-              className="font-mono text-xs uppercase tracking-widest text-[var(--accent)]"
-            >
-              {formatEntryDate(entry)}
-            </time>
+            <div className="h-px flex-grow bg-border" />
+            {entry.githubReleaseUrl ? (
+              <a
+                href={entry.githubReleaseUrl}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+                rel="noreferrer"
+                target="_blank"
+              >
+                GitHub release →
+              </a>
+            ) : null}
           </div>
+        </article>
+      </main>
 
-          <div className="mb-4 font-mono text-sm uppercase tracking-[0.25em] text-[var(--accent)]">
-            nteract {entry.version}
-          </div>
-
-          <h1 className="text-[var(--ink)]">{entry.title}</h1>
-
-          <p className="mb-6 mt-2 max-w-2xl text-xl leading-snug text-[var(--muted)]">
-            {entry.summary}
-          </p>
-
-          <div className="flex flex-wrap items-center gap-6">
-            <ChangelogTagList tags={entry.tags} />
-          </div>
-        </header>
-
-        {/* Hero */}
-        {entry.heroVideo ? (
-          <section className="mb-16">
-            <div className="overflow-hidden border border-[var(--rule)]">
-              <video
-                src={entry.heroVideo}
-                poster={entry.heroVideoPoster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full"
-              />
-            </div>
-          </section>
-        ) : entry.heroImage ? (
-          <section className="mb-16">
-            <div className="aspect-video w-full overflow-hidden border border-[var(--rule)] bg-[var(--paper-elevated)]">
-              <img
-                alt={entry.title}
-                className="h-full w-full object-cover"
-                src={entry.heroImage}
-              />
-            </div>
-          </section>
-        ) : null}
-
-        {/* Highlights */}
-        {entry.highlights.length > 0 ? (
-          <section className="mx-auto mb-16 max-w-2xl">
-            <h2 className="mb-5 text-2xl text-[var(--ink)]">Highlights</h2>
-            <ul className="space-y-3">
-              {entry.highlights.map((highlight) => (
-                <li
-                  key={highlight}
-                  className="flex gap-3 text-lg text-[var(--ink)]"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 bg-[var(--accent)]"
-                  />
-                  <span className="leading-snug">{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ) : null}
-
-        {/* Body — narrative + full technical changelog */}
-        <Prose className="nteract-prose mx-auto max-w-2xl">
-          <Content />
-        </Prose>
-
-        {/* Footer */}
-        <div className="mx-auto mt-16 flex max-w-2xl flex-wrap items-center gap-4">
-          <Link
-            href="/changelog"
-            className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)] transition-colors hover:text-[var(--ink)]"
-          >
-            ← All releases
-          </Link>
-          <div className="h-px flex-grow bg-[var(--rule)]" />
-          {entry.githubReleaseUrl ? (
-            <a
-              href={entry.githubReleaseUrl}
-              className="font-mono text-[11px] uppercase tracking-widest text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
-              rel="noreferrer"
-              target="_blank"
-            >
-              GitHub release →
-            </a>
-          ) : null}
-        </div>
-      </article>
+      <SiteFooter />
     </div>
   );
 }

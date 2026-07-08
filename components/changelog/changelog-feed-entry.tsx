@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 
 import { ChangelogTagList } from "@/components/changelog/tag-list";
+import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { Prose } from "@/components/prose";
 import { formatEntryDate, type ChangelogEntrySummary } from "@/lib/changelog";
 
@@ -13,10 +14,11 @@ type ChangelogFeedEntryProps = {
 };
 
 /**
- * One release rendered in full inline in the scrolling feed: version + date in
- * a left rail, the whole story on the right (highlights, hero, and the MDX
- * body, whose exhaustive technical changelog stays inside its collapsed
- * disclosure). The version and date link to the shareable per-version page.
+ * One release rendered in full inline in the scrolling feed: version, shipped
+ * state, and date in a left rail, the whole story on the right (highlights,
+ * hero, and the MDX body, whose exhaustive technical changelog stays inside
+ * its collapsed disclosure). The version and title link to the shareable
+ * per-version page.
  */
 export function ChangelogFeedEntry({ entry, children }: ChangelogFeedEntryProps) {
   const href = `/changelog/${entry.version}`;
@@ -24,84 +26,88 @@ export function ChangelogFeedEntry({ entry, children }: ChangelogFeedEntryProps)
   return (
     <article
       id={`v${entry.version}`}
-      className="scroll-mt-24 border-t border-[var(--rule)] pt-12"
+      className="scroll-mt-24 border-t border-border py-9 md:grid md:grid-cols-[140px_1fr] md:gap-7"
     >
-      <div className="grid gap-6 md:grid-cols-[180px_1fr] md:gap-10">
-        {/* Left rail — version + date */}
-        <div className="flex flex-row items-baseline gap-4 md:flex-col md:items-start md:gap-3">
+      {/* Left rail — version + release state + date */}
+      <div className="mb-5 flex flex-row items-baseline gap-4 md:mb-0 md:flex-col md:items-start md:gap-2">
+        <Link
+          href={href}
+          className="font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground transition-colors hover:text-muted-foreground"
+        >
+          {entry.version}
+        </Link>
+        <RuntimeStatusDot
+          status={entry.published ? "ready" : "executing"}
+          showLabel
+          label={entry.published ? "shipped" : "in progress"}
+        />
+        <time
+          dateTime={entry.date}
+          className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground"
+        >
+          {formatEntryDate(entry)}
+        </time>
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col gap-3">
+        <Link href={href} className="block">
+          <h2 className="text-2xl font-bold tracking-[-0.02em] text-foreground">
+            {entry.title}
+          </h2>
+        </Link>
+
+        <p className="text-[15px] leading-[1.55] text-muted-foreground">
+          {entry.summary}
+        </p>
+
+        {entry.highlights.length > 0 ? (
+          <ul className="mt-1 flex flex-col gap-[7px]">
+            {entry.highlights.map((highlight) => (
+              <li
+                key={highlight}
+                className="flex gap-2.5 text-[14.5px] leading-[1.45] text-foreground"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
+                />
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
+        {/* Hero — driven by heroVideo / heroImage frontmatter */}
+        {entry.heroVideo ? (
+          <div className="mt-2 overflow-hidden rounded-lg border border-border">
+            <video
+              src={entry.heroVideo}
+              poster={entry.heroVideoPoster}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="block w-full"
+            />
+          </div>
+        ) : entry.heroImage ? (
+          <div className="mt-2 overflow-hidden rounded-lg border border-border">
+            <img src={entry.heroImage} alt={entry.title} className="block w-full" />
+          </div>
+        ) : null}
+
+        {/* Full body, rendered inline */}
+        {children ? <Prose className="mt-2">{children}</Prose> : null}
+
+        <div className="mt-3 flex flex-wrap items-center gap-5">
+          <ChangelogTagList tags={entry.tags} />
           <Link
             href={href}
-            className="font-mono text-4xl font-semibold tracking-tight text-[var(--ink)] transition-colors hover:text-[var(--accent)] md:text-5xl"
+            className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
           >
-            {entry.version}
+            Permalink →
           </Link>
-          <time
-            dateTime={entry.date}
-            className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)]"
-          >
-            {formatEntryDate(entry)}
-          </time>
-        </div>
-
-        {/* Content */}
-        <div>
-          <Link href={href} className="group block">
-            <h2 className="mb-3 text-3xl font-normal leading-[1.1] text-[var(--ink)] transition-colors group-hover:text-[var(--accent)] md:text-4xl">
-              {entry.title}
-            </h2>
-          </Link>
-
-          <p className="mb-6 max-w-2xl text-lg leading-snug text-[var(--muted)]">
-            {entry.summary}
-          </p>
-
-          {entry.highlights.length > 0 ? (
-            <ul className="mb-6 space-y-2">
-              {entry.highlights.map((highlight) => (
-                <li key={highlight} className="flex gap-3 text-[var(--ink)]">
-                  <span
-                    aria-hidden="true"
-                    className="mt-[0.55rem] h-1.5 w-1.5 shrink-0 bg-[var(--accent)]"
-                  />
-                  <span className="leading-snug">{highlight}</span>
-                </li>
-              ))}
-            </ul>
-          ) : null}
-
-          {/* Hero — driven by heroVideo / heroImage frontmatter */}
-          {entry.heroVideo ? (
-            <div className="mb-6 overflow-hidden border border-[var(--rule)]">
-              <video
-                src={entry.heroVideo}
-                poster={entry.heroVideoPoster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="w-full"
-              />
-            </div>
-          ) : entry.heroImage ? (
-            <div className="mb-6 overflow-hidden border border-[var(--rule)]">
-              <img src={entry.heroImage} alt={entry.title} className="w-full" />
-            </div>
-          ) : null}
-
-          {/* Full body, rendered inline */}
-          {children ? (
-            <Prose className="nteract-prose max-w-2xl">{children}</Prose>
-          ) : null}
-
-          <div className="mt-8 flex flex-wrap items-center gap-6">
-            <ChangelogTagList tags={entry.tags} />
-            <Link
-              href={href}
-              className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)] transition-colors hover:text-[var(--ink)]"
-            >
-              Permalink →
-            </Link>
-          </div>
         </div>
       </div>
     </article>

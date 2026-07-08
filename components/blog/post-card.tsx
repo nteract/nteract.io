@@ -1,7 +1,6 @@
 import Link from "next/link";
 
-import { BlogAuthorByline } from "@/components/blog/author-byline";
-import { BlogTagList } from "@/components/blog/tag-list";
+import { NotebookCompositionTicks } from "@/components/elements/notebook-composition-ticks";
 import { formatPostDate, type BlogPostSummary } from "@/lib/blog";
 
 type BlogPostCardProps = {
@@ -10,47 +9,23 @@ type BlogPostCardProps = {
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   return (
-    <article className="group relative bg-surface-container-low p-6 pl-8 transition-all hover:bg-surface-container">
-      {/* Teal rail accent on hover */}
-      <div className="absolute bottom-6 left-0 top-6 w-1 bg-transparent transition-all group-hover:bg-tertiary" />
-
-      <div className="mb-4 flex flex-wrap items-center gap-3">
-        <time
-          dateTime={post.date}
-          className="font-mono text-[11px] uppercase tracking-widest text-secondary"
-        >
-          {formatPostDate(post.date)}
-        </time>
-        {post.authors.length > 0 ? (
-          <>
-            <span className="h-1 w-1 bg-outline-variant" aria-hidden="true" />
-            <BlogAuthorByline
-              authors={post.authors}
-              className="font-mono text-[11px] text-secondary"
-            />
-          </>
-        ) : null}
-        {post.tags.length > 0 ? (
-          <span
-            className="h-1 w-1 bg-outline-variant"
-            aria-hidden="true"
-          />
-        ) : null}
-        <BlogTagList tags={post.tags} />
+    <Link
+      href={`/blog/${post.slug}`}
+      className="flex flex-col gap-1.5 rounded-lg border border-border bg-card p-5 px-[22px] transition-colors hover:border-ring"
+    >
+      <div className="flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground">
+        <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+        <NotebookCompositionTicks
+          composition={post.composition}
+          className="w-[60px]"
+        />
       </div>
-
-      <h2 className="font-headline text-2xl font-bold tracking-tight text-on-surface">
-        <Link
-          href={`/blog/${post.slug}`}
-          className="transition-colors group-hover:text-primary"
-        >
-          {post.title}
-        </Link>
-      </h2>
-
-      <p className="mt-3 text-base leading-7 text-on-surface-variant">
+      <span className="text-lg font-semibold tracking-[-0.01em] text-foreground">
+        {post.title}
+      </span>
+      <span className="text-[15px] leading-[1.55] text-muted-foreground">
         {post.description}
-      </p>
-    </article>
+      </span>
+    </Link>
   );
 }

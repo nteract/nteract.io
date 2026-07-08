@@ -1,20 +1,11 @@
-import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  themeColor: "#faf8f3",
-};
-
+// Pass-through: the changelog index and version pages wrap themselves in the
+// Ink (.dark) shell, while /changelog/print stays ink-on-paper for printing.
 export default function ChangelogLayout({
   children,
 }: {
   children: ReactNode;
 }) {
-  // cream-page sets the paper background, ink text, serif headings, and the
-  // scoped --paper/--ink/--accent/--rule/--muted vars the changelog styles use.
-  return (
-    <div className="cream-page relative min-h-screen">
-      <main className="relative">{children}</main>
-    </div>
-  );
+  return <>{children}</>;
 }

@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
+import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { getAllEntries } from "@/lib/changelog";
 import { siteConfig } from "@/lib/site";
@@ -24,34 +25,32 @@ export default async function Home() {
   const [latestEntry] = await getAllEntries({ includeUnpublished: false });
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <SiteHeader variant="floating" />
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader />
       <main className="flex flex-1 flex-col items-center justify-center px-4 py-16">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="mx-auto max-w-2xl text-center">
           <Link
             href={latestEntry ? `/changelog/${latestEntry.version}` : "/changelog"}
-            className="group mb-10 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white py-1 pl-1.5 pr-4 text-sm shadow-sm transition hover:border-gray-300 hover:shadow"
+            className="group mb-10 inline-flex items-center gap-2.5 rounded-full border border-border bg-card py-1.5 pl-4 pr-4 text-sm transition-colors hover:border-ring"
           >
-            <span className="rounded-full bg-accent px-2.5 py-0.5 text-xs font-semibold text-white">
-              New
-            </span>
-            <span className="font-medium text-gray-700 transition-colors group-hover:text-gray-900">
+            <RuntimeStatusDot status="ready" />
+            <span className="font-medium text-foreground">
               {latestEntry ? `nteract ${latestEntry.version} is out` : "See what's new"}
             </span>
-            <span className="text-gray-400 transition-transform group-hover:translate-x-0.5">
+            <span className="text-muted-foreground transition-transform group-hover:translate-x-0.5">
               →
             </span>
           </Link>
 
-          <Logo className="w-40 h-40 mx-auto mb-8" />
+          <Logo className="mx-auto mb-8 h-40 w-40" />
 
-          <p className="text-sm uppercase tracking-widest text-gray-400 mb-2">
+          <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
             Native interactive notebooks
           </p>
-          <h1 className="text-5xl font-bold text-gray-900 mb-3">
+          <h1 className="mb-3 text-5xl font-bold tracking-[-0.03em]">
             {siteConfig.name}
           </h1>
-          <p className="text-base text-gray-500 mb-8 max-w-md mx-auto">
+          <p className="mx-auto mb-8 max-w-md text-base text-muted-foreground">
             Fast to launch. Agent ready. Humans welcome.
           </p>
 
@@ -60,11 +59,10 @@ export default async function Home() {
           <div className="mt-12">
             <Link
               href="/agents"
-              className="group inline-flex items-center gap-2 text-sm text-gray-500 transition-colors hover:text-gray-900"
+              className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              <span className="text-base">🤖</span>
               <span>
-                <span className="font-medium text-gray-700 group-hover:text-gray-900">
+                <span className="font-medium text-foreground">
                   Using agents?
                 </span>{" "}
                 Install the plugins
