@@ -43,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#ffffff",
 };
 
 export default async function ChangelogPage() {
@@ -62,7 +62,7 @@ export default async function ChangelogPage() {
   );
 
   return (
-    <div className="dark flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
       <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">

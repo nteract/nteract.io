@@ -15,7 +15,7 @@ import {
 import { absoluteUrl } from "@/lib/site";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#ffffff",
 };
 
 type ChangelogVersionPageProps = {
@@ -94,7 +94,7 @@ export default async function ChangelogVersionPage({
   );
 
   return (
-    <div className="dark flex min-h-screen flex-col bg-background text-foreground">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
       <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
