@@ -19,5 +19,8 @@ jobs:
             nextjs-${{ hashFiles('pnpm-lock.yaml') }}-
             nextjs-
       - run: pnpm install
+      - run: pnpm validate:changelog
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - run: pnpm test
       - run: pnpm build
