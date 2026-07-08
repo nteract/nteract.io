@@ -52,15 +52,6 @@ export default async function ChangelogPage() {
     includeUnpublished: shouldShowDrafts(host),
   });
 
-  const rendered = await Promise.all(
-    entries.map(async (entry) => {
-      const { default: Content } = await import(
-        `@/content/changelog/${entry.version}.mdx`
-      );
-      return { entry, Content };
-    }),
-  );
-
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
@@ -90,12 +81,10 @@ export default async function ChangelogPage() {
           {description}
         </p>
 
-        {rendered.length > 0 ? (
+        {entries.length > 0 ? (
           <div>
-            {rendered.map(({ entry, Content }) => (
-              <ChangelogFeedEntry key={entry.version} entry={entry}>
-                <Content />
-              </ChangelogFeedEntry>
+            {entries.map((entry) => (
+              <ChangelogFeedEntry key={entry.version} entry={entry} />
             ))}
           </div>
         ) : (

@@ -1,26 +1,21 @@
-import type { ReactNode } from "react";
-
 import Link from "next/link";
 
 import { ChangelogTagList } from "@/components/changelog/tag-list";
 import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
-import { Prose } from "@/components/prose";
 import { formatEntryDate, type ChangelogEntrySummary } from "@/lib/changelog";
 
 type ChangelogFeedEntryProps = {
   entry: ChangelogEntrySummary;
-  /** The entry's MDX body, rendered inline in the feed. */
-  children?: ReactNode;
 };
 
 /**
- * One release rendered in full inline in the scrolling feed: version, shipped
- * state, and date in a left rail, the whole story on the right (highlights,
- * hero, and the MDX body, whose exhaustive technical changelog stays inside
- * its collapsed disclosure). The version and title link to the shareable
- * per-version page.
+ * One release in the scrolling feed: version, shipped state, and date in a
+ * left rail; title, summary, highlights, and hero on the right. The narrative
+ * body and the exhaustive technical changelog stay on the per-version page,
+ * which the version, title, and release-notes link all point at — keeping the
+ * index payload small.
  */
-export function ChangelogFeedEntry({ entry, children }: ChangelogFeedEntryProps) {
+export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
   const href = `/changelog/${entry.version}`;
 
   return (
@@ -97,16 +92,13 @@ export function ChangelogFeedEntry({ entry, children }: ChangelogFeedEntryProps)
           </div>
         ) : null}
 
-        {/* Full body, rendered inline */}
-        {children ? <Prose className="mt-2">{children}</Prose> : null}
-
         <div className="mt-3 flex flex-wrap items-center gap-5">
           <ChangelogTagList tags={entry.tags} />
           <Link
             href={href}
             className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground transition-colors hover:text-foreground"
           >
-            Permalink →
+            Release notes →
           </Link>
         </div>
       </div>
