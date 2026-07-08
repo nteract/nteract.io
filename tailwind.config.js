@@ -10,7 +10,25 @@ module.exports = {
     extend: {
       colors: {
         accent: "rgb(var(--accent) / <alpha-value>)",
-        // Monolith design system
+        // nteract Elements semantic tokens (light/.dark via CSS vars)
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+        primary: {
+          DEFAULT: "var(--primary)",
+          foreground: "var(--primary-foreground)",
+        },
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
+        },
+        border: "var(--border)",
+        ring: "var(--ring)",
+        // Monolith grayscale, still consumed by the blog's dark diagram
+        // islands (socket-diagram, peekaboo, env-picker) and the OG images.
         surface: {
           DEFAULT: "#0e0e0e",
           dim: "#0e0e0e",
@@ -28,23 +46,10 @@ module.exports = {
           DEFAULT: "#e5e5e5",
           variant: "#ababab",
         },
-        primary: {
-          DEFAULT: "#94ccff",
-          dim: "#73bfff",
-          container: "#004b74",
-        },
-        "on-primary": {
-          DEFAULT: "#00446a",
-          container: "#a9d5ff",
-        },
         secondary: {
           DEFAULT: "#a993d1",
           dim: "#a993d1",
           container: "#443167",
-        },
-        "on-secondary": {
-          DEFAULT: "#28144a",
-          container: "#cbb5f4",
         },
         tertiary: {
           DEFAULT: "#8ef4e9",
@@ -63,6 +68,10 @@ module.exports = {
       },
       borderRadius: {
         none: "0px",
+        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 2px)",
+        lg: "var(--radius)",
+        xl: "calc(var(--radius) + 4px)",
       },
     },
   },

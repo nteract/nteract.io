@@ -7,9 +7,10 @@ type BlogAuthorBylineProps = {
   className?: string;
 };
 
+/** Author names for the mono meta rows ("April 7, 2026 · Kyle Kelley"). */
 export function BlogAuthorByline({
   authors,
-  className = "font-mono text-xs text-secondary",
+  className,
 }: BlogAuthorBylineProps) {
   if (authors.length === 0) {
     return null;
@@ -17,13 +18,12 @@ export function BlogAuthorByline({
 
   return (
     <span className={className}>
-      By{" "}
       {authors.map((author, index) => (
         <Fragment key={author.id}>
           {index > 0 ? (index === authors.length - 1 ? " and " : ", ") : null}
           <a
             href={author.url}
-            className="transition-colors hover:text-on-surface"
+            className="transition-colors hover:text-foreground"
           >
             {author.name}
           </a>

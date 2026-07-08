@@ -13,14 +13,14 @@ export function BlogInlineCTA({ href, children, lead }: BlogInlineCTAProps) {
     href.startsWith("http://") || href.startsWith("https://");
 
   return (
-    <div className="not-prose font-body text-[0.95rem] leading-relaxed text-on-surface-variant/75">
+    <div className="not-prose text-[0.95rem] leading-relaxed text-muted-foreground">
       {lead ? <span>{lead} </span> : null}
       <a
         href={href}
         {...(isExternal
           ? { target: "_blank", rel: "noopener noreferrer" }
           : {})}
-        className="group inline-flex items-baseline gap-1.5 text-[#cbb5f4] underline decoration-[#a993d1]/40 decoration-from-font underline-offset-[5px] transition-colors hover:decoration-[#cbb5f4]"
+        className="group inline-flex items-baseline gap-1.5 text-foreground underline decoration-[color-mix(in_srgb,var(--foreground)_30%,transparent)] decoration-from-font underline-offset-[5px] transition-colors hover:decoration-[var(--foreground)]"
       >
         {children}
         <span

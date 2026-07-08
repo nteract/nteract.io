@@ -81,73 +81,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { default: Content } = await import(`@/content/blog/${slug}.mdx`);
 
   return (
-    <div className="px-6 pb-24 pt-12 md:px-12">
-      <article className="mx-auto max-w-4xl">
+    <div className="mx-auto w-full max-w-[42.5rem] px-6 pb-16 pt-14 sm:px-10">
+      <article>
         {/* Article Header */}
-        <header className="mb-12">
-          <div className="mb-6 flex items-center gap-4">
+        <header className="mb-9">
+          <div className="mb-6 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
             <Link
               href="/blog"
-              className="font-mono text-[11px] uppercase tracking-widest text-[#a993d1] transition-colors hover:text-on-surface"
+              className="text-foreground transition-colors hover:text-muted-foreground"
             >
               ← Blog
             </Link>
-            <div className="h-px flex-grow bg-outline-variant/20" />
-            <time
-              dateTime={post.date}
-              className="font-mono text-xs uppercase tracking-widest text-secondary"
-            >
-              {formatPostDate(post.date)}
-            </time>
+            <div className="h-px flex-grow bg-border" />
+            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {post.authors.length > 0 ? (
               <>
-                <div className="h-px w-4 bg-outline-variant/20" />
+                <span aria-hidden="true">·</span>
                 <BlogAuthorByline authors={post.authors} />
               </>
             ) : null}
           </div>
 
-          <h1 className="mb-6 font-headline text-6xl font-bold leading-[0.9] tracking-tighter text-on-surface md:text-8xl">
+          <h1 className="mb-3 text-[32px] font-bold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[40px]">
             {post.title}
           </h1>
 
-          {(() => {
-            const dot = post.description.indexOf(".");
-            if (dot === -1) {
-              return (
-                <p className="mb-6 max-w-2xl text-xl leading-snug text-on-surface/60">
-                  {post.description}
-                </p>
-              );
-            }
-            const lead = post.description.slice(0, dot + 1);
-            const rest = post.description.slice(dot + 1).trim();
-            return (
-              <div className="mb-6 max-w-2xl space-y-2">
-                <p className="font-headline text-2xl font-semibold tracking-tight text-on-surface/80 md:text-3xl">
-                  {lead}
-                </p>
-                {rest && (
-                  <p className="font-mono text-xs uppercase tracking-[0.25em] text-on-surface-variant">
-                    {rest}
-                  </p>
-                )}
-              </div>
-            );
-          })()}
+          <p className="mb-6 text-lg leading-normal text-muted-foreground">
+            {post.description}
+          </p>
 
-          <div className="flex flex-wrap items-center gap-6">
-            <BlogTagList tags={post.tags} />
-          </div>
+          <BlogTagList tags={post.tags} />
         </header>
 
         {/* Cover image */}
         {post.coverImage ? (
-          <section className="mb-16">
-            <div className="aspect-video w-full overflow-hidden bg-surface-container-low">
+          <section className="mb-12">
+            <div className="overflow-hidden rounded-lg border border-border">
               <img
                 alt={post.title}
-                className="h-full w-full object-cover"
+                className="block w-full"
                 src={post.coverImage}
               />
             </div>
@@ -155,19 +127,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         ) : null}
 
         {/* Body Prose */}
-        <Prose className="prose-invert mx-auto max-w-2xl">
+        <Prose>
           <Content />
         </Prose>
 
         {/* Post footer */}
-        <div className="mx-auto mt-16 flex max-w-2xl items-center gap-4">
+        <div className="mt-14 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
           <Link
             href="/blog"
-            className="font-mono text-[11px] uppercase tracking-widest text-[#a993d1] transition-colors hover:text-on-surface"
+            className="text-foreground transition-colors hover:text-muted-foreground"
           >
             ← All posts
           </Link>
-          <div className="h-px flex-grow bg-outline-variant/20" />
+          <div className="h-px flex-grow bg-border" />
         </div>
       </article>
     </div>

@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 
-import { CommandBlock, InlineCode, PageHero, StepCard } from "@/components/product/page-primitives";
-import { Container, SiteFooter, SiteHeader } from "@/components/site-shell";
+import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
+import { buttonVariants } from "@/components/ui/button-variants";
 
 export const metadata: Metadata = {
   title: "Use nteract with agents",
@@ -10,135 +11,123 @@ export const metadata: Metadata = {
     "Install nteract's agent plugins for Claude Code and Codex so agents can work in live notebooks instead of throwaway scripts.",
 };
 
-const claudeCommands = [
-  "/plugin marketplace add nteract/agent-plugins",
-  "/plugin install nteract@nteract       # stable",
-  "/plugin install nightly@nteract       # nightly",
-];
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+};
 
-const codexCommands = [
-  "codex plugin marketplace add nteract/agent-plugins",
-  "# Then run /plugin in Codex and enable nteract or nightly",
-];
+function InlineCode({ children }: { children: React.ReactNode }) {
+  return (
+    <code className="rounded bg-muted px-1.5 py-px font-mono text-[0.9em]">
+      {children}
+    </code>
+  );
+}
+
+function InstallCard({
+  label,
+  children,
+  footnote,
+}: {
+  label: string;
+  children: React.ReactNode;
+  footnote: React.ReactNode;
+}) {
+  return (
+    <div className="overflow-hidden rounded-lg border border-border">
+      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+        <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          {label}
+        </span>
+        <RuntimeStatusDot status="ready" />
+      </div>
+      <pre className="overflow-x-auto bg-[oklch(0.09_0_0)] p-4 font-mono text-[12.5px] leading-[1.8] text-foreground">
+        {children}
+      </pre>
+      <div className="px-4 py-3 text-[13.5px] leading-[1.55] text-muted-foreground">
+        {footnote}
+      </div>
+    </div>
+  );
+}
 
 export default function AgentsPage() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      <SiteHeader />
+    <div className="dark min-h-screen bg-background text-foreground">
+      <SiteHeader active="agents" />
 
-      <main>
-        <Container className="py-16 sm:py-24">
-          <PageHero
-            eyebrow="Agents"
-            title="Use nteract as your agent notebook"
-            subtitle={
+      <main className="mx-auto w-full max-w-[47.5rem] px-6 pb-[72px] pt-16 sm:px-10">
+        <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          <span>Agents</span>
+          <div className="h-px flex-grow bg-border" />
+          <span>claude code · codex</span>
+        </div>
+
+        <h1 className="mb-4 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
+          Agents: Show Your Work
+        </h1>
+        <p className="mb-12 max-w-[600px] text-lg leading-[1.55] text-muted-foreground">
+          A live notebook for Claude Code and Codex. State persists. Outputs
+          stay rich. Every step is yours to inspect, edit, and keep.
+        </p>
+
+        <div className="mb-12 grid gap-5 sm:grid-cols-2">
+          <InstallCard
+            label="Claude Code"
+            footnote={
               <>
-                nteract plugins let Claude Code and Codex run exploratory Python in
-                a live notebook instead of hiding work in one-off shell commands.
-                The notebook keeps state, captures rich outputs, and stays available
-                for humans to inspect, edit, and save.
+                Plugins pin at install time. Add{" "}
+                <InlineCode>--ref vX.Y.Z</InlineCode> for a known release.
               </>
             }
-          />
+          >
+            {"/plugin marketplace add nteract/agent-plugins\n/plugin install nteract@nteract\n"}
+            <span className="text-muted-foreground"># nightly channel:</span>
+            {"\n/plugin install nightly@nteract"}
+          </InstallCard>
 
-          <div className="mx-auto mt-12 grid max-w-4xl gap-6">
-            <StepCard eyebrow="01" title="Choose the stable or nightly plugin">
-              <p>
-                Install from the generated plugin marketplace at{" "}
-                <a
-                  href="https://github.com/nteract/agent-plugins"
-                  className="font-medium text-teal-700 underline decoration-teal-700/30 underline-offset-4 hover:text-teal-900"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  nteract/agent-plugins
-                </a>
-                . The repository is produced by the nteract release pipeline, so
-                the source of truth for changes remains the main nteract repo.
-              </p>
-              <ul className="list-disc space-y-2 pl-6">
-                <li>
-                  <strong className="text-gray-950">nteract</strong>: the stable
-                  plugin channel for normal use.
-                </li>
-                <li>
-                  <strong className="text-gray-950">nightly</strong>: early
-                  access to the latest runtime and notebook tools.
-                </li>
-              </ul>
-            </StepCard>
+          <InstallCard
+            label="Codex"
+            footnote="Restart Codex after changing plugin or marketplace settings."
+          >
+            {"codex plugin marketplace add \\\n  nteract/agent-plugins\n"}
+            <span className="text-muted-foreground">
+              {"# then run /plugin in Codex and\n# enable nteract or nightly"}
+            </span>
+          </InstallCard>
+        </div>
 
-            <StepCard eyebrow="02" title="Install in Claude Code">
-              <CommandBlock commands={claudeCommands} />
-              <p>
-                Claude Code pins plugins at install time. To install a known
-                release, add <InlineCode>--ref vX.Y.Z</InlineCode>{" "}
-                to the install command.
-              </p>
-            </StepCard>
-
-            <StepCard eyebrow="03" title="Install in Codex">
-              <CommandBlock commands={codexCommands} />
-              <p>
-                After registering the marketplace, start or restart Codex, run{" "}
-                <InlineCode>/plugin</InlineCode>,
-                pick the nteract marketplace, and enable the stable or nightly
-                plugin. Codex resolves the platform-specific sidecar bundled with
-                the plugin.
-              </p>
-            </StepCard>
-
-            <StepCard eyebrow="04" title="What agents get">
-              <ul className="list-disc space-y-2 pl-6">
-                <li>Create or connect to notebook-backed Python sessions.</li>
-                <li>Run code repeatedly while preserving variables and imports.</li>
-                <li>Add dependencies before or during exploratory work.</li>
-                <li>Inspect cells and outputs instead of reconstructing shell logs.</li>
-                <li>Save the resulting notebook when the exploration is worth keeping.</li>
-              </ul>
-              <p>
-                In practice, this gives an agent a durable scratchpad that you can
-                open in nteract, review, and continue working on yourself.
-              </p>
-            </StepCard>
-
-            <StepCard eyebrow="05" title="Troubleshooting">
-              <ul className="list-disc space-y-2 pl-6">
-                <li>
-                  If notebook tools do not appear, restart the agent after changing
-                  plugin or marketplace settings.
-                </li>
-                <li>
-                  If the stable channel is not enough, install the nightly plugin
-                  and try the same workflow there.
-                </li>
-                <li>
-                  If the agent reports runtime issues, open nteract locally and run{" "}
-                  <InlineCode>runt doctor</InlineCode>{" "}
-                  or <InlineCode>runt-nightly doctor</InlineCode>.
-                </li>
-              </ul>
-            </StepCard>
-          </div>
-
-          <div className="mx-auto mt-12 max-w-4xl rounded-3xl border border-teal-200 bg-teal-50 p-6 text-gray-800">
-            <h2 className="text-xl font-bold tracking-tight text-gray-950">
-              Want the desktop app too?
-            </h2>
-            <p className="mt-3 leading-7">
-              Install nteract from the homepage when you want the full native
-              notebook interface alongside the agent plugin. The plugin makes the
-              agent workflow available; the app gives you a friendly place to see
-              and continue the notebook work.
-            </p>
-            <Link
-              href="/"
-              className="mt-5 inline-flex rounded-full bg-gray-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800"
+        <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
+          What agents get
+        </h2>
+        <ul className="mb-12 flex max-w-[620px] flex-col gap-2.5">
+          {[
+            "Notebook-backed Python sessions that keep variables and imports between runs.",
+            "Dependencies added before or during exploratory work.",
+            "Cells and rich outputs to inspect instead of reconstructed shell logs.",
+            "A durable scratchpad. Save the notebook when the exploration is worth keeping.",
+          ].map((item) => (
+            <li
+              key={item}
+              className="flex gap-2.5 text-[15.5px] leading-normal"
             >
-              Download nteract
-            </Link>
-          </div>
-        </Container>
+              <span
+                aria-hidden="true"
+                className="mt-2 h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
+              />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex flex-wrap items-center gap-4 border-t border-border pt-7">
+          <Link href="/install" className={buttonVariants()}>
+            Download nteract
+          </Link>
+          <span className="text-[13.5px] text-muted-foreground">
+            Tools missing? Restart the agent, or run{" "}
+            <InlineCode>runt doctor</InlineCode>.
+          </span>
+        </div>
       </main>
 
       <SiteFooter />

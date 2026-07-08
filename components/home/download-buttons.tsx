@@ -175,9 +175,9 @@ export function DownloadButtons({ version }: { version: string | null }) {
         <a
           href={primaryUrl}
           className={cn(
-            "inline-flex items-center gap-3 rounded-lg px-8 py-4",
-            "bg-accent/90 text-lg font-medium text-white shadow-lg transition-all",
-            "hover:-translate-y-0.5 hover:bg-accent hover:shadow-xl",
+            "inline-flex items-center gap-3 rounded-lg px-7 py-3.5",
+            "bg-primary text-base font-medium text-primary-foreground transition-colors",
+            "hover:bg-[color-mix(in_srgb,var(--primary)_88%,var(--background))]",
           )}
         >
           {primary.icon}
@@ -195,7 +195,7 @@ export function DownloadButtons({ version }: { version: string | null }) {
             <a
               key={key}
               href={href}
-              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {meta.icon}
               {meta.shortLabel}

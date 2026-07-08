@@ -60,7 +60,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h2: ({ className, ...props }) => (
       <h2
         className={cn(
-          "scroll-mt-24 font-headline text-3xl font-bold tracking-tight",
+          "scroll-mt-24 text-2xl font-bold tracking-[-0.02em]",
           className,
         )}
         {...props}
@@ -69,7 +69,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h3: ({ className, ...props }) => (
       <h3
         className={cn(
-          "scroll-mt-24 font-headline text-2xl font-bold tracking-tight",
+          "scroll-mt-24 text-xl font-bold tracking-[-0.015em]",
           className,
         )}
         {...props}
@@ -78,7 +78,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     h4: ({ className, ...props }) => (
       <h4
         className={cn(
-          "scroll-mt-24 font-headline text-xl font-bold tracking-tight",
+          "scroll-mt-24 text-lg font-semibold tracking-[-0.01em]",
           className,
         )}
         {...props}
@@ -111,7 +111,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       <blockquote className={cn("pl-5", className)} {...props} />
     ),
     hr: ({ className, ...props }) => (
-      <hr className={cn("border-outline-variant/20", className)} {...props} />
+      <hr className={cn("border-border", className)} {...props} />
     ),
     BlogCTA,
     BlogInlineCTA,

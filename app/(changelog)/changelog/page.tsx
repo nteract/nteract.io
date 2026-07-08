@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import Link from "next/link";
 
 import { ChangelogFeedEntry } from "@/components/changelog/changelog-feed-entry";
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { getAllEntries, shouldShowDrafts } from "@/lib/changelog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -11,7 +12,7 @@ import { absoluteUrl, siteConfig } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 const description =
-  "Local-first notebooks, built from the ground up for mingling with agents. Realtime collab with a colorful, jazzy streak. Here's how it gets better, release by release.";
+  "Local-first notebooks, built from the ground up for mingling with agents. Here's how it gets better, release by release.";
 
 // Handcrafted generic changelog card. Intentionally not a per-release image:
 // the index represents the whole changelog, so it keeps its own card.
@@ -41,6 +42,10 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+};
+
 export default async function ChangelogPage() {
   const host = (await headers()).get("host");
   const entries = await getAllEntries({
@@ -57,41 +62,36 @@ export default async function ChangelogPage() {
   );
 
   return (
-    <div className="px-6 pb-24 pt-12 md:px-12">
-      <section className="mx-auto max-w-4xl">
-        {/* Header */}
-        <div className="mb-6 flex items-center gap-4">
-          <Link
-            href="/"
-            className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)] transition-colors hover:text-[var(--ink)]"
-          >
-            ← Home
-          </Link>
-          <div className="h-px flex-grow bg-[var(--rule)]" />
+    <div className="dark flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader active="changelog" />
+
+      <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
+        <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+          <span>Changelog</span>
+          <div className="h-px flex-grow bg-border" />
           <Link
             href="/changelog/print"
-            className="font-mono text-[11px] uppercase tracking-widest text-[var(--accent)] transition-colors hover:text-[var(--ink)]"
+            className="transition-colors hover:text-foreground"
           >
             Print
           </Link>
           <a
             href="/changelog/feed.xml"
-            className="font-mono text-[11px] uppercase tracking-widest text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+            className="transition-colors hover:text-foreground"
           >
             RSS
           </a>
         </div>
 
-        <h1 className="text-[var(--ink)]">Changelog</h1>
-
-        <p className="mb-16 max-w-2xl text-xl leading-snug text-[var(--muted)]">
-          Local-first notebooks, built from the ground up for mingling with
-          agents. Realtime collab with a colorful, jazzy streak. Here&apos;s how
-          it gets better, release by release.
+        <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
+          Changelog
+        </h1>
+        <p className="mb-11 max-w-[560px] text-[17px] leading-[1.55] text-muted-foreground">
+          {description}
         </p>
 
         {rendered.length > 0 ? (
-          <div className="space-y-12">
+          <div>
             {rendered.map(({ entry, Content }) => (
               <ChangelogFeedEntry key={entry.version} entry={entry}>
                 <Content />
@@ -99,11 +99,13 @@ export default async function ChangelogPage() {
             ))}
           </div>
         ) : (
-          <div className="border border-[var(--rule)] bg-[var(--paper-elevated)] px-6 py-10 text-[var(--muted)]">
+          <div className="rounded-lg border border-border bg-card px-6 py-10 text-muted-foreground">
             The first release notes are still in draft. Check back soon.
           </div>
         )}
-      </section>
+      </main>
+
+      <SiteFooter />
     </div>
   );
 }

@@ -3,10 +3,8 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /**
- * Eyebrow label for product pages (install, agents, docs). One convention
- * so the product pages stop drifting between tracking-widest, tracking-[0.25em],
- * and tracking-[0.3em]. Uses teal-600 as the text accent (readable on the
- * bg-gray-50 product surface); the --accent token stays for fills.
+ * Eyebrow label for product pages: the mono ledger label (11px uppercase,
+ * wide tracking) shared with the site header and the blog/changelog meta rows.
  */
 export function ProductEyebrow({
   children,
@@ -18,7 +16,7 @@ export function ProductEyebrow({
   return (
     <p
       className={cn(
-        "text-sm font-semibold uppercase tracking-[0.3em] text-teal-600",
+        "font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground",
         className,
       )}
     >
@@ -28,25 +26,32 @@ export function ProductEyebrow({
 }
 
 /**
- * Centered hero block for product pages: eyebrow + h1 + subtitle. Install
- * and agents share this exact shape; home can adopt it too.
+ * Ledger hero for product pages: mono meta row (label · rule · detail), a big
+ * tight headline, and a muted subtitle. The agents page and install share
+ * this shape.
  */
 export function PageHero({
   eyebrow,
+  detail,
   title,
   subtitle,
 }: {
   eyebrow: string;
+  detail?: string;
   title: ReactNode;
   subtitle: ReactNode;
 }) {
   return (
-    <div className="mx-auto max-w-3xl text-center">
-      <ProductEyebrow className="mb-4">{eyebrow}</ProductEyebrow>
-      <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-6xl">
+    <div>
+      <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+        <span>{eyebrow}</span>
+        <div className="h-px flex-grow bg-border" />
+        {detail ? <span>{detail}</span> : null}
+      </div>
+      <h1 className="mb-4 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] text-foreground sm:text-[56px]">
         {title}
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+      <p className="mb-12 max-w-[600px] text-lg leading-[1.55] text-muted-foreground">
         {subtitle}
       </p>
     </div>
@@ -54,8 +59,8 @@ export function PageHero({
 }
 
 /**
- * Numbered step card for install/agents flows: eyebrow (usually "01", "02"...)
- * + title + body. The rounded-3xl white card on the gray-50 product surface.
+ * Titled card for install/agents flows: mono eyebrow + title + body on the
+ * bordered card surface.
  */
 export function StepCard({
   eyebrow,
@@ -67,14 +72,14 @@ export function StepCard({
   children: ReactNode;
 }) {
   return (
-    <section className="rounded-3xl border border-black/10 bg-white p-6 shadow-sm">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-[0.25em] text-teal-600">
+    <section className="rounded-lg border border-border bg-card p-6">
+      <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
         {eyebrow}
       </p>
-      <h2 className="mb-4 text-2xl font-bold tracking-tight text-gray-950">
+      <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em] text-foreground">
         {title}
       </h2>
-      <div className="space-y-4 text-[16px] leading-7 text-gray-700">
+      <div className="space-y-4 text-[15.5px] leading-7 text-foreground">
         {children}
       </div>
     </section>
@@ -82,11 +87,12 @@ export function StepCard({
 }
 
 /**
- * Dark command block for shell commands. Slate-950 bg, slate-100 text.
+ * Dark command block for shell commands. Ink surface regardless of the page
+ * theme, matching the design's install cards.
  */
 export function CommandBlock({ commands }: { commands: string[] }) {
   return (
-    <pre className="overflow-x-auto rounded-2xl border border-black/10 bg-slate-950 px-5 py-4 text-sm leading-7 text-slate-100 shadow-sm">
+    <pre className="overflow-x-auto rounded-lg border border-border bg-[oklch(0.13_0_0)] p-4 font-mono text-[12.5px] leading-[1.8] text-[oklch(0.93_0_0)]">
       <code>{commands.join("\n")}</code>
     </pre>
   );
@@ -97,6 +103,8 @@ export function CommandBlock({ commands }: { commands: string[] }) {
  */
 export function InlineCode({ children }: { children: ReactNode }) {
   return (
-    <code className="rounded bg-gray-100 px-1 py-0.5">{children}</code>
+    <code className="rounded bg-muted px-1.5 py-px font-mono text-[0.9em]">
+      {children}
+    </code>
   );
 }

@@ -18,8 +18,18 @@ export type BlogPostFrontmatter = {
   authors: BlogAuthor[];
 };
 
+export type NotebookComposition = {
+  code: number;
+  markdown: number;
+  raw: number;
+};
+
 export type BlogPostSummary = BlogPostFrontmatter & {
   slug: string;
+  /** Cell-type fingerprint of the post body: fenced code blocks count as
+      code cells, prose blocks as markdown cells. Feeds the composition
+      ticks on post cards. */
+  composition: NotebookComposition;
 };
 
 export type BlogPost = BlogPostSummary & {
@@ -134,6 +144,17 @@ function toSlug(fileName: string) {
   return fileName.replace(/\.mdx?$/, "");
 }
 
+function computeComposition(content: string): NotebookComposition {
+  const fences = content.match(/^\s*```/gm) ?? [];
+  const code = Math.floor(fences.length / 2);
+  const prose = content
+    .replace(/^\s*```[\s\S]*?^\s*```/gm, "")
+    .split(/\n{2,}/)
+    .filter((block) => block.trim().length > 0).length;
+
+  return { code, markdown: prose, raw: 0 };
+}
+
 function compareByDateDescending(
   left: BlogPostSummary,
   right: BlogPostSummary,
@@ -163,6 +184,7 @@ function readAllPostsFromDisk(): Promise<BlogPost[]> {
         return {
           slug: toSlug(fileName),
           content,
+          composition: computeComposition(content),
           ...frontmatter,
         } satisfies BlogPost;
       }),

@@ -1,14 +1,18 @@
-import type { Metadata } from "next";
+import type { Viewport } from "next";
 import type { ReactNode } from "react";
 
-export const metadata: Metadata = {
-  themeColor: "#0e0e0e",
+import { SiteFooter, SiteHeader } from "@/components/site-shell";
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
 };
 
 export default function BlogLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="relative min-h-screen bg-surface text-on-surface selection:bg-primary/30">
-      <main className="relative">{children}</main>
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
+      <SiteHeader active="blog" />
+      <main className="flex-1">{children}</main>
+      <SiteFooter />
     </div>
   );
 }
