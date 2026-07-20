@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 
 import { ChangelogFeedEntry } from "@/components/changelog/changelog-feed-entry";
+import { ChangelogGrid, ChangelogMain } from "@/components/changelog/layout";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { getAllEntries, shouldShowDrafts } from "@/lib/changelog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
@@ -56,30 +57,38 @@ export default async function ChangelogPage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
-      <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
-        <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-          <span>Changelog</span>
-          <div className="h-px flex-grow bg-border" />
-          <Link
-            href="/changelog/print"
-            className="transition-colors hover:text-foreground"
-          >
-            Print
-          </Link>
-          <a
-            href="/changelog/feed.xml"
-            className="transition-colors hover:text-foreground"
-          >
-            RSS
-          </a>
-        </div>
+      <ChangelogMain>
+        <header className="mb-11">
+          <ChangelogGrid className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <span>Changelog</span>
+            <div className="flex flex-1 items-center gap-3">
+              <div className="h-px flex-grow bg-border" />
+              <Link
+                href="/changelog/print"
+                className="transition-colors hover:text-foreground"
+              >
+                Print
+              </Link>
+              <a
+                href="/changelog/feed.xml"
+                className="transition-colors hover:text-foreground"
+              >
+                RSS
+              </a>
+            </div>
+          </ChangelogGrid>
 
-        <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
-          Changelog
-        </h1>
-        <p className="mb-11 max-w-[560px] text-[17px] leading-[1.55] text-muted-foreground">
-          {description}
-        </p>
+          <ChangelogGrid>
+            <div className="md:col-start-2">
+              <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
+                Changelog
+              </h1>
+              <p className="max-w-[42rem] text-[17px] leading-[1.55] text-muted-foreground">
+                {description}
+              </p>
+            </div>
+          </ChangelogGrid>
+        </header>
 
         {entries.length > 0 ? (
           <div>
@@ -92,7 +101,7 @@ export default async function ChangelogPage() {
             The first release notes are still in draft. Check back soon.
           </div>
         )}
-      </main>
+      </ChangelogMain>
 
       <SiteFooter />
     </div>
