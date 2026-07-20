@@ -24,8 +24,7 @@ const RUNTIME_STATUS_LABELS: Record<RuntimeStatus, string> = {
 
 /**
  * Ported from the app (src/components/runtime/RuntimeStatusDot.tsx): the
- * current runtime state as a calm status marker. On the site it doubles as
- * release state ("shipped") in the changelog rails.
+ * current runtime state as a calm status marker.
  */
 export function RuntimeStatusDot({
   status,

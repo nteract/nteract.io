@@ -4,7 +4,6 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { ChangelogTagList } from "@/components/changelog/tag-list";
-import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { Prose } from "@/components/prose";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import {
@@ -112,15 +111,8 @@ export default async function ChangelogVersionPage({
               <time dateTime={entry.date}>{formatEntryDate(entry)}</time>
             </div>
 
-            <div className="mb-4 flex items-center gap-4">
-              <span className="font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground">
-                {entry.version}
-              </span>
-              <RuntimeStatusDot
-                status={entry.published ? "ready" : "executing"}
-                showLabel
-                label={entry.published ? "shipped" : "in progress"}
-              />
+            <div className="mb-4 font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground">
+              {entry.version}
             </div>
 
             <h1 className="mb-3 text-[32px] font-bold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[40px]">

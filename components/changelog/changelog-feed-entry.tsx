@@ -1,7 +1,6 @@
 import Link from "next/link";
 
 import { ChangelogTagList } from "@/components/changelog/tag-list";
-import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { formatEntryDate, type ChangelogEntrySummary } from "@/lib/changelog";
 
 type ChangelogFeedEntryProps = {
@@ -9,11 +8,11 @@ type ChangelogFeedEntryProps = {
 };
 
 /**
- * One release in the scrolling feed: version, shipped state, and date in a
- * left rail; title, summary, highlights, and hero on the right. The narrative
- * body and the exhaustive technical changelog stay on the per-version page,
- * which the version, title, and release-notes link all point at — keeping the
- * index payload small.
+ * One release in the scrolling feed: version and date in a left rail; title,
+ * summary, highlights, and hero on the right. The narrative body and the
+ * exhaustive technical changelog stay on the per-version page, which the
+ * version, title, and release-notes link all point at — keeping the index
+ * payload small.
  */
 export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
   const href = `/changelog/${entry.version}`;
@@ -23,7 +22,7 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
       id={`v${entry.version}`}
       className="scroll-mt-24 border-t border-border py-9 md:grid md:grid-cols-[140px_1fr] md:gap-7"
     >
-      {/* Left rail — version + release state + date */}
+      {/* Left rail — version + date */}
       <div className="mb-5 flex flex-row items-baseline gap-4 md:mb-0 md:flex-col md:items-start md:gap-2">
         <Link
           href={href}
@@ -31,11 +30,6 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
         >
           {entry.version}
         </Link>
-        <RuntimeStatusDot
-          status={entry.published ? "ready" : "executing"}
-          showLabel
-          label={entry.published ? "shipped" : "in progress"}
-        />
         <time
           dateTime={entry.date}
           className="font-mono text-[11px] uppercase tracking-[0.1em] text-muted-foreground"
