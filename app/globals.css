@@ -5,9 +5,8 @@
 /* ──────────────────────────────────────
    nteract Elements tokens. One neutral
    grayscale system for the whole site;
-   chromatic color is reserved for meaning
-   (cell types, runtime state). Dark pages
-   opt in with a .dark wrapper.
+   chromatic color is reserved for cell types.
+   Dark pages opt in with a .dark wrapper.
    ────────────────────────────────────── */
 :root {
     --background: oklch(1 0 0);
@@ -25,17 +24,10 @@
     /* Teal selection accent (RGB triple for rgb(var(--accent) / a)). */
     --accent: 45 212 191;
 
-    /* Meaningful color: cell types + runtime state (from the app's
-       dashboard atoms). */
+    /* Meaningful color: cell types (from the app's dashboard atoms). */
     --ct-code: #38bdf8;
     --ct-markdown: #34d399;
     --ct-raw: #fb7185;
-    --live: #22c55e;
-    --k-exec: #f59e0b;
-    --k-ready: #22c55e;
-    --k-start: #3b82f6;
-    --k-stale: #9ca3af;
-    --k-error: #dc2626;
 }
 
 .dark {
@@ -53,8 +45,6 @@
     --ct-code: #7dd3fc;
     --ct-markdown: #6ee7b7;
     --ct-raw: #fda4af;
-    --live: #4ade80;
-    --k-stale: #6b7280;
 }
 
 body {
@@ -80,9 +70,8 @@ body {
 
 @layer components {
     /* ──────────────────────────────────────
-       Elements atoms: notebook composition
-       ticks and the runtime status dot,
-       ported from the app's dashboard atoms.
+       Notebook composition ticks, ported
+       from the app's dashboard atoms.
        ────────────────────────────────────── */
     .nb-fp-wrap {
         display: flex;
@@ -116,60 +105,6 @@ body {
 
     .nb-fp-seg[data-ct="raw"] {
         background: var(--ct-raw);
-    }
-
-    .nb-kernel {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-        color: var(--muted-foreground);
-        font-family: var(--font-mono), "JetBrains Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        white-space: nowrap;
-    }
-
-    .nb-kdot {
-        width: 8px;
-        height: 8px;
-        flex: 0 0 auto;
-        border-radius: 50%;
-        background: var(--k-stale);
-    }
-
-    .nb-kernel[data-k="executing"] {
-        color: color-mix(in srgb, var(--k-exec) 72%, var(--foreground));
-    }
-
-    .nb-kernel[data-k="executing"] .nb-kdot {
-        background: var(--k-exec);
-    }
-
-    .nb-kernel[data-k="ready"] {
-        color: color-mix(in srgb, var(--k-ready) 60%, var(--foreground));
-    }
-
-    .nb-kernel[data-k="ready"] .nb-kdot {
-        background: var(--k-ready);
-    }
-
-    .nb-kernel[data-k="starting"] .nb-kdot {
-        background: var(--k-start);
-    }
-
-    .nb-kernel[data-k="error"] {
-        color: var(--k-error);
-    }
-
-    .nb-kernel[data-k="error"] .nb-kdot {
-        background: var(--k-error);
-    }
-
-    .nb-kernel[data-k="none"] .nb-kdot {
-        border: 1.5px solid
-            color-mix(in srgb, var(--muted-foreground) 55%, transparent);
-        background: transparent;
     }
 
     /* ──────────────────────────────────────
