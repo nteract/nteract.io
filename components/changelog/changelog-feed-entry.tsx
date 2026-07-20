@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ChangelogGrid } from "@/components/changelog/layout";
 import { ChangelogTagList } from "@/components/changelog/tag-list";
 import { formatEntryDate, type ChangelogEntrySummary } from "@/lib/changelog";
 
@@ -18,9 +19,10 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
   const href = `/changelog/${entry.version}`;
 
   return (
-    <article
+    <ChangelogGrid
+      as="article"
       id={`v${entry.version}`}
-      className="scroll-mt-24 border-t border-border py-9 md:grid md:grid-cols-[140px_1fr] md:gap-7"
+      className="scroll-mt-24 border-t border-border py-9"
     >
       {/* Left rail — version + date */}
       <div className="mb-5 flex flex-row items-baseline gap-4 md:mb-0 md:flex-col md:items-start md:gap-2">
@@ -50,23 +52,6 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
           {entry.summary}
         </p>
 
-        {entry.highlights.length > 0 ? (
-          <ul className="mt-1 flex max-w-[42rem] flex-col gap-[7px]">
-            {entry.highlights.map((highlight) => (
-              <li
-                key={highlight}
-                className="flex gap-2.5 text-[14.5px] leading-[1.45] text-foreground"
-              >
-                <span
-                  aria-hidden="true"
-                  className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
-                />
-                <span>{highlight}</span>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
         {/* Hero — driven by heroVideo / heroImage frontmatter */}
         {entry.heroVideo ? (
           <div className="mt-2 overflow-hidden rounded-lg border border-border">
@@ -86,6 +71,23 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
           </div>
         ) : null}
 
+        {entry.highlights.length > 0 ? (
+          <ul className="mt-1 flex max-w-[42rem] flex-col gap-[7px]">
+            {entry.highlights.map((highlight) => (
+              <li
+                key={highlight}
+                className="flex gap-2.5 text-[14.5px] leading-[1.45] text-foreground"
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-[7px] h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
+                />
+                <span>{highlight}</span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+
         <div className="mt-3 flex flex-wrap items-center gap-5">
           <ChangelogTagList tags={entry.tags} />
           <Link
@@ -96,6 +98,6 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
           </Link>
         </div>
       </div>
-    </article>
+    </ChangelogGrid>
   );
 }

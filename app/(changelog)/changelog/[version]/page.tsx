@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
+import { ChangelogGrid, ChangelogMain } from "@/components/changelog/layout";
 import { ChangelogTagList } from "@/components/changelog/tag-list";
 import { Prose } from "@/components/prose";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
@@ -96,40 +97,46 @@ export default async function ChangelogVersionPage({
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
-      <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
+      <ChangelogMain>
         <article>
           {/* Header */}
           <header className="mb-10">
-            <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
+            <ChangelogGrid className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
               <Link
                 href="/changelog"
                 className="text-foreground transition-colors hover:text-muted-foreground"
               >
                 ← Changelog
               </Link>
-              <div className="h-px flex-grow bg-border" />
-              <time dateTime={entry.date}>{formatEntryDate(entry)}</time>
-            </div>
+              <div className="flex flex-1 items-center gap-3">
+                <div className="h-px flex-grow bg-border" />
+                <time dateTime={entry.date}>{formatEntryDate(entry)}</time>
+              </div>
+            </ChangelogGrid>
 
-            <div className="mb-4 font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground">
-              {entry.version}
-            </div>
+            <ChangelogGrid>
+              <div className="mb-5 font-mono text-[32px] font-semibold tracking-[-0.02em] text-foreground md:mb-0">
+                {entry.version}
+              </div>
 
-            <h1 className="mb-3 text-[32px] font-bold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[40px]">
-              {entry.title}
-            </h1>
+              <div>
+                <h1 className="mb-3 text-[32px] font-bold leading-[1.05] tracking-[-0.03em] text-foreground sm:text-[40px]">
+                  {entry.title}
+                </h1>
 
-            <p className="mb-6 max-w-[560px] text-lg leading-normal text-muted-foreground">
-              {entry.summary}
-            </p>
+                <p className="mb-6 max-w-[42rem] text-lg leading-normal text-muted-foreground">
+                  {entry.summary}
+                </p>
 
-            <ChangelogTagList tags={entry.tags} />
+                <ChangelogTagList tags={entry.tags} />
+              </div>
+            </ChangelogGrid>
           </header>
 
           {/* Hero */}
           {entry.heroVideo ? (
-            <section className="mb-12">
-              <div className="overflow-hidden rounded-lg border border-border">
+            <ChangelogGrid as="section" className="mb-12">
+              <div className="overflow-hidden rounded-lg border border-border md:col-start-2">
                 <video
                   src={entry.heroVideo}
                   poster={entry.heroVideoPoster}
@@ -140,69 +147,75 @@ export default async function ChangelogVersionPage({
                   className="block w-full"
                 />
               </div>
-            </section>
+            </ChangelogGrid>
           ) : entry.heroImage ? (
-            <section className="mb-12">
-              <div className="aspect-video w-full overflow-hidden rounded-lg border border-border bg-card">
+            <ChangelogGrid as="section" className="mb-12">
+              <div className="aspect-video w-full overflow-hidden rounded-lg border border-border bg-card md:col-start-2">
                 <img
                   alt={entry.title}
                   className="h-full w-full object-cover"
                   src={entry.heroImage}
                 />
               </div>
-            </section>
+            </ChangelogGrid>
           ) : null}
 
           {/* Highlights */}
           {entry.highlights.length > 0 ? (
-            <section className="mb-12">
-              <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
-                Highlights
-              </h2>
-              <ul className="flex flex-col gap-2.5">
-                {entry.highlights.map((highlight) => (
-                  <li
-                    key={highlight}
-                    className="flex gap-2.5 text-[15.5px] leading-normal"
-                  >
-                    <span
-                      aria-hidden="true"
-                      className="mt-2 h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
-                    />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
+            <ChangelogGrid as="section" className="mb-12">
+              <div className="max-w-[42rem] md:col-start-2">
+                <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
+                  Highlights
+                </h2>
+                <ul className="flex flex-col gap-2.5">
+                  {entry.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex gap-2.5 text-[15.5px] leading-normal"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-[5px] w-[5px] shrink-0 rounded-[1px] bg-foreground"
+                      />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </ChangelogGrid>
           ) : null}
 
           {/* Body — narrative + full technical changelog */}
-          <Prose>
-            <Content />
-          </Prose>
+          <ChangelogGrid>
+            <Prose className="max-w-[42rem] md:col-start-2">
+              <Content />
+            </Prose>
+          </ChangelogGrid>
 
           {/* Footer */}
-          <div className="mt-14 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em]">
-            <Link
-              href="/changelog"
-              className="text-foreground transition-colors hover:text-muted-foreground"
-            >
-              ← All releases
-            </Link>
-            <div className="h-px flex-grow bg-border" />
-            {entry.githubReleaseUrl ? (
-              <a
-                href={entry.githubReleaseUrl}
-                className="text-muted-foreground transition-colors hover:text-foreground"
-                rel="noreferrer"
-                target="_blank"
+          <ChangelogGrid>
+            <div className="mt-14 flex flex-wrap items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] md:col-start-2">
+              <Link
+                href="/changelog"
+                className="text-foreground transition-colors hover:text-muted-foreground"
               >
-                GitHub release →
-              </a>
-            ) : null}
-          </div>
+                ← All releases
+              </Link>
+              <div className="h-px flex-grow bg-border" />
+              {entry.githubReleaseUrl ? (
+                <a
+                  href={entry.githubReleaseUrl}
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  GitHub release →
+                </a>
+              ) : null}
+            </div>
+          </ChangelogGrid>
         </article>
-      </main>
+      </ChangelogMain>
 
       <SiteFooter />
     </div>

@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import Link from "next/link";
 
 import { ChangelogFeedEntry } from "@/components/changelog/changelog-feed-entry";
+import { ChangelogGrid, ChangelogMain } from "@/components/changelog/layout";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { getAllEntries, shouldShowDrafts } from "@/lib/changelog";
 import { absoluteUrl, siteConfig } from "@/lib/site";
@@ -56,9 +57,9 @@ export default async function ChangelogPage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
-      <main className="mx-auto w-full max-w-5xl flex-1 px-5 pb-[72px] pt-16 sm:px-7">
+      <ChangelogMain>
         <header className="mb-11">
-          <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground md:grid md:grid-cols-[140px_1fr] md:gap-7">
+          <ChangelogGrid className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
             <span>Changelog</span>
             <div className="flex flex-1 items-center gap-3">
               <div className="h-px flex-grow bg-border" />
@@ -75,9 +76,9 @@ export default async function ChangelogPage() {
                 RSS
               </a>
             </div>
-          </div>
+          </ChangelogGrid>
 
-          <div className="md:grid md:grid-cols-[140px_1fr] md:gap-7">
+          <ChangelogGrid>
             <div className="md:col-start-2">
               <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
                 Changelog
@@ -86,7 +87,7 @@ export default async function ChangelogPage() {
                 {description}
               </p>
             </div>
-          </div>
+          </ChangelogGrid>
         </header>
 
         {entries.length > 0 ? (
@@ -100,7 +101,7 @@ export default async function ChangelogPage() {
             The first release notes are still in draft. Check back soon.
           </div>
         )}
-      </main>
+      </ChangelogMain>
 
       <SiteFooter />
     </div>
