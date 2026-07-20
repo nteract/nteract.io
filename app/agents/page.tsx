@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 
-import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { buttonVariants } from "@/components/ui/button-variants";
 
@@ -34,11 +33,10 @@ function InstallCard({
 }) {
   return (
     <div className="overflow-hidden rounded-lg border border-border">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5">
+      <div className="border-b border-border px-4 py-2.5">
         <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
           {label}
         </span>
-        <RuntimeStatusDot status="ready" />
       </div>
       <pre className="overflow-x-auto bg-[oklch(0.09_0_0)] p-4 font-mono text-[12.5px] leading-[1.8] text-foreground">
         {children}

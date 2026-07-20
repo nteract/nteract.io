@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { Logo } from "@/components/logo";
 import { DownloadButtons } from "@/components/home/download-buttons";
-import { RuntimeStatusDot } from "@/components/elements/runtime-status-dot";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { getAllEntries } from "@/lib/changelog";
 import { siteConfig } from "@/lib/site";
@@ -31,9 +30,8 @@ export default async function Home() {
         <div className="mx-auto max-w-2xl text-center">
           <Link
             href={latestEntry ? `/changelog/${latestEntry.version}` : "/changelog"}
-            className="group mb-10 inline-flex items-center gap-2.5 rounded-full border border-border bg-card py-1.5 pl-4 pr-4 text-sm transition-colors hover:border-ring"
+            className="group mb-10 inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm transition-colors hover:border-ring"
           >
-            <RuntimeStatusDot status="ready" />
             <span className="font-medium text-foreground">
               {latestEntry ? `nteract ${latestEntry.version} is out` : "See what's new"}
             </span>
