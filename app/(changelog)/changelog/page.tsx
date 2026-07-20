@@ -56,30 +56,38 @@ export default async function ChangelogPage() {
     <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader active="changelog" />
 
-      <main className="mx-auto w-full max-w-[45rem] flex-1 px-6 pb-[72px] pt-16 sm:px-10">
-        <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-          <span>Changelog</span>
-          <div className="h-px flex-grow bg-border" />
-          <Link
-            href="/changelog/print"
-            className="transition-colors hover:text-foreground"
-          >
-            Print
-          </Link>
-          <a
-            href="/changelog/feed.xml"
-            className="transition-colors hover:text-foreground"
-          >
-            RSS
-          </a>
-        </div>
+      <main className="mx-auto w-full max-w-5xl flex-1 px-5 pb-[72px] pt-16 sm:px-7">
+        <header className="mb-11">
+          <div className="mb-7 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground md:grid md:grid-cols-[140px_1fr] md:gap-7">
+            <span>Changelog</span>
+            <div className="flex flex-1 items-center gap-3">
+              <div className="h-px flex-grow bg-border" />
+              <Link
+                href="/changelog/print"
+                className="transition-colors hover:text-foreground"
+              >
+                Print
+              </Link>
+              <a
+                href="/changelog/feed.xml"
+                className="transition-colors hover:text-foreground"
+              >
+                RSS
+              </a>
+            </div>
+          </div>
 
-        <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
-          Changelog
-        </h1>
-        <p className="mb-11 max-w-[560px] text-[17px] leading-[1.55] text-muted-foreground">
-          {description}
-        </p>
+          <div className="md:grid md:grid-cols-[140px_1fr] md:gap-7">
+            <div className="md:col-start-2">
+              <h1 className="mb-3 text-[40px] font-extrabold leading-[0.98] tracking-[-0.04em] sm:text-[56px]">
+                Changelog
+              </h1>
+              <p className="max-w-[42rem] text-[17px] leading-[1.55] text-muted-foreground">
+                {description}
+              </p>
+            </div>
+          </div>
+        </header>
 
         {entries.length > 0 ? (
           <div>

@@ -46,12 +46,12 @@ export function ChangelogFeedEntry({ entry }: ChangelogFeedEntryProps) {
           </h2>
         </Link>
 
-        <p className="text-[15px] leading-[1.55] text-muted-foreground">
+        <p className="max-w-[42rem] text-[15px] leading-[1.55] text-muted-foreground">
           {entry.summary}
         </p>
 
         {entry.highlights.length > 0 ? (
-          <ul className="mt-1 flex flex-col gap-[7px]">
+          <ul className="mt-1 flex max-w-[42rem] flex-col gap-[7px]">
             {entry.highlights.map((highlight) => (
               <li
                 key={highlight}
