@@ -37,7 +37,15 @@ editorialSource:
 
 [I wish I had a decent hook here…]
 
-[For image choice: Maybe a codex image? Comments?]
+<figure className="my-10">
+  <LightboxImage
+    src="/media/nteract-2.8/exoplanets-planetary-years.png"
+    alt="Orbital periods grouped by discovery method: transit discoveries cluster toward shorter years, radial-velocity discoveries span longer periods, and imaging discoveries with reported periods extend into decades and beyond."
+  />
+  <figcaption className="text-sm leading-6 text-muted-foreground">
+    From “The worlds our searches reveal.” These are measured subsets of the catalogue, not the distribution of all planets. Data: NASA Exoplanet Archive, via <a href="https://huggingface.co/datasets/juliensimon/nasa-exoplanets/tree/e0d2d45654b61c45ba3381d2ad273c606d9a4d2e">Julien Simon’s pinned mirror</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>); analysis and chart added in the notebook. <a href="/media/nteract-2.8/exoplanets-planetary-years.html" target="_blank" rel="noreferrer">Explore the interactive chart</a>.
+  </figcaption>
+</figure>
 
 This release makes notebooks more powerful, more programmable, and more collaborative. From interactive output in Codex and discussions beside the notebook to Jupyter-inspired command shortcuts, more comfortable editing, and improved MCP, CLI, Node, and Python interfaces, nteract 2.7 and 2.8 bring a faster, more flexible way to work with—and build on—your notebooks.
 
@@ -53,11 +61,7 @@ We’ve also got an initial alpha of our cloud notebooks (that you can self-host
 
 Ask your agent to explore a dataset, then sort and crossfilter the table yourself, right in the conversation. Same with Plotly charts
 
-<Video
-  src="/media/nteract-2.8/nteract-web-iris-plotly.mp4"
-  poster="/media/nteract-2.8/nteract-web-iris-plotly-poster.png"
-  caption="Web nteract · zooming and resetting a Plotly chart of the public Iris dataset."
-/>
+[GIF/MP4 of Plotly — exoplanet notebook; fresh capture pending]
 
 We’ve had basic MCP Apps support for a while. As the spec has evolved and the harnesses have changed, we’ve had to adapt.
 
@@ -69,11 +73,15 @@ Changes: [#4352](https://github.com/nteract/nteract/pull/4352), [#4356](https://
 
 Large automatic table outputs show a bounded preview of the first rows. The footer makes clear that sorting, filtering, and summaries apply to those displayed rows. Supported base64 image columns display images instead of a wall of encoded text, including when the first batch contains only empty values.
 
-<Video
-  src="/media/nteract-2.8/nteract-web-iris-sift.mp4"
-  poster="/media/nteract-2.8/nteract-web-iris-sift-poster.png"
-  caption="Web nteract · filtering a 12-row Iris sample to the three displayed setosa rows."
-/>
+<figure className="my-10">
+  <LightboxImage
+    src="/media/nteract-2.8/exoplanets-sift-filtered.png"
+    alt="Web nteract showing an exoplanet table filtered to DMPP-2 d, with the footer reporting one of 30 preview rows."
+  />
+  <figcaption className="text-sm leading-6 text-muted-foreground">
+    Web nteract · inspecting one planet in a 30-row catalogue preview. This is a real notebook screenshot; a new interaction recording is still to come.
+  </figcaption>
+</figure>
 
 Changes: [#4093](https://github.com/nteract/nteract/pull/4093), [#4153](https://github.com/nteract/nteract/pull/4153), [#4103](https://github.com/nteract/nteract/pull/4103), [#4109](https://github.com/nteract/nteract/pull/4109)
 
@@ -103,11 +111,7 @@ Select any slice of code or markdown (even if rendered!) to leave a note. Same g
 
 As this is a multiplayer feature, it allows for human to human connection as well as agent to human and vice versa.
 
-<Video
-  src="/media/nteract-2.8/nteract-web-iris-comments.mp4"
-  poster="/media/nteract-2.8/nteract-web-iris-comments-poster.png"
-  caption="Web nteract · a discussion beside highlighted notebook output."
-/>
+[GIF of comment highlighting — exoplanet notebook; fresh capture pending]
 
 Hover over a comment highlight to preview the thread. Click to keep it open and reply. Unsent replies survive dismissal, and the Discussions rail lets you browse all threads.
 
