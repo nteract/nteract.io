@@ -18,7 +18,7 @@ describe("changelog content utilities", () => {
     const entries = await getAllEntries(all);
 
     expect(entries.map((entry) => entry.version)).toEqual([
-      "2.7",
+      "2.8",
       "2.6",
       "2.5",
       "2.4",
@@ -46,6 +46,21 @@ describe("changelog content utilities", () => {
       // Nothing is unpublished right now, so the default set is unfiltered.
       expect(published).toHaveLength(everything.length);
     }
+  });
+
+  it("keeps the combined 2.7–2.8 article and its aliases unpublished", async () => {
+    const draft = await getEntryByVersion("2.8", all);
+    expect(draft?.published).toBe(false);
+    expect(draft?.slug).toBe("2.8");
+
+    for (const version of ["2.7", "2.7.0", "2.8.0"]) {
+      expect(await resolveVersionParam(version, all)).toEqual({
+        kind: "redirect",
+        version: "2.8",
+      });
+      expect(await resolveVersionParam(version)).toBeNull();
+    }
+    expect(await resolveVersionParam("2.8")).toBeNull();
   });
 
   it("redirects collapsed patch versions to the grouped 2.5 entry", async () => {
