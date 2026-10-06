@@ -18,7 +18,7 @@ interface VideoProps {
 export function Video({ src, caption, poster, className }: VideoProps) {
   return (
     <figure className={cn("my-10", className)}>
-      <div className="overflow-hidden border border-[var(--rule)]">
+      <div className="overflow-hidden border border-border">
         <video
           src={src}
           poster={poster}
@@ -32,7 +32,7 @@ export function Video({ src, caption, poster, className }: VideoProps) {
         />
       </div>
       {caption ? (
-        <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-widest text-[var(--muted)]">
+        <figcaption className="mt-2 font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
           {caption}
         </figcaption>
       ) : null}

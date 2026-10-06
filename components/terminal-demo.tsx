@@ -84,7 +84,7 @@ export function TerminalDemo({ title, steps, caption }: TerminalDemoProps) {
 
   return (
     <figure aria-labelledby={`${id}-title`} className="not-prose my-10 min-w-0">
-      <div className="overflow-hidden rounded-lg border border-[var(--rule)] bg-[#181b20] shadow-sm">
+      <div className="overflow-hidden rounded-lg border border-border bg-[#181b20] shadow-sm">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 border-b border-white/10 px-4 py-3 text-xs text-stone-300">
           <span aria-hidden="true" className="flex gap-1.5"><span className="h-2 w-2 rounded-full bg-stone-500" /><span className="h-2 w-2 rounded-full bg-stone-500" /><span className="h-2 w-2 rounded-full bg-stone-500" /></span>
           <span id={`${id}-title`} className="font-mono">{title}</span>
@@ -100,13 +100,13 @@ export function TerminalDemo({ title, steps, caption }: TerminalDemoProps) {
         <button type="button" disabled={reduced || steps.length === 0} onClick={() => {
           if (position === null || finished) replay();
           else setPlaying(!playing);
-        }} className="min-h-11 rounded border border-[var(--rule)] px-4 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50">
+        }} className="min-h-11 rounded border border-border px-4 font-medium focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50">
           {playing ? "Pause" : position === null ? "Play demo" : finished ? "Play again" : "Resume"}
         </button>
         <button type="button" disabled={reduced || position === null} onClick={replay} className="min-h-11 rounded px-4 underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50">Replay</button>
-        <span role="status" className="text-[var(--muted)]">{reduced ? "Static transcript · reduced motion" : playing ? "Playing" : finished ? "Playback complete" : "No commands are executed"}</span>
+        <span role="status" className="text-muted-foreground">{reduced ? "Static transcript · reduced motion" : playing ? "Playing" : finished ? "Playback complete" : "No commands are executed"}</span>
       </div>
-      <figcaption className="mt-2 text-sm leading-6 text-[var(--muted)]">{caption}</figcaption>
+      <figcaption className="mt-2 text-sm leading-6 text-muted-foreground">{caption}</figcaption>
       <details className="mt-3 text-sm">
         <summary className="min-h-11 cursor-pointer py-3 underline underline-offset-4">Read the full transcript</summary>
         <div className="rounded bg-[#181b20] p-4 font-mono text-[13px] leading-6 [overflow-wrap:anywhere]">{transcript(false)}</div>

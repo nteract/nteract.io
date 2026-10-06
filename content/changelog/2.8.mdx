@@ -19,7 +19,8 @@ tags:
   - "comments"
   - "integrations"
 published: false
-# The Page remains the editorial source of truth; this is a website snapshot.
+# Initial Page reference; the repository is now the active implementation draft.
+# Do not overwrite local edits automatically from later Page snapshots.
 editorialSource:
   url: "https://chatgpt.com/space/page_8bd74a379b3c8191a29ad67b9c7a1e7e"
   revision: 1650
@@ -52,7 +53,11 @@ We’ve also got an initial alpha of our cloud notebooks (that you can self-host
 
 Ask your agent to explore a dataset, then sort and crossfilter the table yourself, right in the conversation. Same with Plotly charts
 
-[GIF/MP4 of Plotly]
+<Video
+  src="/media/nteract-2.8/nteract-web-iris-plotly.mp4"
+  poster="/media/nteract-2.8/nteract-web-iris-plotly-poster.png"
+  caption="Web nteract · zooming and resetting a Plotly chart of the public Iris dataset."
+/>
 
 We’ve had basic MCP Apps support for a while. As the spec has evolved and the harnesses have changed, we’ve had to adapt.
 
@@ -63,6 +68,12 @@ Changes: [#4352](https://github.com/nteract/nteract/pull/4352), [#4356](https://
 ### Know what your table is showing
 
 Large automatic table outputs show a bounded preview of the first rows. The footer makes clear that sorting, filtering, and summaries apply to those displayed rows. Supported base64 image columns display images instead of a wall of encoded text, including when the first batch contains only empty values.
+
+<Video
+  src="/media/nteract-2.8/nteract-web-iris-sift.mp4"
+  poster="/media/nteract-2.8/nteract-web-iris-sift-poster.png"
+  caption="Web nteract · filtering a 12-row Iris sample to the three displayed setosa rows."
+/>
 
 Changes: [#4093](https://github.com/nteract/nteract/pull/4093), [#4153](https://github.com/nteract/nteract/pull/4153), [#4103](https://github.com/nteract/nteract/pull/4103), [#4109](https://github.com/nteract/nteract/pull/4109)
 
@@ -92,7 +103,11 @@ Select any slice of code or markdown (even if rendered!) to leave a note. Same g
 
 As this is a multiplayer feature, it allows for human to human connection as well as agent to human and vice versa.
 
-[GIF of comment highlighting]
+<Video
+  src="/media/nteract-2.8/nteract-web-iris-comments.mp4"
+  poster="/media/nteract-2.8/nteract-web-iris-comments-poster.png"
+  caption="Web nteract · a discussion beside highlighted notebook output."
+/>
 
 Hover over a comment highlight to preview the thread. Click to keep it open and reply. Unsent replies survive dismissal, and the Discussions rail lets you browse all threads.
 
