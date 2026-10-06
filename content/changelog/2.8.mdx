@@ -37,15 +37,7 @@ editorialSource:
 
 [I wish I had a decent hook here…]
 
-<figure className="my-10">
-  <LightboxImage
-    src="/media/nteract-2.8/exoplanets-planetary-years.png"
-    alt="Orbital periods grouped by discovery method: transit discoveries cluster toward shorter years, radial-velocity discoveries span longer periods, and imaging discoveries with reported periods extend into decades and beyond."
-  />
-  <figcaption className="text-sm leading-6 text-muted-foreground">
-    From “The worlds our searches reveal.” These are measured subsets of the catalogue, not the distribution of all planets. Data: NASA Exoplanet Archive, via <a href="https://huggingface.co/datasets/juliensimon/nasa-exoplanets/tree/e0d2d45654b61c45ba3381d2ad273c606d9a4d2e">Julien Simon’s pinned mirror</a> (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>); analysis and chart added in the notebook. <a href="/media/nteract-2.8/exoplanets-planetary-years.html" target="_blank" rel="noreferrer">Explore the interactive chart</a>.
-  </figcaption>
-</figure>
+<ExoplanetChart />
 
 This release makes notebooks more powerful, more programmable, and more collaborative. From interactive output in Codex and discussions beside the notebook to Jupyter-inspired command shortcuts, more comfortable editing, and improved MCP, CLI, Node, and Python interfaces, nteract 2.7 and 2.8 bring a faster, more flexible way to work with—and build on—your notebooks.
 

@@ -15,6 +15,7 @@ import { SocketDiagram } from "@/components/blog/socket-diagram";
 import { TauriComparison } from "@/components/blog/tauri-comparison";
 import { Video } from "@/components/video";
 import { NteractCliDemo } from "@/components/nteract-cli-demo";
+import { ExoplanetChart } from "@/components/exoplanet-chart";
 import { RuntimeBadge } from "@/components/runtime-badge";
 import { OptOut } from "@/components/telemetry/opt-out";
 import { PingPreview } from "@/components/telemetry/ping-preview";
@@ -126,6 +127,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     TauriComparison,
     Video,
     NteractCliDemo,
+    ExoplanetChart,
     RuntimeBadge,
     OptOut,
     PingPreview,
