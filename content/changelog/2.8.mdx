@@ -78,6 +78,8 @@ Changes: [#4183](https://github.com/nteract/nteract/pull/4183), [#3960](https://
 
 Use nteract open analysis.ipynb to open a notebook, nteract . for a fresh notebook in the current directory, or nteract mcp to serve MCP. Notebook operations and workstation commands share one entry point; existing runt and nteract-mcp integrations remain supported.
 
+<NteractCliDemo />
+
 The CLI-only installer installs the command and helpers without registering or starting a local daemon service. One-shot notebook calls wait for document readiness, and execution calls also wait for the kernel before dispatch.
 
 Changes: [#4231](https://github.com/nteract/nteract/pull/4231), [#4233](https://github.com/nteract/nteract/pull/4233), [#4381](https://github.com/nteract/nteract/pull/4381)
