@@ -33,27 +33,19 @@ editorialSource:
 
 ## Let’s discuss our work
 
-
-
 [I wish I had a decent hook here…]
 
-<ExoplanetChart />
+![Placeholder: Release hero — replace with Figma artwork](/images/nteract-2.8-draft/hero.svg)
 
 This release makes notebooks more powerful, more programmable, and more collaborative. From interactive output in Codex and discussions beside the notebook to Jupyter-inspired command shortcuts, more comfortable editing, and improved MCP, CLI, Node, and Python interfaces, nteract 2.7 and 2.8 bring a faster, more flexible way to work with—and build on—your notebooks.
 
-
-
 We’ve also got an initial alpha of our cloud notebooks (that you can self-host on CloudFlare or with celld.dev).
 
+## Explore the output in Codex
 
-
-### Explore the output in Codex
-
-[GIF/MP4 of exploring a dataset in codex]
+![Placeholder: Explore the output in Codex — image or MP4](/images/nteract-2.8-draft/explore.svg)
 
 Ask your agent to explore a dataset, then sort and crossfilter the table yourself, right in the conversation. Same with Plotly charts
-
-[GIF/MP4 of Plotly — exoplanet notebook; fresh capture pending]
 
 We’ve had basic MCP Apps support for a while. As the spec has evolved and the harnesses have changed, we’ve had to adapt.
 
@@ -61,23 +53,15 @@ Connect your notebook with the [nteract Codex plugin](https://github.com/nteract
 
 Changes: [#4352](https://github.com/nteract/nteract/pull/4352), [#4356](https://github.com/nteract/nteract/pull/4356), [#4353](https://github.com/nteract/nteract/pull/4353)
 
-### Know what your table is showing
+**Know what your table is showing**
 
 Large automatic table outputs show a bounded preview of the first rows. The footer makes clear that sorting, filtering, and summaries apply to those displayed rows. Supported base64 image columns display images instead of a wall of encoded text, including when the first batch contains only empty values.
 
-<figure className="my-10">
-  <LightboxImage
-    src="/media/nteract-2.8/exoplanets-sift-filtered.png"
-    alt="Web nteract showing an exoplanet table filtered to DMPP-2 d, with the footer reporting one of 30 preview rows."
-  />
-  <figcaption className="text-sm leading-6 text-muted-foreground">
-    Web nteract · inspecting one planet in a 30-row catalogue preview. This is a real notebook screenshot; a new interaction recording is still to come.
-  </figcaption>
-</figure>
-
 Changes: [#4093](https://github.com/nteract/nteract/pull/4093), [#4153](https://github.com/nteract/nteract/pull/4153), [#4103](https://github.com/nteract/nteract/pull/4103), [#4109](https://github.com/nteract/nteract/pull/4109)
 
-### Make the notebook comfortable to edit
+## Make the notebook comfortable to edit
+
+![Placeholder: Make the notebook comfortable to edit — image or MP4](/images/nteract-2.8-draft/editing.svg)
 
 Familiar command-mode shortcuts are here. Escape enters command mode; Enter returns to editing. A and B insert a cell above or below, M and Y switch between Markdown and code, D,D deletes a cell, and O toggles output visibility.
 
@@ -85,25 +69,21 @@ Choose code and Markdown fonts with a searchable picker and previews of installe
 
 Changes: [#4183](https://github.com/nteract/nteract/pull/4183), [#3960](https://github.com/nteract/nteract/pull/3960), [#3969](https://github.com/nteract/nteract/pull/3969), [#4366](https://github.com/nteract/nteract/pull/4366)
 
-### Introducing the nteract cli
+**Introducing the nteract cli**
 
 Use nteract open analysis.ipynb to open a notebook, nteract . for a fresh notebook in the current directory, or nteract mcp to serve MCP. Notebook operations and workstation commands share one entry point; existing runt and nteract-mcp integrations remain supported.
-
-<NteractCliDemo />
 
 The CLI-only installer installs the command and helpers without registering or starting a local daemon service. One-shot notebook calls wait for document readiness, and execution calls also wait for the kernel before dispatch.
 
 Changes: [#4231](https://github.com/nteract/nteract/pull/4231), [#4233](https://github.com/nteract/nteract/pull/4233), [#4381](https://github.com/nteract/nteract/pull/4381)
 
-## Discussions and notebook integrations
+## Inline Commenting
 
-### Inline Commenting
+![Placeholder: Inline Commenting — image or MP4](/images/nteract-2.8-draft/comments.svg)
 
 Select any slice of code or markdown (even if rendered!) to leave a note. Same goes for outputs. If you don’t understand a chart, want to change it up, or a dataset needs refinement just leave a note.
 
 As this is a multiplayer feature, it allows for human to human connection as well as agent to human and vice versa.
-
-[GIF of comment highlighting — exoplanet notebook; fresh capture pending]
 
 Hover over a comment highlight to preview the thread. Click to keep it open and reply. Unsent replies survive dismissal, and the Discussions rail lets you browse all threads.
 
@@ -113,13 +93,15 @@ When you’re ready to share with people, you’ll need the cloud version.
 
 Changes: [#3902](https://github.com/nteract/nteract/pull/3902), [#4182](https://github.com/nteract/nteract/pull/4182), [#4236](https://github.com/nteract/nteract/pull/4236), [#4375](https://github.com/nteract/nteract/pull/4375)
 
-### Embed multiplayer notebooks in your apps
+## Embed multiplayer notebooks in your apps
+
+![Placeholder: Embed multiplayer notebooks in your apps — image or MP4](/images/nteract-2.8-draft/embedding.svg)
 
 We’re going beyond the Desktop app and enabling others to embed nteract in their apps. This starts with our node runtime and electron adapter. An embedding app can connect to the notebook runtime, provide native actions, all without having to rebuild the connection protocol.
 
 Changes: [#4134](https://github.com/nteract/nteract/pull/4134), [#4147](https://github.com/nteract/nteract/pull/4147), [#4248](https://github.com/nteract/nteract/pull/4248), [#4287](https://github.com/nteract/nteract/pull/4287), [#4323](https://github.com/nteract/nteract/pull/4323), [#4372](https://github.com/nteract/nteract/pull/4372), [#4285](https://github.com/nteract/nteract/pull/4285)
 
-### Environments and platforms
+**Environments and platforms**
 
 Managed Conda and Pixi environments respect explicit Python 3.12 requests. Dependency approvals distinguish registry packages from requests for another URL, path, or channel.
 
