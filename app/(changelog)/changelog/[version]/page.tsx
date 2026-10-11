@@ -45,7 +45,7 @@ export async function generateMetadata({
   const { entry } = resolved;
   const canonical = absoluteUrl(`/changelog/${entry.version}`);
   const ogImage =
-    entry.heroImage ?? absoluteUrl(`/changelog/${entry.version}/opengraph-image`);
+    absoluteUrl(entry.heroImage ?? `/changelog/${entry.version}/opengraph-image`);
 
   return {
     title: `nteract ${entry.version} — ${entry.title}`,
@@ -60,13 +60,13 @@ export async function generateMetadata({
       type: "article",
       publishedTime: entry.date,
       tags: entry.tags,
-      images: [ogImage],
+      images: [{ url: ogImage, alt: entry.heroImageAlt ?? entry.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: `nteract ${entry.version} — ${entry.title}`,
       description: entry.summary,
-      images: [ogImage],
+      images: [{ url: ogImage, alt: entry.heroImageAlt ?? entry.title }],
     },
   };
 }
@@ -150,10 +150,10 @@ export default async function ChangelogVersionPage({
             </ChangelogGrid>
           ) : entry.heroImage ? (
             <ChangelogGrid as="section" className="mb-12">
-              <div className="aspect-video w-full overflow-hidden rounded-lg border border-border bg-card md:col-start-2">
+              <div className="w-full overflow-hidden rounded-lg border border-border bg-card md:col-start-2">
                 <img
-                  alt={entry.title}
-                  className="h-full w-full object-cover"
+                  alt={entry.heroImageAlt ?? entry.title}
+                  className="block h-auto w-full"
                   src={entry.heroImage}
                 />
               </div>

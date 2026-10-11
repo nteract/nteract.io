@@ -22,6 +22,7 @@ export type ChangelogFrontmatter = {
   /** Optional human date range for grouped entries, e.g. "May 2–14, 2026". */
   dateLabel?: string;
   heroImage?: string;
+  heroImageAlt?: string;
   heroVideo?: string;
   /** Poster still shown while heroVideo loads. */
   heroVideoPoster?: string;
@@ -115,6 +116,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
   const tags = normalizeStringArray(data.tags, "tags", fileName);
   const dateLabel = optionalString(data.dateLabel);
   const heroImage = optionalString(data.heroImage);
+  const heroImageAlt = optionalString(data.heroImageAlt);
   const heroVideo = optionalString(data.heroVideo);
   const heroVideoPoster = optionalString(data.heroVideoPoster);
   const githubReleaseUrl = optionalString(data.githubReleaseUrl);
@@ -131,6 +133,7 @@ function parseFrontmatter(fileName: string, data: Record<string, unknown>) {
     tags,
     dateLabel,
     heroImage,
+    heroImageAlt,
     heroVideo,
     heroVideoPoster,
     githubReleaseUrl,
