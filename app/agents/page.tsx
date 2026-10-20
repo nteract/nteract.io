@@ -94,6 +94,54 @@ export default function AgentsPage() {
           </InstallCard>
         </div>
 
+        <section
+          id="upgrade-codex-plugin"
+          className="mb-12 border-t border-border pt-7"
+        >
+          <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
+            Updating the Codex plugin
+          </h2>
+          <p className="mb-4 text-[15.5px] leading-normal text-muted-foreground">
+            The desktop app and agent plugin update separately. If notebook
+            calls fail with <InlineCode>unsupported_notebook_target</InlineCode>{" "}
+            or “This child does not advertise required notebook_handle routing,”
+            an older plugin may be rejecting your updated app. The plugin needs
+            updating even if the error says to upgrade the child.
+          </p>
+          <p className="mb-4 text-[15.5px] leading-normal text-muted-foreground">
+            Save your notebook work, then run this in a terminal for the stable
+            plugin. For Nightly, replace{" "}
+            <InlineCode>nteract@nteract-plugins</InlineCode> with{" "}
+            <InlineCode>nightly@nteract-plugins</InlineCode> in both commands.
+          </p>
+          <InstallCard
+            label="Refresh and reinstall"
+            footnote={
+              <>
+                The <InlineCode>&amp;&amp;</InlineCode> operators stop if a step
+                fails. If the marketplace clone times out or reports “early
+                EOF,” stop before removing the plugin. Follow the{" "}
+                <a
+                  href="https://github.com/nteract/nteract#upgrade-the-codex-plugin"
+                  className="underline underline-offset-4"
+                >
+                  recovery guide
+                </a>{" "}
+                for a shallow local checkout or a pinned marketplace.
+              </>
+            }
+          >
+            {"codex plugin marketplace upgrade nteract-plugins &&\ncodex plugin remove nteract@nteract-plugins &&\ncodex plugin add nteract@nteract-plugins"}
+          </InstallCard>
+          <p className="mt-4 text-[15.5px] leading-normal text-muted-foreground">
+            Restart Codex and start a fresh session to load the updated plugin
+            and tools. Reconnecting the notebook worker alone does not upgrade
+            the plugin. Ask the agent to create a notebook and run{" "}
+            <InlineCode>1 + 1</InlineCode>; confirm the cell returns{" "}
+            <InlineCode>2</InlineCode>.
+          </p>
+        </section>
+
         <h2 className="mb-4 text-2xl font-bold tracking-[-0.02em]">
           What agents get
         </h2>
@@ -122,8 +170,14 @@ export default function AgentsPage() {
             Download nteract
           </Link>
           <span className="text-[13.5px] text-muted-foreground">
-            Tools missing? Restart the agent, or run{" "}
-            <InlineCode>runt doctor</InlineCode>.
+            Tools missing? Check the{" "}
+            <a
+              href="#upgrade-codex-plugin"
+              className="underline underline-offset-4"
+            >
+              plugin upgrade steps
+            </a>{" "}
+            or run <InlineCode>nteract doctor</InlineCode>.
           </span>
         </div>
       </main>
