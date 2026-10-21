@@ -1,0 +1,3 @@
+# Local review captures stay out of Git; production media is hosted separately.
+*
+!.gitignore
