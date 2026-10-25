@@ -1,0 +1,89 @@
+---
+version: "2.8"
+# Snapshot timestamp for draft ordering; stable release date remains unconfirmed.
+date: "2026-10-20T17:00:00Z"
+coversVersions:
+  - "2.7"
+  - "2.7.0"
+  - "2.8.0"
+dateLabel: "October 20, 2026"
+title: "Beyond the desktop"
+summary: "This release makes notebooks more programmable and more collaborative. From interactive output in Codex and discussions beside the notebook to Jupyter-inspired command shortcuts, more comfortable editing, and improved MCP, CLI, Node, and Python interfaces. nteract 2.7-2.8 bring a faster, more flexible way to work with and build on your notebooks."
+highlights:
+  - "Embed multiplayer notebooks in your apps"
+  - "Deploy collaborative notebooks to private clouds"
+  - "Unified nteract cli"
+tags:
+  - "comments"
+  - "integrations"
+  - "cloud"
+  - "embedding"
+heroImage: "/images/nteract-2.8-draft/hero.png"
+heroImageAlt: "Beyond the desktop: nteract exoplanet notebooks in a browser and agent tools, alongside terminal commands."
+published: true
+---
+
+## Beyond the Desktop
+
+This release makes notebooks more programmable and more collaborative. From interactive output in Codex and discussions beside the notebook to Jupyter-inspired command shortcuts, more comfortable editing, and improved MCP, CLI, Node, and Python interfaces. nteract 2.8 brings a faster, more flexible way to work with and build on your notebooks.
+
+We’ve also got an initial alpha of our cloud notebooks (that you can self-host on CloudFlare or with celld.dev).
+
+## Explore the output in Codex
+ 
+![Placeholder: Explore the output in Codex — image or MP4](/images/nteract-2.8-draft/explore.svg)
+
+Ask your agent to explore a dataset, then sort and crossfilter the table yourself, right in the conversation. Same with Plotly charts.
+
+We’ve had basic MCP Apps support for a while. As the spec has evolved and the harnesses have changed, we’ve had to adapt.
+
+Connect your notebook with the [nteract Codex plugin](https://github.com/nteract/nteract/blob/0088b6b95c99946e155d22c22cb6040f62b9fb47/README.md#install-the-codex-plugin).
+
+Changes: [#4352](https://github.com/nteract/nteract/pull/4352), [#4356](https://github.com/nteract/nteract/pull/4356), [#4353](https://github.com/nteract/nteract/pull/4353)
+
+
+## Introducing the nteract cli
+
+![Placeholder: Introducing the nteract cli — image or MP4](/images/nteract-2.8-draft/cli.svg)
+
+Use `nteract open analysis.ipynb` to open a notebook, `nteract .` for a fresh notebook in the current directory, or `nteract mcp` to serve MCP.
+
+You can also use the CLI without need of the local daemon service for targeting remote servers or providing 
+ 
+The CLI-only installer installs the command and helpers without registering or starting a local daemon service. One-shot notebook calls wait for document readiness, and execution calls also wait for the kernel before dispatch.
+
+Changes: [#4231](https://github.com/nteract/nteract/pull/4231), [#4233](https://github.com/nteract/nteract/pull/4233), [#4381](https://github.com/nteract/nteract/pull/4381)
+
+## Inline Commenting
+
+![Placeholder: Inline Commenting — image or MP4](/images/nteract-2.8-draft/comments.svg)
+
+Select any slice of code or markdown (even if rendered!) to leave a note. Same goes for outputs. If you don’t understand a chart, want to change it up, or a dataset needs refinement just leave a note.
+
+As this is a multiplayer feature, it allows for human to human connection as well as agent to human and vice versa.
+
+Hover over a comment highlight to preview the thread. Click to keep it open and reply. Unsent replies survive dismissal, and the Discussions rail lets you browse all threads.
+
+Your conversations stay connected when you save as they’re stored separately and privately on the desktop. When you export a notebook, your discussions stay private and out of the .ipynb file.
+
+When you’re ready to share with people, you’ll need the cloud version.
+
+Changes: [#3902](https://github.com/nteract/nteract/pull/3902), [#4182](https://github.com/nteract/nteract/pull/4182), [#4236](https://github.com/nteract/nteract/pull/4236), [#4375](https://github.com/nteract/nteract/pull/4375)
+
+## Embed multiplayer notebooks in your apps
+
+![Placeholder: Embed multiplayer notebooks in your apps — image or MP4](/images/nteract-2.8-draft/embedding.svg)
+
+We’re going beyond the Desktop app and enabling others to embed nteract in their apps. This starts with our node runtime and electron adapter. An embedding app can connect to the notebook runtime, provide native actions, all without having to rebuild the connection protocol.
+
+Changes: [#4134](https://github.com/nteract/nteract/pull/4134), [#4147](https://github.com/nteract/nteract/pull/4147), [#4248](https://github.com/nteract/nteract/pull/4248), [#4287](https://github.com/nteract/nteract/pull/4287), [#4323](https://github.com/nteract/nteract/pull/4323), [#4372](https://github.com/nteract/nteract/pull/4372), [#4285](https://github.com/nteract/nteract/pull/4285)
+
+## Keyboard comforts
+
+![Placeholder: Make the notebook comfortable to edit — image or MP4](/images/nteract-2.8-draft/editing.svg)
+
+Familiar command-mode shortcuts are here. Escape enters command mode; Enter returns to editing. A and B insert a cell above or below, M and Y switch between Markdown and code, D,D deletes a cell, and O toggles output visibility.
+
+Choose code and Markdown fonts with a searchable picker and previews of installed fonts. Turn line numbers on or off. Styled HTML blocks, including nested callouts with backgrounds and borders, render again in Markdown previews.
+
+Changes: [#4183](https://github.com/nteract/nteract/pull/4183), [#3960](https://github.com/nteract/nteract/pull/3960), [#3969](https://github.com/nteract/nteract/pull/3969), [#4366](https://github.com/nteract/nteract/pull/4366)

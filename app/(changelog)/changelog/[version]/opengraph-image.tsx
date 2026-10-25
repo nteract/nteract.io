@@ -1,9 +1,11 @@
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 import { ImageResponse } from "next/og";
 
 import {
   formatEntryDate,
   getEntryByVersion,
+  resolveVersionParam,
   shouldShowDrafts,
 } from "@/lib/changelog";
 
@@ -19,9 +21,17 @@ export default async function OGImage({
 }) {
   const { version } = await params; // cream OG palette below
   const host = (await headers()).get("host");
-  const entry = await getEntryByVersion(version, {
-    includeUnpublished: shouldShowDrafts(host),
-  });
+  const options = { includeUnpublished: shouldShowDrafts(host) };
+  const resolved = await resolveVersionParam(version, options);
+  const entry = resolved?.kind === "canonical"
+    ? resolved.entry
+    : resolved?.kind === "redirect"
+      ? await getEntryByVersion(resolved.version, options)
+      : null;
+
+  if (entry?.heroImage) {
+    redirect(entry.heroImage);
+  }
 
   if (!entry) {
     return new ImageResponse(
